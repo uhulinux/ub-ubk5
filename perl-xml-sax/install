@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+localperllib="$UB_INSTALLDIR/usr/lib/perl5/site_perl/`perl -e 'print $^V' | tr -d 'v'`"
+export PERL5LIB=$localperllib
+
+ub_install

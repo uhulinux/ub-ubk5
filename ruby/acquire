@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+ruby-${UB_VERSION/.p/-p}.tar.gz ruby-${UB_VERSION/.p/-p}/
+    https://cache.ruby-lang.org/pub/ruby/${UB_VERSION_HEAD2}/

@@ -1,0 +1,14 @@
+#!/bin/sh -eux
+
+ub_compile \
+	-Ddmconfdir=/usr/share/xsessions \
+	-Dgdm-xsession=true \
+	-Dgroup=gdm \
+	-Dinitial-vt=7 \
+	-Dipv6=true \
+	-Dplymouth=disabled \
+	-Dprofiling=true \
+	-Dselinux=disabled \
+	-Dtcp-wrappers=false \
+	-Duser=gdm \
+	-Dwayland-support=true

@@ -1,0 +1,14 @@
+avahi-dev
+cups-dev
+dbus-dev
+fontconfig-dev
+fonts-dejavu
+freetype2-dev
+ghostscript-dev
+hplip
+ijs-dev
+libjpeg-turbo-dev
+libpng-dev
+libtiff-dev
+poppler-dev
+qpdf-dev

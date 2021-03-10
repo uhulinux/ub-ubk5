@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+gphoto2-${UB_VERSION}.tar.gz gphoto2-${UB_VERSION}/
+	https://downloads.sourceforge.net/gphoto/

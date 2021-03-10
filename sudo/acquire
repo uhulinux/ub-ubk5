@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+sudo-${UB_VERSION}.tar.gz sudo-${UB_VERSION}/
+	https://www.sudo.ws/dist/

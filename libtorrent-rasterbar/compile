@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+git clone https://github.com/arvidn/try_signal.git deps/try_signal
+ub_compile \
+    -Dpython-bindings=ON

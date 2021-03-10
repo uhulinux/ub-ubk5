@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+ncurses-${UB_VERSION}.tar.gz ncurses-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/ncurses/

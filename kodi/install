@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+cd build-w
+ub_install
+cd ../build-x
+ub_install

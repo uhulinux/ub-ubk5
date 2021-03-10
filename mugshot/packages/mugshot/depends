@@ -1,0 +1,6 @@
+dbus-python3
+gst-plugins-good
+gtk
+python3-cairo
+python3-pexpect
+python3-pygobject

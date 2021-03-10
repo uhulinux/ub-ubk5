@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+glu-${UB_VERSION}.tar.xz glu-${UB_VERSION}/
+	https://mesa.freedesktop.org/archive/glu/

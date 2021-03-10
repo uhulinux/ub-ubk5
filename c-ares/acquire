@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+cares-${UB_VERSION//./_}.tar.gz c-ares-cares-${UB_VERSION//./_}/
+	https://github.com/c-ares/c-ares/archive/

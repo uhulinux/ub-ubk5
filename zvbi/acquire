@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+zvbi-${UB_VERSION}.tar.bz2 zvbi-${UB_VERSION}/
+	https://downloads.sourceforge.net/zapping/

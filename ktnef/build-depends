@@ -1,0 +1,7 @@
+extra-cmake-modules
+kcalendarcore-dev
+kcalutils-dev
+kcontacts-dev
+kdoctools
+libical-dev
+qt5-dev

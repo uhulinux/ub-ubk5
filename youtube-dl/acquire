@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz youtube-dl-${UB_VERSION}/
+	https://github.com/ytdl-org/youtube-dl/archive/

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+zaz-${UB_VERSION}.tar.gz zaz-${UB_VERSION}/
+	https://downloads.sourceforge.net/zaz/

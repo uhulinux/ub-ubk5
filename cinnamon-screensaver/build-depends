@@ -1,0 +1,9 @@
+cinnamon-desktop-dev
+dbus-glib-dev
+gobject-introspection-dev
+gsettings-desktop-schemas
+intltool
+libgnomekbd-dev
+libsm-dev
+libxscrnsaver-dev
+webkit2gtk-dev

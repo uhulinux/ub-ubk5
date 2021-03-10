@@ -1,0 +1,5 @@
+#!/usr/bin/env dl
+
+libpng-${UB_VERSION}.tar.xz libpng-${UB_VERSION}/
+	https://downloads.sourceforge.net/libpng/
+    https://ftp.osuosl.org/pub/blfs/conglomeration/libpng/

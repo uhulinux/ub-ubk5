@@ -1,0 +1,5 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION/~/-}.tar.gz .
+	https://chromium.googlesource.com/webm/libvpx/+archive/
+	https://github.com/webmproject/libvpx/archive/

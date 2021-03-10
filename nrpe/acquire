@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+nrpe-${UB_VERSION}.tar.gz nrpe-${UB_VERSION}/
+	https://downloads.sourceforge.net/nagios/

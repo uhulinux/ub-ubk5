@@ -1,0 +1,6 @@
+dbus-glib-dev
+intltool
+libexif-dev
+libxfce4ui-dev
+libxfce4util-dev
+xfconf-dev

@@ -1,0 +1,10 @@
+#!/usr/bin/env dl
+
+grub-${UB_VERSION}.tar.xz grub-${UB_VERSION}/ :grub
+	https://ftp.gnu.org/gnu/grub/
+
+grub-extras-8a245d5c1800627af4cefa99162a89c7a46d8842.tar.gz grub-extras-8a245d5c1800627af4cefa99162a89c7a46d8842/915resolution :grub-extras/915resolution
+	https://git.savannah.nongnu.org/cgit/grub-extras.git/snapshot/
+
+unifont-13.0.01.bdf.gz .
+	https://ftp.gnu.org/gnu/unifont/unifont-13.0.01/

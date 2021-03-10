@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+konqueror-${UB_VERSION}.tar.xz konqueror-${UB_VERSION}/
+	https://download.kde.org/stable/release-service/${UB_VERSION}/src/

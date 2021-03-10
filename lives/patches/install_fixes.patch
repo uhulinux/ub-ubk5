@@ -1,0 +1,12 @@
+diff -Naur orig/Makefile.am patched/Makefile.am
+--- orig/Makefile.am	2020-11-08 20:20:32.000000000 +0100
++++ patched/Makefile.am	2020-12-25 20:41:57.981624083 +0100
+@@ -35,7 +35,7 @@
+ SUBDIRS = $(OSC_SUBDIRS) intl $(WEED_SUBDIRS) src m4 lives-plugins po resources
+ PACKAGE_CAPITALISED = LiVES
+ 
+-docdir = "$(prefix)/share/doc/$(PACKAGE)"
++docdir = "$(prefix)/share/doc/Packages/$(PACKAGE)"
+ sharedir = "$(prefix)/share"
+ 
+ if HAVE_DOXYGEN

@@ -1,0 +1,11 @@
+libpeas
+osinfo-db
+yelp
+gnumeric
+rest
+gnome-online-accounts
+gvfs
+wxwidgets
+python3-wxpython
+python3-matplotlib
+python3-squaremap

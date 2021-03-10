@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+ub_compile \
+	-Dnautilus_extension=true \
+	-Dmodules-path=/usr/lib/apache

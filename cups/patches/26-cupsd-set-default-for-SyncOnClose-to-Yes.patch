@@ -1,0 +1,48 @@
+diff -Naur orig/conf/cups-files.conf.in patched/conf/cups-files.conf.in
+--- orig/conf/cups-files.conf.in	2019-08-23 17:19:38.000000000 +0200
++++ patched/conf/cups-files.conf.in	2019-08-25 19:46:18.570841426 +0200
+@@ -7,7 +7,7 @@
+ #FatalErrors @CUPS_FATAL_ERRORS@
+ 
+ # Do we call fsync() after writing configuration or status files?
+-#SyncOnClose No
++#SyncOnClose Yes
+ 
+ # Default user and group for filters/backends/helper programs; this cannot be
+ # any user or group that resolves to ID 0 for security reasons...
+diff -Naur orig/doc/help/man-cups-files.conf.html patched/doc/help/man-cups-files.conf.html
+--- orig/doc/help/man-cups-files.conf.html	2019-08-23 17:19:38.000000000 +0200
++++ patched/doc/help/man-cups-files.conf.html	2019-08-25 19:46:18.570841426 +0200
+@@ -150,7 +150,7 @@
+ <dd style="margin-left: 5.0em">Specifies whether the scheduler calls
+ <b>fsync</b>(2)
+ after writing configuration or state files.
+-The default is "No".
++The default is "Yes".
+ <dt><a name="SystemGroup"></a><b>SystemGroup </b><i>group-name </i>[ ... <i>group-name</i> ]
+ <dd style="margin-left: 5.0em">Specifies the group(s) to use for <i>@SYSTEM</i> group authentication.
+ The default contains "admin", "lpadmin", "root", "sys", and/or "system".
+diff -Naur orig/man/cups-files.conf.5 patched/man/cups-files.conf.5
+--- orig/man/cups-files.conf.5	2019-08-23 17:19:38.000000000 +0200
++++ patched/man/cups-files.conf.5	2019-08-25 19:49:27.580338177 +0200
+@@ -211,7 +211,7 @@
+ Specifies whether the scheduler calls
+ .BR fsync (2)
+ after writing configuration or state files.
+-The default is "No".
++The default is "Yes".
+ .\"#SystemGroup
+ .TP 5
+ \fBSystemGroup \fIgroup-name \fR[ ... \fIgroup-name\fR ]
+diff -Naur orig/scheduler/conf.c patched/scheduler/conf.c
+--- orig/scheduler/conf.c	2019-08-23 17:19:38.000000000 +0200
++++ patched/scheduler/conf.c	2019-08-25 19:51:26.329281082 +0200
+@@ -735,7 +735,7 @@
+   RootCertDuration         = 300;
+   Sandboxing               = CUPSD_SANDBOXING_STRICT;
+   StrictConformance        = FALSE;
+-  SyncOnClose              = FALSE;
++  SyncOnClose              = TRUE;
+   Timeout                  = 900;
+   WebInterface             = CUPS_DEFAULT_WEBIF;
+ 

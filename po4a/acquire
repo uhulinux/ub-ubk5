@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz po4a-${UB_VERSION}/
+	https://github.com/mquinson/po4a/archive/

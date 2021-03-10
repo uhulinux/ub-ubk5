@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libXi-$UB_VERSION.tar.bz2 libXi-$UB_VERSION/
+	https://www.x.org/releases/individual/lib/

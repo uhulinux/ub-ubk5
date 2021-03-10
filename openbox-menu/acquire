@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz openbox-menu-upstream-${UB_VERSION}/
+    https://github.com/mati75/openbox-menu/archive/upstream/

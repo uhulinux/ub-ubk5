@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+ub_compile \
+    -DWITH_GSSAPI=OFF \
+    -DWITH_GCRYPT=ON

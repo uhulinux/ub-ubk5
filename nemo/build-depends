@@ -1,0 +1,16 @@
+cinnamon-desktop-dev
+dconf-dev
+exempi-dev
+gobject-introspection-dev
+gvfs
+intltool
+libexif-dev
+libgcrypt-dev
+libgnomekbd-dev
+libnotify-dev
+libsm-dev
+libxml2-dev
+meson
+python3-polib
+python3-pygobject-dev
+xapps-dev

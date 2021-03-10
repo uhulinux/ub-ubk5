@@ -1,0 +1,3 @@
+#!/bin/sh -eux
+
+make DESTDIR="${UB_INSTALLDIR}" SBINDIR='/usr/bin' BINDIR='/usr/bin' LIBDIR='/usr/lib' USRLIBDIR='/usr/lib' install

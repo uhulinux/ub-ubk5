@@ -1,0 +1,15 @@
+#!/bin/sh -eux
+
+#chmod +x waf-2.0.9
+
+waf configure \
+	--prefix=/usr \
+	--confdir=/etc/mpv \
+	--enable-cdda \
+	--enable-dvb \
+	--enable-dvdnav \
+	--enable-libarchive \
+	--enable-libmpv-shared \
+	--disable-build-date \
+
+waf build

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz hwdata-${UB_VERSION}/
+    https://github.com/vcrhonek/hwdata/archive/

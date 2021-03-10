@@ -1,0 +1,9 @@
+curl-dev
+gnutls-dev
+libassuan-dev
+libgcrypt-dev
+libgpg-error-dev
+libksba-dev
+libusb-dev
+npth-dev
+openldap-dev

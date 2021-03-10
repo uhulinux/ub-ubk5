@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+sgml-common-${UB_VERSION}.tgz sgml-common-${UB_VERSION}/
+	https://sourceware.org/ftp/docbook-tools/new-trials/SOURCES/

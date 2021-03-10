@@ -1,0 +1,19 @@
+#!/bin/sh -eux
+
+cd googletest
+ub_install
+cp build/lib/*so ${UB_INSTALLDIR}/usr/lib/
+cd ../googlemock
+ub_install
+cd ..
+
+mkdir -p ${UB_INSTALLDIR}/usr/src/{gtest/src,gmock/src}
+mkdir -p ${UB_INSTALLDIR}/usr/src/gtest/cmake
+
+cp googletest/cmake/* ${UB_INSTALLDIR}/usr/src/gtest/cmake
+cp googletest/src/* ${UB_INSTALLDIR}/usr/src/gtest/src/
+cp CMakeLists.txt ${UB_INSTALLDIR}/usr/src/gtest/src/
+cp googlemock/src/* ${UB_INSTALLDIR}/usr/src/gmock/src/
+
+#undorító duplikátum a synergy-nek!
+cp googlemock/src/* ${UB_INSTALLDIR}/usr/src/gmock/

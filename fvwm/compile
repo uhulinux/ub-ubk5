@@ -1,0 +1,11 @@
+#!/bin/sh -eux
+
+ub_compile \
+	--disable-mandoc \
+	--disable-htmldoc \
+	--enable-nls \
+	--enable-iconv \
+	--enable-perllib \
+	--enable-rsvg \
+	--enable-xft \
+	--with-stroke-library

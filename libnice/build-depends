@@ -1,0 +1,7 @@
+glib-dev
+gobject-introspection-dev
+gstreamer-dev
+gupnp-igd-dev
+libunistring-dev
+meson
+util-linux-dev

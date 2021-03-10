@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+fetchmail-${UB_VERSION}.tar.xz fetchmail-${UB_VERSION}/
+	https://downloads.sourceforge.net/fetchmail/

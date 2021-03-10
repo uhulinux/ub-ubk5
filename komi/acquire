@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+komi-${UB_VERSION}.tar.gz komi-${UB_VERSION}/
+	https://download.sourceforge.net/komi/

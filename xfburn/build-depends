@@ -1,0 +1,11 @@
+dbus-glib-dev
+gst-plugins-base-dev
+intltool
+libburn-dev
+libexo-dev
+libisofs-dev
+libsm-dev
+libxfce4ui-dev
+libxslt-dev
+startup-notification-dev
+xcb-util-dev

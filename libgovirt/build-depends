@@ -1,0 +1,6 @@
+gnome-common
+gobject-introspection-dev
+intltool
+itstool
+libsoup-dev
+rest-dev

@@ -1,0 +1,13 @@
+dbus-glib-dev
+geocode-glib-dev
+gobject-introspection-dev
+gtk-dev
+intltool
+json-glib-dev
+libgcrypt-dev
+libsoup-dev
+libxml2-dev
+meson
+sqlite-dev
+tzdata
+vala-dev

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+IO-Socket-SSL-${UB_VERSION}.tar.gz IO-Socket-SSL-${UB_VERSION}/
+	https://cpan.metacpan.org/modules/by-module/IO/

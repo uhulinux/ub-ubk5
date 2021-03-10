@@ -1,0 +1,9 @@
+extra-cmake-modules
+kcoreaddons-dev
+kdeclarative-dev
+ki18n-dev
+kitemmodels-dev
+krunner-dev
+kservice-dev
+plasma-framework-dev
+qt5-dev

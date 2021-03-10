@@ -1,0 +1,15 @@
+enchant-dev
+gsettings-desktop-schemas
+gspell-dev
+gtksourceview4-dev
+intltool
+iso-codes
+itstool
+libpeas-dev
+libsm-dev
+libsoup-dev
+meson
+python3-pygobject
+tepl-dev
+vala-dev
+yelp-tools

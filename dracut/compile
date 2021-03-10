@@ -1,0 +1,5 @@
+#!/bin/bash -eux
+
+ub_compile \
+    --systemdsystemunitdir=$(pkg-config --variable=systemdsystemunitdir systemd) \
+    --bashcompletiondir=$(pkg-config --variable=completionsdir bash-completion)

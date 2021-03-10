@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+TimeDate-${UB_VERSION}.tar.gz TimeDate-${UB_VERSION}/
+	https://www.cpan.org/authors/id/G/GB/GBARR/

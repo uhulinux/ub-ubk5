@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+find . -type f -exec chmod a-x {} \;
+ub_compile \
+        -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+        -DCMAKE_SKIP_RPATH=ON

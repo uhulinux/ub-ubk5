@@ -1,0 +1,14 @@
+gobject-introspection-dev
+gperf
+intltool
+itstool
+libsoup-dev
+libxml2-dev
+libyaml-dev
+lmdb-dev
+meson
+protobuf-dev
+qt5-dev
+vala-dev
+xapian-dev
+xmlto

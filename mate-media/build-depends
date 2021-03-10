@@ -1,0 +1,9 @@
+dbus-glib-dev
+itstool
+libcanberra-dev
+libmatemixer-dev
+libxslt-dev
+mate-desktop-dev
+mate-panel-dev
+pulseaudio-dev
+yelp-tools

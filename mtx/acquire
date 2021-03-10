@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+mtx-${UB_VERSION}.tar.gz mtx-${UB_VERSION}/
+	https://downloads.sourceforge.net/mtx/

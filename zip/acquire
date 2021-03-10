@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+zip${UB_VERSION//./}.tar.gz  zip${UB_VERSION//./}
+	https://downloads.sourceforge.net/infozip/

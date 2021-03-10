@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xmessage-${UB_VERSION}.tar.gz xmessage-${UB_VERSION}/
+	https://www.x.org/releases/individual/app/

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+screen-${UB_VERSION}.tar.gz screen-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/screen/

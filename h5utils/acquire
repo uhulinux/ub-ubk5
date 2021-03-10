@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+$UB_VERSION.tar.gz h5utils-$UB_VERSION/
+	https://github.com/stevengj/h5utils/archive/

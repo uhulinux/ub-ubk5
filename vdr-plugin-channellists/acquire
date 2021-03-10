@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz vdr-channellists-${UB_VERSION}/
+	https://github.com/attuska/vdr-channellists/archive/

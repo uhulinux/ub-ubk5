@@ -1,0 +1,2 @@
+noupdate: python3-requests requires idna < 3
+# u2dpypi idna

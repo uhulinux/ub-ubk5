@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+spice-protocol-${UB_VERSION}.tar.xz spice-protocol-${UB_VERSION}/
+	https://spice-space.org/download/releases/

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz quadra-${UB_VERSION}/
+	https://github.com/quadra-game/quadra/archive/

@@ -1,0 +1,16 @@
+appstream-glib-dev
+dconf-dev
+fuse2-dev
+glib-dev
+gobject-introspection-dev
+gpgme-dev
+json-glib-dev
+libarchive-dev
+libseccomp-dev
+libsoup-dev
+libxml2-dev
+ostree-dev
+polkit-dev
+python3-pyparsing
+systemd-dev
+xmlto

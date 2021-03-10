@@ -1,0 +1,99 @@
+#!/bin/bash -eux
+
+KVER="$(ls -1 /lib/modules | grep x86_64)"
+#célkönyvtárak
+moduldir="$UB_INSTALLDIR"/lib/modules/"$KVER"/kernel/drivers/video
+cellibdir="$UB_INSTALLDIR"/usr/lib
+xmoduldir="$cellibdir"/xorg/modules
+desktopdir="$UB_INSTALLDIR"/usr/share/applications
+mandir="$UB_INSTALLDIR"/usr/share/man/man1/
+vendordir="$UB_INSTALLDIR"/etc/OpenCL/vendors
+pixmapdir="$UB_INSTALLDIR"/usr/share/pixmaps/
+shnvdir="$UB_INSTALLDIR"/usr/share/nvidia
+vdpaudir=$cellibdir/vdpau
+
+#könyvtárgyártás
+mkdir -p "$cellibdir"/nvidia \
+	"$moduldir" \
+	"$xmoduldir"/{drivers,extensions} \
+	"$desktopdir" \
+	"$mandir" \
+	"$vendordir" \
+	"$pixmapdir" \
+	"$shnvdir" \
+	"$vdpaudir"
+
+#kernelmodulok
+cp kernel/{nvidia.ko,uvm/nvidia-uvm.ko} "$moduldir"/
+
+# binárisok
+mv	nvidia-xconfig \
+	nvidia-settings \
+	nvidia-bug-report.sh \
+	nvidia-smi \
+	nvidia-modprobe \
+	nvidia-debugdump \
+	nvidia-persistenced \
+	nvidia-cuda-mps-server \
+	nvidia-cuda-mps-control \
+	"$UB_INSTALLDIR"/usr/bin/
+
+# desktop
+mv	nvidia-settings.desktop "$desktopdir"/
+mv	nvidia-settings.png "$pixmapdir"/
+
+# man
+gunzip	*.1.gz
+rm -f nvidia-installer.1
+mv	*.1 "$mandir"/
+
+# vendor
+mv	nvidia.icd "$vendordir"/
+
+# biztonságba helyezés a régi módon
+mv	libglx.so."$UB_VERSION" "$cellibdir"/nvidia/
+
+#Áthelyezzük a nem a $cellibdir alá kerülő *.so-kat
+mv	nvidia_drv.so "$xmoduldir"/drivers/
+mv	tls "$cellibdir"
+
+# vdpau cuccok
+mv libvdpau_nvidia.so.${UB_VERSION} $vdpaudir
+
+#### Error: Nincs meg ez a lib: libGL.so (igényli: /usr/lib/libnvidia-ifr.so.319.60)
+# Az igényelt libGL.so szimlink ütközne a mesa-dev -el,
+# a mesa-dev függés viszont felrántana egy rakás dev -et,
+# ezért lemondunk az NvIFROpenGL library használatáról egyelőre
+#rm -f libnvidia-ifr.so."$UB_VERSION"
+#### Error: Nincs meg ez a lib: libGL.so.1 (igényli: /usr/lib/libnvidia-fbc.so.340.17)
+#rm -f libnvidia-fbc.so."$UB_VERSION"
+
+# minden áthelyezése a libekbe
+mv *.so.* "$cellibdir"/
+
+# application profiles
+cp nvidia-application-profiles-${UB_VERSION}-rc $shnvdir/
+cp nvidia-application-profiles-${UB_VERSION}-key-documentation $shnvdir/
+
+# nem kell gtk2
+rm -f "${UB_INSTALLDIR}"/usr/lib/libnvidia-gtk2*
+
+#linkgyártások
+cd "$cellibdir"
+ln -s libwfb.so xorg/modules/libnvidia-wfb.so."$UB_VERSION"
+ln -s "libcuda.so.$UB_VERSION" libcuda.so
+
+for i in `ls -1 libnv*`;do
+lib=$(echo $i | sed s/\.${UB_VERSION}//g)
+solink=$(echo $lib | sed s/so\..*/so/)
+ln -s $i $lib.1
+ln -s $lib.1 $solink
+done
+
+cd $vdpaudir
+for i in `ls -1 libvdpau*`;do
+lib=$(echo $i | sed s/\.${UB_VERSION}//g)
+solink=$(echo $lib | sed s/so\..*/so/)
+ln -s $i $lib.1
+ln -s $lib.1 $solink
+done

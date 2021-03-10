@@ -1,0 +1,6 @@
+gobject-introspection-dev
+gtk-dev
+itstool
+libdazzle-dev
+meson
+polkit-dev

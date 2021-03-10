@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+doodle_${UB_VERSION}.orig.tar.gz doodle-${UB_VERSION}/
+	http://ftp.debian.org/debian/pool/main/d/doodle/

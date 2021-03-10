@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libtool-"$UB_VERSION".tar.gz libtool-"$UB_VERSION"/
+	https://ftp.gnu.org/gnu/libtool/

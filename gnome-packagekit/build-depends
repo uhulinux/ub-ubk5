@@ -1,0 +1,11 @@
+dbus-glib-dev
+gtk-dev
+intltool
+itstool
+libcanberra-dev
+libnotify-dev
+meson
+packagekit-dev
+polkit-dev
+python3-dev
+systemd-dev

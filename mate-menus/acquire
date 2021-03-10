@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz mate-menus-${UB_VERSION}/
+	https://github.com/mate-desktop/mate-menus/archive/

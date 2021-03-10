@@ -1,0 +1,8 @@
+#!/bin/sh -eux
+
+ub_compile \
+	-Dgtk_doc=disabled \
+	-Dtremor=disabled \
+	-Dgobject-cast-checks=disabled \
+	-Dglib-asserts=disabled \
+	-Dglib-checks=disabled

@@ -1,0 +1,18 @@
+#!/bin/sh -eux
+
+# use system libs
+rm -rf apr
+rm -rf apr-util
+rm -rf neon
+
+./get-deps.sh py3c
+
+export PYTHON=python3
+autoreconf -vif
+ub_compile \
+	--with-apache-libexecdir=/usr/lib/apache \
+	--with-utf8proc=internal \
+	--with-py3c=py3c
+
+ub_make swig-pl
+ub_make swig-py

@@ -1,0 +1,16 @@
+#!/bin/sh -eux
+
+cp src-qt5/core/libLumina/LuminaOS-Debian.cpp src-qt5/core/libLumina/LuminaOS-UHU-Linux.cpp
+sed -i "s,Debian GNU/Linux,UHU-Linux," src-qt5/core/libLumina/LuminaOS-UHU-Linux.cpp
+
+# QMAKE_CFLAGS_ISYSTEM=
+
+qmake \
+	PREFIX="/usr" \
+	L_ETCDIR="/etc" \
+	L_MANDIR="/usr/share/man" \
+	QMAKE_LFLAGS="-Wl,--as-needed" \
+	CONFIG+=WITH_I18N \
+	lumina.pro
+
+ub_compile

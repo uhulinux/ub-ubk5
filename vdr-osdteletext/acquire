@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz vdr-plugin-osdteletext-${UB_VERSION}/
+	https://github.com/vdr-projects/vdr-plugin-osdteletext/archive/

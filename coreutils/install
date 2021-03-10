@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+ub_install
+
+# usleep symlink
+ln -s sleep "$UB_INSTALLDIR"/usr/bin/usleep

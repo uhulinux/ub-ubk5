@@ -1,0 +1,17 @@
+binutils
+bzip2
+coreutils
+diffutils
+dpkg
+file
+findutils
+grep
+gzip
+inetutils
+patch
+pkgconfig
+pretendroot
+sed
+tar
+uhubuild-common
+util-linux

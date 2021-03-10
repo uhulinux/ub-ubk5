@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+alsa-plugins-${UB_VERSION}.tar.bz2 alsa-plugins-${UB_VERSION}/
+	https://www.alsa-project.org/files/pub/plugins/

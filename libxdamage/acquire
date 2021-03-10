@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libXdamage-$UB_VERSION.tar.bz2 libXdamage-$UB_VERSION/
+	https://www.x.org/releases/individual/lib/

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz cracklib-${UB_VERSION}/
+	https://github.com/cracklib/cracklib/archive/

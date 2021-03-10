@@ -1,0 +1,4 @@
+#!/bin/bash
+
+systemctl -f enable slim
+systemctl set-default graphical.target

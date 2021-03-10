@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+setproctitle-${UB_VERSION}.tar.gz setproctitle-${UB_VERSION}/
+	https://pypi.org/packages/source/s/setproctitle/

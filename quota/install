@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+make \
+	DESTDIR=${UB_INSTALLDIR} \
+	install
+rm -rf ${UB_INSTALLDIR}/usr/include

@@ -1,0 +1,11 @@
+clutter-dev
+dbus-glib-dev
+garcon-dev
+gtk-dev
+intltool
+libsm-dev
+libwnck-dev
+libxfce4util-dev
+wayland-dev
+xcb-util-dev
+xfconf-dev

@@ -1,0 +1,10 @@
+	/usr/bin/localedef
+	/usr/bin/mtrace
+	/usr/bin/pcprofiledump
+	/usr/bin/rpcgen
+	/usr/bin/sprof
+	/usr/bin/xtrace
+	/usr/include
+	/usr/lib*/*.a
+	/usr/lib*/*.o
+	/usr/sbin/iconvconfig

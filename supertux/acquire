@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+SuperTux-v${UB_VERSION}-Source.tar.gz SuperTux-v${UB_VERSION}-Source/
+	https://github.com/SuperTux/supertux/releases/download/v${UB_VERSION}/

@@ -1,0 +1,10 @@
+#!/bin/sh -eux
+
+ub_compile \
+	--enable-xft \
+	--enable-xrender \
+	--enable-xpm \
+	--enable-imlib2 \
+	--enable-xinerama \
+	--enable-xrandr \
+	--enable-fribidi

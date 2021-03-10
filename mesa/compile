@@ -1,0 +1,31 @@
+#!/bin/sh -eux
+
+# vulkan-overlay-layer: https://github.com/KhronosGroup/glslang
+
+ub_compile \
+    -Dplatforms=x11,wayland \
+    -Ddri3=enabled \
+    -Dgallium-extra-hud=true \
+    -Dgallium-vdpau=enabled \
+    -Dgallium-xvmc=enabled \
+    -Dgallium-va=enabled \
+    -Dgallium-xa=enabled \
+    -Dgallium-nine=true \
+    -Dgallium-opencl=icd \
+	-Dgallium-omx=bellagio \
+    -Dvulkan-drivers=amd,intel \
+    -Dvulkan-overlay-layer=true \
+    -Dvulkan-device-select-layer=true \
+    -Dgles1=disabled \
+    -Dgles2=enabled \
+	-Dgbm=enabled \
+	-Dglx=dri \
+    -Degl=enabled \
+	-Dglvnd=true \
+	-Dllvm=enabled \
+	-Dlibunwind=enabled \
+	-Dlmsensors=enabled \
+    -Dswr-arches=avx,avx2 \
+	-Dtools=all \
+	-Db_ndebug=true \
+	-Db_lto=true

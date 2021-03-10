@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+FreeImage${UB_VERSION//./}.zip FreeImage/
+	 https://downloads.sourceforge.net/freeimage/

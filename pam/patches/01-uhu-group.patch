@@ -1,0 +1,16 @@
+diff -Naur orig/modules/pam_group/group.conf patched/modules/pam_group/group.conf
+--- orig/modules/pam_group/group.conf	2020-11-24 23:56:49.000000000 +0100
++++ patched/modules/pam_group/group.conf	2021-02-01 16:22:02.280887200 +0100
+@@ -102,5 +102,12 @@
+ #xsh; tty* ;%admin;Al0000-2400;plugdev
+ 
+ #
++# Default of UHU-Linux: grant access to several groups when the user
++# logs in on the console or local X.
++#
++
++* ; tty*|vc/*|:* ; * ; Al0000-2400 ; audio video media lp
++
++#
+ # End of group.conf file
+ #

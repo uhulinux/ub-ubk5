@@ -1,0 +1,17 @@
+baloo-dev
+exiv2-dev
+extra-cmake-modules
+kactivities-dev
+kdoctools
+kiconthemes-dev
+kio-dev
+kitemmodels-dev
+knotifications-dev
+kparts-dev
+lcms2-dev
+libjpeg-turbo-dev
+libkipi-dev
+libpng-dev
+phonon-dev
+plasma-framework-dev
+qt5-dev

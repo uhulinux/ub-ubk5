@@ -1,0 +1,10 @@
+extra-cmake-modules
+kconfig-dev
+kcrash-dev
+kdbusaddons-dev
+kdoctools
+ki18n-dev
+kio-dev
+kservice-dev
+kwindowsystem-dev
+qt5-dev

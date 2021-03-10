@@ -1,0 +1,4 @@
+#!/bin/sh -eux
+
+qmake Launchy.pro
+ub_compile

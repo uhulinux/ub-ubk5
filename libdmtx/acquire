@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz libdmtx-${UB_VERSION}/
+	https://github.com/dmtx/libdmtx/archive/

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libiptcdata-${UB_VERSION}.tar.gz libiptcdata-${UB_VERSION}/
+	https://downloads.sourceforge.net/libiptcdata/

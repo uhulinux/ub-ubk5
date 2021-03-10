@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+man-pages-${UB_VERSION}.tar.xz man-pages-${UB_VERSION}/
+	https://kernel.org/pub/linux/docs/man-pages/

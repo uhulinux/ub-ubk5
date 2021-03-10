@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+imagesize-${UB_VERSION}.tar.gz imagesize-${UB_VERSION}/
+	https://files.pythonhosted.org/packages/source/i/imagesize/

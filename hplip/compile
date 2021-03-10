@@ -1,0 +1,24 @@
+#!/bin/sh -eux
+
+export PYTHON=/usr/bin/python3
+export AUTOMAKE='automake --foreign'
+touch NEWS README AUTHORS Changelog
+autoreconf -vif
+export CFLAGS="$(python3-config --includes)"
+export CXXFLAGS="$(python3-config --includes)"
+ub_compile \
+	--enable-scan-build \
+	--enable-gui-build \
+	--enable-fax-build \
+	--enable-pp-build \
+	--enable-policykit \
+	--enable-qt5 \
+	--disable-qt4 \
+	--enable-hpcups-install \
+	--enable-hpijs-install \
+	--enable-cups-drv-install \
+	--enable-cups-ppd-install \
+	--enable-foomatic-ppd-install \
+	--enable-foomatic-drv-install \
+	--enable-foomatic-rip-hplip-install \
+	--enable-new-hpcups

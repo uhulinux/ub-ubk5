@@ -1,0 +1,2 @@
+curl -s -k https://raw.githubusercontent.com/3PO/vdr-plugin-sc/master/HISTORY | grep 'Version ' | \
+    sed 's/.*Version //g' | sort -V | tail -n 1

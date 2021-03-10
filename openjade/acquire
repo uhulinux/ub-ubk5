@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+openjade-${UB_VERSION}.tar.gz openjade-${UB_VERSION}/
+	https://downloads.sourceforge.net/openjade/

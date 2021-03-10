@@ -1,0 +1,7 @@
+dbus-glib-dev
+gobject-introspection-dev
+gtk-dev
+intltool
+json-glib-dev
+libxml2-dev
+vala-dev

@@ -1,0 +1,12 @@
+extra-cmake-modules
+kconfig-dev
+kglobalaccel-dev
+kguiaddons-dev
+ki18n-dev
+kiconthemes-dev
+kio-dev
+knotifications-dev
+kpackage-dev
+kwindowsystem-dev
+libepoxy-dev
+qt5-dev

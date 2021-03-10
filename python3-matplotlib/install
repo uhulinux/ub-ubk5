@@ -1,0 +1,3 @@
+#!/bin/sh -eux
+
+python3 setup.py install -O1 --skip-build --root "$UB_INSTALLDIR" --prefix=/usr

@@ -1,0 +1,13 @@
+acl-dev
+expat-dev
+gobject-introspection-dev
+intltool
+libatasmart-dev
+libblockdev-dev
+libbytesize-dev
+libgudev-dev
+libxslt
+ndctl-dev
+polkit-dev
+systemd-dev
+util-linux-dev

@@ -1,0 +1,9 @@
+gobject-introspection-dev
+goffice-dev
+gtk-dev
+intltool
+itstool
+librsvg-dev
+libxslt-dev
+yelp
+yelp-tools

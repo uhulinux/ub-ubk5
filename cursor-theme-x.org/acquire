@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xcursor-themes-$UB_VERSION.tar.bz2 xcursor-themes-$UB_VERSION/
+	https://www.x.org/releases/individual/data/

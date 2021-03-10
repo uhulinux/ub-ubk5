@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+export PYCURL_SSL_LIBRARY=openssl
+
+ub_compile
+python3 setup.py build

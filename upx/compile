@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+export UPX_UCLDIR=$UB_WORKDIR/ucl-1.03
+
+ub_make all

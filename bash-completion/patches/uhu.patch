@@ -1,0 +1,21 @@
+diff -Naur orig/completions/dpkg patched/completions/dpkg
+--- orig/completions/dpkg	2020-07-25 10:25:49.000000000 +0200
++++ patched/completions/dpkg	2020-08-10 00:35:22.547969093 +0200
+@@ -51,7 +51,7 @@
+     case $prev in
+         --install | --unpack | --record-avail | --contents | --info | --fsys-tarfile | \
+             --field | --control | --extract | --vextract | --raw-extract | -!(-*)[ciAIfexX])
+-            _filedir '?(u|d)deb'
++            _filedir '?(u|d)deb|uhu'
+             return
+             ;;
+         --build | -!(-*)b)
+@@ -66,7 +66,7 @@
+             if [[ $1 == *dpkg-query ]]; then
+                 COMPREPLY=($(_xfunc apt-cache _apt_cache_packages))
+             else
+-                _filedir '?(u|d)deb'
++                _filedir '?(u|d)deb|uhu'
+             fi
+             return
+             ;;

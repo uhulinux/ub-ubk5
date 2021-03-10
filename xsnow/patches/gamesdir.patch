@@ -1,0 +1,12 @@
+diff -Nur orig/src/Makefile.am mod/src/Makefile.am
+--- orig/src/Makefile.am	2020-12-05 13:09:59.000000000 +0100
++++ mod/src/Makefile.am	2020-12-13 19:26:44.745012074 +0100
+@@ -19,7 +19,7 @@
+ #-# 
+ SUBDIRS = Pixmaps
+ 
+-gamesdir = $(exec_prefix)/games
++gamesdir = $(exec_prefix)/bin
+ games_PROGRAMS = xsnow
+ 
+ xsnow_CPPFLAGS = $(XML_CFLAGS) $(GTK_CFLAGS) $(X11_CFLAGS) 

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xrdb-${UB_VERSION}.tar.bz2 xrdb-${UB_VERSION}/
+  https://www.x.org/releases/individual/app/

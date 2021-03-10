@@ -1,0 +1,16 @@
+accountsservice-dev
+check-dev
+dbus-glib-dev
+dconf
+docbook-dtds
+docbook-xsl
+gobject-introspection-dev
+intltool
+iso-codes
+itstool
+libcanberra-dev
+libsm-dev
+libxkbfile-dev
+libxklavier-dev
+nss-dev
+systemd-dev

@@ -1,0 +1,10 @@
+apt >= 1.1
+coreutils
+diffutils
+dpkg
+findutils
+grep
+inetutils
+sed
+tar
+uhubuild-common

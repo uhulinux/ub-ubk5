@@ -1,0 +1,12 @@
+avahi-dev
+cups-dev
+dbus-dev
+libexif-dev
+libgphoto2-dev
+libieee1284-dev
+libjpeg-turbo-dev
+libnetsnmp-dev
+libusb-dev
+python3-dev
+qt5-dev
+sane-backends-dev

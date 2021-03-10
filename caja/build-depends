@@ -1,0 +1,11 @@
+dbus-glib-dev
+exempi-dev
+gobject-introspection-dev
+gtk-dev
+libexif-dev
+libjpeg-turbo-dev
+libnotify-dev
+libsm-dev
+libxml2-dev
+mate-desktop-dev
+xcb-util-dev

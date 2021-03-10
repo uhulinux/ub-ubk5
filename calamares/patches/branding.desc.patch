@@ -1,0 +1,45 @@
+diff -Nur orig/src/branding/default/branding.desc mod/src/branding/default/branding.desc
+--- orig/src/branding/default/branding.desc	2020-12-07 17:09:14.000000000 +0100
++++ mod/src/branding/default/branding.desc	2021-01-26 09:46:14.648372437 +0100
+@@ -121,18 +121,16 @@
+ # are visible as buttons there if the corresponding *show* keys
+ # are set to "true" (they can also be overridden).
+ strings:
+-    productName:         "@{NAME}"
+-    shortProductName:    Generic
+-    version:             2020.2 LTS
+-    shortVersion:        2020.2
+-    versionedName:       Fancy GNU/Linux 2020.2 LTS "Turgid Tuba"
+-    shortVersionedName:  FancyGL 2020.2
+-    bootloaderEntryName: FancyGL
+-    productUrl:          https://calamares.io/
+-    supportUrl:          https://github.com/calamares/calamares/wiki
+-    knownIssuesUrl:      https://github.com/calamares/calamares/issues
+-    releaseNotesUrl:     https://calamares.io/news/
+-    donateUrl:           https://kde.org/community/donations/index.php
++    productName:         UHU-Linux
++    shortProductName:    UHU-Linux
++    version:             UBK4 (PAFF)
++    shortVersion:        UBK4
++    versionedName:       UHU-Linux UBK4 (PAFF)
++    shortVersionedName:  UHU-Linux UBK4
++    bootloaderEntryName: UHU-Linux
++    productUrl:          https://ubk.hu/
++    supportUrl:          https://github.com/uhulinux/ub-ubk4/issues
++    knownIssuesUrl:      https://github.com/uhulinux/ub-ubk4/issues
+ 
+ # These images are loaded from the branding module directory.
+ #
+@@ -163,10 +161,10 @@
+ # These filenames can also use substitutions from os-release (see above).
+ images:
+     # productBanner:       "banner.png"
+-    productIcon:         "squid.png"
++    productLogo:         "uhulogo.png"
+     productLogo:         "squid.png"
+     # productWallpaper:    "wallpaper.png"
+-    productWelcome:      "languages.png"
++    productWelcome:      "uhu-192x192.png"
+ 
+ # Colors for text and background components.
+ #

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+openal-soft-${UB_VERSION}.tar.gz openal-soft-openal-soft-${UB_VERSION}/
+	https://github.com/kcat/openal-soft/archive/

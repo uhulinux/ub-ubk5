@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+ub_compile \
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+	-DWITH_JPEG8=ON \
+	-DWITH_TURBOJPEG=ON

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz lightdm-${UB_VERSION}/
+	https://github.com/canonical/lightdm/archive/

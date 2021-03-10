@@ -1,0 +1,14 @@
+enchant-dev
+gobject-introspection-dev
+gspell-dev
+gtk-dev
+gtksourceview4-dev
+intltool
+iso-codes
+itstool
+libpeas-dev
+libsm-dev
+libxml2-dev
+meson
+xapps-dev
+yelp-tools

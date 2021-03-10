@@ -1,0 +1,47 @@
+#!/bin/sh -eux
+
+# ada, brig, jit, objcp
+
+cd "$UB_OBJECTDIR"
+
+arch="x86_64-linux-gnu"
+
+OPT_FLAGS="-march=k8 -m64 -O2 -mtune=generic"
+
+export CFLAGS="$OPT_FLAGS"
+export CXXFLAGS="$OPT_FLAGS"
+SED=sed \
+
+"$UB_COMPILEDIR"/configure \
+    --build=$arch \
+    --host=$arch \
+    --target=$arch \
+	--prefix=/usr \
+	--infodir=/usr/share/info \
+	--mandir=/usr/share/man \
+	--enable-languages=c,c++,d,fortran,go,objc \
+	--enable-targets=all \
+	--enable-checking=release \
+	--enable-shared \
+	--enable-threads=posix \
+	--enable-gold \
+	--enable-ld=default \
+	--enable-lto \
+	--enable-plugin \
+	--enable-libmpx \
+	--enable-default-ssp \
+	--enable-tls \
+	--enable-install-libiberty \
+	--enable-cet \
+	--enable-libsanitizer \
+	--disable-multilib \
+	--disable-libssp \
+	--disable-libstdcxx-pch \
+	--disable-libunwind-exceptions \
+	--disable-werror \
+	--with-gnu-as \
+	--with-gnu-ld \
+	--with-system-zlib \
+	--with-tune=generic
+
+ub_make -j4

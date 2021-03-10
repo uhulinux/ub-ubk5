@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xrandr-${UB_VERSION}.tar.xz xrandr-${UB_VERSION}/
+  https://www.x.org/releases/individual/app/

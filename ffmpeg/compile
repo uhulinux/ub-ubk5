@@ -1,0 +1,94 @@
+#!/bin/sh -eux
+
+# --disable-openssl: GnuTLS and OpenSSL must not be enabled at the same time.
+# a gnutls kevésbé problémás (API változások probléma)
+
+configopts="
+	--prefix=/usr \
+	--disable-static \
+	--enable-shared \
+	--enable-gray \
+	--disable-debug \
+	--mandir=/usr/share/man \
+	--enable-pic \
+	--enable-pthreads \
+	--enable-postproc \
+"
+licensing="
+	--enable-gpl \
+	--enable-nonfree \
+	--enable-version3
+"
+doksik="
+	--disable-podpages \
+	--disable-htmlpages \
+	--disable-txtpages
+"
+components="
+	--enable-avresample \
+	--enable-pthreads
+"
+extlibs="
+	--enable-gcrypt \
+	--enable-gnutls \
+	--enable-gmp \
+	--enable-ladspa \
+	--enable-libaom \
+	--enable-libass \
+	--enable-libbluray \
+	--enable-libcaca \
+	--enable-libcelt \
+	--enable-libcdio \
+	--enable-libdav1d \
+	--enable-libdc1394
+	--enable-libfdk-aac \
+	--enable-libfontconfig \
+	--enable-libfreetype \
+	--enable-libfribidi \
+	--enable-libgme \
+	--enable-libgsm \
+	--enable-libiec61883 \
+	--enable-libmodplug \
+	--enable-libmp3lame \
+	--enable-libopencore-amrnb \
+	--enable-libopencore-amrwb \
+	--enable-libopenjpeg \
+	--enable-libopus \
+	--enable-libpulse \
+	--enable-librsvg \
+	--disable-libsmbclient \
+	--enable-libspeex \
+	--enable-libssh \
+	--enable-libsoxr \
+	--disable-libtesseract \
+	--enable-libtheora \
+	--enable-libv4l2 \
+	--enable-libvidstab \
+	--enable-libvorbis \
+	--enable-libvpx \
+	--enable-libwavpack \
+	--enable-libwebp \
+	--enable-libx264 \
+	--enable-libx265 \
+	--enable-libxvid \
+	--enable-libxml2 \
+	--enable-libzmq \
+	--enable-libzvbi
+	--enable-openal \
+	--enable-opengl \
+  "
+
+./configure \
+	$configopts \
+	$licensing \
+	$doksik \
+	$components \
+	$extlibs \
+	--enable-libdrm \
+	--disable-libopencv
+ub_make
+
+extratools="aviocat graph2dot ismindex pktdumper qt-faststart trasher cws2fws"
+for i in $extratools; do
+	make "tools/$i"
+done

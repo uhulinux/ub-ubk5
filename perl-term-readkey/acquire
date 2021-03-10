@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+TermReadKey-${UB_VERSION}.tar.gz TermReadKey-${UB_VERSION}/
+	https://cpan.metacpan.org/authors/id/J/JS/JSTOWE/

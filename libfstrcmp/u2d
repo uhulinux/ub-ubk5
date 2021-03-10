@@ -1,0 +1,2 @@
+urllist http://fstrcmp.sourceforge.net/ | grep tar.gz | sed s/.*-//g | sed s/\\.tar.*//g
+

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+HTTP-Negotiate-${UB_VERSION}.tar.gz HTTP-Negotiate-${UB_VERSION}/
+	https://cpan.metacpan.org/modules/by-module/HTTP/

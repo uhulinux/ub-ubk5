@@ -1,0 +1,10 @@
+efl-dev
+libunwind-dev
+mesa-dev
+meson
+pulseaudio-dev
+wayland-dev
+weston-dev
+xcb-util-keysyms-dev
+xkeyboard-config
+x.org-server-dev

@@ -1,0 +1,124 @@
+#!/bin/bash -eux
+
+KVER="$(ls -1 /lib/modules | grep x86_64)"
+
+#célkönyvtárak
+cellibdir="$UB_INSTALLDIR"/usr/lib
+moduldir="$UB_INSTALLDIR"/lib/modules/"$KVER"/kernel/drivers/video
+xmoduldir="$cellibdir"/xorg/modules
+sharedir="$UB_INSTALLDIR"/usr/share
+desktopdir="$sharedir"/applications
+mandir="$sharedir"/man/man1
+vendordir="$UB_INSTALLDIR"/etc/OpenCL/vendors
+pixmapdir="$sharedir"/pixmaps/
+egldir="$sharedir"/egl/egl_external_platform.d
+vulcandir="$sharedir"/vulcan/icd.d
+xconfdir="$sharedir"/X11/x.org.conf.d
+glvnddir="$sharedir"/glvnd/egl_vendor.d
+vdpaudir=$cellibdir/vdpau
+
+#könyvtárgyártás
+mkdir -p "$cellibdir"/nvidia \
+	"$moduldir" \
+	"$xmoduldir"/{drivers,extensions} \
+	"$desktopdir" \
+	"$mandir" \
+	"$vendordir" \
+	"$pixmapdir" \
+	"$egldir" \
+	"$vulcandir" \
+	"$xconfdir" \
+	"$glvnddir" \
+	"$vdpaudir"
+
+#kernelmodulok
+cp kernel/*.ko "$moduldir"/
+
+# binárisok
+mv	nvidia-xconfig \
+	nvidia-settings \
+	nvidia-bug-report.sh \
+	nvidia-smi \
+	nvidia-cuda-mps-server \
+	nvidia-cuda-mps-control \
+	nvidia-modprobe \
+	nvidia-persistenced \
+	nvidia-debugdump \
+	"$UB_INSTALLDIR"/usr/bin/
+
+# desktop
+mv	nvidia-settings.desktop "$desktopdir"/
+mv	nvidia-settings.png "$pixmapdir"/
+
+# man
+gunzip	*.1.gz
+mv	*.1 "$mandir"/
+
+# vendor
+mv	nvidia.icd "$vendordir"/
+
+# Áthelyezzük a nem a $cellibdir alá kerülő *.so-kat a "$cellibdir"/nvidia/ alá
+
+# postinstből majd liblx.so nevű link lesz rá a $cellibdir/xorg/extensions alá
+mv	libglx.so."$UB_VERSION" "$cellibdir"/nvidia/
+
+# libglvnd ütközések, a libglvnd elsőbbséget élvez
+mv	libEGL.so.1.1.0 "$cellibdir"/nvidia/
+mv	libGLESv1_CM.so.1.2.0 "$cellibdir"/nvidia/
+mv	libGLESv2.so.2.1.0 "$cellibdir"/nvidia/
+mv	libGL.so.1.7.0 "$cellibdir"/nvidia/
+mv	libGLX.so.0 "$cellibdir"/nvidia/
+mv	libGLdispatch.so.0 "$cellibdir"/nvidia/
+mv	libOpenGL.so.0 "$cellibdir"/nvidia/
+
+# glvnd rendszer van és nem legacy
+mv	libGL.so.${UB_VERSION} "$cellibdir"/nvidia/
+
+# nvidia driver az x.org-server részére
+mv	nvidia_drv.so "$xmoduldir"/drivers/
+mv	tls "$cellibdir"
+
+# vdpau cuccok
+mv libvdpau_nvidia.so.${UB_VERSION} $vdpaudir
+
+# minden maradék *.so áthelyezése a libekbe
+
+mv *.so.* "$cellibdir"/
+
+# Beállítő fájlok elhelyezése
+
+# glvnd
+mv 10_nvidia.json "$glvnddir"/
+
+#wailand, vulcan
+mv 10_nvidia_wayland.json $egldir/
+mv nvidia_icd.json.template $vulcandir/nvidia_icd.json
+
+# két videókártyás rendszereknek
+mv nvidia-drm-outputclass.conf $xconfdir/10-nvidia-drm-outputclass.conf
+
+# két videókártyás rendszereknek persistenced.service
+mv nvidia-persistenced-init/systemd/nvidia-persistenced.service.template \
+    $UB_INSTALLDIR/usr/lib/systemd/system/nvidia-persistenced.service
+
+# nem kell gtk2
+rm -f "${UB_INSTALLDIR}"/usr/lib/libnvidia-gtk2*
+
+#linkgyártások
+cd "$cellibdir"
+
+ln -s libwfb.so xorg/modules/libnvidia-wfb.so.${UB_VERSION}
+for i in `ls -1 libnv*`;do
+lib=$(echo $i | sed s/\.${UB_VERSION}//g)
+solink=$(echo $lib | sed s/so\..*/so/)
+ln -s $i $lib.1
+ln -s $lib.1 $solink
+done
+
+cd $vdpaudir
+for i in `ls -1 libvdpau*`;do
+lib=$(echo $i | sed s/\.${UB_VERSION}//g)
+solink=$(echo $lib | sed s/so\..*/so/)
+ln -s $i $lib.1
+ln -s $lib.1 $solink
+done

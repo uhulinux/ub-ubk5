@@ -1,0 +1,11 @@
+diff -Naur orig/rsync.1.md patched/rsync.1.md
+--- orig/rsync.1.md	2020-07-28 00:56:48.000000000 +0200
++++ patched/rsync.1.md	2020-08-08 22:16:21.561547585 +0200
+@@ -2548,6 +2548,7 @@
+     > ts
+     > txz
+     > tzo
++    > uhu
+     > vob
+     > war
+     > webm

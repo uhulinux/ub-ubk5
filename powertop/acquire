@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+powertop-v${UB_VERSION}.tar.gz powertop-v${UB_VERSION}/
+	https://01.org/sites/default/files/downloads/

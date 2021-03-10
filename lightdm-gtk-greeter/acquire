@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+lightdm-gtk-greeter-${UB_VERSION}.tar.gz lightdm-gtk-greeter-lightdm-gtk-greeter-${UB_VERSION}/
+	https://github.com/Xubuntu/lightdm-gtk-greeter/archive/

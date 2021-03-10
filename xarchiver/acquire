@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz xarchiver-${UB_VERSION}/
+	https://github.com/ib/xarchiver/archive/

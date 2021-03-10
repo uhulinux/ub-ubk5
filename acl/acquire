@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+acl-${UB_VERSION}.tar.gz acl-${UB_VERSION}/
+	https://download-mirror.savannah.gnu.org/releases/acl/

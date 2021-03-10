@@ -1,0 +1,15 @@
+amtk-dev
+glib-dev
+gmp-dev
+gtk-dev
+gtksourceview4-dev
+icon-theme-hicolor
+intltool
+mpfr-dev
+ncurses-dev
+openssl-dev
+pango-dev
+popt-dev
+python3-dev
+readline-dev
+vte-dev

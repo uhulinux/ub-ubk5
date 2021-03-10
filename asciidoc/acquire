@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION/~/}.tar.gz asciidoc-py3-${UB_VERSION/~/}/
+	https://github.com/asciidoc/asciidoc-py3/archive/

@@ -1,0 +1,22 @@
+#!/bin/sh -eux
+
+ub_replace -O3 -O2 src/lib/liblame/configure.in
+ub_replace -O3 -O2 src/lib/liblame/Makefile.unix
+ub_replace -O3 -O2 src/resid/configure.in
+ub_replace -O3 -O2 configure.ac
+
+./autogen.sh
+./configure \
+	--prefix=/usr \
+	--enable-ethernet \
+	--enable-external-ffmpeg \
+	--enable-lame \
+	--disable-static-lame \
+	--sysconfdir=/etc \
+	--localstatedir=/var \
+	--mandir=/usr/share/man \
+	--infodir=/usr/share/info \
+	--libdir=/usr/lib \
+	--enable-x64 \
+	--disable-pdf-docs
+ub_make

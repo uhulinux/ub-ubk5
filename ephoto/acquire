@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+ephoto-${UB_VERSION}.tar.xz ephoto-${UB_VERSION}/
+	https://download.enlightenment.org/rel/apps/ephoto/

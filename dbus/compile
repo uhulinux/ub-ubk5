@@ -1,0 +1,16 @@
+#!/bin/sh -eux
+
+ub_compile \
+	--enable-verbose-mode \
+    --localstatedir=/var \
+    --libexecdir=/usr/lib/dbus-1.0 \
+    --runstatedir=/run \
+    --with-console-auth-dir=/run/console/ \
+    --with-system-pid-file=/run/dbus/pid \
+    --with-system-socket=/run/dbus/system_bus_socket \
+    --with-systemdsystemunitdir=/usr/lib/systemd/system \
+    --enable-inotify \
+    --enable-systemd \
+    --enable-user-session \
+    --disable-asserts \
+    --disable-checks

@@ -1,0 +1,5 @@
+#!/usr/bin/env dl
+
+Glib-${UB_VERSION}.tar.gz Glib-${UB_VERSION}/
+	https://cpan.metacpan.org/modules/by-module/Glib/
+	https://downloads.sourceforge.net/gtk2-perl/

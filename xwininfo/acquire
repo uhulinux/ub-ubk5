@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xwininfo-${UB_VERSION}.tar.gz xwininfo-${UB_VERSION}/
+  https://www.x.org/releases/individual/app/

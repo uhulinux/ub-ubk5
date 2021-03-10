@@ -1,0 +1,16 @@
+#!/bin/sh -eux
+
+function installerem () {
+cd $1
+    make DESTDIR="${UB_INSTALLDIR}/" bashcompletiondir="/usr/share/bash-completion/completions" install
+    rm -f $instdir/$2/*.module
+    rm -f ${instdir}/$2/*.image
+    rm -f ${instdir}/$2/{kernel.exec,gdb_grub,gmodule.pl}
+cd ..
+}
+
+instdir=${UB_INSTALLDIR}/usr/lib/grub
+cp grub/{AUTHORS,COPYING,NEWS,README,THANKS,TODO} ./
+installerem grub x86_64-emu
+installerem grub-efi x86_64-efi
+installerem grub-bios i386-pc

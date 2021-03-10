@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz liberation-fonts-${UB_VERSION}/
+	https://github.com/liberationfonts/liberation-fonts/archive/

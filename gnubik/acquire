@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+gnubik-${UB_VERSION}.tar.gz gnubik-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/gnubik/

@@ -1,0 +1,48 @@
+diff -Naur orig/misc/ext.d/doc.sh.in patched/misc/ext.d/doc.sh.in
+--- orig/misc/ext.d/doc.sh.in	2019-06-30 21:04:42.559603650 +0200
++++ patched/misc/ext.d/doc.sh.in	2019-06-30 21:06:13.152583002 +0200
+@@ -101,7 +101,8 @@
+     case "${filetype}" in
+     ps)
+         if [ -n "$DISPLAY" ]; then
+-            (gv "${MC_EXT_FILENAME}" &)
++            (evince "${MC_EXT_FILENAME}" &) || \
++            (atril "${MC_EXT_FILENAME}" &)
+         else
+             ps2ascii "${MC_EXT_FILENAME}" | ${PAGER:-more}
+         fi
+@@ -109,13 +110,11 @@
+     pdf)
+         if [ ! -n "$DISPLAY" ]; then
+             pdftotext -layout -nopgbrk "${MC_EXT_FILENAME}" - | ${PAGER:-more}
+-        elif see > /dev/null 2>&1; then
+-            (see "${MC_EXT_FILENAME}" &)
+         else
+-            (xpdf "${MC_EXT_FILENAME}" &)
++            (evince "${MC_EXT_FILENAME}" &) || \
++            (atril "${MC_EXT_FILENAME}" &) || \
++            (qpdfview "${MC_EXT_FILENAME}" &)
+         fi
+-        #(acroread "${MC_EXT_FILENAME}" &)
+-        #(ghostview "${MC_EXT_FILENAME}" &)
+         ;;
+     ooffice)
+         if [ -n "$DISPLAY" ]; then
+@@ -143,7 +142,7 @@
+             if [ -n "${OOFFICE}" ]; then
+                 (${OOFFICE} "${MC_EXT_FILENAME}" &)
+             else
+-                (abiword "${MC_EXT_FILENAME}" >/dev/null 2>&1 &)
++                (loffice "${MC_EXT_FILENAME}" >/dev/null 2>&1 &)
+             fi
+         else
+             tmp=`mktemp -d ${TMPDIR:-/tmp}/%p.XXXXXX`
+@@ -158,7 +157,7 @@
+             if [ -n "${OOFFICE}" ]; then
+                 (${OOFFICE} "${MC_EXT_FILENAME}" &)
+             else
+-                (gnumeric "${MC_EXT_FILENAME}" >/dev/null 2>&1 &)
++                (loffice "${MC_EXT_FILENAME}" >/dev/null 2>&1 &)
+             fi
+         else
+             tmp=`mktemp -d ${TMPDIR:-/tmp}/%p.XXXXXX`

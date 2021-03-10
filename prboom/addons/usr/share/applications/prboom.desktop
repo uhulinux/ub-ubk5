@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=prboom
+GenericName=Doom Engine
+GenericName[hu]=Doom motor
+Exec=prboom
+Type=Application
+Categories=Game;ActionGame
+StartupNotify=true
+Icon=heada1

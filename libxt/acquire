@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libXt-$UB_VERSION.tar.bz2 libXt-$UB_VERSION/
+	https://www.x.org/releases/individual/lib/

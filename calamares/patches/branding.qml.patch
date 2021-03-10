@@ -1,0 +1,79 @@
+diff -Naur orig/src/branding/default/show.qml patched/src/branding/default/show.qml
+--- orig/src/branding/default/show.qml	2019-12-03 11:37:28.000000000 +0100
++++ patched/src/branding/default/show.qml	2019-12-14 22:13:53.187482650 +0100
+@@ -15,50 +15,51 @@
+ {
+     id: presentation
+ 
+-    function nextSlide() {
+-        console.log("QML Component (default slideshow) Next slide");
+-        presentation.goToNextSlide();
+-    }
+-
+     Timer {
+         id: advanceTimer
+-        interval: 1000
++        interval: 10000
+         running: presentation.activatedInCalamares
+         repeat: true
+-        onTriggered: nextSlide()
++        onTriggered: presentation.goToNextSlide()
+     }
+ 
+     Slide {
+-
++        centeredText:"Ez a linux kevés, de lelkes ember munkájának gyümölcse."
++        }
++ 
++   Slide {
++        title: qsTr("UHU-Linux alapokról származik")
+         Image {
+-            id: background
+-            source: "squid.png"
++            id: uhuground
++            source: "uhu-linux.png"
+             width: 200; height: 200
+             fillMode: Image.PreserveAspectFit
+             anchors.centerIn: parent
+         }
+-        Text {
+-            anchors.horizontalCenter: background.horizontalCenter
+-            anchors.top: background.bottom
+-            text: "This is a customizable QML slideshow.<br/>"+
+-                  "Distributions should provide their own slideshow and list it in <br/>"+
+-                  "their custom branding.desc file.<br/>"+
+-                  "To create a Calamares presentation in QML, import calamares.slideshow,<br/>"+
+-                  "define a Presentation element with as many Slide elements as needed."
+-            wrapMode: Text.WordWrap
+-            width: presentation.width
+-            horizontalAlignment: Text.Center
+-        }
+     }
+ 
+     Slide {
+-        centeredText: qsTr("This is a second Slide element.")
++        title: qsTr("De már teljesen független tőle.")
++        Image {
++            source: "ubkuhu.jpg"
++            width: 250; height: 250
++            fillMode: Image.PreserveAspectFit
++            anchors.centerIn: parent
++        }
+     }
+ 
+     Slide {
+-        centeredText: qsTr("This is a third Slide element.")
++        title: qsTr("UHU-Linux UBK4")
++        Image {
++            source: "uhu-ubk.png"
++            width: 300; height: 300
++            fillMode: Image.PreserveAspectFit
++            anchors.centerIn: parent
++        }
+     }
+ 
++    Component.onCompleted: advanceTimer.running = true
++    
+     // When this slideshow is loaded as a V1 slideshow, only
+     // activatedInCalamares is set, which starts the timer (see above).
+     //

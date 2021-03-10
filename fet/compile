@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+export QTDIR="/usr/lib/qt5"
+qmake fet.pro
+ub_make

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libXmu-$UB_VERSION.tar.bz2 libXmu-$UB_VERSION/
+	https://www.x.org/releases/individual/lib/

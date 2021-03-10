@@ -1,0 +1,5 @@
+#!/bin/bash
+
+systemctl -f enable gdm
+systemctl set-default graphical.target
+usermod -G gdm,video gdm

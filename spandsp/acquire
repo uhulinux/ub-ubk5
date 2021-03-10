@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+spandsp_${UB_VERSION/~/}.orig.tar.gz spandsp-${UB_VERSION/~*/}/
+	http://ftp.debian.org/debian/pool/main/s/spandsp/

@@ -1,0 +1,16 @@
+extra-cmake-modules
+gsettings-desktop-schemas
+gtk2-dev
+gtk-dev
+karchive-dev
+kcmutils-dev
+kconfigwidgets-dev
+kdbusaddons-dev
+kdecoration-dev
+kguiaddons-dev
+ki18n-dev
+kio-dev
+knewstuff-dev
+qt5-dev
+sassc
+xsettingsd

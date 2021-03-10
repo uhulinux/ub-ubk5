@@ -1,0 +1,11 @@
+curl-dev
+geoip-dev
+ghostscript-dev
+groff
+gtk-dev
+harfbuzz-dev
+libnet-dev
+libpcap-dev
+libx11-dev
+ncurses-dev
+openssl-dev

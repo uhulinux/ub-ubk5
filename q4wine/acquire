@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+q4wine-${UB_VERSION}.tar.gz ./q4wine-${UB_VERSION}/
+    https://downloads.sourceforge.net/q4wine/

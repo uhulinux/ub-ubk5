@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+gpicview-${UB_VERSION}.tar.xz gpicview-${UB_VERSION}/
+	https://downloads.sourceforge.net/lxde/

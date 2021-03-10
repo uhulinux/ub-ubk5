@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libintl-perl-${UB_VERSION}.tar.gz libintl-perl-${UB_VERSION}/
+	https://cpan.metacpan.org/modules/by-module/Locale/

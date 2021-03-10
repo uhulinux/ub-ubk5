@@ -1,0 +1,11 @@
+diff -Naur orig/TeXmacs/misc/mime/texmacs.desktop patched/TeXmacs/misc/mime/texmacs.desktop
+--- orig/TeXmacs/misc/mime/texmacs.desktop	2019-12-12 11:56:21.000000000 +0100
++++ patched/TeXmacs/misc/mime/texmacs.desktop	2019-12-31 00:02:26.052106587 +0100
+@@ -4,6 +4,7 @@
+ Name=GNU TeXmacs
+ GenericName=Text Editor
+ Comment=A structured wysiwyg scientific text editor
++Comment[hu]=Tudományos szövegszerkesztő
+ MimeType=text/x-texmacs.doc;text/x-texmacs.sty;text/plain;text/x-tex;
+ Exec=texmacs %f
+ Icon=texmacs

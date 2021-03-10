@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libspnav-${UB_VERSION}.tar.gz libspnav-${UB_VERSION}/
+	https://downloads.sourceforge.net/spacenav/

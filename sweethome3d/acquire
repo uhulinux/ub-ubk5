@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+SweetHome3D-${UB_VERSION}-linux-x64.tgz SweetHome3D-${UB_VERSION}/
+	https://downloads.sourceforge.net/sweethome3d/

@@ -1,0 +1,12 @@
+geoclue-dev
+gjs-dev
+gobject-introspection-dev
+gtk-dev
+intltool
+libjpeg-turbo-dev
+libxslt-dev
+libxt-dev
+meson
+python3-dev
+python3-pygobject-dev
+sqlite-dev

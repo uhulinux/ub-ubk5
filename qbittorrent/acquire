@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+release-${UB_VERSION}.tar.gz qBittorrent-release-${UB_VERSION}/
+    https://github.com/qbittorrent/qBittorrent/archive/

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+clamav-${UB_VERSION}.tar.gz clamav-${UB_VERSION}/
+	https://www.clamav.net/downloads/production/

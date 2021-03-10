@@ -1,0 +1,21 @@
+diff -Naur orig/tools/power/cpupower/Makefile patched/tools/power/cpupower/Makefile
+--- orig/tools/power/cpupower/Makefile	2020-02-05 22:22:53.000000000 +0100
++++ patched/tools/power/cpupower/Makefile	2020-02-06 15:35:31.438182342 +0100
+@@ -23,7 +23,7 @@
+ 
+ # Set the following to `true' to make a unstripped, unoptimized
+ # binary. Leave this set to `false' for production use.
+-DEBUG ?=	true
++DEBUG ?=	false
+ 
+ # make the build silent. Set this to something else to make it noisy again.
+ V ?=		false
+@@ -98,7 +98,7 @@
+ include ../../scripts/Makefile.arch
+ 
+ ifeq ($(IS_64_BIT), 1)
+-libdir ?=	/usr/lib64
++libdir ?=	/usr/lib
+ else
+ libdir ?=	/usr/lib
+ endif

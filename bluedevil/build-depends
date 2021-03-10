@@ -1,0 +1,15 @@
+bluez-qt-dev
+extra-cmake-modules
+kcoreaddons-dev
+kdbusaddons-dev
+kdeclarative-dev
+kded-dev
+ki18n-dev
+kiconthemes-dev
+kio-dev
+knotifications-dev
+kwidgetsaddons-dev
+kwindowsystem-dev
+plasma-framework-dev
+qt5-dev
+shared-mime-info

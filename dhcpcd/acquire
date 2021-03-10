@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+dhcpcd-${UB_VERSION}.tar.xz dhcpcd-${UB_VERSION}/
+	https://roy.marples.name/downloads/dhcpcd/

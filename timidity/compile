@@ -1,0 +1,13 @@
+#!/bin/sh -eux
+
+autoreconf -vif
+ub_compile \
+	--enable-audio=alsa,oss,esd,vorbis,flac,jack \
+	--with-default-output=alsa \
+	--enable-interface=ncurses,gtk,alsaseq,server,network \
+	--enable-dynamic=ncurses,tcltk,vt100,xaw,gtk \
+	--enable-network \
+	--enable-server \
+	--enable-alsaseq \
+	--enable-xft \
+	--with-default-path=/etc

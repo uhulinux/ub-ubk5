@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+units-${UB_VERSION}.tar.gz units-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/units/

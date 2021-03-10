@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+gnutls-${UB_VERSION}.tar.xz gnutls-${UB_VERSION}/
+    https://www.gnupg.org/ftp/gcrypt/gnutls/v${UB_VERSION_HEAD2}/

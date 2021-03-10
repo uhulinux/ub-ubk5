@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libaio-${UB_VERSION}.tar.gz libaio-${UB_VERSION}/
+	https://releases.pagure.org/libaio/

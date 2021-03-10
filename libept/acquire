@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libept-debian-${UB_VERSION}.tar.bz2 libept-debian-${UB_VERSION}/
+	https://salsa.debian.org/apt-team/libept/-/archive/debian/${UB_VERSION}/

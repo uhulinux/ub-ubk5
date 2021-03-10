@@ -1,0 +1,23 @@
+#!/bin/sh -eux
+
+cd "$UB_OBJECTDIR"
+
+ub_install
+
+rm -f "$UB_INSTALLDIR"/usr/lib/thunderbird/thunderbird
+rm -f "$UB_INSTALLDIR"/usr/bin/thunderbird
+ln -s /usr/lib/thunderbird/thunderbird "$UB_INSTALLDIR"/usr/bin/thunderbird
+
+if [ ! -f "$UB_INSTALLDIR"/usr/lib/thunderbird/run-mozilla.sh ]; then
+	cp "$UB_COMPILEDIR"/build/unix/run-mozilla.sh "$UB_INSTALLDIR"/usr/lib/thunderbird/run-mozilla.sh
+fi
+
+mkdir -p "$UB_INSTALLDIR"/usr/lib/thunderbird/distribution/extensions
+mv "$UB_COMPILEDIR"/hu.xpi "$UB_INSTALLDIR"/usr/lib/thunderbird/distribution/extensions/langpack-hu@thunderbird.mozilla.org.xpi
+
+# install icons
+for i in 16 22 24 32 48 64 128 256; do
+    install -Dm644 "$UB_COMPILEDIR"/comm/mail/branding/thunderbird/default${i}.png \
+      "$UB_INSTALLDIR/usr/share/icons/hicolor/${i}x${i}/apps/thunderbird.png"
+done
+cp "$UB_COMPILEDIR"/comm/mail/branding/thunderbird/default48.png "$UB_INSTALLDIR"/usr/share/pixmaps/thunderbird.png

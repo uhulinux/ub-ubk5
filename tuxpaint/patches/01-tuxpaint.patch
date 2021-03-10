@@ -1,0 +1,12 @@
+diff -Nur orig/Makefile mod/Makefile
+--- orig/Makefile	2020-12-13 04:06:03.000000000 +0100
++++ mod/Makefile	2020-12-28 14:38:16.100460879 +0100
+@@ -143,7 +143,7 @@
+ # For macOS, the prefix is relative to DESTDIR.
+ windows_PREFIX:=/usr/local
+ macos_PREFIX:=Resources
+-linux_PREFIX:=/usr/local
++linux_PREFIX:=/usr
+ PREFIX:=$($(OS)_PREFIX)
+ 
+ # Root directory to place files when creating packages.

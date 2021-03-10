@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xterm-$UB_VERSION.tgz xterm-$UB_VERSION/
+    https://invisible-mirror.net/archives/xterm/

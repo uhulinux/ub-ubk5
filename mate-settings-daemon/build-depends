@@ -1,0 +1,13 @@
+dbus-glib-dev
+dconf-dev
+gtk-dev
+libcanberra-dev
+libmatekbd-dev
+libmatemixer-dev
+libnotify-dev
+libxkbfile-dev
+mate-desktop-dev
+nss-dev
+polkit-dev
+pulseaudio-dev
+systemd-dev

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+qca-${UB_VERSION}.tar.xz qca-${UB_VERSION}/
+	https://download.kde.org/stable/qca/${UB_VERSION}/

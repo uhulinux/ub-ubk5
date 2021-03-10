@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz balsa-${UB_VERSION}/
+	https://github.com/GNOME/balsa/archive/

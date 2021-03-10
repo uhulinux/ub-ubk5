@@ -1,0 +1,21 @@
+diff -Nur orig/Makefile mod/Makefile
+--- orig/Makefile	2011-02-25 22:27:39.000000000 +0100
++++ mod/Makefile	2019-10-04 13:28:34.151242439 +0200
+@@ -10,7 +10,6 @@
+ endif
+ 
+ CFLAGS ?= -Wall -g -O2
+-CFLAGS += -I$(KDIR)/include
+ 
+ ifeq ($(call config_opt,CONFIG_X86EMU),true)
+ 	CFLAGS += -Ilibs/x86emu
+@@ -60,7 +59,7 @@
+ 	rm -rf config.h
+ 
+ install: $(DEBUG_INSTALL)
+-	$(INSTALL) -D v86d $(DESTDIR)/sbin/v86d
++	$(INSTALL) -D v86d $(DESTDIR)/usr/sbin/v86d
+ 
+ install_testvbe:
+-	$(INSTALL) -D testvbe $(DESTDIR)/sbin/testvbe
++	$(INSTALL) -D testvbe $(DESTDIR)/usr/sbin/testvbe

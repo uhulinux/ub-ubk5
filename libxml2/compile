@@ -1,0 +1,10 @@
+#!/bin/sh -eux
+
+ub_configure \
+	--with-threads \
+	--with-history \
+	--with-icu \
+	--with-python=/usr/bin/python3
+ub_make \
+    PYTHONHASHSEED=0 \
+	HTML_DIR=/usr/share/doc

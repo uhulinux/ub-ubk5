@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz zziplib-${UB_VERSION}/
+	https://github.com/gdraheim/zziplib/archive/

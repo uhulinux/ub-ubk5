@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+SDL_Pango-${UB_VERSION}.tar.gz SDL_Pango-${UB_VERSION}/
+	https://download.sourceforge.net/sdlpango/

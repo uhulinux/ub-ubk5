@@ -1,0 +1,8 @@
+docbook-dtds
+docbook-xsl
+gobject-introspection-dev
+intltool
+libgcrypt-dev
+libxslt
+meson
+vala-dev

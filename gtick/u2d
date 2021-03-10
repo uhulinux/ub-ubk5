@@ -1,0 +1,1 @@
+urllist http://git.savannah.gnu.org/gitweb/?p=gtick.git | grep G | sort -V | tail -n 1 | sed s/.*-//

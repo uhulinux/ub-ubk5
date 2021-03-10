@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+optipng-${UB_VERSION}.tar.gz optipng-${UB_VERSION}/
+	https://downloads.sourceforge.net/optipng/

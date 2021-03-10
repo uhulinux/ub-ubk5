@@ -1,0 +1,14 @@
+cyrus-sasl2-dev
+db4-dev
+dbus-glib-dev
+evolution-data-server-dev
+gobject-introspection-dev
+intltool
+krb5-dev
+libgee-dev
+meson
+ncurses-dev
+readline-dev
+telepathy-glib-dev
+util-linux-dev
+vala-dev

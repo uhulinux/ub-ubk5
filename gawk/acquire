@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+gawk-${UB_VERSION}.tar.gz gawk-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/gawk/

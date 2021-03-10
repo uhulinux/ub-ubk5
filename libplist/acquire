@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz libplist-${UB_VERSION}/
+    https://github.com/libimobiledevice/libplist/archive/

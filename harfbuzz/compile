@@ -1,0 +1,8 @@
+#!/bin/sh -eux
+
+rm -f CMakeLists.txt
+ub_compile \
+	-Dgobject=enabled \
+	-Dgraphite=enabled \
+	-Dintrospection=enabled \
+	-Dgtk_doc=disabled

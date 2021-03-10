@@ -1,0 +1,3 @@
+#!/bin/sh -eux
+
+make SBINDIR='/usr/bin' BINDIR='/usr/bin'

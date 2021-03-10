@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+uncrustify-${UB_VERSION}.tar.gz .
+	https://downloads.sourceforge.net/uncrustify/

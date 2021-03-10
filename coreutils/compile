@@ -1,0 +1,10 @@
+#!/bin/sh -eux
+
+# groups: shadow
+# hostname: inetutils
+# kill, uptime: procps
+# su: util-linux
+
+ub_compile \
+	--enable-no-install-program=groups,hostname,kill,su,uptime \
+	--enable-install-program=arch

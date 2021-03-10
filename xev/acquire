@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xev-${UB_VERSION}.tar.gz xev-${UB_VERSION}/
+  https://www.x.org/releases/individual/app/

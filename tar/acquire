@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+tar-${UB_VERSION}.tar.gz tar-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/tar/

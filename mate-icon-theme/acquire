@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+mate-icon-theme-${UB_VERSION}.tar.xz mate-icon-theme-${UB_VERSION}/
+	https://pub.mate-desktop.org/releases/${UB_VERSION_HEAD2}/

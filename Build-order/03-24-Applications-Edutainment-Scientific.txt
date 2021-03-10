@@ -1,0 +1,12 @@
+genius
+mathomatic
+euler
+socnetv
+librecad
+xephem
+phun
+klavaro
+xplanet
+celestia
+hoc
+stellarium

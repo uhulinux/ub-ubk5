@@ -1,0 +1,11 @@
+cogl-dev
+gobject-introspection-dev
+gtk-dev
+json-glib-dev
+libffi-dev
+libgudev-dev
+libinput-dev
+libxi-dev
+mesa-dev
+pango-dev
+wayland-dev

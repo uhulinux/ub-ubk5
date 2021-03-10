@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xvidcore-${UB_VERSION}.tar.gz xvidcore/
+	http://downloads.xvid.com/downloads/

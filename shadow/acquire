@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+shadow-${UB_VERSION}.tar.xz shadow-${UB_VERSION}/
+	https://github.com/shadow-maint/shadow/releases/download/${UB_VERSION}/

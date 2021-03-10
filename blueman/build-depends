@@ -1,0 +1,12 @@
+bluez-dev
+dbus-python-dev
+gtk-dev
+intltool
+iproute2-dev
+networkmanager-dev
+pulseaudio-dev
+python3-cairo-dev
+python3-cython
+python3-dev
+python3-pygobject-dev
+python3-setuptools

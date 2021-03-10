@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+ultimatestunts-srcdata-${UB_VERSION//./}.tar.gz ultimatestunts-srcdata-${UB_VERSION//./}/
+	https://downloads.sourceforge.net/ultimatestunts/

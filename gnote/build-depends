@@ -1,0 +1,9 @@
+boost-dev
+gtkmm3-dev
+gtkspell-dev
+intltool
+itstool
+libsecret-dev
+libxml2-dev
+libxslt-dev
+util-linux-dev

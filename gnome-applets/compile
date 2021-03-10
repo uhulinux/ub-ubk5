@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+ub_compile \
+	--enable-mini-commander \
+	--enable-ipv6

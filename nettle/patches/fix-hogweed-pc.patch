@@ -1,0 +1,15 @@
+diff -Naur orig/hogweed.pc.in patched/hogweed.pc.in
+--- orig/hogweed.pc.in	2020-04-29 20:11:44.000000000 +0200
++++ patched/hogweed.pc.in	2020-08-11 23:57:23.695920118 +0200
+@@ -11,9 +11,7 @@
+ Description: Nettle low-level cryptographic library (public-key algorithms)
+ URL: http://www.lysator.liu.se/~nisse/nettle
+ Version: @PACKAGE_VERSION@
+-Requires: @IF_NOT_SHARED@ nettle
+-Requires.private: @IF_SHARED@ nettle
+-Libs: -L${libdir} -lhogweed @IF_NOT_SHARED@ @LIBS@
+-Libs.private: @IF_SHARED@ @LIBS@
++Requires: nettle
++Libs: -L${libdir} -lhogweed @LIBS@
+ Cflags: -I${includedir}
+ 

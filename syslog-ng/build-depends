@@ -1,0 +1,13 @@
+curl-dev
+geoip-dev
+glib-dev
+json-c-dev
+libcap-dev
+libdbi
+libesmtp-dev
+libnet-dev
+openssl-dev
+popt-dev
+python3-dev
+systemd-dev
+util-linux-dev

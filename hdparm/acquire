@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+hdparm-${UB_VERSION}.tar.gz hdparm-${UB_VERSION}/
+	https://downloads.sourceforge.net/hdparm/

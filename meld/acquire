@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+meld-meld-${UB_VERSION_HEAD2/\./-}.tar.gz meld-meld-${UB_VERSION_HEAD2/\./-}/
+	https://gitlab.gnome.org/GNOME/meld/-/archive/meld-${UB_VERSION_HEAD2/\./-}/

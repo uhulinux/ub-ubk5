@@ -1,0 +1,5 @@
+#!/usr/bin/env dl
+
+setserial-$UB_VERSION.tar.gz setserial-$UB_VERSION/
+	https://downloads.sourceforge.net/setserial/
+	https://www.ibiblio.org/pub/linux/system/serial/

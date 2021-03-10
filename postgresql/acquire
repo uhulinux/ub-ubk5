@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+postgresql-${UB_VERSION}.tar.gz postgresql-${UB_VERSION}/
+    https://ftp.postgresql.org/pub/source/v${UB_VERSION}/

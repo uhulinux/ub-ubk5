@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+funny-manpages_${UB_VERSION}.orig.tar.gz funny-manpages/man/
+	http://ftp.debian.org/debian/pool/main/f/funny-manpages/

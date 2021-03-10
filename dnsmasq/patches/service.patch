@@ -1,0 +1,14 @@
+diff -Nur orig/contrib/systemd/dnsmasq.service mod/contrib/systemd/dnsmasq.service
+--- orig/contrib/systemd/dnsmasq.service	2020-02-23 20:03:29.000000000 +0100
++++ mod/contrib/systemd/dnsmasq.service	2020-02-23 20:06:52.503759950 +0100
+@@ -7,8 +7,8 @@
+ [Service]
+ Type=dbus
+ BusName=uk.org.thekelleys.dnsmasq
+-ExecStartPre=/usr/sbin/dnsmasq --test
+-ExecStart=/usr/sbin/dnsmasq -k
++ExecStartPre=/usr/bin/dnsmasq --test
++ExecStart=/usr/bin/dnsmasq -k --enable-dbus --pid-file
+ ExecReload=/bin/kill -HUP $MAINPID
+ 
+ [Install]

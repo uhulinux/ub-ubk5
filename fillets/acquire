@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+fillets-ng-"$UB_VERSION".tar.gz fillets-ng-"$UB_VERSION"/
+	https://downloads.sourceforge.net/fillets/

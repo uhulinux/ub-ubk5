@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+export ARCH="-fPIC -m64"
+
+ub_compile

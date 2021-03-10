@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+scim-${UB_VERSION/~/-}.tar.gz scim-${UB_VERSION/~/-}/
+	https://downloads.sourceforge.net/scim/

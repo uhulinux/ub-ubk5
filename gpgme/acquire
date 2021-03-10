@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+gpgme-${UB_VERSION}.tar.bz2 gpgme-${UB_VERSION}/
+	https://gnupg.org/ftp/gcrypt/gpgme/

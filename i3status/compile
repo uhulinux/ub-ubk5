@@ -1,0 +1,10 @@
+#!/bin/sh -eux
+
+autoreconf -vif
+mkdir build
+cd build
+../configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --disable-sanitizers
+make CPPFLAGS+="-U_FORTIFY_SOURCE"

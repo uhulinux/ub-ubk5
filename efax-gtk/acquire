@@ -1,0 +1,5 @@
+#!/usr/bin/env dl
+
+efax-gtk-${UB_VERSION}.src.tgz efax-gtk-${UB_VERSION}/
+	https://downloads.sourceforge.net/efax-gtk/
+	https://www.ibiblio.org/pub/Linux/apps/serialcomm/fax/

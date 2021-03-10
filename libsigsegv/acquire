@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libsigsegv-${UB_VERSION}.tar.gz libsigsegv-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/libsigsegv/

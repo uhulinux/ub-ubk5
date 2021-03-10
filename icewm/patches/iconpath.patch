@@ -1,0 +1,11 @@
+diff -Nur orig/src/yprefs.h mod/src/yprefs.h
+--- orig/src/yprefs.h	2019-06-07 00:39:15.000000000 +0200
++++ mod/src/yprefs.h	2019-06-09 16:16:51.077762154 +0200
+@@ -36,6 +36,7 @@
+                                                 "/usr/local/share/pixmaps:"
+                                                 "/usr/share/icons:"
+                                                 "/usr/share/pixmaps:"
++                                                "/usr/share/icons/gnome:"
+                                                 )
+ XSV(const char *, iconThemes,                   "*:-HighContrast")
+ XSV(const char *, themeName,                    CONFIG_DEFAULT_THEME)

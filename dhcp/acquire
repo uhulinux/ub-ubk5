@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+dhcp-${UB_VERSION/+/-}.tar.gz dhcp-${UB_VERSION/+/-}/
+	https://downloads.isc.org/isc/dhcp/${UB_VERSION/+/-}/

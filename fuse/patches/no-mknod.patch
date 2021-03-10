@@ -1,0 +1,15 @@
+diff -Naur orig/util/install_helper.sh patched/util/install_helper.sh
+--- orig/util/install_helper.sh	2019-07-09 14:36:50.000000000 +0200
++++ patched/util/install_helper.sh	2019-08-24 09:57:34.304121280 +0200
+@@ -29,11 +29,6 @@
+ if $useroot; then
+     chown root:root "${DESTDIR}${bindir}/fusermount3"
+     chmod u+s "${DESTDIR}${bindir}/fusermount3"
+-
+-    if test ! -e "${DESTDIR}/dev/fuse"; then
+-        mkdir -p "${DESTDIR}/dev"
+-        mknod "${DESTDIR}/dev/fuse" -m 0666 c 10 229
+-    fi
+ fi
+ 
+ install -D -m 644 "${MESON_SOURCE_ROOT}/util/udev.rules" \

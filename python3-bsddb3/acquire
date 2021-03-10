@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+bsddb3-${UB_VERSION}.tar.gz bsddb3-${UB_VERSION}/
+	https://files.pythonhosted.org/packages/source/b/bsddb3/

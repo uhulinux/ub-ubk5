@@ -1,0 +1,22 @@
+diff -Naur orig/chrome/browser/extensions/external_component_loader.cc patched/chrome/browser/extensions/external_component_loader.cc
+--- orig/chrome/browser/extensions/external_component_loader.cc	2021-03-02 18:45:03.000000000 +0100
++++ patched/chrome/browser/extensions/external_component_loader.cc	2021-03-03 01:11:34.353170991 +0100
+@@ -32,18 +32,6 @@
+ 
+ void ExternalComponentLoader::StartLoading() {
+   auto prefs = std::make_unique<base::DictionaryValue>();
+-#if BUILDFLAG(GOOGLE_CHROME_BRANDING)
+-  AddExternalExtension(extension_misc::kInAppPaymentsSupportAppId, prefs.get());
+-#endif  // BUILDFLAG(GOOGLE_CHROME_BRANDING)
+-
+-#if BUILDFLAG(IS_CHROMEOS_ASH)
+-  {
+-    // Only load the Assessment Assistant if the current session is managed.
+-    if (profile_->GetProfilePolicyConnector()->IsManaged())
+-      AddExternalExtension(extension_misc::kAssessmentAssistantExtensionId,
+-                           prefs.get());
+-  }
+-#endif
+ 
+   if (media_router::MediaRouterEnabled(profile_) &&
+       FeatureSwitch::load_media_router_component_extension()->IsEnabled()) {

@@ -1,0 +1,36 @@
+diff -Nur orig/prog/init/fancontrol.service mod/prog/init/fancontrol.service
+--- orig/prog/init/fancontrol.service	2019-10-17 17:43:18.000000000 +0200
++++ mod/prog/init/fancontrol.service	2020-01-30 08:17:38.386662806 +0100
+@@ -5,7 +5,7 @@
+ 
+ [Service]
+ Type=simple
+-PIDFile=/var/run/fancontrol.pid
++PIDFile=/run/fancontrol.pid
+ ExecStart=/usr/sbin/fancontrol
+ 
+ [Install]
+diff -Nur orig/prog/pwm/fancontrol mod/prog/pwm/fancontrol
+--- orig/prog/pwm/fancontrol	2019-10-17 17:43:18.000000000 +0200
++++ mod/prog/pwm/fancontrol	2020-01-30 08:18:13.618663807 +0100
+@@ -38,7 +38,7 @@
+ #
+ #
+ 
+-PIDFILE="/var/run/fancontrol.pid"
++PIDFILE="/run/fancontrol.pid"
+ 
+ #DEBUG=1
+ MAX=255
+diff -Nur orig/prog/pwm/pwmconfig mod/prog/pwm/pwmconfig
+--- orig/prog/pwm/pwmconfig	2019-10-17 17:43:18.000000000 +0200
++++ mod/prog/pwm/pwmconfig	2020-01-30 08:18:34.362664396 +0100
+@@ -30,7 +30,7 @@
+ #
+ 
+ LM_VERSION='3.6.0'
+-PIDFILE="/var/run/fancontrol.pid"
++PIDFILE="/run/fancontrol.pid"
+ 
+ if [ -f "$PIDFILE" ]
+ then

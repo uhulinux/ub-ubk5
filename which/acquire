@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+which-${UB_VERSION}.tar.gz which-${UB_VERSION}/
+	https://ftp.gnu.org/gnu/which/

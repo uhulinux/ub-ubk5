@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+catdoc_${UB_VERSION}.orig.tar.gz catdoc-${UB_VERSION}/
+	https://ftp.debian.org/debian/pool/main/c/catdoc/

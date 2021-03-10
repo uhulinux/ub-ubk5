@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+cd src
+export CXXFLAGS="-Wno-deprecated-copy"
+ub_compile

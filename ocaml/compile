@@ -1,0 +1,9 @@
+#!/bin/sh -eux
+
+# not autoconf compatible
+./configure \
+	--bindir=/usr/bin \
+	--libdir=/usr/lib/ocaml \
+	--mandir=/usr/share/man
+
+make world opt opt.opt

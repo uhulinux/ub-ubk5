@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+lrzip-${UB_VERSION}.tar.xz lrzip-${UB_VERSION}/
+	http://ck.kolivas.org/apps/lrzip/

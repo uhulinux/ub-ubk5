@@ -1,0 +1,9 @@
+curl-dev
+ffmpeg-dev
+librsvg-dev
+libungif-dev
+libvncserver-dev
+mesa-dev
+openexr-dev
+poppler-glib-dev
+xine-lib-dev

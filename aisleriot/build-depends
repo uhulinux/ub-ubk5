@@ -1,0 +1,9 @@
+appstream-glib-dev
+gconf2-dev
+gtk-dev
+guile-dev
+intltool
+itstool
+libcanberra-dev
+librsvg-dev
+libunistring-dev

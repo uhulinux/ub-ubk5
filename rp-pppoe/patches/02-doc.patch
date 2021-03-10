@@ -1,0 +1,12 @@
+diff -Nur orig/src/Makefile.in mod/src/Makefile.in
+--- orig/src/Makefile.in	2020-05-27 02:29:37.000000000 +0200
++++ mod/src/Makefile.in	2020-06-01 16:10:09.628402735 +0200
+@@ -23,7 +23,7 @@
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ mandir=@mandir@
+-docdir=@prefix@/share/doc/rp-pppoe-$(RP_VERSION)
++docdir=@prefix@/share/doc/Packages/rp-pppoe
+ install=@INSTALL@
+ install_dir=@INSTALL@ -d
+ sbindir=@sbindir@

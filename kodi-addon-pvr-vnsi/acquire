@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}-Matrix.tar.gz pvr.vdr.vnsi-${UB_VERSION}-Matrix/
+    https://github.com/kodi-pvr/pvr.vdr.vnsi/archive/

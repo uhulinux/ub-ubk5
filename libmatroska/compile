@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+export CXXFLAGS="-fPIC"
+ub_compile \
+    -DBUILD_SHARED_LIBS=ON

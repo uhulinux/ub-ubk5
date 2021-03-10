@@ -1,0 +1,7 @@
+#!/bin/sh -eux
+
+rm -f CMakeLists.txt
+rm -f meson.build
+
+ub_compile \
+	--enable-freetype-config

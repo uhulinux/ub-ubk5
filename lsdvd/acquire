@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+lsdvd-${UB_VERSION}.tar.gz lsdvd-${UB_VERSION}/
+	https://downloads.sourceforge.net/lsdvd/

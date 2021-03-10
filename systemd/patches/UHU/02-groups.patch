@@ -1,0 +1,65 @@
+diff -Naur orig/sysusers.d/basic.conf.in patched/sysusers.d/basic.conf.in
+--- orig/sysusers.d/basic.conf.in	2019-11-29 17:32:36.000000000 +0100
++++ patched/sysusers.d/basic.conf.in	2020-01-19 19:13:46.354270490 +0100
+@@ -18,20 +18,11 @@
+ g wheel   -     -            -
+ 
+ # Access to certain kernel and userspace facilities
+-g kmem    -     -            -
+ g tty     @TTY_GID@     -            -
+-g utmp    -     -            -
+ 
+ # Hardware access groups
+ g audio   -     -            -
+-g cdrom   -     -            -
+-g dialout -     -            -
+-g disk    -     -            -
+-g input   -     -            -
+-g kvm     -     -            -
+ g lp      -     -            -
+-g render  -     -            -
+-g tape    -     -            -
+ g video   -     -            -
+ 
+ # Default group for normal users
+diff -Naur orig/tmpfiles.d/static-nodes-permissions.conf.in patched/tmpfiles.d/static-nodes-permissions.conf.in
+--- orig/tmpfiles.d/static-nodes-permissions.conf.in	2019-11-29 17:32:36.000000000 +0100
++++ patched/tmpfiles.d/static-nodes-permissions.conf.in	2020-01-19 19:13:46.354270490 +0100
+@@ -11,7 +11,7 @@
+ 
+ z /dev/snd/seq      0660 - audio -
+ z /dev/snd/timer    0660 - audio -
+-z /dev/loop-control 0660 - disk  -
++z /dev/loop-control 0660 - media -
+ z /dev/net/tun      0666 - -     -
+ z /dev/fuse         0666 - -     -
+-z /dev/kvm          @DEV_KVM_MODE@ - kvm -
++z /dev/kvm          @DEV_KVM_MODE@ - users -
+diff -Naur orig/tmpfiles.d/systemd.conf.m4 patched/tmpfiles.d/systemd.conf.m4
+--- orig/tmpfiles.d/systemd.conf.m4	2019-11-29 17:32:36.000000000 +0100
++++ patched/tmpfiles.d/systemd.conf.m4	2020-01-19 19:15:35.915552461 +0100
+@@ -9,7 +9,7 @@
+ 
+ d /run/user 0755 root root -
+ m4_ifdef(`ENABLE_UTMP',
+-F! /run/utmp 0664 root utmp -
++F! /run/utmp 0664 root root -
+ )m4_dnl
+ 
+ d /run/systemd/ask-password 0755 root root -
+diff -Naur orig/tmpfiles.d/var.conf.m4 patched/tmpfiles.d/var.conf.m4
+--- orig/tmpfiles.d/var.conf.m4	2019-11-29 17:32:36.000000000 +0100
++++ patched/tmpfiles.d/var.conf.m4	2020-01-19 19:13:46.354270490 +0100
+@@ -13,9 +13,9 @@
+ 
+ d /var/log 0755 - - -
+ m4_ifdef(`ENABLE_UTMP',
+-f /var/log/wtmp 0664 root utmp -
+-f /var/log/btmp 0660 root utmp -
+-f /var/log/lastlog 0664 root utmp -
++f /var/log/wtmp 0664 root root -
++f /var/log/btmp 0660 root root -
++f /var/log/lastlog 0664 root root -
+ )m4_dnl
+ 
+ d /var/cache 0755 - - -

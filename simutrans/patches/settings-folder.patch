@@ -1,0 +1,12 @@
+diff -Nur orig/sys/simsys.cc mod/sys/simsys.cc
+--- orig/sys/simsys.cc	2020-12-13 15:57:14.295703096 +0100
++++ mod/sys/simsys.cc	2020-12-13 15:56:32.183744023 +0100
+@@ -363,7 +363,7 @@
+ 	find_directory(B_USER_DIRECTORY, &userDir);
+ 	sprintf(buffer, "%s/simutrans", userDir.Path());
+ #else
+-	sprintf(buffer, "%s/simutrans", getenv("HOME"));
++	sprintf(buffer, "%s/.simutrans", getenv("HOME"));
+ #endif
+ 
+ 	// create directory and subdirectories

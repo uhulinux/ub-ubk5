@@ -1,0 +1,1 @@
+urllist https://www.dxx-rebirth.com/download-dxx-rebirth/ | grep src | sed s/.*_// | sed s/-.*//

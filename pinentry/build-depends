@@ -1,0 +1,5 @@
+gtk2-dev
+libassuan-dev
+libgpg-error-dev
+libsecret-dev
+ncurses-dev

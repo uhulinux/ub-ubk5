@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+podofo-${UB_VERSION/~/-}.tar.gz podofo-${UB_VERSION/~/-}/
+	https://downloads.sourceforge.net/podofo/

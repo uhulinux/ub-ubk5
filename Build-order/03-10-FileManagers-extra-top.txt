@@ -1,0 +1,17 @@
+nnn
+vifm
+doublecmd
+eaglemode
+emelfm2
+gentoo
+rox-filer
+avfs
+worker
+fox1.6
+xfe
+mc
+ytree
+spacefm
+tuxcmd
+tuxcmd-modules
+tuxcmd-modules-unrar

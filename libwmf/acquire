@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libwmf-${UB_VERSION}.tar.gz libwmf-${UB_VERSION}/
+	https://downloads.sourceforge.net/wvware/

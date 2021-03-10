@@ -1,0 +1,13 @@
+#!/bin/sh -eux
+
+export LDFLAGS='-lglfw -lXrandr -lXinerama'
+
+mkdir build
+cd build
+cmake \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DCMAKE_INSTALL_PREFIX=/usr \
+   -DCONFIG_LIBRSVG=ON \
+..
+
+ub_compile

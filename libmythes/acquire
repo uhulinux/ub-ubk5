@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+mythes-${UB_VERSION}.tar.gz mythes-${UB_VERSION}/
+	https://downloads.sourceforge.net/hunspell/

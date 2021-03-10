@@ -1,0 +1,12 @@
+diff -Naur orig/man/Makefile mod/man/Makefile
+--- orig/man/Makefile	2019-08-23 17:19:38.000000000 +0200
++++ mod/man/Makefile	2019-08-25 19:59:01.188909882 +0200
+@@ -196,7 +196,7 @@
+ # Local programs (not built when cross-compiling...)
+ #
+ 
+-local:	html
++local:
+ 
+ 
+ #

@@ -1,0 +1,85 @@
+diff -Naur orig/docs/conf/httpd.conf.in patched/docs/conf/httpd.conf.in
+--- orig/docs/conf/httpd.conf.in	2016-08-17 01:12:07.000000000 +0200
++++ patched/docs/conf/httpd.conf.in	2020-08-16 21:46:47.677357230 +0200
+@@ -74,8 +74,8 @@
+ # It is usually good practice to create a dedicated user and group for
+ # running httpd, as with most system services.
+ #
+-User daemon
+-Group daemon
++User www
++Group www
+ 
+ </IfModule>
+ 
+@@ -181,10 +181,10 @@
+ # logged here.  If you *do* define an error logfile for a <VirtualHost>
+ # container, that host's errors will be logged there and not here.
+ #
+-ErrorLog "@rel_logfiledir@/error_log"
++ErrorLog "@rel_logfiledir@/error.log"
+ 
+ #
+-# LogLevel: Control the number of messages logged to the error_log.
++# LogLevel: Control the number of messages logged to the error.log.
+ # Possible values include: debug, info, notice, warn, error, crit,
+ # alert, emerg.
+ #
+@@ -210,13 +210,13 @@
+     # define per-<VirtualHost> access logfiles, transactions will be
+     # logged therein and *not* in this file.
+     #
+-    CustomLog "@rel_logfiledir@/access_log" common
++    CustomLog "@rel_logfiledir@/access.log" common
+ 
+     #
+     # If you prefer a logfile with access, agent, and referer information
+     # (Combined Logfile Format) you can use the following directive.
+     #
+-    #CustomLog "@rel_logfiledir@/access_log" combined
++    #CustomLog "@rel_logfiledir@/access.log" combined
+ </IfModule>
+ 
+ <IfModule alias_module>
+@@ -376,19 +376,19 @@
+ #Include @rel_sysconfdir@/extra/httpd-multilang-errordoc.conf
+ 
+ # Fancy directory listings
+-#Include @rel_sysconfdir@/extra/httpd-autoindex.conf
++Include @rel_sysconfdir@/extra/httpd-autoindex.conf
+ 
+ # Language settings
+-#Include @rel_sysconfdir@/extra/httpd-languages.conf
++Include @rel_sysconfdir@/extra/httpd-languages.conf
+ 
+ # User home directories
+-#Include @rel_sysconfdir@/extra/httpd-userdir.conf
++Include @rel_sysconfdir@/extra/httpd-userdir.conf
+ 
+ # Real-time info on requests and configuration
+-#Include @rel_sysconfdir@/extra/httpd-info.conf
++Include @rel_sysconfdir@/extra/httpd-info.conf
+ 
+ # Virtual hosts
+-#Include @rel_sysconfdir@/extra/httpd-vhosts.conf
++# Include @rel_sysconfdir@/extra/httpd-vhosts.conf
+ 
+ # Local access to the Apache HTTP Server Manual
+ #Include @rel_sysconfdir@/extra/httpd-manual.conf
+@@ -397,7 +397,7 @@
+ #Include @rel_sysconfdir@/extra/httpd-dav.conf
+ 
+ # Various default settings
+-#Include @rel_sysconfdir@/extra/httpd-default.conf
++Include @rel_sysconfdir@/extra/httpd-default.conf
+ 
+ # Configure mod_proxy_html to understand HTML4/XHTML1
+ <IfModule proxy_html_module>
+@@ -416,3 +416,7 @@
+ SSLRandomSeed connect builtin
+ </IfModule>
+ 
++IncludeOptional /etc/apache/mods/loaders/*.load
++IncludeOptional /etc/apache/mods/conf/*.conf
++IncludeOptional /etc/apache/conf.d/*.conf
++IncludeOptional /etc/apache/vhosts/*.vhost

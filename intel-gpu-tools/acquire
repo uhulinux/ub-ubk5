@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+igt-gpu-tools-${UB_VERSION}.tar.xz igt-gpu-tools-${UB_VERSION}/
+	https://www.x.org/releases/individual/app/

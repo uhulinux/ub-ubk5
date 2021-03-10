@@ -1,0 +1,4 @@
+#!/bin/bash
+
+systemctl -f enable lightdm
+systemctl set-default graphical.target

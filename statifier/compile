@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+sed -i -e "s/^PROCESSOR=.*$/PROCESSOR=x86_64/g" configure
+
+chmod +x configure
+ub_compile

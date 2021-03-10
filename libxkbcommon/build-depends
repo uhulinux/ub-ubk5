@@ -1,0 +1,7 @@
+libxcb-dev
+libxml2-dev
+meson
+wayland-dev
+wayland-protocols
+xkeyboard-config
+x.org-util-macros

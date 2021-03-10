@@ -1,0 +1,15 @@
+brasero-dev
+clutter-gtk-dev
+colord-dev
+exiv2-dev
+gsettings-desktop-schemas
+gst-plugins-base-dev
+gtk-dev
+itstool
+lcms2-dev
+libchamplain-dev
+librsvg-dev
+libtiff-dev
+meson
+wayland-dev
+webkit2gtk-dev

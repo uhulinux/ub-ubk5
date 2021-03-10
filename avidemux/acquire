@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+avidemux_${UB_VERSION}.tar.gz avidemux_${UB_VERSION}/
+	https://downloads.sourceforge.net/avidemux/

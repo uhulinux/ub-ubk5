@@ -1,0 +1,12 @@
+cracklib-dev
+libevent-dev
+liblz4-dev
+libxml2-dev
+ncurses-dev
+openssl-dev
+pcre2-dev
+procps-dev
+readline-dev
+sharutils
+systemd-dev
+zstd-dev

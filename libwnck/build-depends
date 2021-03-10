@@ -1,0 +1,8 @@
+gobject-introspection-dev
+gtk-dev
+intltool
+libsm-dev
+libxres-dev
+meson
+startup-notification-dev
+xcb-util-dev

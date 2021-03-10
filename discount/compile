@@ -1,0 +1,8 @@
+#!/bin/sh -eux
+
+./configure.sh \
+	--prefix=/usr \
+	--enable-all-features \
+	--with-fenced-code \
+	--shared
+make

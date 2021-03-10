@@ -1,0 +1,16 @@
+dbus-glib-dev
+dconf-dev
+docbook-dtds
+docbook-xsl
+gnome-desktop-dev
+gtk-dev
+intltool
+json-glib-dev
+librsvg-dev
+libseccomp-dev
+libsm-dev
+libxslt
+mesa-dev
+meson
+systemd-dev
+x.org-xtrans-dev

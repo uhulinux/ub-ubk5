@@ -1,0 +1,14 @@
+iso-codes
+kactivitymanagerd
+kded >=
+kdegraphics-thumbnailers
+kinit >=
+kio-extras
+kirigami2 >=
+kquickcharts >=
+plasma-framework >=
+plasma-integration
+sddm-theme-breeze >=
+xdg-user-dirs
+xmessage
+xsetroot

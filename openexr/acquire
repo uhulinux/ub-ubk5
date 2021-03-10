@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz openexr-${UB_VERSION}/
+    https://github.com/openexr/openexr/archive/

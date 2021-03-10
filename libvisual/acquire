@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libvisual-${UB_VERSION}.tar.gz libvisual-${UB_VERSION}/
+	https://downloads.sourceforge.net/libvisual/

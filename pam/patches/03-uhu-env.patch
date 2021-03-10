@@ -1,0 +1,165 @@
+diff -Naur orig/modules/pam_env/pam_env.c patched/modules/pam_env/pam_env.c
+--- orig/modules/pam_env/pam_env.c	2020-11-24 23:56:49.000000000 +0100
++++ patched/modules/pam_env/pam_env.c	2021-02-10 01:50:07.240651009 +0100
+@@ -6,7 +6,7 @@
+  * template for this file (via pam_mail)
+  */
+ 
+-#define DEFAULT_ETC_ENVFILE     "/etc/environment"
++#define DEFAULT_ETC_ENVFILE     "/etc/env.d"
+ #define DEFAULT_READ_ENVFILE    1
+ 
+ #define DEFAULT_USER_ENVFILE    ".pam_environment"
+@@ -25,6 +25,9 @@
+ #include <sys/stat.h>
+ #include <sys/types.h>
+ #include <unistd.h>
++#include <dirent.h>
++#include <fcntl.h>
++#include <sys/utsname.h>
+ 
+ #include <security/pam_modules.h>
+ #include <security/pam_modutil.h>
+@@ -102,7 +105,7 @@
+ 			"envfile= specification missing argument - ignored");
+ 	  } else {
+ 	    *envfile = str;
+-	    D(("new Env File: %s", *envfile));
++	    D(("new Env Dir: %s", *envfile));
+ 	  }
+ 	} else if ((str = pam_str_skip_prefix(*argv, "user_envfile=")) != NULL) {
+ 	  if (str[0] == '\0') {
+@@ -110,7 +113,7 @@
+ 			"user_envfile= specification missing argument - ignored");
+ 	  } else {
+ 	    *user_envfile = str;
+-	    D(("new User Env File: %s", *user_envfile));
++	    D(("new User Env Dir: %s", *user_envfile));
+ 	  }
+ 	} else if ((str = pam_str_skip_prefix(*argv, "readenv=")) != NULL) {
+ 	  *readenv = atoi(str);
+@@ -187,16 +190,46 @@
+ _parse_env_file(pam_handle_t *pamh, int ctrl, const char *file)
+ {
+     int retval=PAM_SUCCESS, i, t;
++    int n, x = 0;
++    struct stat *fileinfo = malloc ( sizeof (struct stat) );
++    struct dirent **namelist;
+     char buffer[BUF_SIZE], *key, *mark;
+     FILE *conf;
++    int real_cwd;
+ 
+-    D(("Env file name is: %s", file));
++    D(("Env dir name is: %s", file));
++    n = scandir(file, &namelist, 0, alphasort);
+ 
+-    if ((conf = fopen(file,"r")) == NULL) {
+-      pam_syslog(pamh, LOG_ERR, "Unable to open env file: %s: %m", file);
+-      return PAM_IGNORE;
++    if (n<0) {
++	D(("Unable to open env dir: %s", file));
++	return PAM_ABORT;
+     }
+ 
++    real_cwd = open(".", O_RDONLY);
++    chdir(file);
++    do {
++    /* skip hidden files */
++    if ( namelist[x]->d_name[0] == '.' ) {
++	continue;
++    }
++    /* require .env extension */
++    if ( strlen(namelist[x]->d_name) < 5 || strcmp(namelist[x]->d_name + strlen(namelist[x]->d_name) - 4, ".env") != 0 ) {
++	continue;
++    }
++    /* if stat fails we cry out */
++    if ( stat(namelist[x]->d_name, fileinfo) < 0 ) {
++	continue;
++    }
++    /* if the file is not a regular file, we cry out */
++    if (! S_ISREG(fileinfo->st_mode)) {
++	continue;
++    }
++
++    if ((conf = fopen(namelist[x]->d_name,"r")) == NULL) {
++      pam_syslog(pamh, LOG_ERR, "Unable to open env file: %s: %m", file);
++     }
++    free(namelist[x]);
++
+     while (_assemble_line(conf, buffer, BUF_SIZE) > 0) {
+ 	D(("Read line: %s", buffer));
+ 	key = buffer;
+@@ -275,6 +308,12 @@
+ 
+     (void) fclose(conf);
+ 
++    } while (++x < n );
++    fchdir(real_cwd);
++    close(real_cwd);
++    free(fileinfo);
++    free(namelist);
++
+     /* tidy up */
+     D(("Exit."));
+     return retval;
+@@ -698,6 +737,36 @@
+     item = PAM_RUSER;
+   } else if (strcmp(name, "PAM_RHOST") == 0) {
+     item = PAM_RHOST;
++  } else if (strcmp(name, "HOME") == 0) {
++    struct passwd *passwd;
++    if (pam_get_item(pamh, PAM_USER, (const void **)&itemval) != PAM_SUCCESS) {
++      D(("pam_get_item failed"));
++      return NULL;
++    }
++    passwd = getpwnam(itemval);
++    if (passwd == NULL) return NULL;
++    return passwd->pw_dir;
++  } else if (strcmp(name, "HOSTNAME") == 0) {
++    static struct utsname utsname;
++    if (uname(&utsname) < 0) return NULL;
++    return &utsname.nodename;
++  } else if (strcmp(name, "LOCALE") == 0) {
++    static char localebuf[32];
++    int fd, i;
++    if ((fd = open("/etc/sysconfig/locale", O_RDONLY)) < 0) {
++      D(("failed to open /etc/sysconfig/locale"));
++      return NULL;
++    }
++    i = read(fd, localebuf, 32);
++    close(fd);
++    if (i < 0 || i >= 32) {
++      D(("/etc/sysconfig/locale too large"));
++      return NULL;
++    }
++    localebuf[i] = '\0';
++    i = strcspn(localebuf, " \t\r\n");
++    localebuf[i] = '\0';
++    return &localebuf;
+   } else {
+     D(("Unknown PAM_ITEM: <%s>", name));
+     pam_syslog (pamh, LOG_ERR, "Unknown PAM_ITEM: <%s>", name);
+diff -Naur orig/modules/pam_env/pam_env.conf patched/modules/pam_env/pam_env.conf
+--- orig/modules/pam_env/pam_env.conf	2020-11-24 23:56:49.000000000 +0100
++++ patched/modules/pam_env/pam_env.conf	2021-02-10 01:43:43.338565639 +0100
+@@ -45,6 +45,10 @@
+ # For example, HOME is used below several times, but
+ # many PAM applications don't make it available by the time you need it.
+ #
++# Added by UHU-Linux: @{HOME} refers to the home directory, @{HOSTNAME}
++# is the host name, @{LOCALE} is the default system locale read from
++# /etc/sysconfig/locale.
++#
+ #
+ # First, some special variables
+ #
+@@ -71,3 +75,9 @@
+ #DOLLARDOLLAR	DEFAULT=	OVERRIDE=\$${DOLLAR}
+ #DOLLARPLUS	DEFAULT=\${REMOTEHOST}${REMOTEHOST}
+ #ATSIGN		DEFAULT=""	OVERRIDE=\@
++
++USER		OVERRIDE=@{PAM_USER}
++USERNAME	OVERRIDE=@{PAM_USER}
++LOGNAME		OVERRIDE=@{PAM_USER}
++HOME		OVERRIDE=@{HOME}
++MAIL		OVERRIDE=/var/mail/@{PAM_USER}

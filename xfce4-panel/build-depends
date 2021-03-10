@@ -1,0 +1,13 @@
+garcon-dev
+gtk-dev
+intltool
+libdbusmenu-gtk3-dev
+libexo-dev
+libwnck-dev
+libxfce4ui-dev
+libxfce4util-dev
+libxinerama-dev
+libxml2-dev
+libxt-dev
+startup-notification-dev
+xcb-util-dev

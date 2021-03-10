@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xlsclients-${UB_VERSION}.tar.gz xlsclients-${UB_VERSION}/
+  https://www.x.org/releases/individual/app/

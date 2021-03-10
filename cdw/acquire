@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+cdw-${UB_VERSION}.tar.gz cdw-${UB_VERSION}/
+	https://download.sourceforge.net/cdw/

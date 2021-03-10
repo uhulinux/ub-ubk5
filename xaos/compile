@@ -1,0 +1,4 @@
+#!/bin/sh -eux
+
+qmake DESTDIR=${UB_INSTALLDIR}/bin XaoS.pro
+ub_compile

@@ -1,0 +1,12 @@
+diff -Naur orig/index.theme.in.in patched/index.theme.in.in
+--- orig/index.theme.in.in	2019-09-20 14:09:16.000000000 +0200
++++ patched/index.theme.in.in	2019-09-25 19:47:55.658585966 +0200
+@@ -2,7 +2,7 @@
+ _Name=MATE
+ _Comment=Default MATE Theme
+ Example=folder
+-
++Inherits=gnome
+ # KDE Specific Stuff
+ DisplayDepth=32
+ LinkOverlay=link_overlay

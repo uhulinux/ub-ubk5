@@ -1,0 +1,14 @@
+#!/bin/sh -eux
+
+export CPPFLAGS=-I/usr/include/openssl-1.0
+export LDFLAGS=-L/usr/lib/openssl-1.0
+
+ub_compile \
+    --prefix=/usr \
+	--sysconfdir=/etc/ssh \
+	--datadir=/usr/share/openssh \
+	--with-kerberos5=/usr \
+	--with-xauth=/usr/bin/xauth \
+	--with-pam \
+	--with-md5-passwords \
+	--with-libedit

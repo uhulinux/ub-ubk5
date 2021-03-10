@@ -1,0 +1,10 @@
+intltool
+libxfce4ui-dev
+libxfce4util-dev
+libxinerama-dev
+libxml2-dev
+libxt-dev
+perl-xml-parser
+startup-notification-dev
+xcb-util-dev
+xfce4-panel-dev

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+OpenSP-${UB_VERSION}.tar.gz OpenSP-${UB_VERSION}/
+	https://downloads.sourceforge.net/openjade/

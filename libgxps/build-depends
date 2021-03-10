@@ -1,0 +1,5 @@
+gobject-introspection-dev
+gtk-dev
+lcms2-dev
+libarchive-dev
+meson

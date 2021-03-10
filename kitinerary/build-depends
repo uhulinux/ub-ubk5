@@ -1,0 +1,9 @@
+extra-cmake-modules
+kcalendarcore-dev
+kcontacts-dev
+ki18n-dev
+kmime-dev
+kpkpass-dev
+libxml2-dev
+poppler-dev
+qt5-dev

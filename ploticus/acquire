@@ -1,0 +1,7 @@
+#!/usr/bin/env dl
+
+pl241docs.tar.gz pl241docs/
+	https://downloads.sourceforge.net/ploticus/
+
+pl241src.tar.gz pl241src/
+	https://downloads.sourceforge.net/ploticus/

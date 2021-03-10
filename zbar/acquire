@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz zbar-${UB_VERSION}/
+	https://github.com/mchehab/zbar/archive/

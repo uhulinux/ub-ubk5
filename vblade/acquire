@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+vblade-${UB_VERSION}.tar.gz vblade-vblade-${UB_VERSION}/
+	https://github.com/OpenAoE/vblade/archive/

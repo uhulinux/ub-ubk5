@@ -1,0 +1,12 @@
+#!/bin/sh -eux
+
+ub_compile \
+    -Dpackaging_backend=aptcc \
+    -Dsystemd=true \
+	-Doffline_update=false \
+	-Dgobject_introspection=true \
+	-Dman_pages=true \
+	-Dgtk_doc=false \
+	-Dgstreamer_plugin=true \
+	-Dgtk_module=true \
+	-Dcron=false

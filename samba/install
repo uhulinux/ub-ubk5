@@ -1,0 +1,20 @@
+#!/bin/sh -eux
+
+ub_install DESTDIR="$UB_INSTALLDIR"
+
+# systemd
+cd packaging/systemd
+mkdir "$UB_INSTALLDIR"/usr/lib/tmpfiles.d
+cp -a samba.conf.tmp "$UB_INSTALLDIR"/usr/lib/tmpfiles.d/samba.conf
+cp -a samba.sysconfig "$UB_INSTALLDIR"/etc/sysconfig/samba
+cd -
+
+cd docs/manpages
+for i in *; do
+	m="${i##*.}"
+	cp -a "$i" "$UB_INSTALLDIR"/usr/share/man/man${m}/
+done
+
+# usershare
+mkdir -p "$UB_INSTALLDIR"/var/lib/samba/usershare
+chmod 1770 "$UB_INSTALLDIR"/var/lib/samba/usershare

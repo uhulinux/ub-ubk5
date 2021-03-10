@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+alsa-utils-${UB_VERSION/~/}.tar.bz2 alsa-utils-${UB_VERSION/~/}/
+	https://www.alsa-project.org/files/pub/utils/

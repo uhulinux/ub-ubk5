@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+R_${UB_VERSION//./_}.tar.gz libexpat-R_${UB_VERSION//./_}/expat/
+	https://github.com/libexpat/libexpat/archive/

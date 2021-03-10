@@ -1,0 +1,11 @@
+#!/bin/sh -eux
+
+./autogen.sh
+ub_compile \
+	--enable-compile-warnings=minimum \
+	--enable-startup-notification=yes \
+	--disable-silent-rules \
+	--enable-libsm \
+	--disable-gtk-doc \
+	--disable-clutter-doc \
+	--disable-wayland-egl-server

@@ -1,0 +1,5 @@
+#!/usr/bin/env dl
+
+tcl"$UB_VERSION"-src.tar.gz tcl"$UB_VERSION"/
+	https://downloads.sourceforge.net/tcl/
+    https://prdownloads.sourceforge.net/tcl/

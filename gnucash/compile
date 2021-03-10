@@ -1,0 +1,12 @@
+#!/bin/sh -eux
+
+ub_compile \
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+    -DCMAKE_INSTALL_SYSCONFDIR=/usr/etc \
+    -DWITH_AQBANKING=OFF \
+	-DWITH_PYTHON=ON \
+    -DCOMPILE_GSCHEMAS=OFF \
+    -DGTEST_ROOT=gtest
+
+cd gnucash-docs
+ub_compile

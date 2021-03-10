@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+claws-mail-${UB_VERSION/~/-}.tar.gz claws-mail-${UB_VERSION/~/-}/
+	https://www.claws-mail.org/releases/

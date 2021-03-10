@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+zsh-${UB_VERSION}.tar.xz zsh-${UB_VERSION}/
+	https://www.zsh.org/pub/

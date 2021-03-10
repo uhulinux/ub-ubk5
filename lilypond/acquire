@@ -1,0 +1,7 @@
+#!/usr/bin/env dl
+
+lilypond-${UB_VERSION}.tar.gz lilypond-${UB_VERSION}/
+	http://lilypond.org/download/sources/v${UB_VERSION_HEAD2}/
+
+tex-gyre.zip tex-gyre/ :tex-gyre
+	http://mirrors.ctan.org/fonts/

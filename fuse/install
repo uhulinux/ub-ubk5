@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+export DESTDIR=${UB_INSTALLDIR}
+ub_install
+rm -rf ${UB_INSTALLDIR}/etc/init.d

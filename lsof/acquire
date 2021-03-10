@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz lsof-${UB_VERSION}/
+	https://github.com/lsof-org/lsof/archive/

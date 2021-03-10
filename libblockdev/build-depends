@@ -1,0 +1,15 @@
+btrfs-progs
+cryptsetup-dev
+dosfstools
+glib-dev
+gobject-introspection-dev
+kmod-dev
+libbytesize-dev
+libyaml-dev
+lvm-dev
+ndctl-dev
+nss-dev
+parted-dev
+systemd-dev
+util-linux-dev
+volume-key-dev

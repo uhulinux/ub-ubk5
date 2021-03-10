@@ -1,0 +1,7 @@
+acl-dev
+dbus-glib-dev
+file-dev
+gtk-dev
+gtkspell2-dev
+polkit-dev
+udisks2

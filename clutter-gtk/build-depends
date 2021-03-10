@@ -1,0 +1,5 @@
+clutter-dev
+gobject-introspection-dev
+gtk-dev
+meson
+wayland-dev

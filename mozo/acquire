@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+mozo-${UB_VERSION}.tar.xz mozo-${UB_VERSION}/
+	https://pub.mate-desktop.org/releases/${UB_VERSION_HEAD2}/

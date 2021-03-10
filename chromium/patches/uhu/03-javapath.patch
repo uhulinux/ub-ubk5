@@ -1,0 +1,15 @@
+diff -Naur orig/third_party/closure_compiler/compiler.py patched/third_party/closure_compiler/compiler.py
+--- orig/third_party/closure_compiler/compiler.py	2021-01-18 22:29:44.000000000 +0100
++++ patched/third_party/closure_compiler/compiler.py	2021-01-21 16:36:21.125187714 +0100
+@@ -12,9 +12,9 @@
+ import subprocess
+ 
+ 
+-_CURRENT_DIR = os.path.join(os.path.dirname(__file__))
++_CURRENT_DIR = "/usr"
+ _JAVA_BIN = "java"
+-_JDK_PATH = os.path.join(_CURRENT_DIR, "..", "jdk", "current", "bin", _JAVA_BIN)
++_JDK_PATH = os.path.join(_CURRENT_DIR, "lib", "java", "jre", "bin", _JAVA_BIN)
+ _JAVA_PATH = _JDK_PATH if os.path.isfile(_JDK_PATH) else _JAVA_BIN
+ 
+ 

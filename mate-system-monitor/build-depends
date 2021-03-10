@@ -1,0 +1,12 @@
+dbus-glib-dev
+gtkmm3-dev
+itstool
+libgtop2-dev
+librsvg-dev
+libsm-dev
+libwnck-dev
+libxslt-dev
+mate-icon-theme
+systemd-dev
+xcb-util-dev
+yelp-tools

@@ -1,0 +1,15 @@
+alsa-lib-dev
+fontforge
+fribidi-dev
+gperf
+imagemagick
+libimagequant-dev
+libpaper-dev
+libpng-dev
+librsvg-dev
+sdl-dev
+sdl-image-dev
+sdl-mixer-dev
+sdl-pango-dev
+sdl-ttf-dev
+xdg-utils

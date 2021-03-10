@@ -1,0 +1,8 @@
+#!/bin/sh -eux
+
+qmake \
+	PREFIX="/usr" \
+	INSTALL_ROOT="$UB_INSTALLDIR" \
+	QMAKE_LFLAGS="-Wl,--as-needed"
+
+ub_make

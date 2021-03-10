@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+nomarch-${UB_VERSION}.tar.gz nomarch-${UB_VERSION}/
+	https://www.ibiblio.org/pub/Linux/utils/compress/

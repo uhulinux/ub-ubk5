@@ -1,0 +1,17 @@
+diff -Naur orig/UHU-TODO patched/UHU-TODO
+--- orig/UHU-TODO	1970-01-01 01:00:00.000000000 +0100
++++ patched/UHU-TODO	2019-07-31 13:23:35.997541827 +0200
+@@ -0,0 +1,13 @@
++--------
++UHU-UBK
++--------
++  
++- A hálózati settings.conf aktualizálása, ha választható a mód.
++- A chrootcfg szkript csiszolása, felesleges részek kidobálása.
++- Ha a chroot felépítése meghiúsul, a céleszköz leválasztása után az okot jelezni és rendben kilépni. 
++- A packages.yaml csomagcsoportjainak részletes átnézése, ésszerű csoportosítások, újabbak felvétele, feleslegesek kidobálása.
++- A packages.yaml subgroups funkciót működőképessé tenni, nem működik egyelőre a leírás szerint próbálgatva.
++- Elérni, hogy a hiddden és eleve kijelölt alapcsomagokat telepítse előbb és ne a látható kijelölteket.
++- A diavetítés funkciót életre kelteni normális képekkel, feliratokkal.
++- A fstab -ba csak a céltelepítményen lévő swap partíció veendő fel, eddig mindegyiket felveszi, ami a telepítéskor elérhető.
++

@@ -1,0 +1,5 @@
+gnome-control-center
+libwnck
+python3-pyatspi
+python3-pygobject
+python3-pyxdg

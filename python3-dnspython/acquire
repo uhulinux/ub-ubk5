@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+dnspython-${UB_VERSION}.zip dnspython-${UB_VERSION}/
+    https://pypi.org/packages/source/d/dnspython/

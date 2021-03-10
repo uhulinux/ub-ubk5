@@ -1,0 +1,82 @@
+diff -Naur orig/browser/app/profile/firefox.js patched/browser/app/profile/firefox.js
+--- orig/browser/app/profile/firefox.js	2021-01-18 19:29:32.000000000 +0100
++++ patched/browser/app/profile/firefox.js	2021-01-27 22:25:40.575333666 +0100
+@@ -19,6 +19,12 @@
+   #endif
+ #endif
+ 
++// Use LANG environment variable to choose locale
++pref("intl.locale.requested", "");
++
++// Use system-provided dictionaries
++pref("spellchecker.dictionary_path", "/usr/share/hunspell");
++
+ pref("browser.hiddenWindowChromeURL", "chrome://browser/content/hiddenWindowMac.xhtml");
+ 
+ // Enables some extra Extension System Logging (can reduce performance)
+@@ -61,7 +67,8 @@
+ 
+ // Disable add-ons that are not installed by the user in all scopes by default.
+ // See the SCOPE constants in AddonManager.jsm for values to use here.
+-pref("extensions.autoDisableScopes", 15);
++pref("extensions.autoDisableScopes", 0);
++pref("extensions.showMismatchUI", false);
+ // Scopes to scan for changes at startup.
+ pref("extensions.startupScanScopes", 0);
+ 
+@@ -76,8 +83,8 @@
+ pref("extensions.webextensions.background-delayed-startup", true);
+ 
+ // Require signed add-ons by default
+-pref("extensions.langpacks.signatures.required", true);
+-pref("xpinstall.signatures.required", true);
++pref("extensions.langpacks.signatures.required", false);
++pref("xpinstall.signatures.required", false);
+ pref("xpinstall.signatures.devInfoURL", "https://wiki.mozilla.org/Addons/Extension_Signing");
+ 
+ // Enable extensionStorage storage actor by default
+@@ -144,7 +151,7 @@
+ // should no longer be used directly. Instead, getAppUpdateAutoEnabled and
+ // getAppUpdateAutoEnabled from UpdateUtils.jsm should be used.
+ #ifndef XP_WIN
+-  pref("app.update.auto", true);
++  pref("app.update.auto", false);
+ #endif
+ 
+ // If set to true, the Update Service will apply updates in the background
+@@ -236,7 +243,7 @@
+ pref("browser.touchmode.auto", true);
+ 
+ // At startup, check if we're the default browser and prompt user if not.
+-pref("browser.shell.checkDefaultBrowser", true);
++pref("browser.shell.checkDefaultBrowser", false);
+ pref("browser.shell.shortcutFavicons",true);
+ pref("browser.shell.mostRecentDateSetAsDefault", "");
+ pref("browser.shell.skipDefaultBrowserCheckOnFirstRun", true);
+@@ -304,7 +311,7 @@
+ pref("browser.urlbar.accessibility.tabToSearch.announceResults", true);
+ 
+ // Control autoFill behavior
+-pref("browser.urlbar.autoFill", true);
++pref("browser.urlbar.autoFill", false);
+ 
+ // Whether to warm up network connections for autofill or search results.
+ pref("browser.urlbar.speculativeConnect.enabled", true);
+@@ -336,7 +343,7 @@
+ // is longer than this.
+ pref("browser.urlbar.maxCharsForSearchSuggestions", 100);
+ 
+-pref("browser.urlbar.trimURLs", true);
++pref("browser.urlbar.trimURLs", false);
+ 
+ // If changed to true, copying the entire URL from the location bar will put the
+ // human readable (percent-decoded) URL on the clipboard.
+@@ -849,7 +856,7 @@
+ // 1 act like PgUp/PgDown
+ // 2 and other values, nothing
+ #ifdef UNIX_BUT_NOT_MAC
+-  pref("browser.backspace_action", 2);
++  pref("browser.backspace_action", 0);
+ #else
+   pref("browser.backspace_action", 0);
+ #endif

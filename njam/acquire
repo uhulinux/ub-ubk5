@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+njam_${UB_VERSION}.orig.tar.gz njam-${UB_VERSION}-src/
+	http://ftp.de.debian.org/debian/pool/main/n/njam/

@@ -1,0 +1,4 @@
+#!/bin/sh -eux
+
+# for python3
+python3 setup.py build

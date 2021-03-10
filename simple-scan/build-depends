@@ -1,0 +1,13 @@
+cairo-dev
+colord-dev
+gdk-pixbuf-dev
+gtk-dev
+intltool
+itstool
+libgusb-dev
+libjpeg-turbo-dev
+meson
+sane-backends-dev
+sqlite-dev
+systemd-dev
+vala-dev

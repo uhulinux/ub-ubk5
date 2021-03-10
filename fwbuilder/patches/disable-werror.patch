@@ -1,0 +1,12 @@
+diff -Naur orig/CMakeLists.txt patched/CMakeLists.txt
+--- orig/CMakeLists.txt	2021-03-01 19:56:43.000000000 +0100
++++ patched/CMakeLists.txt	2021-03-01 21:11:15.684987458 +0100
+@@ -45,7 +45,7 @@
+ set(CMAKE_CXX_STANDARD 11)
+ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+ set(CXX_DEFAULT_FLAGS # clang/GCC warnings
+-	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:GNU>>:-Wall;-Wextra;-Werror;-Wno-overloaded-virtual>
++	$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:GNU>>:-Wall;-Wextra;-Wno-overloaded-virtual>
+                          # MSVC warnings
+     $<$<CXX_COMPILER_ID:MSVC>:/WX;/W4>)
+ 

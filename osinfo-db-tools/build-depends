@@ -1,0 +1,7 @@
+glib-dev
+intltool
+json-glib-dev
+libarchive-dev
+libsoup-dev
+libxslt-dev
+meson

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+lxpanel-${UB_VERSION}.tar.xz lxpanel-${UB_VERSION}/
+	https://download.sourceforge.net/lxde/

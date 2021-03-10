@@ -1,0 +1,14 @@
+diff -Naur orig/init.d/auditd.restart patched/init.d/auditd.restart
+--- orig/init.d/auditd.restart	2019-02-04 15:26:52.000000000 +0100
++++ patched/init.d/auditd.restart	2019-09-03 11:40:39.558304175 +0200
+@@ -6,8 +6,8 @@
+ 
+ /usr/libexec/initscripts/legacy-actions/auditd/stop
+ sleep 1
+-echo "Redirecting start to /bin/systemctl start auditd.service"
+-/bin/systemctl start auditd.service
++echo "Redirecting start to /usr/bin/systemctl start auditd.service"
++/usr/bin/systemctl start auditd.service
+ RETVAL="$?"
+ 
+ exit $RETVAL

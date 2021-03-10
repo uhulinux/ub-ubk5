@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+slang-${UB_VERSION}.tar.bz2 slang-${UB_VERSION}/
+	http://www.jedsoft.org/releases/slang/

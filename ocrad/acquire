@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+ocrad-${UB_VERSION}.tar.lz
+	https://ftp.gnu.org/gnu/ocrad/

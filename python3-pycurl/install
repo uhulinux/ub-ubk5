@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+export PYCURL_SSL_LIBRARY=openssl
+
+python3 setup.py install --root="$UB_INSTALLDIR" --skip-build
+rm -rf ${UB_INSTALLDIR}/usr/share/doc/pycurl

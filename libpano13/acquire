@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libpano13-${UB_VERSION}_rc2.tar.gz libpano13-${UB_VERSION}/
+	https://downloads.sourceforge.net/panotools/

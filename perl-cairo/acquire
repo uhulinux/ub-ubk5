@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+Cairo-${UB_VERSION}.tar.gz Cairo-${UB_VERSION}/
+	https://downloads.sourceforge.net/gtk2-perl/

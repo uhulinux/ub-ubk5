@@ -1,0 +1,16 @@
+diff -Nur orig/Makefile.am mod/Makefile.am
+--- orig/Makefile.am	2018-02-22 16:58:15.000000000 +0100
++++ mod/Makefile.am	2018-06-05 12:50:52.570846916 +0200
+@@ -35,12 +35,6 @@
+ noinst_LIBRARIES = liblib.a
+ 
+ install-data-local: userinfo.desktop usermount.desktop userpasswd.desktop
+-	mkdir -p $(DESTDIR)$(datadir)/applications
+-	for i in userinfo.desktop usermount.desktop userpasswd.desktop; do \
+-		desktop-file-install --vendor=$(VENDOR)			   \
+-			--dir=$(DESTDIR)$(datadir)/applications		   \
+-			$(top_builddir)/$$i;				   \
+-	done
+ 
+ uninstall-local:
+ 	-rm -f $(DESTDIR)$(datadir)/applications/$(VENDOR)-userinfo.desktop   \

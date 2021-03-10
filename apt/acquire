@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+${UB_VERSION}.tar.gz apt-${UB_VERSION}/
+	https://github.com/Debian/apt/archive/

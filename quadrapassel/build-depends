@@ -1,0 +1,11 @@
+clutter-gtk-dev
+gsound-dev
+gtk-dev
+intltool
+itstool
+libcanberra-dev
+libmanette-dev
+librsvg-dev
+meson
+vala-dev
+wayland-dev

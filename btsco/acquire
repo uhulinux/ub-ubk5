@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+btsco-${UB_VERSION}.tgz btsco-${UB_VERSION}/
+	https://downloads.sourceforge.net/bluetooth-alsa/

@@ -1,0 +1,12 @@
+diff -Naur orig/CMakeLists.txt patched/CMakeLists.txt
+--- orig/CMakeLists.txt	2019-03-08 09:41:20.000000000 +0100
++++ patched/CMakeLists.txt	2019-03-20 02:16:13.948643082 +0100
+@@ -243,7 +243,7 @@
+ add_subdirectory(dselect)
+ add_subdirectory(ftparchive)
+ add_subdirectory(methods)
+-add_subdirectory(test)
++# add_subdirectory(test)
+ 
+ if (USE_NLS)
+ add_subdirectory(po)

@@ -1,0 +1,13 @@
+curl-dev
+glib-dev
+imlib2-dev
+libxdamage-dev
+libxft-dev
+libxinerama-dev
+libxml2-dev
+lua53-dev
+man-db
+ncurses-dev
+pulseaudio-dev
+systemd-dev
+wireless-tools-dev

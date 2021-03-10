@@ -1,0 +1,20 @@
+#!/bin/bash -eux
+
+#előkészület
+KVER="$(ls -1 /lib/modules | grep x86_64)"
+moduldir="$UB_COMPILEDIR/lib/modules/"$KVER"/kernel/drivers/video"
+mkdir -p $moduldir
+forras="NVIDIA-Linux-x86_64-${UB_VERSION}-no-compat32"
+#kicsomagolás és belépés
+chmod +x $forras.run
+./"$forras".run -x
+mv $forras/* ./
+rm -f $forras.run
+bsdtar -xf nvidia-persistenced-init.tar.bz2
+patch -i "$UB_SRCDIR"/patches/menu.patch.skip
+cd kernel
+make IGNORE_CC_MISMATCH=yes SYSSRC=/usr/src/linux-$KVER KERNEL_UNAME="$KVER" MODULE_ROOT=$moduldir module
+
+cd ../libxnvctrl
+make clean
+make

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libdc1394-${UB_VERSION}.tar.gz libdc1394-${UB_VERSION}/
+	https://downloads.sourceforge.net/libdc1394/

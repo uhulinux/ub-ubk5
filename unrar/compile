@@ -1,0 +1,3 @@
+#!/bin/sh -eux
+
+make CXXFLAGS=-fPIC -f makefile unrar lib

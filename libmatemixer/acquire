@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libmatemixer-${UB_VERSION}.tar.xz libmatemixer-${UB_VERSION}/
+	https://pub.mate-desktop.org/releases/${UB_VERSION_HEAD2}/

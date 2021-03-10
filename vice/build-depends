@@ -1,0 +1,16 @@
+dos2unix
+ffmpeg-dev
+glew-dev
+glu-dev
+gtk-dev
+libieee1284-dev
+libjpeg-turbo-dev
+liblame-dev
+libpcap-dev
+libungif-dev
+libxxf86vm-dev
+mpg123-dev
+portaudio-dev
+pulseaudio-dev
+xa
+x.org-font-utils

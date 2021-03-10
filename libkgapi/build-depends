@@ -1,0 +1,11 @@
+cyrus-sasl2-dev
+extra-cmake-modules
+kcalendarcore-dev
+kcontacts-dev
+kdoctools
+kio-dev
+kwallet-dev
+kwindowsystem-dev
+libical-dev
+qt5-dev
+qtwebengine-dev

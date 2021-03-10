@@ -1,0 +1,17 @@
+#!/bin/sh -eux
+
+ub_replace -O3 -O2 configure
+# compile static lib
+./configure \
+	--prefix=/usr
+make
+
+# compile shared lib
+./configure \
+	--prefix=/usr \
+	--shared
+make
+
+# minizip
+cd contrib/minizip
+ub_compile

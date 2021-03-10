@@ -1,0 +1,13 @@
+#!/bin/sh -eux
+
+ub_compile \
+    -Dautocrypt=true \
+    -Dcanberra=true \
+    -Dcompface=true \
+    -Dgss=true \
+    -Dhtml-widget=webkit2 \
+    -Dspell-checker=gtkspell \
+    -Dldap=true \
+    -Dsqlite=true \
+    -Dlibsecret=true \
+    -Dgtksourceview=true

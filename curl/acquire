@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+curl-${UB_VERSION}.tar.gz curl-${UB_VERSION}/
+	https://curl.se/download/

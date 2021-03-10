@@ -1,0 +1,10 @@
+boost-dev
+guile-dev
+libx11-dev
+libxext-dev
+libxt-dev
+lua53-dev
+pcre-dev
+python3-dev
+ruby-dev
+tcl-dev

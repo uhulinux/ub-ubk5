@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+libmad-${UB_VERSION}.tar.gz libmad-${UB_VERSION}/
+	https://downloads.sourceforge.net/mad/

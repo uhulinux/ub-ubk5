@@ -1,0 +1,13 @@
+extra-cmake-modules
+kcmutils-dev
+kconfig-dev
+kconfigwidgets-dev
+kdbusaddons-dev
+kdeclarative-dev
+kglobalaccel-dev
+ki18n-dev
+kwidgetsaddons-dev
+kxmlgui-dev
+libkscreen-dev
+plasma-framework-dev
+qt5-dev

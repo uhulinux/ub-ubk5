@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+lame-${UB_VERSION}.tar.gz lame-${UB_VERSION}/
+	https://downloads.sourceforge.net/lame/

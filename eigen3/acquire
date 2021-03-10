@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+eigen-${UB_VERSION}.tar.bz2 eigen-${UB_VERSION}/
+	https://gitlab.com/libeigen/eigen/-/archive/${UB_VERSION}/

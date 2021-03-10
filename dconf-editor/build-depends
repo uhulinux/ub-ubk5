@@ -1,0 +1,6 @@
+dconf-dev
+gtk-dev
+intltool
+libxml2-dev
+meson
+vala-dev

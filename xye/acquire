@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+xye-${UB_VERSION}.tar.gz xye-${UB_VERSION}/
+	https://downloads.sourceforge.net/xye/

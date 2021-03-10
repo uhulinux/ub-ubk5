@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+kdiff3-${UB_VERSION}.tar.xz kdiff3-${UB_VERSION}/
+	https://download.kde.org/stable/kdiff3/

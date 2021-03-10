@@ -1,0 +1,9 @@
+dbus-glib-dev
+gobject-introspection-dev
+gtk-dev
+intltool
+itstool
+libcanberra-dev
+libnotify-dev
+meson
+systemd-dev

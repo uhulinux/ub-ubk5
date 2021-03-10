@@ -1,0 +1,12 @@
+boost-dev
+extra-cmake-modules
+gpgmepp-dev
+kconfigwidgets-dev
+kdbusaddons-dev
+kdoctools
+ki18n-dev
+knotifications-dev
+kservice-dev
+kwindowsystem-dev
+libgcrypt-dev
+qt5-dev

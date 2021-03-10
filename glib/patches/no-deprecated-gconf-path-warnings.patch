@@ -1,0 +1,23 @@
+diff -Naur orig/gio/glib-compile-schemas.c patched/gio/glib-compile-schemas.c
+--- orig/gio/glib-compile-schemas.c	2020-03-11 13:21:39.000000000 +0100
++++ patched/gio/glib-compile-schemas.c	2020-05-16 02:25:26.868992121 +0200
+@@ -1232,19 +1232,6 @@
+       return;
+     }
+ 
+-  if (path && (g_str_has_prefix (path, "/apps/") ||
+-               g_str_has_prefix (path, "/desktop/") ||
+-               g_str_has_prefix (path, "/system/")))
+-    {
+-      gchar *message = NULL;
+-      message = g_strdup_printf (_("Warning: Schema “%s” has path “%s”.  "
+-                                   "Paths starting with "
+-                                   "“/apps/”, “/desktop/” or “/system/” are deprecated."),
+-                                 id, path);
+-      g_printerr ("%s\n", message);
+-      g_free (message);
+-    }
+-
+   state->schema_state = schema_state_new (path, gettext_domain,
+                                           extends, extends_name, list_of);
+ 

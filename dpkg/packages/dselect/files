@@ -1,0 +1,7 @@
+	/etc/dpkg/dselect.cfg
+	/etc/dpkg/dselect.cfg.d
+	/usr/bin/dselect
+	/usr/lib/dpkg/methods
+	/usr/share/man/**/man5/dselect.cfg.5
+	/usr/share/man/**/man8/dselect.8
+	/var/lib/dpkg/methods

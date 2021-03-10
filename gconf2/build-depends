@@ -1,0 +1,9 @@
+dbus-glib-dev
+gobject-introspection-dev
+gtk-dev
+intltool
+libxml2-dev
+openldap-dev
+polkit-dev
+python3
+systemd-dev

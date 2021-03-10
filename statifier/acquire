@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+statifier-${UB_VERSION}.tar.gz statifier-${UB_VERSION}/
+	https://downloads.sourceforge.net/statifier/

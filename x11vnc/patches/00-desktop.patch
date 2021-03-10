@@ -1,0 +1,11 @@
+diff -Naur orig/x11vnc.desktop patched/x11vnc.desktop
+--- orig/x11vnc.desktop	2019-01-05 14:22:11.000000000 +0100
++++ patched/x11vnc.desktop	2020-08-21 00:21:17.993439888 +0200
+@@ -1,6 +1,7 @@
+ [Desktop Entry]
+ Name=X11VNC Server
+ Comment=Share this desktop by VNC
++Comment[hu]=Asztal megosztása a hálózaton VNC segítségével
+ Exec=x11vnc -gui tray=setpass -rfbport PROMPT -bg -o %%HOME/.x11vnc.log.%%VNCDISPLAY
+ Icon=computer
+ Terminal=false

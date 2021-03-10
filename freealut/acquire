@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+freealut_${UB_VERSION//./_}.tar.gz freealut-freealut_${UB_VERSION//./_}/
+	https://github.com/vancegroup/freealut/archive/

@@ -1,0 +1,11 @@
+dbus-glib-dev
+docbook-dtds
+docbook-xsl
+gcr-dev
+gtk-dev
+intltool
+libgcrypt-dev
+libtasn1-dev
+libxslt
+openssh
+p11-kit-dev

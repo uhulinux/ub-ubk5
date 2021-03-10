@@ -1,0 +1,88 @@
+diff -Naur orig/src/groupadd.c patched/src/groupadd.c
+--- orig/src/groupadd.c	2018-10-24 05:37:21.000000000 +0200
++++ patched/src/groupadd.c	2019-08-05 00:47:52.466011908 +0200
+@@ -388,13 +388,14 @@
+ 		{"key",        required_argument, NULL, 'K'},
+ 		{"non-unique", no_argument,       NULL, 'o'},
+ 		{"password",   required_argument, NULL, 'p'},
++		{"quiet",      no_argument,       NULL, 'q'},
+ 		{"system",     no_argument,       NULL, 'r'},
+ 		{"root",       required_argument, NULL, 'R'},
+ 		{"prefix",     required_argument, NULL, 'P'},
+ 		{NULL, 0, NULL, '\0'}
+ 	};
+ 
+-	while ((c = getopt_long (argc, argv, "fg:hK:op:rR:P:",
++	while ((c = getopt_long (argc, argv, "fg:hK:op:qrR:P:",
+ 		                 long_options, NULL)) != -1) {
+ 		switch (c) {
+ 		case 'f':
+@@ -446,6 +447,9 @@
+ 			pflg = true;
+ 			group_passwd = optarg;
+ 			break;
++		case 'q': 	/* set 'force' flag for quiet mode */
++			fflg = true;
++			break;
+ 		case 'r':
+ 			rflg = true;
+ 			break;
+diff -Naur orig/src/groupdel.c patched/src/groupdel.c
+--- orig/src/groupdel.c	2018-10-24 05:37:21.000000000 +0200
++++ patched/src/groupdel.c	2019-08-05 00:47:52.466011908 +0200
+@@ -323,17 +323,20 @@
+ 	int c;
+ 	static struct option long_options[] = {
+ 		{"help", no_argument,       NULL, 'h'},
++		{"quiet", no_argument,      NULL, 'q'},
+ 		{"root", required_argument, NULL, 'R'},
+ 		{"prefix", required_argument, NULL, 'P'},
+ 		{NULL, 0, NULL, '\0'}
+ 	};
+ 
+-	while ((c = getopt_long (argc, argv, "hfR:P:",
++	while ((c = getopt_long (argc, argv, "hfqR:P:",
+ 	                         long_options, NULL)) != -1) {
+ 		switch (c) {
+ 		case 'h':
+ 			usage (E_SUCCESS);
+ 			/*@notreached@*/break;
++		case 'q': /* no operation, just for backward compatibility with old UHU patch */
++			break;
+ 		case 'R': /* no-op, handled in process_root_flag () */
+ 			break;
+ 		case 'P': /* no-op, handled in process_prefix_flag () */
+--- orig/src/userdel.c	2019-05-04 07:38:23.000000000 +0200
++++ patched/src/userdel.c	2019-08-05 00:47:52.466011908 +0200
+@@ -1030,6 +1030,7 @@
+ 		static struct option long_options[] = {
+ 			{"force",        no_argument,       NULL, 'f'},
+ 			{"help",         no_argument,       NULL, 'h'},
++			{"quiet",        no_argument, 		NULL, 'q'},
+ 			{"remove",       no_argument,       NULL, 'r'},
+ 			{"root",         required_argument, NULL, 'R'},
+ 			{"prefix",       required_argument, NULL, 'P'},
+@@ -1039,10 +1040,10 @@
+ 			{NULL, 0, NULL, '\0'}
+ 		};
+ 		while ((c = getopt_long (argc, argv,
+-#ifdef WITH_SELINUX             
+-		                         "fhrR:P:Z",
++#ifdef WITH_SELINUX
++		                         "fhqrR:P:Z",
+ #else				/* !WITH_SELINUX */
+-		                         "fhrR:P:",
++		                         "fhqrR:P:",
+ #endif				/* !WITH_SELINUX */
+ 		                         long_options, NULL)) != -1) {
+ 			switch (c) {
+@@ -1052,6 +1053,9 @@
+ 			case 'h':
+ 				usage (E_SUCCESS);
+ 				break;
++			case 'q':  /* set 'force' flag for backward compatibility with old UHU patch */
++				fflg = true;
++				break;
+ 			case 'r':	/* remove home dir and mailbox */
+ 				rflg = true;
+ 				break;

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tat.gz femon-${UB_VERSION}/
+	https://github.com/rofafor/vdr-plugin-femon/archive/

@@ -1,0 +1,4 @@
+extra-cmake-modules
+ki18n-dev
+kxmlgui-dev
+qt5-dev

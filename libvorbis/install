@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+ub_install
+
+mkdir -p "$UB_INSTALLDIR"/usr/share/doc/Packages/libvorbis
+rm -Rf "$UB_INSTALLDIR"/usr/share/doc/libvorbis-"$UB_VERSION"

@@ -1,0 +1,7 @@
+dbus-dev
+gobject-introspection-dev
+gtk-dev
+intltool
+libffi-dev
+polkit-dev
+systemd-dev

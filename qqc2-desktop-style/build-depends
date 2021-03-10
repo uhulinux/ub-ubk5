@@ -1,0 +1,5 @@
+extra-cmake-modules
+kconfigwidgets-dev
+kiconthemes-dev
+kirigami2-dev
+qt5-dev

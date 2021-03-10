@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+V${UB_VERSION//./-}.tar.gz lm-sensors-${UB_VERSION//./-}/
+	https://github.com/lm-sensors/lm-sensors/archive/

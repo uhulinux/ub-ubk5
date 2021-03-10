@@ -1,0 +1,4 @@
+#!/bin/sh -eux
+
+mkdir -p ${UB_INSTALLDIR}/usr/share/sounds/sf2
+mv *.sf2 ${UB_INSTALLDIR}/usr/share/sounds/sf2/

@@ -1,0 +1,16 @@
+#!/bin/sh -eux
+
+ub_compile \
+	-Dudev_dir=/usr/lib/udev/ \
+	-Dpppd_plugin_dir=/usr/lib/pppd/2.4.9 \
+	-Dconfig_dhcp_default=internal \
+	-Dsession_tracking=systemd \
+	-Difupdown=true \
+	-Dmodify_system=true \
+	-Dconcheck=true \
+	-Dselinux=false \
+	-Dnmtui=false \
+	-Dqt=false \
+	-Dbluez5_dun=true \
+	-Dpolkit_agent=true \
+#	-Dteamdctl=true \

@@ -1,0 +1,10 @@
+esound-dev
+flac-dev
+gtk2-dev
+jack-dev
+libao-dev
+libvorbis-dev
+libxaw3d-dev
+ncurses-dev
+tcl-dev
+tk-dev

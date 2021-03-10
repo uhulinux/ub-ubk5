@@ -1,0 +1,33 @@
+diff -Nur orig/misc/syntax/php.syntax mod/misc/syntax/php.syntax
+--- orig/misc/syntax/php.syntax	2020-07-05 19:38:53.000000000 +0200
++++ mod/misc/syntax/php.syntax	2020-07-25 10:42:25.561483145 +0200
+@@ -3082,6 +3082,8 @@
+ 
+     keyword wholeright $+ brightgreen
+ 
++    keyword " green
++    keyword '*' brightgreen
+     keyword /\* brown
+     keyword \*/ brown
+     keyword // brown
+@@ -3118,7 +3120,7 @@
+     keyword : brightcyan
+     keyword ; brightmagenta
+ 
+-context " " green
++context exclusive " " green
+     spellcheck
+     keyword \\" brightgreen
+     keyword \\\n brightgreen
+@@ -3134,11 +3136,6 @@
+     keyword \\' brightgreen
+     keyword \\\{abtnvfr\} brightgreen
+ 
+-context ' ' brightgreen
+-    spellcheck
+-    keyword \\\\ brightcyan
+-    keyword \\' brightcyan
+-
+ context exclusive <? ?> cyan
+     keyword whole &*; brightgreen
+ context <html > cyan

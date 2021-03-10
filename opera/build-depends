@@ -1,0 +1,14 @@
+alsa-lib
+cups
+dbus
+gtk2
+libdrm
+libnotify
+libxcursor
+libxdamage
+libxi
+libxrandr
+libxscrnsaver
+libxtst
+mesa
+nss-dev

@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+v${UB_VERSION}.tar.gz LaunchyQt-${UB_VERSION}/
+	https://github.com/samsonwang/LaunchyQt/archive/

@@ -1,0 +1,6 @@
+gsettings-desktop-schemas
+gtk-dev
+intltool
+libhandy-dev
+meson
+python3-pygobject

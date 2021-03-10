@@ -1,0 +1,4 @@
+gobject-introspection-dev
+gtk-dev
+polkit-dev
+systemd-dev

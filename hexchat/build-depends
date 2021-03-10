@@ -1,0 +1,11 @@
+dbus-glib-dev
+gtk2-dev
+iso-codes
+libcanberra-dev
+libnotify-dev
+libproxy-dev
+luajit-dev
+meson
+openssl-dev
+pciutils-dev
+python3-dev

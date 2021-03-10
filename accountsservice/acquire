@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+accountsservice-${UB_VERSION}.tar.xz accountsservice-${UB_VERSION}/
+	https://www.freedesktop.org/software/accountsservice/

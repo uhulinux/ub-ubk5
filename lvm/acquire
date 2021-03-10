@@ -1,0 +1,5 @@
+#!/usr/bin/env dl
+
+LVM2.${UB_VERSION}.tgz LVM2.${UB_VERSION}/
+	https://www.mirrorservice.org/sites/sourceware.org/pub/lvm2/
+	https://www.mirrorservice.org/sites/sourceware.org/pub/lvm2/old/

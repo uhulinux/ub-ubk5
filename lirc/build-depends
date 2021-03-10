@@ -1,0 +1,14 @@
+alsa-lib-dev
+cpio
+jack-dev
+libftdi1-dev
+libsm-dev
+libusb-dev
+libx11-dev
+libxslt-dev
+portaudio-dev
+python3-dev
+python3-pyyaml
+python3-setuptools
+rpm
+systemd-dev

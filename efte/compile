@@ -1,0 +1,5 @@
+#!/bin/sh -eux
+
+ub_compile \
+	-DBUILD_X=ON \
+	-DBUILD_CONSOLE=ON

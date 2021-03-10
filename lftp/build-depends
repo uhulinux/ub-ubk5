@@ -1,0 +1,7 @@
+expat-dev
+gnutls-dev
+libffi-dev
+libidn2-dev
+libtasn1-dev
+ncurses-dev
+readline-dev

@@ -1,0 +1,9 @@
+#!/bin/sh -eux
+
+mkdir -p "$UB_INSTALLDIR"/usr/share/hunspell
+
+cp -a hu_HU/hu_HU.aff "$UB_INSTALLDIR"/usr/share/hunspell/hu_HU.aff
+cp -a hu_HU/hu_HU.dic "$UB_INSTALLDIR"/usr/share/hunspell/hu_HU.dic
+
+ln -s hu_HU.aff "$UB_INSTALLDIR"/usr/share/hunspell/default.aff
+ln -s hu_HU.dic "$UB_INSTALLDIR"/usr/share/hunspell/default.dic

@@ -1,0 +1,7 @@
+#!/bin/sh -eux
+
+autoreconf -vif
+export CXXFLAGS="-fpermissive"
+ub_compile \
+    --disable-dependency-tracking \
+    --with-readline

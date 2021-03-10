@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+Sort-Versions-${UB_VERSION}.tar.gz Sort-Versions-${UB_VERSION}/
+	https://cpan.metacpan.org/modules/by-module/Sort/
