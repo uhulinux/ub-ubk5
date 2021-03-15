@@ -30,4 +30,3 @@ glslang
 mesa
 x.org-server
 x.org-input-libinput
-rust

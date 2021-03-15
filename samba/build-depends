@@ -2,7 +2,6 @@ acl-dev
 avahi-dev
 cups-dev
 file-dev
-gamin-dev
 gnutls-dev
 jansson-dev
 krb5-dev

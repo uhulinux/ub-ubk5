@@ -4,7 +4,6 @@ boost-dev
 curl-dev
 fftw3-dev
 flac-dev
-gamin-dev
 glib-dev
 jack-dev
 libao-dev

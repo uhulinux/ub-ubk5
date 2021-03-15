@@ -91,7 +91,6 @@ grep
 psutils
 gzip
 icu
-libdaemon
 libffi
 libidn2
 libjpeg-turbo
@@ -104,8 +103,6 @@ nspr
 openslp
 openssl
 patch
-pbzip2
-pigz
 popt
 pretendroot
 sed

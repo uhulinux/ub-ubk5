@@ -1,6 +1,5 @@
 alsa-lib-dev
 dbus-glib-dev
-gamin-dev
 gtk-dev
 intltool
 libgee06-dev

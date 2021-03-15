@@ -1,3 +1,4 @@
+sassc
 at-spi2-core
 atk
 fribidi
