@@ -6,7 +6,6 @@ cmucl
 hdparm
 jad
 joe
-patchelf
 sortdir
 tclap
 uhu-sysinfo

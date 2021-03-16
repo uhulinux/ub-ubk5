@@ -37,3 +37,6 @@ python3-pygments
 libtirpc
 fuse2
 librsvg
+iso-codes
+graphene
+gtk4

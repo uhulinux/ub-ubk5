@@ -33,7 +33,6 @@ libquicktime
 mjpegtools
 gst-libav
 opencv
-vulkan-loader
 spandsp
 xdg-utils
 libdbusmenu-qt

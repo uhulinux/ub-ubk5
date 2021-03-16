@@ -26,6 +26,7 @@ lmsensors
 libva
 libglvnd
 vulkan-headers
+vulkan-loader
 glslang
 mesa
 x.org-server

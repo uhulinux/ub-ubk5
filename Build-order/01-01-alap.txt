@@ -19,7 +19,6 @@ unarj
 unrar
 xorg-cf-files
 7zip
-iso-codes
 libesmtp
 librsync
 usbutils

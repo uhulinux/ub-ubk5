@@ -13,7 +13,6 @@ argyllcms
 colord
 at-spi2-atk
 gtk3
-gtk4
 nss-mdns
 avahi
 guile
