@@ -2,7 +2,7 @@ docbook-dtds
 docbook-xsl
 gobject-introspection-dev
 gpg
-gtk-dev
+gtk3-dev
 intltool
 libgcrypt-dev
 libxslt-dev

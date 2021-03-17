@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 doxygen-${UB_VERSION}.src.tar.gz doxygen-${UB_VERSION}/
-	http://doxygen.nl/files/
+	https://doxygen.nl/files/

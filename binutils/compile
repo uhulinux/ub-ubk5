@@ -1,19 +1,21 @@
 #!/bin/sh -eux
 
-# export CFLAGS+="-Wno-error"
-
-ub_configure \
+./configure \
+    --prefix=/usr \
     --with-lib-path=/lib:/usr/lib:/usr/local/lib \
     --with-pic \
     --with-system-zlib \
-	--enable-64-bit-bfd \
-	--enable-ld=default \
-	--enable-gold \
-	--enable-plugins \
-	--enable-deterministic-archives \
-	--enable-targets=x86_64-pep \
-	--disable-gdb \
-	--disable-werror
+    --enable-cet \
+    --enable-deterministic-archives \
+    --enable-gold \
+    --enable-ld=default \
+    --enable-lto \
+    --enable-plugins \
+    --enable-relro \
+    --enable-targets=x86_64-pep \
+    --enable-threads \
+    --disable-gdb \
+    --disable-werror
 
 make configure-host
 make -e \

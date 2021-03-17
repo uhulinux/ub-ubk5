@@ -7,6 +7,7 @@ ub_compile \
 	--with-distro=none \
 	--enable-compat-libdns_sd \
 	--enable-compat-howl \
+	--disable-libdaemon \
 	--disable-mono \
 	--disable-monodoc \
 	--disable-qt3 \

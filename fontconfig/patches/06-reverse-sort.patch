@@ -1,7 +1,7 @@
-diff -Nur orig/src/fcdir.c mod/src/fcdir.c
---- orig/src/fcdir.c	2018-01-25 15:22:10.000000000 +0100
-+++ mod/src/fcdir.c	2018-01-25 15:53:57.507307291 +0100
-@@ -176,7 +176,7 @@
+diff -Naur orig/src/fcdir.c mod/src/fcdir.c
+--- orig/src/fcdir.c	2020-11-28 02:56:42.000000000 +0100
++++ mod/src/fcdir.c	2021-03-11 21:11:05.680375083 +0100
+@@ -191,7 +191,7 @@
  static int
  cmpstringp(const void *p1, const void *p2)
  {

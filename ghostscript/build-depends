@@ -4,7 +4,6 @@ expat-dev
 fontconfig-dev
 freetype2-dev
 gnutls-dev
-gtk-dev
 lcms2-dev
 libgcrypt-dev
 libjpeg-turbo-dev

@@ -1,4 +1,7 @@
 #!/bin/sh -eux
 
 export HASDOCBOOK=no
-ub_compile
+ub_configure \
+    --disable-docs
+
+ub_make

@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 attr-${UB_VERSION}.src.tar.gz attr-${UB_VERSION}/
-	http://download.savannah.nongnu.org/releases/attr/
+	https://download.savannah.nongnu.org/releases/attr/

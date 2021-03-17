@@ -1,9 +1,9 @@
 diff -Naur orig/trust/Makefile.am patched/trust/Makefile.am
---- orig/trust/Makefile.am	2018-05-30 16:10:27.000000000 +0200
-+++ patched/trust/Makefile.am	2018-07-05 00:56:16.963371285 +0200
-@@ -66,6 +66,20 @@
+--- orig/trust/Makefile.am	2020-12-11 18:55:17.000000000 +0100
++++ patched/trust/Makefile.am	2021-03-16 23:33:37.719652766 +0100
+@@ -64,6 +64,20 @@
  
- p11_kit_trust_la_SOURCES = $(TRUST_SRCS)
+ p11_kit_trust_la_SOURCES = $(TRUST_SRCS) trust/module-init.c
  
 +libnssckbi_compatdir = $(libdir)
 +libnssckbi_compat_LTLIBRARIES = \
@@ -23,8 +23,8 @@ diff -Naur orig/trust/Makefile.am patched/trust/Makefile.am
  	-no-undefined
  
 diff -Naur orig/trust/module.c patched/trust/module.c
---- orig/trust/module.c	2018-05-30 16:10:27.000000000 +0200
-+++ patched/trust/module.c	2018-07-05 00:59:48.610132733 +0200
+--- orig/trust/module.c	2020-12-11 18:55:17.000000000 +0100
++++ patched/trust/module.c	2021-03-16 23:33:37.719652766 +0100
 @@ -201,7 +201,11 @@
  		int flags;
  	} labels[] = {
@@ -37,7 +37,7 @@ diff -Naur orig/trust/module.c patched/trust/module.c
  		{ P11_SYSTEM_TRUST_PREFIX, "System Trust", P11_TOKEN_FLAG_NONE },
  		{ NULL },
  	};
-@@ -529,9 +533,15 @@
+@@ -534,9 +538,15 @@
  		info->flags = CKF_TOKEN_PRESENT;
  		memcpy ((char*)info->manufacturerID, MANUFACTURER_ID, 32);
  

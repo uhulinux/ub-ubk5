@@ -28,4 +28,4 @@ install -m 644 "$UB_COMPILEDIR"/nscd/nscd.tmpfiles "$UB_INSTALLDIR"/usr/lib/tmpf
 install -m 644 "$UB_COMPILEDIR"/nscd/nscd.service "$UB_INSTALLDIR"/usr/lib/systemd/system
 
 # compat symlink
-ln -s usr/lib "$UB_INSTALLDIR"/lib64
+# ln -s usr/lib "$UB_INSTALLDIR"/lib64

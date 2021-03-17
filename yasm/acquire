@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 yasm-${UB_VERSION}.tar.gz yasm-${UB_VERSION}/
-	http://www.tortall.net/projects/yasm/releases/
+	https://www.tortall.net/projects/yasm/releases/

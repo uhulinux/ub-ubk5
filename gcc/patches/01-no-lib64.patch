@@ -1,6 +1,20 @@
-diff -Nur orig/gcc/config/i386/t-linux64 mod/gcc/config/i386/t-linux64
---- orig/gcc/config/i386/t-linux64	2016-01-04 15:30:50.000000000 +0100
-+++ mod/gcc/config/i386/t-linux64	2017-03-24 20:50:16.541625188 +0100
+diff -Naur orig/gcc/config/i386/linux64.h patched/gcc/config/i386/linux64.h
+--- orig/gcc/config/i386/linux64.h	2020-07-23 08:35:17.396385125 +0200
++++ patched/gcc/config/i386/linux64.h	2021-03-10 23:24:36.485223309 +0100
+@@ -27,8 +27,8 @@
+ #define GNU_USER_LINK_EMULATION64 "elf_x86_64"
+ #define GNU_USER_LINK_EMULATIONX32 "elf32_x86_64"
+ 
+-#define GLIBC_DYNAMIC_LINKER32 "/lib/ld-linux.so.2"
+-#define GLIBC_DYNAMIC_LINKER64 "/lib64/ld-linux-x86-64.so.2"
++#define GLIBC_DYNAMIC_LINKER32 "/usr/lib/ld-linux.so.2"
++#define GLIBC_DYNAMIC_LINKER64 "/usr/lib/ld-linux-x86-64.so.2"
+ #define GLIBC_DYNAMIC_LINKERX32 "/libx32/ld-linux-x32.so.2"
+ 
+ #undef MUSL_DYNAMIC_LINKER32
+diff -Naur orig/gcc/config/i386/t-linux64 patched/gcc/config/i386/t-linux64
+--- orig/gcc/config/i386/t-linux64	2020-07-23 08:35:17.000000000 +0200
++++ patched/gcc/config/i386/t-linux64	2021-03-10 23:23:44.476906191 +0100
 @@ -33,6 +33,6 @@
  comma=,
  MULTILIB_OPTIONS    = $(subst $(comma),/,$(TM_MULTILIB_CONFIG))

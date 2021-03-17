@@ -8,7 +8,7 @@ glib-dev
 gnutls-dev
 gobject-introspection-dev
 graphene-dev
-gst-plugins-bad-dev
+-gst-plugins-bad-dev
 iso-codes
 libepoxy-dev
 libjpeg-turbo-dev

@@ -1,5 +1,5 @@
 #!/usr/bin/env dl
 
 rrdtool-${UB_VERSION/~/}.tar.gz rrdtool-${UB_VERSION}/
-	http://oss.oetiker.ch/rrdtool/pub/
-	http://oss.oetiker.ch/rrdtool/pub/beta/
+	https://oss.oetiker.ch/rrdtool/pub/
+	https://oss.oetiker.ch/rrdtool/pub/beta/

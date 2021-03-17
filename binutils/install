@@ -13,14 +13,15 @@ make \
 	tooldir="$UB_INSTALLDIR"/usr \
 	install-info
 
-cp -f include/plugin-api.h "$UB_INSTALLDIR"/usr/include/
+# Remove unwanted files
+rm -f "$UB_INSTALLDIR"/usr/share/man/man1/{dlltool,nlmconv,windres,windmc}*
 
 # No shared linking to these files outside binutils
 rm -f "$UB_INSTALLDIR"/usr/lib/lib{bfd,opcodes}.so
 echo 'INPUT( /usr/lib/libbfd.a -liberty -lz -ldl )' > "$UB_INSTALLDIR"/usr/lib/libbfd.so
 echo 'INPUT( /usr/lib/libopcodes.a -lbfd )' > "$UB_INSTALLDIR"/usr/lib/libopcodes.so
 
-## create a "host" named link like in gcc
+# create "host" named links like in gcc
 ln -sf ar "$UB_INSTALLDIR"/usr/bin/x86_64-linux-gnu-ar
 ln -sf as "$UB_INSTALLDIR"/usr/bin/x86_64-linux-gnu-as
 ln -sf nm "$UB_INSTALLDIR"/usr/bin/x86_64-linux-gnu-nm

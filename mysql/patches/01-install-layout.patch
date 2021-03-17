@@ -1,7 +1,7 @@
 diff -Naur orig/cmake/install_layout.cmake patched/cmake/install_layout.cmake
---- orig/cmake/install_layout.cmake	2020-08-07 14:57:35.000000000 +0200
-+++ patched/cmake/install_layout.cmake	2020-08-14 21:42:48.924246237 +0200
-@@ -182,21 +182,21 @@
+--- orig/cmake/install_layout.cmake	2021-02-19 10:41:01.000000000 +0100
++++ patched/cmake/install_layout.cmake	2021-03-11 23:42:19.496760559 +0100
+@@ -182,24 +182,24 @@
  #
  SET(INSTALL_INCLUDEDIR_DEB              "include/mariadb")
  #
@@ -26,10 +26,14 @@ diff -Naur orig/cmake/install_layout.cmake patched/cmake/install_layout.cmake
 +SET(INSTALL_SYSTEMD_UNITDIR_DEB         "/usr/lib/systemd/system")
  SET(INSTALL_SYSTEMD_SYSUSERSDIR_DEB     "/usr/lib/sysusers.d")
  SET(INSTALL_SYSTEMD_TMPFILESDIR_DEB     "/usr/lib/tmpfiles.d")
- SET(INSTALL_PAMDIR_DEB                  "/lib/${CMAKE_CXX_LIBRARY_ARCHITECTURE}/security")
+-SET(INSTALL_PAMDIR_DEB                  "/lib/${CMAKE_CXX_LIBRARY_ARCHITECTURE}/security")
++SET(INSTALL_PAMDIR_DEB                  "/usr/lib/security")
+ SET(INSTALL_PAMDATADIR_DEB              "/etc/security")
+ 
+ #
 diff -Naur orig/support-files/rpm/my.cnf patched/support-files/rpm/my.cnf
---- orig/support-files/rpm/my.cnf	2020-08-07 14:57:39.000000000 +0200
-+++ patched/support-files/rpm/my.cnf	2020-08-14 21:39:22.941887166 +0200
+--- orig/support-files/rpm/my.cnf	2021-02-19 10:41:04.000000000 +0100
++++ patched/support-files/rpm/my.cnf	2021-03-11 23:41:08.548364607 +0100
 @@ -7,5 +7,5 @@
  #
  # include *.cnf from the config directory

@@ -2,6 +2,6 @@ dbus-glib-dev
 expat-dev
 gdbm-dev
 gobject-introspection-dev
-gtk-dev
+gtk3-dev
 intltool
 libevent-dev

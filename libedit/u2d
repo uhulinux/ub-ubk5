@@ -1,1 +1,1 @@
-u2d http://www.thrysoee.dk/editline/ libedit- | sed s/-/\+/
+u2d https://www.thrysoee.dk/editline/ libedit- | sed s/-/\+/
