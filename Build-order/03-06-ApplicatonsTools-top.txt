@@ -22,7 +22,6 @@ statifier
 supercat
 symlinks
 time
-treeform
 trunc
 ttyrec
 zisofs-tools

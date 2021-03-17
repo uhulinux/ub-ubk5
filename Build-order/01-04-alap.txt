@@ -22,7 +22,8 @@ gst-plugins-base
 ldb
 perl-parse-yapp
 rpcsvc-proto
-samba
 python3-pygobject
 python3-numpy
-
+python3-markdown
+python3-dnspython
+samba

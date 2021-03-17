@@ -4,7 +4,6 @@ cowsay
 doom1-demodata
 fairymax
 figlet
-golems
 strife-demodata
 heretic1-demodata
 hexen1-demodata

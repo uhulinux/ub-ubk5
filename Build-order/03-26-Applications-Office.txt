@@ -10,7 +10,6 @@ homebank
 mmex
 zbar
 qalculate-gtk
-jmoney
 abevjava
 fet
 efax

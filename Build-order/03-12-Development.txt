@@ -6,7 +6,6 @@ regina-rexx
 rxwrap
 sjasm
 bas
-basex
 build-em-all
 cflow
 colorgcc

@@ -18,15 +18,6 @@ dialog
 ed
 epson-printer-driver
 psmisc
-python3-flask-babel
-python3-flask-babelex
-python3-flask-sqlalchemy
-python3-jsmin
-python3-markdown
-python3-pyflakes
-python3-stevedore
-python3-webob
-python3-wtforms
 xdialog
 xdm
 yodl
@@ -34,9 +25,6 @@ fonts-unicode
 lndir
 makedepend
 mdadm
-python3-cherrypy
-python3-cxfreeze
-python3-pycodestyle
 scsh
 squashfs-tools
 syslinux

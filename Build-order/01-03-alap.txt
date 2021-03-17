@@ -18,7 +18,6 @@ waf
 libpcap
 libsoxr
 lmdb
-openssl-1.0
 apr
 apr-util
 apache
