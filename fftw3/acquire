@@ -2,4 +2,4 @@
 
 fftw-${UB_VERSION}.tar.gz .
     https://ftp.osuosl.org/pub/blfs/conglomeration/fftw/
-	http://www.fftw.org/
+	https://www.fftw.org/

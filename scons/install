@@ -13,3 +13,6 @@ python3 -O -m compileall -d "/usr/lib/python${py_ver}" \
     "${UB_INSTALLDIR}/usr/lib/python${py_ver}"
 
 rm -f ${UB_INSTALLDIR}/usr/bin/*.bat
+
+mkdir -p "${UB_INSTALLDIR}/usr/share/man/man1
+cp -a *.1 "${UB_INSTALLDIR}/usr/share/man/man1/

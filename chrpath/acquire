@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 chrpath_${UB_VERSION}.orig.tar.gz chrpath-${UB_VERSION}/
-	http://ftp.debian.org/debian/pool/main/c/chrpath/
+	https://ftp.debian.org/debian/pool/main/c/chrpath/

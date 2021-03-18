@@ -1,0 +1,19 @@
+diff -Naur orig/setup.cfg patched/setup.cfg
+--- orig/setup.cfg	2021-01-19 21:04:06.000000000 +0100
++++ patched/setup.cfg	2021-03-17 13:18:48.003988466 +0100
+@@ -51,15 +51,6 @@
+ 	sconsign = SCons.Utilities.sconsign:main
+ 	scons-configure-cache = SCons.Utilities.ConfigureCache:main
+ 
+-[options.package_data]
+-* = *.txt, *.rst, *.1
+-scons.tool.docbook = *.*
+-
+-[options.data_files]
+-. = build/doc/man/scons.1
+-	build/doc/man/scons-time.1
+-	build/doc/man/sconsign.1
+-
+ [sdist]
+ dist-dir = build/dist
+ 

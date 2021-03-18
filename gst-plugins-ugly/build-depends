@@ -1,6 +1,6 @@
 dbus-glib-dev
 gst-plugins-base-dev
-gtk-dev
+gtk3-dev
 liba52-dev
 libcdio-dev
 libdvdnav-dev

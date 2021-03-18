@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+setuptools-rust-${UB_VERSION}.tar.gz setuptools-rust-${UB_VERSION}/
+	https://pypi.io/packages/source/s/setuptools-rust/

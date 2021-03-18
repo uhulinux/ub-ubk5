@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 libssh2-${UB_VERSION}.tar.gz libssh2-${UB_VERSION}/
-	http://www.libssh2.org/download/
+	https://www.libssh2.org/download/

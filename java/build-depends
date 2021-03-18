@@ -1,6 +1,14 @@
 alsa-lib-dev
+cups-dev
 gtk2-dev
+gtk3-dev
+lcms2-dev
+libice-dev
+libsm-dev
+libungif-dev
 libxi-dev
 libxslt-dev
+libxt-dev
 libxtst-dev
 mesa-dev
+zip

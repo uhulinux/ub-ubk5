@@ -1,6 +1,6 @@
 diff -Naur orig/source3/lib/popt_common.c patched/source3/lib/popt_common.c
---- orig/source3/lib/popt_common.c	2020-01-31 11:25:36.000000000 +0100
-+++ patched/source3/lib/popt_common.c	2020-03-25 10:30:59.964693407 +0100
+--- orig/source3/lib/popt_common.c	2021-01-21 14:20:40.000000000 +0100
++++ patched/source3/lib/popt_common.c	2021-03-17 15:57:06.259418283 +0100
 @@ -54,7 +54,7 @@
  		pname++;
  	}
@@ -11,9 +11,9 @@ diff -Naur orig/source3/lib/popt_common.c patched/source3/lib/popt_common.c
  		return;
  	}
 diff -Naur orig/source3/nmbd/nmbd.c patched/source3/nmbd/nmbd.c
---- orig/source3/nmbd/nmbd.c	2020-01-31 11:25:36.000000000 +0100
-+++ patched/source3/nmbd/nmbd.c	2020-03-25 10:28:17.378901278 +0100
-@@ -910,7 +910,7 @@
+--- orig/source3/nmbd/nmbd.c	2021-01-21 14:20:40.000000000 +0100
++++ patched/source3/nmbd/nmbd.c	2021-03-17 15:57:06.259418283 +0100
+@@ -911,7 +911,7 @@
  
  	if (!override_logfile) {
  		char *lfile = NULL;
@@ -23,9 +23,9 @@ diff -Naur orig/source3/nmbd/nmbd.c patched/source3/nmbd/nmbd.c
  		}
  		lp_set_logfile(lfile);
 diff -Naur orig/source3/winbindd/winbindd.c patched/source3/winbindd/winbindd.c
---- orig/source3/winbindd/winbindd.c	2020-01-31 11:25:36.000000000 +0100
-+++ patched/source3/winbindd/winbindd.c	2020-03-25 10:28:17.378901278 +0100
-@@ -1762,7 +1762,7 @@
+--- orig/source3/winbindd/winbindd.c	2021-02-04 09:24:37.000000000 +0100
++++ patched/source3/winbindd/winbindd.c	2021-03-17 15:57:06.263418303 +0100
+@@ -1757,7 +1757,7 @@
  
  	if (!override_logfile) {
  		char *lfile = NULL;
@@ -35,8 +35,8 @@ diff -Naur orig/source3/winbindd/winbindd.c patched/source3/winbindd/winbindd.c
  			lp_set_logfile(lfile);
  			SAFE_FREE(lfile);
 diff -Naur orig/source3/winbindd/winbindd_domain.c patched/source3/winbindd/winbindd_domain.c
---- orig/source3/winbindd/winbindd_domain.c	2020-01-31 11:25:36.000000000 +0100
-+++ patched/source3/winbindd/winbindd_domain.c	2020-03-25 10:28:17.378901278 +0100
+--- orig/source3/winbindd/winbindd_domain.c	2021-01-21 14:20:40.000000000 +0100
++++ patched/source3/winbindd/winbindd_domain.c	2021-03-17 15:57:06.263418303 +0100
 @@ -74,7 +74,7 @@
          for (i=0; i<lp_winbind_max_domain_connections(); i++) {
                  setup_child(domain, &domain->children[i],
@@ -47,18 +47,20 @@ diff -Naur orig/source3/winbindd/winbindd_domain.c patched/source3/winbindd/winb
  	}
  }
 diff -Naur orig/source3/winbindd/winbindd_idmap.c patched/source3/winbindd/winbindd_idmap.c
---- orig/source3/winbindd/winbindd_idmap.c	2020-01-31 11:25:36.000000000 +0100
-+++ patched/source3/winbindd/winbindd_idmap.c	2020-03-25 10:28:17.378901278 +0100
-@@ -57,5 +57,5 @@
- {
- 	setup_child(NULL, &static_idmap_child,
- 		    idmap_dispatch_table,
--		    "log.winbindd", "idmap");
-+		    "winbindd.log", "idmap");
- }
+--- orig/source3/winbindd/winbindd_idmap.c	2021-01-21 14:20:40.000000000 +0100
++++ patched/source3/winbindd/winbindd_idmap.c	2021-03-17 15:59:12.380048921 +0100
+@@ -345,7 +345,7 @@
+ 		 */
+ 		setup_child(NULL, &static_idmap_child,
+ 			    idmap_dispatch_table,
+-			    "log.winbindd", "idmap");
++			    "winbindd.log", "idmap");
+ 		tevent_req_done(req);
+ 		return;
+ 	}
 diff -Naur orig/source3/winbindd/winbindd_locator.c patched/source3/winbindd/winbindd_locator.c
---- orig/source3/winbindd/winbindd_locator.c	2020-01-31 11:25:36.000000000 +0100
-+++ patched/source3/winbindd/winbindd_locator.c	2020-03-25 10:28:17.378901278 +0100
+--- orig/source3/winbindd/winbindd_locator.c	2021-01-21 14:20:40.000000000 +0100
++++ patched/source3/winbindd/winbindd_locator.c	2021-03-17 15:57:06.263418303 +0100
 @@ -57,5 +57,5 @@
  {
  	setup_child(NULL, &static_locator_child,
@@ -67,8 +69,8 @@ diff -Naur orig/source3/winbindd/winbindd_locator.c patched/source3/winbindd/win
 +		    "winbindd.log", "locator");
  }
 diff -Naur orig/source4/lib/cmdline/popt_common.c patched/source4/lib/cmdline/popt_common.c
---- orig/source4/lib/cmdline/popt_common.c	2020-01-31 11:25:36.000000000 +0100
-+++ patched/source4/lib/cmdline/popt_common.c	2020-03-25 10:28:17.382901322 +0100
+--- orig/source4/lib/cmdline/popt_common.c	2021-01-21 14:20:40.000000000 +0100
++++ patched/source4/lib/cmdline/popt_common.c	2021-03-17 15:57:06.263418303 +0100
 @@ -145,7 +145,7 @@
  
  	case 'l':

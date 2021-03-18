@@ -2,4 +2,4 @@
 
 libndp-${UB_VERSION}.tar.gz libndp-${UB_VERSION}/
     https://ftp.osuosl.org/pub/blfs/conglomeration/libndp/
-    http://libndp.org/files/
+    https://libndp.org/files/

@@ -1,0 +1,45 @@
+diff -Naur orig/autogen.sh patched/autogen.sh
+--- orig/autogen.sh	2021-03-01 15:32:14.000000000 +0100
++++ patched/autogen.sh	2021-03-17 14:18:45.128391187 +0100
+@@ -1,7 +1,6 @@
+ #!/bin/sh
+ set -x -e
+ mkdir -p admin m4
+-gtkdocize --docdir docs/reference
+ libtoolize --force
+ autopoint -f
+ aclocal -Wall -I m4
+diff -Naur orig/configure.ac patched/configure.ac
+--- orig/configure.ac	2021-03-01 15:32:14.000000000 +0100
++++ patched/configure.ac	2021-03-17 14:22:39.109812845 +0100
+@@ -169,8 +169,6 @@
+      AC_MSG_RESULT([$enable_Werror])
+ fi
+ 
+-GTK_DOC_CHECK
+-
+-AC_CONFIG_FILES([Makefile po/Makefile.in docs/Makefile docs/reference/Makefile
++AC_CONFIG_FILES([Makefile po/Makefile.in
+ libuser.pc])
+ AC_OUTPUT
+diff -Naur orig/Makefile.am patched/Makefile.am
+--- orig/Makefile.am	2021-03-01 15:32:14.000000000 +0100
++++ patched/Makefile.am	2021-03-17 14:22:27.093740568 +0100
+@@ -4,7 +4,7 @@
+ pkgconfigdir = $(libdir)/pkgconfig
+ 
+ ACLOCAL_AMFLAGS = -I m4
+-AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --with-ldap
++AM_DISTCHECK_CONFIGURE_FLAGS = --with-ldap
+ 
+ HGTAG = 'libuser-$(VERSION)'
+ 
+@@ -24,7 +24,7 @@
+ 	G_DEBUG=gc-friendly,resident-modules
+ 
+ ## Targets
+-SUBDIRS = po docs
++SUBDIRS = po
+ TESTS = tests/config_test.sh tests/fs_test tests/files_test tests/pwhash_test \
+ 	tests/utils_test
+ if LDAP

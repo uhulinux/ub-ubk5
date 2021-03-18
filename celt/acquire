@@ -2,4 +2,4 @@
 
 celt-${UB_VERSION}.tar.gz celt-${UB_VERSION}/
     https://ftp.osuosl.org/pub/xiph/releases/celt/
-	http://downloads.us.xiph.org/releases/celt/
+	https://downloads.us.xiph.org/releases/celt/

@@ -12,6 +12,7 @@ python3-random2
 python3-snowballstemmer
 python3-wheel
 python3-websockets
+python3-pip
 python3-xlib
 python3-prompt-toolkit
 python3-anytree
@@ -29,7 +30,6 @@ python3-hyperlink
 python3-incremental
 python3-ipython-genutils
 python3-ipython
-python3-pip
 python3-ply
 python3-pyatspi
 python3-pycparser
@@ -73,6 +73,8 @@ python3-zope.interface
 python3-twisted
 python3-pycups
 python3-cffi
+python3-semantic-version
+python3-setuptools-rust
 python3-cryptography
 python3-pyopenssl
 python3-pysmbc

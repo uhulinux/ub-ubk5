@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+semantic_version-${UB_VERSION}.tar.gz semantic_version-${UB_VERSION}/
+	https://pypi.io/packages/source/s/semantic_version/

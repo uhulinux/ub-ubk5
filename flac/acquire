@@ -2,4 +2,4 @@
 
 flac-${UB_VERSION}.tar.xz flac-${UB_VERSION}/
     https://ftp.osuosl.org/pub/xiph/releases/flac/
-	http://downloads.xiph.org/releases/flac/
+	https://downloads.xiph.org/releases/flac/

@@ -1,6 +1,10 @@
 #!/usr/bin/env dl
 
-# http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+jdk-${UB_VERSION_HEAD1}+${UB_VERSION_TAIL1}.tar.gz jdk-jdk-${UB_VERSION_HEAD1}-${UB_VERSION_TAIL1}/
+	https://github.com/openjdk/jdk/archive/
 
-jdk-${UB_VERSION/.0./u}-linux-x64.tar.gz jdk1.${UB_VERSION/.0./.0_}/
-	http://download.ubk.hu/src/java/
+java-bin-15.36.tar.gz java-bin-15.36/ :bootjdk
+    http://download.ubk.hu/src/java/
+
+#openjdk-15.0.1_linux-x64_bin.tar.gz jdk-15.0.1/ :bootjdk
+#    https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_linux-x64_bin.tar.gz

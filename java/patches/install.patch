@@ -1,0 +1,23 @@
+diff -Naur orig/make/Install.gmk patched/make/Install.gmk
+--- orig/make/Install.gmk	2020-06-11 18:24:51.000000000 +0200
++++ patched/make/Install.gmk	2020-11-28 23:21:33.840473806 +0100
+@@ -33,11 +33,11 @@
+ # Install the jdk image, in a very crude way. Not taking into
+ # account, how to install properly on macosx or windows etc.
+ install:
+-	echo Installing jdk image into $(INSTALL_PREFIX)/jvm/$(INSTALLDIR)
+-	echo and creating $(words $(BINARIES)) links from $(INSTALL_PREFIX)/bin into the jdk.
+-	$(MKDIR) -p $(INSTALL_PREFIX)/jvm/$(INSTALLDIR)
+-	$(RM) -r $(INSTALL_PREFIX)/jvm/$(INSTALLDIR)/*
+-	$(CP) -rp $(JDK_IMAGE_DIR)/* $(INSTALL_PREFIX)/jvm/$(INSTALLDIR)
+-	$(MKDIR) -p $(INSTALL_PREFIX)/bin
+-	$(RM) $(addprefix $(INSTALL_PREFIX)/bin/, $(BINARIES))
+-	$(foreach b, $(BINARIES), $(LN) -s $(INSTALL_PREFIX)/jvm/$(INSTALLDIR)/bin/$b $(INSTALL_PREFIX)/bin/$b &&) true
++	echo Installing jdk image into $(DESTDIR)$(INSTALL_PREFIX)/lib/jvm/$(INSTALLDIR)
++	echo and creating $(words $(BINARIES)) links from $(DESTDIR)$(INSTALL_PREFIX)/bin into the jdk.
++	$(MKDIR) -p $(DESTDIR)$(INSTALL_PREFIX)/lib/jvm/$(INSTALLDIR)
++	$(RM) -r $(DESTDIR)$(INSTALL_PREFIX)/lib/jvm/$(INSTALLDIR)/*
++	$(CP) -rp $(JDK_IMAGE_DIR)/* $(DESTDIR)$(INSTALL_PREFIX)/lib/jvm/$(INSTALLDIR)
++	$(MKDIR) -p $(DESTDIR)$(INSTALL_PREFIX)/bin
++	$(RM) $(addprefix $(DESTDIR)$(INSTALL_PREFIX)/bin/, $(BINARIES))
++	$(foreach b, $(BINARIES), $(LN) -s $(DESTDIR)$(INSTALL_PREFIX)/lib/jvm/$(INSTALLDIR)/bin/$b $(DESTDIR)$(INSTALL_PREFIX)/bin/$b &&) true
