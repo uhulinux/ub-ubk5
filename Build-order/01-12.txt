@@ -33,8 +33,8 @@ yelp-tools
 alsa-utils
 apache-mod-dnssd
 clutter-gst
-clutter-gtk
-gtkspell
+clutter-gtk3
+gtkspell3
 scim
 sdl2-image
 sdl2-ttf
@@ -48,7 +48,7 @@ podofo
 sdl2-mixer
 libao
 cdrdao
-colord-gtk
+colord-gtk3
 radeontool
 vbetool
 pm-utils
@@ -59,7 +59,7 @@ xscreensaver
 dconf
 exiv2
 gexiv2
-gspell
+gspell3
 polkit-gnome
 rasqal
 redland
@@ -70,7 +70,7 @@ zeitgeist
 zenity
 gtk-vnc
 gnome-common
-glade
+glade3
 vte
 xterm
 freerdp
