@@ -2,4 +2,4 @@
 
 plotutils-${UB_VERSION}.tar.gz plotutils-${UB_VERSION}/
 	https://ftp.gnu.org/gnu/plotutils/
-	http://www.sfr-fresh.com/unix/misc/
+	https://www.sfr-fresh.com/unix/misc/

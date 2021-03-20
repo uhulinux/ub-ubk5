@@ -2,7 +2,7 @@ glade-dev
 gnutls-dev
 gobject-introspection-dev
 gperf
-gtk-dev
+gtk3-dev
 intltool
 meson
 pcre2-dev

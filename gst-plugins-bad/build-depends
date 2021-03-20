@@ -6,7 +6,7 @@ flite-dev
 fluidsynth-dev
 gobject-introspection-dev
 gst-plugins-base-dev
-gtk-dev
+gtk3-dev
 ladspa-dev
 lcms2-dev
 libass-dev

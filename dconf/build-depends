@@ -1,6 +1,6 @@
 bash-completion
 dbus-dev
-gtk-dev
+gtk3-dev
 intltool
 libxml2-dev
 libxslt

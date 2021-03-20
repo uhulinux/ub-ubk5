@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 LibRaw-${UB_VERSION}.tar.gz LibRaw-${UB_VERSION}/
-	http://www.libraw.org/data/
+	https://www.libraw.org/data/

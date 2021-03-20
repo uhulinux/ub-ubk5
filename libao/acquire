@@ -2,4 +2,4 @@
 
 libao-${UB_VERSION}.tar.gz libao-${UB_VERSION}/
     https://ftp.osuosl.org/pub/xiph/releases/ao/
-	http://downloads.xiph.org/releases/ao/
+	https://downloads.xiph.org/releases/ao/

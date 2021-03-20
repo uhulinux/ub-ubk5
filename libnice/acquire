@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 libnice-${UB_VERSION}.tar.gz libnice-${UB_VERSION}/
-	http://nice.freedesktop.org/releases/
+	https://nice.freedesktop.org/releases/

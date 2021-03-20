@@ -8,7 +8,7 @@ gst-plugins-bad-dev
 gst-plugins-base-dev
 gst-plugins-good
 gtk2-dev
-gtk-dev
+gtk3-dev
 hyphen-dev
 icu-dev
 libjpeg-turbo-dev

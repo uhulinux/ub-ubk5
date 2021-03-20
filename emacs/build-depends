@@ -1,5 +1,5 @@
 alsa-lib-dev
-gtk-dev
+gtk3-dev
 libjpeg-turbo-dev
 liblockfile-dev
 libpng-dev

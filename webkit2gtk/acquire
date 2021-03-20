@@ -1,5 +1,5 @@
 #!/usr/bin/env dl
 
 webkitgtk-${UB_VERSION}.tar.xz webkitgtk-${UB_VERSION}/
-	http://www.webkitgtk.org/releases/
-	http://ftp.osuosl.org/pub/blfs/conglomeration/webkit/
+	https://www.webkitgtk.org/releases/
+	https://ftp.osuosl.org/pub/blfs/conglomeration/webkit/

@@ -2,4 +2,4 @@
 
 mdadm-"$UB_VERSION".tar.gz mdadm-"$UB_VERSION"/
 	https://kernel.org/pub/linux/utils/raid/mdadm/
-	http://www.cse.unsw.edu.au/~neilb/source/mdadm/
+	https://www.cse.unsw.edu.au/~neilb/source/mdadm/

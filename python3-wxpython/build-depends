@@ -1,6 +1,6 @@
 cppunit-dev
 glu-dev
-gtk-dev
+gtk3-dev
 libjpeg-turbo-dev
 libnotify-dev
 libpng-dev
