@@ -13,7 +13,6 @@ debhelper
 libzip
 ebook-tools
 exempi
-gtk2-engines
 openobex
 xmessage
 amtk
