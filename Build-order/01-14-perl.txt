@@ -1,5 +1,4 @@
-perl-anyevent
-perl-clone
+jperl-clone
 perl-date-manip
 perl-dbi
 perl-digest-hmac
@@ -11,7 +10,6 @@ perl-file-slurp
 perl-file-slurper
 perl-file-which
 perl-json
-perl-libintl
 perl-locale-maketext-lexicon
 perl-mozilla-ca
 perl-netaddr-ip
@@ -25,7 +23,6 @@ perl-compress-bzip2
 perl-net-libidn
 perl-net-ssleay
 perl-io-socket-ssl
-perl-event-rpc
 perl-file-remove
 perl-test-requires
 perl-module-scandeps
@@ -37,10 +34,8 @@ perl-glib
 perl-cairo
 perl-pango
 perl-gtk2
-perl-gtk2-ex-formfactory
 perl-net-dns
 perl-try-tiny
-perl-event-execflow
 perl-io-socket-inet6
 perl-libxml
 perl-xml-namespacesupport

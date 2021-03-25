@@ -1,4 +1,0 @@
-#!/usr/bin/env dl
-
-AnyEvent-${UB_VERSION}.tar.gz AnyEvent-${UB_VERSION}/
-	https://cpan.metacpan.org/modules/by-module/AnyEvent/

@@ -30,7 +30,6 @@ gst123
 pasystray
 xdg-user-dirs-gtk
 dvdauthor
-dvdrip
 paprefs
 lingot
 dvdstyler

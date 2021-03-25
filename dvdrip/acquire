@@ -1,4 +1,0 @@
-#!/usr/bin/env dl
-
-dvdrip-${UB_VERSION}.tar.gz dvdrip-${UB_VERSION}/
-	https://fossies.org/linux/privat/

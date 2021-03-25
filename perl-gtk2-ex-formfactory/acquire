@@ -1,5 +1,0 @@
-#!/usr/bin/env dl
-
-Gtk2-Ex-FormFactory-${UB_VERSION}.tar.gz Gtk2-Ex-FormFactory-${UB_VERSION}/
-	https://cpan.metacpan.org/modules/by-module/Gtk2/
-	https://www.exit1.org/packages/Gtk2-Ex-FormFactory/dist/
