@@ -67,7 +67,6 @@ x.org-video-glint
 x.org-video-tdfx
 xss-lock
 xkb-utils
-grepmail
 x.org-video-openchrome
 x.org-video-ati
 x.org-utils
