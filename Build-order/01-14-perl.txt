@@ -1,4 +1,4 @@
-jperl-clone
+perl-clone
 perl-date-manip
 perl-dbi
 perl-digest-hmac

@@ -1,2 +1,5 @@
 cups-filters
 foomatic-db
+perl-clone
+perl-dbi
+perl-xml-libxml
