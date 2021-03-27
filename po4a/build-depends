@@ -1,5 +1,5 @@
 libxslt
-perl-gettext
+perl-locale-gettext
 perl-module-build
 perl-pod-parser
 perl-sgmls

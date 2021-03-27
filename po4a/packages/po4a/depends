@@ -1,4 +1,4 @@
-perl-gettext
+perl-locale-gettext
 perl-pod-parser
 perl-sgmls
 perl-term-readkey
