@@ -43,6 +43,7 @@ perl-xml-sax-base
 perl-xml-sax
 perl-xml-libxml
 perl-xml-simple # icon-naming-utils
+perl-xml-writer
 perl-crypt-passwdmd5 # syslinux
 perl-crypt-openssl-bignum
 perl-crypt-openssl-guess
