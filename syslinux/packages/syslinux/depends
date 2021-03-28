@@ -1,4 +1,5 @@
 dosfstools
 efibootmgr
 perl-crypt-passwdmd5
+perl-digest-sha1
 util-linux
