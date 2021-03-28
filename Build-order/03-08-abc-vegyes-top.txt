@@ -52,7 +52,6 @@ x.org-video-vmware
 apache-mod-auth-openid
 mt-daapd
 partimage
-obexd
 dovecot
 ucblogo
 rpcbind

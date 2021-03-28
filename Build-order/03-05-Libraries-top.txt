@@ -11,8 +11,6 @@ libgdamm
 pam-ldap
 anjuta-extras
 glade2
-obexftp
 gnuplot
-obexfs
 webp-pixbuf-loader
 libimagequant

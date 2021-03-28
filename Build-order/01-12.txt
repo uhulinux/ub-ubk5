@@ -1,6 +1,5 @@
 freepats
 glm
-latexmk
 libytnef
 lsb-release
 cdrkit
@@ -13,7 +12,6 @@ debhelper
 libzip
 ebook-tools
 exempi
-openobex
 xmessage
 amtk
 gstreamermm
