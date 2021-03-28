@@ -18,7 +18,6 @@ dpkg-repack
 hla
 patchutils
 shc
-sparse
 lxlogo
 ncc
 winpdb
