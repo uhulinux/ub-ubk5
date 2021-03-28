@@ -1,11 +1,11 @@
 perl-clone
 perl-date-manip
-perl-dbi
 perl-digest-hmac
 perl-digest-nilsimsa
 perl-digest-sha1
 perl-extutils-depends
 perl-extutils-pkgconfig
+perl-ipc-run3
 perl-file-slurp
 perl-file-slurper
 perl-file-which
@@ -36,7 +36,6 @@ perl-pango
 perl-gtk2
 perl-net-dns
 perl-try-tiny
-perl-io-socket-inet6
 perl-libxml
 perl-xml-namespacesupport
 perl-xml-sax-base
@@ -56,8 +55,6 @@ perl-mail-mbox-messageparser
 perl-net-dns-resolver-programmable
 perl-lwp-protocol-https
 perl-mailtools
-perl-mail-dkim
-perl-mail-spf
 perl-archive-extract
 perl-capture-tiny
 perl-class-inspector
@@ -68,8 +65,3 @@ perl-text-patch
 perl-archive-zip
 perl-alien-sdl
 perl-sdl
-perl-db-file # spamassassin
-perl-encode-detect # spamassassin
-perl-gpg # spamassassin
-perl-ip-country # spamassassin
-perl-net-ident # spamassassin

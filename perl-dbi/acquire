@@ -1,4 +1,0 @@
-#!/usr/bin/env dl
-
-DBI-${UB_VERSION}.tar.gz DBI-${UB_VERSION}/
-	https://cpan.metacpan.org/modules/by-module/DBI/

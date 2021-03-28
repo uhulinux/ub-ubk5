@@ -1,3 +1,4 @@
-perl-digest-nilsimsa >=
-perl-digest-sha1 >=
-perl-uri >=
+perl-digest-nilsimsa
+perl-digest-sha1
+perl-net-dns
+perl-uri

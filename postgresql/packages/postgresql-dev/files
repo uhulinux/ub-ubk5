@@ -1,8 +1,8 @@
 	/usr/bin/pg_config
 	/usr/include/postgresql
-	/usr/lib/libpgcommon.a
+	/usr/lib/libpgcommon*.a
 	/usr/lib/libpgfeutils.a
-	/usr/lib/libpgport.a
+	/usr/lib/libpgport*.a
 	/usr/lib/libpgtypes.a
 	/usr/lib/libpq.a
 	/usr/lib/pkgconfig/libpgtypes.pc

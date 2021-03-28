@@ -98,14 +98,12 @@ mount-gtk
 ffdiaporama
 arandr
 clamtk
-rxvt-unicode
 trend
 recutils
 ploticus
 testdisk
 lesspipe
 easystroke
-rss-glx
 xnee
 aview
 mugshot

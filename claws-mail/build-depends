@@ -29,7 +29,6 @@ libxslt-dev
 libytnef-dev
 networkmanager-dev
 poppler-glib-dev
-spamassassin
 sqlite-dev
 startup-notification-dev
 webkit2gtk-dev
