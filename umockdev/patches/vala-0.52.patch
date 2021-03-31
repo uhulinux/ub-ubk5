@@ -1,0 +1,1267 @@
+From a236f0b55fbb6ff50a6429da9d404703d6637d94 Mon Sep 17 00:00:00 2001
+From: Benjamin Berg <bberg@redhat.com>
+Date: Mon, 1 Mar 2021 14:05:32 +0100
+Subject: [PATCH] tests: Use GLib assertion defines with API version 0.52
+
+The main change is that we need to change the name of the Op enum to
+CompareOperator in order to match the name from the upstream vapi.
+---
+ tests/assertions.vapi           |  14 +-
+ tests/test-umockdev-record.vala | 300 ++++++++++++++++----------------
+ tests/test-umockdev-run.vala    |  52 +++---
+ tests/test-umockdev-vala.vala   | 246 +++++++++++++-------------
+ 4 files changed, 307 insertions(+), 305 deletions(-)
+
+diff --git a/tests/assertions.vapi b/tests/assertions.vapi
+index 66cbb9e..2d08866 100644
+--- a/tests/assertions.vapi
++++ b/tests/assertions.vapi
+@@ -1,6 +1,7 @@
+ [CCode (cprefix = "G", lower_case_cprefix = "g_", cheader_filename = "glib.h")]
+ namespace Assertions {
+-  public enum Op {
++#if !VALA_0_52
++  public enum CompareOperator {
+     [CCode (cname = "==")]
+     EQ,
+     [CCode (cname = "!=")]
+@@ -15,9 +16,10 @@ namespace Assertions {
+     GE
+   }
+ 
+-  public void assert_cmpstr (string? s1, Op op, string? s2);
+-  public void assert_cmpint (int n1, Op op, int n2);
+-  public void assert_cmpuint (uint n1, Op op, uint n2);
+-  public void assert_cmphex (uint n1, Op op, uint n2);
+-  public void assert_cmpfloat (float n1, Op op, float n2);
++  public void assert_cmpstr (string? s1, CompareOperator op, string? s2);
++  public void assert_cmpint (int n1, CompareOperator op, int n2);
++  public void assert_cmpuint (uint n1, CompareOperator op, uint n2);
++  public void assert_cmphex (uint n1, CompareOperator op, uint n2);
++  public void assert_cmpfloat (float n1, CompareOperator op, float n2);
++#endif
+ }
+diff --git a/tests/test-umockdev-record.vala b/tests/test-umockdev-record.vala
+index dbcf04f..30d5459 100644
+--- a/tests/test-umockdev-record.vala
++++ b/tests/test-umockdev-record.vala
+@@ -71,9 +71,9 @@ t_testbed_all_empty ()
+ 
+     spawn ("umockdev-record" + " --all", out sout, out serr, out exit);
+ 
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpstr (sout, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpstr (sout, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+ }
+ 
+ // one device
+@@ -95,9 +95,9 @@ t_testbed_one ()
+     tb.set_attribute_link (syspath, "power/fiddle", "../some/where");
+ 
+     spawn ("umockdev-record" + " --all", out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, """P: /devices/dev1
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, """P: /devices/dev1
+ E: SIMPLE_PROP=1
+ E: SUBSYSTEM=pci
+ H: binary_attr=41FF0005FF00
+@@ -128,9 +128,9 @@ t_testbed_multiple ()
+ 
+     // should grab device and all parents
+     spawn ("umockdev-record" + " " + subdev1, out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, """P: /devices/dev1/subdev1
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, """P: /devices/dev1/subdev1
+ E: SUBDEV1COLOR=YELLOW
+ E: SUBSYSTEM=pci
+ A: subdev1color=yellow
+@@ -145,9 +145,9 @@ A: knobs/red=off
+ 
+     // only dev1
+     spawn ("umockdev-record" + " " + dev1, out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, """P: /devices/dev1
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, """P: /devices/dev1
+ E: DEV1COLOR=GREEN
+ E: SUBSYSTEM=pci
+ A: dev1color=green
+@@ -157,8 +157,8 @@ A: knobs/red=off
+ 
+     // with --all it should have all three
+     spawn ("umockdev-record" + " --all", out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+     assert (sout.contains ("P: /devices/dev1/subdev1\n"));
+     assert (sout.contains ("P: /devices/dev1\n"));
+     assert (sout.contains ("P: /devices/dev2\n"));
+@@ -177,8 +177,8 @@ t_testbed_no_ioctl_record ()
+     tb.add_devicev ("mem", "zero", null, {"dev", "1:5"}, {});
+     spawn ("umockdev-record" + " --ioctl /sys/devices/zero=/dev/stdout -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpint (exit, Op.NE, 0);
+-    assert_cmpstr (sout, Op.EQ, "");
++    assert_cmpint (exit, CompareOperator.NE, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "");
+     assert (serr.contains ("UMOCKDEV_DIR cannot be used"));
+ }
+ 
+@@ -196,8 +196,8 @@ t_system_single ()
+     }
+ 
+     spawn ("umockdev-record" + " /dev/null /dev/zero", out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+     assert_in("E: DEVNAME=/dev/null", sout);
+     assert_in("P: /devices/virtual/mem/null", sout);
+     assert_in("E: DEVNAME=/dev/zero", sout);
+@@ -223,10 +223,10 @@ t_system_all ()
+     }
+ 
+     spawn ("umockdev-record" + " --all", out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+     assert (sout.has_prefix ("P:"));
+-    assert_cmpint (sout.length, Op.GE, 100);
++    assert_cmpint (sout.length, CompareOperator.GE, 100);
+ 
+     var tb = new UMockdev.Testbed ();
+     try {
+@@ -250,17 +250,17 @@ t_system_invalid ()
+     }
+ 
+     spawn ("umockdev-record" + " /sys/class", out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "Invalid device /sys/class, has no uevent attribute\n");
+-    assert_cmpstr (sout, Op.EQ, "");
+-    assert_cmpint (exit, Op.NE, 0);
++    assert_cmpstr (serr, CompareOperator.EQ, "Invalid device /sys/class, has no uevent attribute\n");
++    assert_cmpstr (sout, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.NE, 0);
+ 
+     spawn ("umockdev-record" + " /sys/block/loop0/size", out sout, out serr, out exit);
+     // the real path might vary
+     assert (serr.contains ("Invalid device"));
+     assert (serr.contains ("/block/loop0/size"));
+     assert (serr.contains ("has no uevent attribute"));
+-    assert_cmpstr (sout, Op.EQ, "");
+-    assert_cmpint (exit, Op.NE, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.NE, 0);
+ }
+ 
+ /*
+@@ -287,27 +287,27 @@ t_system_ioctl_log ()
+     // should not log anything as that device is not touched
+     spawn ("umockdev-record" + " --ioctl=/dev/null=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+     assert (!FileUtils.test (log, FileTest.EXISTS));
+ 
+     // this should create a log
+     spawn ("umockdev-record" + " --ioctl /dev/zero=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+     assert (FileUtils.test (log, FileTest.EXISTS));
+-    assert_cmpstr (file_contents (log), Op.EQ, "@DEV /dev/zero\n");
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, "@DEV /dev/zero\n");
+ 
+     FileUtils.remove (log);
+ 
+     // invalid syntax
+     spawn ("umockdev-record" + " --ioctl /dev/null -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpint (exit, Op.NE, 1);
+-    assert_cmpstr (sout, Op.EQ, "");
++    assert_cmpint (exit, CompareOperator.NE, 1);
++    assert_cmpstr (sout, CompareOperator.EQ, "");
+     assert (serr.contains ("--ioctl"));
+     assert (serr.contains ("="));
+     assert (!FileUtils.test (log, FileTest.EXISTS));
+@@ -330,9 +330,9 @@ t_system_ioctl_log_append_dev_mismatch ()
+     // should log the header plus one read
+     spawn ("umockdev-record" + " -i /dev/zero=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+ 
+     string orig_contents = file_contents (log);
+ 
+@@ -340,11 +340,11 @@ t_system_ioctl_log_append_dev_mismatch ()
+     spawn ("umockdev-record" + " -i /dev/null=" + log + " -- " + readbyte_path + " /dev/null",
+            out sout, out serr, out exit);
+     assert (serr.contains ("two different devices"));
+-    assert_cmpint (exit, Op.EQ, 256);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpint (exit, CompareOperator.EQ, 256);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+ 
+     // should not change original record
+-    assert_cmpstr (file_contents (log), Op.EQ, orig_contents);
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, orig_contents);
+ 
+     FileUtils.remove (log);
+ }
+@@ -367,27 +367,27 @@ t_system_script_log_simple ()
+     // should not log anything as that device is not touched
+     spawn ("umockdev-record" + " --script=/dev/null=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
+-    assert_cmpstr (file_contents (log), Op.EQ, "");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, "");
+ 
+     // should log the header plus one read
+     spawn ("umockdev-record" + " --script=/dev/zero=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+     string[] loglines = file_contents (log).split("\n");
+-    assert_cmpuint (loglines.length, Op.EQ, 2);
+-    assert_cmpstr (loglines[0], Op.EQ, "d 0 /dev/zero");
++    assert_cmpuint (loglines.length, CompareOperator.EQ, 2);
++    assert_cmpstr (loglines[0], CompareOperator.EQ, "d 0 /dev/zero");
+ 
+     string[] logwords = loglines[1].split(" ");
+-    assert_cmpuint (logwords.length, Op.EQ, 3);
+-    assert_cmpstr (logwords[0], Op.EQ, "r");
++    assert_cmpuint (logwords.length, CompareOperator.EQ, 3);
++    assert_cmpstr (logwords[0], CompareOperator.EQ, "r");
+     // should be quick, give it 5 ms at most
+-    assert_cmpint (int.parse(logwords[1]), Op.LE, 5 * slow_testbed_factor);
+-    assert_cmpstr (logwords[2], Op.EQ, "^@");
++    assert_cmpint (int.parse(logwords[1]), CompareOperator.LE, 5 * slow_testbed_factor);
++    assert_cmpstr (logwords[2], CompareOperator.EQ, "^@");
+ 
+     FileUtils.remove (log);
+ }
+@@ -412,27 +412,27 @@ t_system_script_log_simple_fopen ()
+     // should not log anything as that device is not touched
+     spawn ("umockdev-record" + " --script=/dev/null=" + log + " -- " + readbyte_path + " /dev/zero fopen",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
+-    assert_cmpstr (file_contents (log), Op.EQ, "");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, "");
+ 
+     // should log the header plus one read
+     spawn ("umockdev-record" + " --script=/dev/zero=" + log + " -- " + readbyte_path + " /dev/zero fopen",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+     string[] loglines = file_contents (log).split("\n");
+-    assert_cmpuint (loglines.length, Op.EQ, 2);
+-    assert_cmpstr (loglines[0], Op.EQ, "d 0 /dev/zero");
++    assert_cmpuint (loglines.length, CompareOperator.EQ, 2);
++    assert_cmpstr (loglines[0], CompareOperator.EQ, "d 0 /dev/zero");
+ 
+     string[] logwords = loglines[1].split(" ");
+-    assert_cmpuint (logwords.length, Op.EQ, 3);
+-    assert_cmpstr (logwords[0], Op.EQ, "r");
++    assert_cmpuint (logwords.length, CompareOperator.EQ, 3);
++    assert_cmpstr (logwords[0], CompareOperator.EQ, "r");
+     // should be quick, give it 5 ms at most
+-    assert_cmpint (int.parse(logwords[1]), Op.LE, 5 * slow_testbed_factor);
+-    assert_cmpstr (logwords[2], Op.EQ, "^@");
++    assert_cmpint (int.parse(logwords[1]), CompareOperator.LE, 5 * slow_testbed_factor);
++    assert_cmpstr (logwords[2], CompareOperator.EQ, "^@");
+ 
+     FileUtils.remove (log);
+ }
+@@ -452,35 +452,35 @@ t_system_script_log_append_same_dev ()
+     // should log the header plus one read
+     spawn ("umockdev-record" + " --script=/dev/zero=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+ 
+     // should still work as it is the same device, and append
+     spawn ("umockdev-record" + " --script=/dev/zero=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+ 
+     // should now have the header and two reads
+     string[] loglines = file_contents (log).split("\n");
+-    assert_cmpuint (loglines.length, Op.EQ, 3);
+-    assert_cmpstr (loglines[0], Op.EQ, "d 0 /dev/zero");
++    assert_cmpuint (loglines.length, CompareOperator.EQ, 3);
++    assert_cmpstr (loglines[0], CompareOperator.EQ, "d 0 /dev/zero");
+ 
+     string[] logwords = loglines[1].split(" ");
+-    assert_cmpuint (logwords.length, Op.EQ, 3);
+-    assert_cmpstr (logwords[0], Op.EQ, "r");
++    assert_cmpuint (logwords.length, CompareOperator.EQ, 3);
++    assert_cmpstr (logwords[0], CompareOperator.EQ, "r");
+     // should be quick, give it 5 ms at most
+-    assert_cmpint (int.parse(logwords[1]), Op.LE, 5 * slow_testbed_factor);
+-    assert_cmpstr (logwords[2], Op.EQ, "^@");
++    assert_cmpint (int.parse(logwords[1]), CompareOperator.LE, 5 * slow_testbed_factor);
++    assert_cmpstr (logwords[2], CompareOperator.EQ, "^@");
+ 
+     logwords = loglines[2].split(" ");
+-    assert_cmpuint (logwords.length, Op.EQ, 3);
+-    assert_cmpstr (logwords[0], Op.EQ, "r");
++    assert_cmpuint (logwords.length, CompareOperator.EQ, 3);
++    assert_cmpstr (logwords[0], CompareOperator.EQ, "r");
+     // should be quick, give it 5 ms at most
+-    assert_cmpint (int.parse(logwords[1]), Op.LE, 5 * slow_testbed_factor);
+-    assert_cmpstr (logwords[2], Op.EQ, "^@");
++    assert_cmpint (int.parse(logwords[1]), CompareOperator.LE, 5 * slow_testbed_factor);
++    assert_cmpstr (logwords[2], CompareOperator.EQ, "^@");
+ 
+     FileUtils.remove (log);
+ }
+@@ -500,9 +500,9 @@ t_system_script_log_append_dev_mismatch ()
+     // should log the header plus one read
+     spawn ("umockdev-record" + " --script=/dev/zero=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+ 
+     string orig_contents = file_contents (log);
+ 
+@@ -510,11 +510,11 @@ t_system_script_log_append_dev_mismatch ()
+     spawn ("umockdev-record" + " --script=/dev/null=" + log + " -- " + readbyte_path + " /dev/null",
+            out sout, out serr, out exit);
+     assert (serr.contains ("two different devices"));
+-    assert_cmpint (exit, Op.EQ, 256);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpint (exit, CompareOperator.EQ, 256);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+ 
+     // should not change original record
+-    assert_cmpstr (file_contents (log), Op.EQ, orig_contents);
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, orig_contents);
+ 
+     FileUtils.remove (log);
+ }
+@@ -599,8 +599,8 @@ t_system_script_log_chatter ()
+     assert (chatter_stream != null);
+ 
+     // expect the first two lines
+-    assert_cmpstr (read_line_timeout (chatter_stream), Op.EQ, "Hello world!\n");
+-    assert_cmpstr (read_line_timeout (chatter_stream), Op.EQ, "What is your name?\n");
++    assert_cmpstr (read_line_timeout (chatter_stream), CompareOperator.EQ, "Hello world!\n");
++    assert_cmpstr (read_line_timeout (chatter_stream), CompareOperator.EQ, "What is your name?\n");
+ 
+     // type name and second string after some delay
+     Thread.usleep (500000);
+@@ -611,34 +611,34 @@ t_system_script_log_chatter ()
+     Thread.usleep (300000);
+     chatter_stream.puts ("foo ☹ bar ^!\n");
+ 
+-    assert_cmpstr (read_line_timeout (chatter_stream), Op.EQ, "bye!\n");
++    assert_cmpstr (read_line_timeout (chatter_stream), CompareOperator.EQ, "bye!\n");
+ 
+     int status;
+-    assert_cmpint ((int) Posix.waitpid (chatter_pid, out status, 0), Op.EQ, (int) chatter_pid);
+-    assert_cmpint (status, Op.EQ, 0);
++    assert_cmpint ((int) Posix.waitpid (chatter_pid, out status, 0), CompareOperator.EQ, (int) chatter_pid);
++    assert_cmpint (status, CompareOperator.EQ, 0);
+ 
+     // evaluate log
+     var log_stream = FileStream.open (log, "r");
+     char[] buf = new char[8192];
+     int time = 0;
+-    assert_cmpint (log_stream.scanf ("d 0 %s\n", buf), Op.EQ, 1);
+-    assert_cmpstr ((string)buf, Op.EQ, (string)ptyname);
+-    assert_cmpint (log_stream.scanf ("w %d Hello world!^JWhat is your name?^J\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.LE, 20 * slow_testbed_factor);
+-    assert_cmpint (log_stream.scanf ("r %d John^J\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.GE, 450);
+-    assert_cmpint (time, Op.LE, 800 * slow_testbed_factor);
+-    assert_cmpint (log_stream.scanf ("w %d I ♥ John^Ja^I tab and a^J line break in one write^J\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.LE, 20 * slow_testbed_factor);
+-    assert_cmpint (log_stream.scanf ("r %d foo ☹ bar ^`!^J\n", &time), Op.EQ, 1);;
+-    assert_cmpint (time, Op.GE, 250);
+-    assert_cmpint (time, Op.LE, 450 * slow_testbed_factor);
+-
+-    assert_cmpint (log_stream.scanf ("w %d bye!^J\n", &time), Op.EQ, 1);;
+-    assert_cmpint (time, Op.LE, 20 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("d 0 %s\n", buf), CompareOperator.EQ, 1);
++    assert_cmpstr ((string)buf, CompareOperator.EQ, (string)ptyname);
++    assert_cmpint (log_stream.scanf ("w %d Hello world!^JWhat is your name?^J\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.LE, 20 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("r %d John^J\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.GE, 450);
++    assert_cmpint (time, CompareOperator.LE, 800 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("w %d I ♥ John^Ja^I tab and a^J line break in one write^J\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.LE, 20 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("r %d foo ☹ bar ^`!^J\n", &time), CompareOperator.EQ, 1);;
++    assert_cmpint (time, CompareOperator.GE, 250);
++    assert_cmpint (time, CompareOperator.LE, 450 * slow_testbed_factor);
++
++    assert_cmpint (log_stream.scanf ("w %d bye!^J\n", &time), CompareOperator.EQ, 1);;
++    assert_cmpint (time, CompareOperator.LE, 20 * slow_testbed_factor);
+ 
+     // verify EOF
+-    assert_cmpint (log_stream.scanf ("%*c"), Op.EQ, -1);
++    assert_cmpint (log_stream.scanf ("%*c"), CompareOperator.EQ, -1);
+ 
+     FileUtils.remove (log);
+ }
+@@ -697,7 +697,7 @@ t_system_script_log_chatter_socket_stream ()
+         ssize_t len = conn.receive (buf);
+         assert (len > 0);
+         buf[len] = 0;
+-        assert_cmpstr ((string) buf, Op.EQ, "What is your name?\n");
++        assert_cmpstr ((string) buf, CompareOperator.EQ, "What is your name?\n");
+ 
+         // type name and second string after some delay
+         Thread.usleep (300000);
+@@ -707,13 +707,13 @@ t_system_script_log_chatter_socket_stream ()
+         len = read_buf_delay (10000, conn, buf, 11);
+         assert (len > 0);
+         buf[len] = 0;
+-        assert_cmpstr ((string) buf, Op.EQ, "hello John\n");
++        assert_cmpstr ((string) buf, CompareOperator.EQ, "hello John\n");
+ 
+         // check the send message
+         len = read_buf_delay (20000, conn, buf, 6);
+         assert (len > 0);
+         buf[len] = 0;
+-        assert_cmpstr ((string) buf, Op.EQ, "send()");
++        assert_cmpstr ((string) buf, CompareOperator.EQ, "send()");
+ 
+         // send stuff for recv()
+         Thread.usleep (20000);
+@@ -725,24 +725,24 @@ t_system_script_log_chatter_socket_stream ()
+     FileUtils.remove (spath);
+ 
+     int status;
+-    assert_cmpint ((int) Posix.waitpid (chatter_pid, out status, 0), Op.EQ, (int) chatter_pid);
+-    assert_cmpint (status, Op.EQ, 0);
++    assert_cmpint ((int) Posix.waitpid (chatter_pid, out status, 0), CompareOperator.EQ, (int) chatter_pid);
++    assert_cmpint (status, CompareOperator.EQ, 0);
+ 
+     // evaluate log
+     var log_stream = FileStream.open (log, "r");
+     int time = 0;
+-    assert_cmpint (log_stream.scanf ("w %d What is your name?^J\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.LE, 20 * slow_testbed_factor);
+-    assert_cmpint (log_stream.scanf ("r %d John^J\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.GE, 250);
+-    assert_cmpint (time, Op.LE, 400 * slow_testbed_factor);
+-    assert_cmpint (log_stream.scanf ("w %d hello John^J\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.LE, 20 * slow_testbed_factor);
+-    assert_cmpint (log_stream.scanf ("w %d send()\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.GE, 10);
+-    assert_cmpint (log_stream.scanf ("r %d recv()\n", &time), Op.EQ, 1);
+-    assert_cmpint (time, Op.GE, 20);
+-    assert_cmpint (time, Op.LE, 60 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("w %d What is your name?^J\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.LE, 20 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("r %d John^J\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.GE, 250);
++    assert_cmpint (time, CompareOperator.LE, 400 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("w %d hello John^J\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.LE, 20 * slow_testbed_factor);
++    assert_cmpint (log_stream.scanf ("w %d send()\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.GE, 10);
++    assert_cmpint (log_stream.scanf ("r %d recv()\n", &time), CompareOperator.EQ, 1);
++    assert_cmpint (time, CompareOperator.GE, 20);
++    assert_cmpint (time, CompareOperator.LE, 60 * slow_testbed_factor);
+ 
+     FileUtils.remove (log);
+ }
+@@ -770,36 +770,36 @@ t_system_evemu_log ()
+ 
+     spawn ("umockdev-record" + " --evemu-events=/dev/null=" + log + " -- " + readbyte_path + " /dev/null",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
+-    assert_cmpstr (file_contents (log), Op.EQ, "# EVEMU 1.2\n# device /dev/null\n");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, "# EVEMU 1.2\n# device /dev/null\n");
+ 
+     // appending a record for the same device should work
+     spawn ("umockdev-record" + " --evemu-events=/dev/null=" + log + " -- " + readbyte_path + " /dev/null",
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+     // appends an extra NL at the end
+-    assert_cmpstr (file_contents (log), Op.EQ, "# EVEMU 1.2\n# device /dev/null\n\n");
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, "# EVEMU 1.2\n# device /dev/null\n\n");
+ 
+     // appending a record for a different device should fail
+     spawn ("umockdev-record" + " --evemu-events=/dev/zero=" + log + " -- " + readbyte_path + " /dev/zero",
+            out sout, out serr, out exit);
+     assert (serr.contains ("two different devices"));
+-    assert_cmpint (exit, Op.EQ, 256);
+-    assert_cmpstr (sout, Op.EQ, "\0");
++    assert_cmpint (exit, CompareOperator.EQ, 256);
++    assert_cmpstr (sout, CompareOperator.EQ, "\0");
+     // unchanged
+-    assert_cmpstr (file_contents (log), Op.EQ, "# EVEMU 1.2\n# device /dev/null\n\n");
++    assert_cmpstr (file_contents (log), CompareOperator.EQ, "# EVEMU 1.2\n# device /dev/null\n\n");
+ 
+     FileUtils.remove (log);
+ 
+     // invalid syntax
+     spawn ("umockdev-record" + " --evemu-events /dev/null -- true",
+            out sout, out serr, out exit);
+-    assert_cmpint (exit, Op.NE, 1);
+-    assert_cmpstr (sout, Op.EQ, "");
++    assert_cmpint (exit, CompareOperator.NE, 1);
++    assert_cmpstr (sout, CompareOperator.EQ, "");
+     assert (serr.contains ("--ioctl"));
+     assert (serr.contains ("="));
+     assert (!FileUtils.test (log, FileTest.EXISTS));
+@@ -816,8 +816,8 @@ t_run_invalid_args ()
+     spawn ("umockdev-record" + " /dev/no/such/device", out sout, out serr, out exit);
+ 
+     assert_in ("Cannot access device /dev/no/such/device: No such file", serr);
+-    assert_cmpstr (sout, Op.EQ, "");
+-    assert_cmpint (exit, Op.NE, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.NE, 0);
+ }
+ 
+ static void
+@@ -859,25 +859,25 @@ t_gphoto2_record ()
+     spawn ("sh -c '%s /dev/bus/usb/%s/%s > gphoto-test.umockdev'".printf(
+                "umockdev-record", busnum, devnum),
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpstr (sout, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpstr (sout, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+ 
+     string cmd = "sh -c 'gphoto2 -l; gphoto2 -L'";
+     spawn ("%s -i /dev/bus/usb/%s/%s=gphoto-test.ioctl -- %s".printf(
+                "umockdev-record", busnum, devnum, cmd),
+            out sout_record, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+ 
+     // now run the same command under umockdev-run and ensure it outputs the
+     // same thing
+     spawn ("%s -d gphoto-test.umockdev -i /dev/bus/usb/%s/%s=gphoto-test.ioctl -- %s".printf(
+                "umockdev-run", busnum, devnum, cmd),
+            out sout, out serr, out exit);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
+-    assert_cmpstr (sout, Op.EQ, sout_record);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, sout_record);
+ 
+     FileUtils.remove ("gphoto-test.umockdev");
+     FileUtils.remove ("gphoto-test.ioctl");
+diff --git a/tests/test-umockdev-run.vala b/tests/test-umockdev-run.vala
+index b23e18c..29145dd 100644
+--- a/tests/test-umockdev-run.vala
++++ b/tests/test-umockdev-run.vala
+@@ -84,9 +84,9 @@ check_program_out (string program, string run_command, string expected_out)
+     if (!get_program_out (program, umockdev_run_command + run_command, out sout, out serr, out exit))
+         return;
+ 
+-    assert_cmpstr (sout, Op.EQ, expected_out);
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, expected_out);
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+ }
+ 
+ static void
+@@ -101,9 +101,9 @@ check_program_error (string program, string run_command, string expected_err)
+ 
+     assert_in (expected_err, serr);
+ 
+-    assert_cmpint (exit, Op.NE, 0);
++    assert_cmpint (exit, CompareOperator.NE, 0);
+     assert (Process.if_exited (exit));
+-    assert_cmpstr (sout, Op.EQ, "");
++    assert_cmpstr (sout, CompareOperator.EQ, "");
+ }
+ 
+ static void
+@@ -118,16 +118,16 @@ t_run_exit_code ()
+     // normal exit, nonzero
+     get_program_out ("ls", umockdev_run_command + "ls /nonexisting", out sout, out serr, out exit);
+     assert (Process.if_exited (exit));
+-    assert_cmpint (Process.exit_status (exit), Op.GT, 0);
+-    assert_cmpstr (sout, Op.EQ, "");
+-    assert_cmpstr (serr, Op.NE, "");
++    assert_cmpint (Process.exit_status (exit), CompareOperator.GT, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "");
++    assert_cmpstr (serr, CompareOperator.NE, "");
+ 
+     // signal exit
+     get_program_out ("sh", umockdev_run_command + "-- sh -c 'kill -SEGV $$'", out sout, out serr, out exit);
+     assert (Process.if_signaled (exit));
+-    assert_cmpint (Process.term_sig (exit), Op.EQ, ProcessSignal.SEGV);
+-    assert_cmpstr (sout, Op.EQ, "");
+-    assert_cmpstr (serr, Op.EQ, "");
++    assert_cmpint (Process.term_sig (exit), CompareOperator.EQ, ProcessSignal.SEGV);
++    assert_cmpstr (sout, CompareOperator.EQ, "");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
+ }
+ 
+ static void
+@@ -148,9 +148,9 @@ t_run_pipes ()
+     assert(get_program_out ("echo", "sh -c 'echo hello | " + umockdev_run_command + "cat'",
+                             out sout, out serr, out exit));
+ 
+-    assert_cmpstr (sout, Op.EQ, "hello\n");
+-    assert_cmpstr (serr, Op.EQ, "");
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpstr (sout, CompareOperator.EQ, "hello\n");
++    assert_cmpstr (serr, CompareOperator.EQ, "");
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+ }
+ 
+ static void
+@@ -401,15 +401,15 @@ t_gphoto_thumbs ()
+             rootdir + "/devices/cameras/canon-powershot-sx200.ioctl -- gphoto2 -T",
+             out sout, out serr, out exit);
+ 
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+     assert_in ("thumb_IMG_0001.jpg", sout);
+     assert_in ("thumb_IMG_0002.jpg", sout);
+ 
+     Posix.Stat st;
+     assert (Posix.stat("thumb_IMG_0001.jpg", out st) == 0);
+-    assert_cmpuint ((uint) st.st_size, Op.GT, 500);
++    assert_cmpuint ((uint) st.st_size, CompareOperator.GT, 500);
+     assert (Posix.stat("thumb_IMG_0002.jpg", out st) == 0);
+-    assert_cmpuint ((uint) st.st_size, Op.GT, 500);
++    assert_cmpuint ((uint) st.st_size, CompareOperator.GT, 500);
+ 
+     FileUtils.remove ("thumb_IMG_0001.jpg");
+     FileUtils.remove ("thumb_IMG_0002.jpg");
+@@ -429,15 +429,15 @@ t_gphoto_download ()
+             rootdir + "/devices/cameras/canon-powershot-sx200.ioctl -- gphoto2 -P",
+             out sout, out serr, out exit);
+ 
+-    assert_cmpint (exit, Op.EQ, 0);
++    assert_cmpint (exit, CompareOperator.EQ, 0);
+     assert_in ("IMG_0001.JPG", sout);
+     assert_in ("IMG_0002.JPG", sout);
+ 
+     Posix.Stat st;
+     assert (Posix.stat("IMG_0001.JPG", out st) == 0);
+-    assert_cmpuint ((uint) st.st_size, Op.GT, 5000);
++    assert_cmpuint ((uint) st.st_size, CompareOperator.GT, 5000);
+     assert (Posix.stat("IMG_0002.JPG", out st) == 0);
+-    assert_cmpuint ((uint) st.st_size, Op.GT, 5000);
++    assert_cmpuint ((uint) st.st_size, CompareOperator.GT, 5000);
+ 
+     FileUtils.remove ("IMG_0001.JPG");
+     FileUtils.remove ("IMG_0002.JPG");
+@@ -515,12 +515,12 @@ t_input_touchpad ()
+     FileUtils.remove (logfile);
+     FileUtils.remove (logfile + ".old");
+ 
+-    assert_cmpstr (xinput_err, Op.EQ, "");
+-    assert_cmpint (xinput_exit, Op.EQ, 0);
++    assert_cmpstr (xinput_err, CompareOperator.EQ, "");
++    assert_cmpint (xinput_exit, CompareOperator.EQ, 0);
+     assert_in ("SynPS/2 Synaptics TouchPad", xinput_out);
+ 
+-    assert_cmpstr (props_err, Op.EQ, "");
+-    assert_cmpint (props_exit, Op.EQ, 0);
++    assert_cmpstr (props_err, CompareOperator.EQ, "");
++    assert_cmpint (props_exit, CompareOperator.EQ, 0);
+     assert_in ("Synaptics Two-Finger Scrolling", props_out);
+     assert_in ("/dev/input/event12", props_out);
+ }
+@@ -582,7 +582,7 @@ t_input_evtest ()
+         Process.abort();
+     }
+ 
+-    assert_cmpint ((int) sout_len, Op.GT, 10);
++    assert_cmpint ((int) sout_len, CompareOperator.GT, 10);
+     sout[sout_len] = 0;
+     string output = (string) sout;
+ 
+@@ -670,7 +670,7 @@ E: 0.500000 0001 001e 0000	# EV_KEY / KEY_A                0
+         Process.abort();
+     }
+ 
+-    assert_cmpint ((int) sout_len, Op.GT, 10);
++    assert_cmpint ((int) sout_len, CompareOperator.GT, 10);
+     sout[sout_len] = 0;
+     string output = (string) sout;
+ 
+diff --git a/tests/test-umockdev-vala.vala b/tests/test-umockdev-vala.vala
+index 56166ba..e352541 100644
+--- a/tests/test-umockdev-vala.vala
++++ b/tests/test-umockdev-vala.vala
+@@ -38,7 +38,7 @@ t_testbed_empty ()
+   var enumerator = new GUdev.Enumerator (new GUdev.Client(null));
+   var devices = enumerator.execute ();
+ 
+-  assert_cmpuint (devices.length(), Op.EQ, 0);
++  assert_cmpuint (devices.length(), CompareOperator.EQ, 0);
+ }
+ 
+ void
+@@ -51,24 +51,24 @@ t_testbed_add_device ()
+                                    null,
+                                    { "idVendor", "0815", "idProduct", "AFFE" },
+                                    { "ID_INPUT", "1", "ID_INPUT_KEYBOARD", "1" });
+-  assert_cmpstr (syspath, Op.EQ, "/sys/devices/extkeyboard1");
++  assert_cmpstr (syspath, CompareOperator.EQ, "/sys/devices/extkeyboard1");
+ 
+   var enumerator = new GUdev.Enumerator (new GUdev.Client(null));
+   var devices = enumerator.execute ();
+-  assert_cmpuint (devices.length(), Op.EQ, 1);
++  assert_cmpuint (devices.length(), CompareOperator.EQ, 1);
+ 
+   GUdev.Device device = devices.nth_data(0);
+-  assert_cmpstr (device.get_name (), Op.EQ, "extkeyboard1");
+-  assert_cmpstr (device.get_sysfs_path (), Op.EQ, "/sys/devices/extkeyboard1");
+-  assert_cmpstr (device.get_subsystem (), Op.EQ, "usb");
+-  assert_cmpstr (device.get_sysfs_attr ("idVendor"), Op.EQ, "0815");
+-  assert_cmpstr (device.get_sysfs_attr ("idProduct"), Op.EQ, "AFFE");
+-  assert_cmpstr (device.get_sysfs_attr ("noSuchAttr"), Op.EQ, null);
+-  assert_cmpstr (device.get_property ("DEVPATH"), Op.EQ, "/devices/extkeyboard1");
+-  assert_cmpstr (device.get_property ("SUBSYSTEM"), Op.EQ, "usb");
+-  assert_cmpstr (device.get_property ("ID_INPUT"), Op.EQ, "1");
+-  assert_cmpstr (device.get_property ("ID_INPUT_KEYBOARD"), Op.EQ, "1");
+-  assert_cmpstr (device.get_property ("NO_SUCH_PROP"), Op.EQ, null);
++  assert_cmpstr (device.get_name (), CompareOperator.EQ, "extkeyboard1");
++  assert_cmpstr (device.get_sysfs_path (), CompareOperator.EQ, "/sys/devices/extkeyboard1");
++  assert_cmpstr (device.get_subsystem (), CompareOperator.EQ, "usb");
++  assert_cmpstr (device.get_sysfs_attr ("idVendor"), CompareOperator.EQ, "0815");
++  assert_cmpstr (device.get_sysfs_attr ("idProduct"), CompareOperator.EQ, "AFFE");
++  assert_cmpstr (device.get_sysfs_attr ("noSuchAttr"), CompareOperator.EQ, null);
++  assert_cmpstr (device.get_property ("DEVPATH"), CompareOperator.EQ, "/devices/extkeyboard1");
++  assert_cmpstr (device.get_property ("SUBSYSTEM"), CompareOperator.EQ, "usb");
++  assert_cmpstr (device.get_property ("ID_INPUT"), CompareOperator.EQ, "1");
++  assert_cmpstr (device.get_property ("ID_INPUT_KEYBOARD"), CompareOperator.EQ, "1");
++  assert_cmpstr (device.get_property ("NO_SUCH_PROP"), CompareOperator.EQ, null);
+ }
+ 
+ void
+@@ -92,16 +92,16 @@ E: DEVNAME=/dev/bus/usb/001/001
+   var client = new GUdev.Client (null);
+   var devices = client.query_by_subsystem (null);
+ 
+-  assert_cmpuint (devices.length (), Op.EQ, 2);
++  assert_cmpuint (devices.length (), CompareOperator.EQ, 2);
+   foreach (var dev in devices) {
+-      assert_cmpstr (dev.get_subsystem(), Op.EQ, "usb");
++      assert_cmpstr (dev.get_subsystem(), CompareOperator.EQ, "usb");
+       if (dev.get_sysfs_path () == "/sys/devices/myusbhub") {
+-          assert_cmpstr (dev.get_name(), Op.EQ, "myusbhub");
+-          assert_cmpstr (dev.get_device_file(), Op.EQ, "/dev/bus/usb/001/001");
++          assert_cmpstr (dev.get_name(), CompareOperator.EQ, "myusbhub");
++          assert_cmpstr (dev.get_device_file(), CompareOperator.EQ, "/dev/bus/usb/001/001");
+       } else {
+-          assert_cmpstr (dev.get_sysfs_path (), Op.EQ, "/sys/devices/myusbhub/cam");
+-          assert_cmpstr (dev.get_name(), Op.EQ, "cam");
+-          assert_cmpstr (dev.get_device_file(), Op.EQ, "/dev/bus/usb/001/002");
++          assert_cmpstr (dev.get_sysfs_path (), CompareOperator.EQ, "/sys/devices/myusbhub/cam");
++          assert_cmpstr (dev.get_name(), CompareOperator.EQ, "cam");
++          assert_cmpstr (dev.get_device_file(), CompareOperator.EQ, "/dev/bus/usb/001/002");
+       }
+   }
+ 
+@@ -116,10 +116,10 @@ assert_listdir (string path, string[] entries)
+   while ((entry = dir.read_name()) != null)
+       files.append(entry);
+   files.sort(strcmp);
+-  assert_cmpuint (files.length(), Op.EQ, entries.length);
++  assert_cmpuint (files.length(), CompareOperator.EQ, entries.length);
+   uint i = 0;
+   foreach (var n in files)
+-      assert_cmpstr (n, Op.EQ, entries[i++]);
++      assert_cmpstr (n, CompareOperator.EQ, entries[i++]);
+ }
+ 
+ void
+@@ -130,7 +130,7 @@ t_testbed_fs_ops ()
+   var orig_cwd = Environment.get_current_dir ();
+ 
+   var syspath = tb.add_devicev ("pci", "dev1", null, {"a", "1"}, {"DEVTYPE", "fancy"});
+-  assert_cmpstr (syspath, Op.EQ, "/sys/devices/dev1");
++  assert_cmpstr (syspath, CompareOperator.EQ, "/sys/devices/dev1");
+ 
+   // absolute paths
+   assert_listdir ("/sys", {"bus", "devices"});
+@@ -139,17 +139,17 @@ t_testbed_fs_ops ()
+   assert_listdir ("/sys/devices/dev1", {"a", "subsystem", "uevent"});
+ 
+   // change directory into trapped /sys
+-  assert_cmpint (Posix.chdir ("/sys"), Op.EQ, 0);
++  assert_cmpint (Posix.chdir ("/sys"), CompareOperator.EQ, 0);
+   assert_listdir (".", {"bus", "devices"});
+   assert_listdir ("bus", {"pci"});
+-  assert_cmpstr (Environment.get_current_dir (), Op.EQ, "/sys");
++  assert_cmpstr (Environment.get_current_dir (), CompareOperator.EQ, "/sys");
+ 
+-  assert_cmpint (Posix.chdir ("/sys/devices/dev1"), Op.EQ, 0);
++  assert_cmpint (Posix.chdir ("/sys/devices/dev1"), CompareOperator.EQ, 0);
+   assert_listdir (".", {"a", "subsystem", "uevent"});
+-  assert_cmpstr (Environment.get_current_dir (), Op.EQ, "/sys/devices/dev1");
++  assert_cmpstr (Environment.get_current_dir (), CompareOperator.EQ, "/sys/devices/dev1");
+ 
+-  assert_cmpint (Posix.chdir ("/sys/class"), Op.EQ, -1);
+-  assert_cmpint (Posix.errno, Op.EQ, Posix.ENOENT);
++  assert_cmpint (Posix.chdir ("/sys/class"), CompareOperator.EQ, -1);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, Posix.ENOENT);
+ 
+   // relative paths into trapped /sys; this only works if the real /sys exists, as otherwise realpath() fails in trap_path()
+   if (!have_real_sys) {
+@@ -157,17 +157,17 @@ t_testbed_fs_ops ()
+       return;
+   }
+ 
+-  assert_cmpint (Posix.chdir ("/"), Op.EQ, 0);
++  assert_cmpint (Posix.chdir ("/"), CompareOperator.EQ, 0);
+   assert_listdir ("sys", {"bus", "devices"});
+   assert_listdir ("sys/devices", {"dev1"});
+   assert_listdir ("sys/bus", {"pci"});
+ 
+-  assert_cmpint (Posix.chdir ("/etc"), Op.EQ, 0);
++  assert_cmpint (Posix.chdir ("/etc"), CompareOperator.EQ, 0);
+   assert_listdir ("../sys", {"bus", "devices"});
+   assert_listdir ("../sys/devices", {"dev1"});
+   assert_listdir ("../sys/bus", {"pci"});
+ 
+-  assert_cmpint (Posix.chdir (orig_cwd), Op.EQ, 0);
++  assert_cmpint (Posix.chdir (orig_cwd), CompareOperator.EQ, 0);
+ }
+ 
+ void
+@@ -181,32 +181,32 @@ E: SUBSYSTEM=usb
+ """);
+ 
+   int fd = Posix.open ("/dev/001", Posix.O_RDWR, 0);
+-  assert_cmpint (fd, Op.GE, 0);
++  assert_cmpint (fd, CompareOperator.GE, 0);
+ 
+   int i = 1;
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CLAIMINTERFACE, ref i), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_GETDRIVER, ref i), Op.EQ, -1);
+-  assert_cmpint (Posix.errno, Op.EQ, Posix.ENODATA);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CLAIMINTERFACE, ref i), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_GETDRIVER, ref i), CompareOperator.EQ, -1);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, Posix.ENODATA);
+   Posix.errno = 0;
+ 
+   /* no ioctl tree loaded */
+   var ci = Ioctl.usbdevfs_connectinfo();
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, -1);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, -1);
+   // usually ENOTTY, but seem to be EINVAL
+-  assert_cmpint (Posix.errno, Op.GE, 22);
++  assert_cmpint (Posix.errno, CompareOperator.GE, 22);
+   errno = 0;
+ 
+   // unknown ioctls don't work on an emulated device
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.TIOCSBRK, 0), Op.EQ, -1);
+-  assert_cmpint (Posix.errno, Op.EQ, Posix.ENOTTY);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.TIOCSBRK, 0), CompareOperator.EQ, -1);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, Posix.ENOTTY);
+   Posix.errno = 0;
+ 
+   // unknown ioctls do work on non-emulated devices
+   int fd2 = Posix.open ("/dev/tty", Posix.O_RDWR, 0);
+   if (fd2 > 0) {
+-      assert_cmpint (Posix.ioctl (fd2, Ioctl.TIOCSBRK, 0), Op.EQ, 0);
+-      assert_cmpint (Posix.errno, Op.EQ, 0);
++      assert_cmpint (Posix.ioctl (fd2, Ioctl.TIOCSBRK, 0), CompareOperator.EQ, 0);
++      assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
+       Posix.close (fd2);
+   }
+ 
+@@ -246,13 +246,13 @@ USBDEVFS_CONNECTINFO 42 0000000C01000000
+   try {
+       fd  = FileUtils.open_tmp ("test_ioctl_tree.XXXXXX", out tmppath);
+   } catch (Error e) { Process.abort (); }
+-  assert_cmpint ((int) Posix.write (fd, test_tree, test_tree.length), Op.GT, 20);
++  assert_cmpint ((int) Posix.write (fd, test_tree, test_tree.length), CompareOperator.GT, 20);
+ 
+   // ioctl emulation does not get in the way of non-/dev fds
+   int i = 1;
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CLAIMINTERFACE, ref i), Op.EQ, -1);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CLAIMINTERFACE, ref i), CompareOperator.EQ, -1);
+   // usually ENOTTY, but seem to be EINVAL
+-  assert_cmpint (Posix.errno, Op.GE, 22);
++  assert_cmpint (Posix.errno, CompareOperator.GE, 22);
+ 
+   Posix.close (fd);
+   try {
+@@ -264,65 +264,65 @@ USBDEVFS_CONNECTINFO 42 0000000C01000000
+   FileUtils.unlink (tmppath);
+ 
+   fd = Posix.open ("/dev/001", Posix.O_RDWR, 0);
+-  assert_cmpint (fd, Op.GE, 0);
++  assert_cmpint (fd, CompareOperator.GE, 0);
+ 
+   // static ioctl
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CLAIMINTERFACE, ref i), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CLAIMINTERFACE, ref i), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
+ 
+   // loaded ioctl
+   var ci = Ioctl.usbdevfs_connectinfo();
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 11);
+-  assert_cmpuint (ci.slow, Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 11);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 0);
+ 
+   /* loaded ioctl: URB */
+   var urb_buffer = new uint8[4];
+   Ioctl.usbdevfs_urb urb = {1, 129, 0, 0, urb_buffer, 4, 0};
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_SUBMITURB, ref urb), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (urb.status, Op.EQ, 0);
+-  assert_cmpint (urb_buffer[0], Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_SUBMITURB, ref urb), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (urb.status, CompareOperator.EQ, 0);
++  assert_cmpint (urb_buffer[0], CompareOperator.EQ, 0);
+ 
+   Ioctl.usbdevfs_urb* urb_reap = null;
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_REAPURB, ref urb_reap), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_REAPURB, ref urb_reap), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
+   assert (urb_reap == &urb);
+-  assert_cmpint (urb.status, Op.EQ, -1);
+-  assert_cmpuint (urb.buffer[0], Op.EQ, 0x99);
+-  assert_cmpuint (urb.buffer[1], Op.EQ, 0x02);
+-  assert_cmpuint (urb.buffer[2], Op.EQ, 0xAA);
+-  assert_cmpuint (urb.buffer[3], Op.EQ, 0xFF);
++  assert_cmpint (urb.status, CompareOperator.EQ, -1);
++  assert_cmpuint (urb.buffer[0], CompareOperator.EQ, 0x99);
++  assert_cmpuint (urb.buffer[1], CompareOperator.EQ, 0x02);
++  assert_cmpuint (urb.buffer[2], CompareOperator.EQ, 0xAA);
++  assert_cmpuint (urb.buffer[3], CompareOperator.EQ, 0xFF);
+ 
+   // open the device a second time
+   int fd2 = Posix.open ("/dev/001", Posix.O_RDWR, 0);
+-  assert_cmpint (fd2, Op.GE, 0);
++  assert_cmpint (fd2, CompareOperator.GE, 0);
+ 
+   // exercise ioctl on fd2, should iterate from beginning
+   ci.devnum = 99;
+   ci.slow = 99;
+-  assert_cmpint (Posix.ioctl (fd2, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 11);
+-  assert_cmpuint (ci.slow, Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd2, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 11);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 0);
+ 
+   // should still work on first fd, and continue with original tree state
+   ci.devnum = 99;
+   ci.slow = 99;
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 42);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 12);
+-  assert_cmpuint (ci.slow, Op.EQ, 1);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 42);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 12);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 1);
+ 
+   // should work after closing first fd, advancing position
+   Posix.close (fd);
+   ci.devnum = 99;
+   ci.slow = 99;
+-  assert_cmpint (Posix.ioctl (fd2, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 42);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 12);
+-  assert_cmpuint (ci.slow, Op.EQ, 1);
++  assert_cmpint (Posix.ioctl (fd2, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 42);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 12);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 1);
+   Posix.close (fd2);
+ }
+ 
+@@ -353,7 +353,7 @@ USBDEVFS_CONNECTINFO 0 0000000B00000000
+   try {
+       fd  = FileUtils.open_tmp ("test_ioctl_tree.XXXXXX", out tmppath);
+   } catch (Error e) { Process.abort (); }
+-  assert_cmpint ((int) Posix.write (fd, test_tree, test_tree.length), Op.GT, 20);
++  assert_cmpint ((int) Posix.write (fd, test_tree, test_tree.length), CompareOperator.GT, 20);
+ 
+   Posix.close (fd);
+ 
+@@ -366,14 +366,14 @@ USBDEVFS_CONNECTINFO 0 0000000B00000000
+   FileUtils.unlink (tmppath);
+ 
+   fd = Posix.open ("/dev/001", Posix.O_RDWR, 0);
+-  assert_cmpint (fd, Op.GE, 0);
++  assert_cmpint (fd, CompareOperator.GE, 0);
+ 
+   // loaded ioctl
+   var ci = Ioctl.usbdevfs_connectinfo();
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 11);
+-  assert_cmpuint (ci.slow, Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 11);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 0);
+ }
+ 
+ void
+@@ -403,7 +403,7 @@ USBDEVFS_CONNECTINFO 0 0000000B00000000
+   try {
+       fd  = FileUtils.open_tmp ("test_ioctl_tree.XXXXXX", out tmppath);
+   } catch (Error e) { Process.abort (); }
+-  assert_cmpint ((int) Posix.write (fd, test_tree, test_tree.length), Op.GT, 20);
++  assert_cmpint ((int) Posix.write (fd, test_tree, test_tree.length), CompareOperator.GT, 20);
+ 
+   Posix.close (fd);
+ 
+@@ -416,14 +416,14 @@ USBDEVFS_CONNECTINFO 0 0000000B00000000
+   FileUtils.unlink (tmppath);
+ 
+   fd = Posix.open ("/dev/002", Posix.O_RDWR, 0);
+-  assert_cmpint (fd, Op.GE, 0);
++  assert_cmpint (fd, CompareOperator.GE, 0);
+ 
+   // loaded ioctl
+   var ci = Ioctl.usbdevfs_connectinfo();
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 11);
+-  assert_cmpuint (ci.slow, Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 11);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 0);
+ }
+ 
+ 
+@@ -463,7 +463,7 @@ USBDEVFS_CONNECTINFO 42 0000000C01000000
+       stderr.printf ("Cannot call xz: %s\n", e.message);
+       Process.abort ();
+   }
+-  assert_cmpint (exit, Op.EQ, 0);
++  assert_cmpint (exit, CompareOperator.EQ, 0);
+   try {
+       tb.load_ioctl ("/dev/001", tmppath);
+   } catch (Error e) {
+@@ -473,18 +473,18 @@ USBDEVFS_CONNECTINFO 42 0000000C01000000
+   FileUtils.unlink (tmppath);
+ 
+   int fd = Posix.open ("/dev/001", Posix.O_RDWR, 0);
+-  assert_cmpint (fd, Op.GE, 0);
++  assert_cmpint (fd, CompareOperator.GE, 0);
+ 
+   var ci = Ioctl.usbdevfs_connectinfo();
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 0);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 11);
+-  assert_cmpuint (ci.slow, Op.EQ, 0);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 0);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 11);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 0);
+ 
+-  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), Op.EQ, 42);
+-  assert_cmpint (Posix.errno, Op.EQ, 0);
+-  assert_cmpuint (ci.devnum, Op.EQ, 12);
+-  assert_cmpuint (ci.slow, Op.EQ, 1);
++  assert_cmpint (Posix.ioctl (fd, Ioctl.USBDEVFS_CONNECTINFO, ref ci), CompareOperator.EQ, 42);
++  assert_cmpint (Posix.errno, CompareOperator.EQ, 0);
++  assert_cmpuint (ci.devnum, CompareOperator.EQ, 12);
++  assert_cmpuint (ci.slow, CompareOperator.EQ, 1);
+ 
+   Posix.close (fd);
+ }
+@@ -502,10 +502,10 @@ A: dev=188:1
+ 
+   // appears as a proper char device
+   Posix.Stat st;
+-  assert_cmpint (Posix.lstat ("/dev/ttyUSB1", out st), Op.EQ, 0);
++  assert_cmpint (Posix.lstat ("/dev/ttyUSB1", out st), CompareOperator.EQ, 0);
+   assert (Posix.S_ISCHR (st.st_mode));
+-  assert_cmpuint (Posix.hack_major (st.st_rdev), Op.EQ, 188);
+-  assert_cmpuint (Posix.minor (st.st_rdev), Op.EQ, 1);
++  assert_cmpuint (Posix.hack_major (st.st_rdev), CompareOperator.EQ, 188);
++  assert_cmpuint (Posix.minor (st.st_rdev), CompareOperator.EQ, 1);
+ 
+   // stty issues an ioctl; verify that it recognizes the fake device as a real tty
+   string pout, perr;
+@@ -516,8 +516,8 @@ A: dev=188:1
+       stderr.printf ("Cannot call stty: %s\n", e.message);
+       Process.abort ();
+   }
+-  assert_cmpstr (perr, Op.EQ, "");
+-  assert_cmpint (pexit, Op.EQ, 0);
++  assert_cmpstr (perr, CompareOperator.EQ, "");
++  assert_cmpint (pexit, CompareOperator.EQ, 0);
+   assert (pout.contains ("speed 38400 baud"));
+ }
+ 
+@@ -533,23 +533,23 @@ A: dev=4:74
+ """);
+ 
+   var client_fd = Posix.open ("/dev/ttyS10", Posix.O_RDWR, 0);
+-  assert_cmpint (client_fd, Op.GE, 0);
++  assert_cmpint (client_fd, CompareOperator.GE, 0);
+ 
+   var master_fd = tb.get_dev_fd ("/dev/ttyS10");
+-  assert_cmpint (master_fd, Op.GE, 0);
++  assert_cmpint (master_fd, CompareOperator.GE, 0);
+ 
+   char[] buf = new char[100];
+ 
+   /* client -> master */
+-  assert_cmpint ((int) Posix.write (client_fd, "hello\n", 6), Op.EQ, 6);
+-  assert_cmpint ((int) Posix.read (master_fd, buf, 100), Op.EQ, 6);
+-  assert_cmpstr ((string) buf, Op.EQ, "hello\n");
++  assert_cmpint ((int) Posix.write (client_fd, "hello\n", 6), CompareOperator.EQ, 6);
++  assert_cmpint ((int) Posix.read (master_fd, buf, 100), CompareOperator.EQ, 6);
++  assert_cmpstr ((string) buf, CompareOperator.EQ, "hello\n");
+ 
+   /* master -> client */
+   buf = new char[100];
+-  assert_cmpint ((int) Posix.write (master_fd, "world\n", 6), Op.EQ, 6);
+-  assert_cmpint ((int) Posix.read (client_fd, buf, 100), Op.EQ, 6);
+-  assert_cmpstr ((string) buf, Op.EQ, "world\n");
++  assert_cmpint ((int) Posix.write (master_fd, "world\n", 6), CompareOperator.EQ, 6);
++  assert_cmpint ((int) Posix.read (client_fd, buf, 100), CompareOperator.EQ, 6);
++  assert_cmpstr ((string) buf, CompareOperator.EQ, "world\n");
+ 
+   Posix.close (client_fd);
+ }
+@@ -564,10 +564,10 @@ void
+ t_detects_not_running_in_testbed ()
+ {
+     int pipefds[2];
+-    assert_cmpint (Posix.pipe(pipefds), Op.EQ, 0);
++    assert_cmpint (Posix.pipe(pipefds), CompareOperator.EQ, 0);
+ 
+     Posix.pid_t pid = Posix.fork();
+-    assert_cmpint (pid, Op.NE, -1);
++    assert_cmpint (pid, CompareOperator.NE, -1);
+ 
+     if (pid == 0) {
+         Posix.close(pipefds[0]);
+@@ -578,8 +578,8 @@ t_detects_not_running_in_testbed ()
+     Posix.close(pipefds[1]);
+ 
+     char buf = 'x';
+-    assert_cmpint ((int) Posix.read(pipefds[0], &buf, 1), Op.EQ, 1);
+-    assert_cmpint (buf, Op.EQ, '0');
++    assert_cmpint ((int) Posix.read(pipefds[0], &buf, 1), CompareOperator.EQ, 1);
++    assert_cmpint (buf, CompareOperator.EQ, '0');
+ 
+     Posix.close(pipefds[0]);
+ }
+@@ -649,11 +649,11 @@ t_mt_parallel_attr_distinct ()
+   string val;
+   try {
+       FileUtils.get_contents(Path.build_filename(syspath, "c1"), out val);
+-      assert_cmpstr (val, Op.EQ, "100");
++      assert_cmpstr (val, CompareOperator.EQ, "100");
+       FileUtils.get_contents(Path.build_filename(syspath, "c2"), out val);
+-      assert_cmpstr (val, Op.EQ, "100");
++      assert_cmpstr (val, CompareOperator.EQ, "100");
+       FileUtils.get_contents(Path.build_filename(syspath, "c3"), out val);
+-      assert_cmpstr (val, Op.EQ, "100");
++      assert_cmpstr (val, CompareOperator.EQ, "100");
+   } catch (FileError e) {
+       error ("failed to read attribute: %s", e.message);
+   }
+@@ -692,7 +692,7 @@ t_mt_uevent ()
+           } catch (FileError e) {
+               error ("(#changes: %u) Error opening attribute file: %s", change_count, e.message);
+           }
+-          assert_cmpstr (contents, Op.EQ, "1");
++          assert_cmpstr (contents, CompareOperator.EQ, "1");
+           tb.set_property (syspath, "ID_FOO", "1");
+       }
+       return null;
+@@ -711,8 +711,8 @@ t_mt_uevent ()
+   t_emitter.join ();
+   t_noise.join ();
+ 
+-  assert_cmpuint (add_count, Op.EQ, 1);
+-  assert_cmpuint (change_count, Op.EQ, num_changes);
++  assert_cmpuint (add_count, CompareOperator.EQ, 1);
++  assert_cmpuint (change_count, CompareOperator.EQ, num_changes);
+ }
