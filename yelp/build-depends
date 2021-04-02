@@ -6,5 +6,5 @@ libxslt-dev
 libxt-dev
 sqlite-dev
 systemd-dev
-webkit2gtk-dev
+webkit2gtk3-dev
 yelp-xsl

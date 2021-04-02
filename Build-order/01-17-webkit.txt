@@ -18,4 +18,6 @@ wildmidi
 gst-plugins-bad
 geocode-glib
 geoclue
-webkit2gtk
+libsoup3
+webkit2gtk3
+webkit2gtk4
