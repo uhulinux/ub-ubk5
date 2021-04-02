@@ -1,3 +1,5 @@
 #!/bin/sh -eux
 
-ub_install
+cd common
+install -dm755 "$UB_INSTALLDIR"/usr/share/unicode/cldr/common
+cp -r . "$UB_INSTALLDIR"/usr/share/unicode/cldr/common/

@@ -1,6 +1,7 @@
 gobject-introspection-dev
 gtk3-dev
 itstool
+json-glib-dev
 libdazzle-dev
 meson
 polkit-dev

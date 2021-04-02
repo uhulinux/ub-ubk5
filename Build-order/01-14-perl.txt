@@ -1,5 +1,4 @@
 perl-clone
-perl-date-manip
 perl-digest-hmac
 perl-digest-nilsimsa
 perl-digest-sha1
@@ -14,9 +13,7 @@ perl-mozilla-ca
 perl-netaddr-ip
 perl-net-ip
 perl-socket6
-perl-sort-versions
 perl-text-csv
-perl-tie-simple
 perl-version
 perl-compress-bzip2
 perl-net-libidn
@@ -50,16 +47,16 @@ perl-crypt-openssl-rsa
 perl-glib-object-introspection
 perl-cairo-gobject
 perl-gtk3
-perl-mail-mbox-messageparser
 perl-net-dns-resolver-programmable
 perl-lwp-protocol-https
 perl-archive-extract
-perl-capture-tiny
-perl-class-inspector
-perl-file-sharedir
 perl-algorithm-diff
 perl-text-diff
-perl-text-patch
 perl-archive-zip
-perl-alien-sdl
+perl-capture-tiny # perl-sdl
+perl-class-inspector # perl-sdl
+perl-file-sharedir # perl-sdl
+perl-text-patch # perl-sdl
+perl-alien-sdl # perl-sdl
+perl-tie-simple # perl-sdl
 perl-sdl
