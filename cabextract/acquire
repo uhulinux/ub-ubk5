@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 cabextract-${UB_VERSION}.tar.gz cabextract-${UB_VERSION}/
-	http://www.cabextract.org.uk/
+	https://www.cabextract.org.uk/

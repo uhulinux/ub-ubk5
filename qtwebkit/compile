@@ -9,4 +9,5 @@ ub_compile \
 	-DECM_MKSPECS_INSTALL_DIR=/usr/lib/qt5/mkspecs/modules \
 	-DPORT=Qt \
 	-DENABLE_TOOLS=OFF \
-	-DENABLE_API_TESTS=OFF
+	-DENABLE_API_TESTS=OFF \
+	-DUSE_GLIB=OFF

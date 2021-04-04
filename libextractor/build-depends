@@ -2,7 +2,7 @@ exiv2-dev
 ffmpeg-dev
 file-dev
 gst-plugins-base-dev
-gtk-dev
+gtk3-dev
 -libgsf-dev
 libmpeg2-dev
 libungif-dev
