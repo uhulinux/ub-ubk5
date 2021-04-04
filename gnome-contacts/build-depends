@@ -13,6 +13,7 @@ intltool
 itstool
 libcap-dev
 libchamplain-dev
+libgdata-dev
 libgudev-dev
 libhandy-dev
 libnotify-dev

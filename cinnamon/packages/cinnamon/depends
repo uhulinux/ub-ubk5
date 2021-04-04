@@ -12,7 +12,7 @@ cjs
 dbus-python3
 gnome-backgrounds
 gnome-power-manager
-gnome-themes-standard
+gnome-themes-extra
 gstreamer
 icon-theme-gnome-symbolic
 keybinder3

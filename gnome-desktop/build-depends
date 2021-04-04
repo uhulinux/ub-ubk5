@@ -1,7 +1,7 @@
 gnome-common
 gobject-introspection-dev
 gsettings-desktop-schemas
-gtk-dev
+gtk3-dev
 hwdata
 intltool
 iso-codes

@@ -10,7 +10,7 @@ cinnamon-translations
 cjs-dev
 gnome-bluetooth-dev
 gnome-keyring
-gnome-themes-standard
+gnome-themes-extra
 gstreamer-dev
 intltool
 libcanberra-dev

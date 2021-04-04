@@ -1,5 +1,6 @@
 at-spi2-core-dev
-gtk-dev
+gstreamer-dev
+gtk3-dev
 intltool
 itstool
 python3-dev

@@ -1,4 +1,5 @@
 gnome-desktop-dev
 intltool
 itstool
+libhandy-dev
 meson

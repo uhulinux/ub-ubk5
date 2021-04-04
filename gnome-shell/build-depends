@@ -13,7 +13,8 @@ gnome-desktop-dev
 gnome-menus-dev
 gobject-introspection-dev
 gstreamer-dev
-gtk-dev
+gtk3-dev
+gtk4-dev
 ibus-dev
 intltool
 krb5-dev

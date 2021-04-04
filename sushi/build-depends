@@ -1,5 +1,5 @@
 clutter-gst-dev
-clutter-gtk-dev
+clutter-gtk3-dev
 evince-dev
 gjs-dev
 gobject-introspection-dev
@@ -11,4 +11,4 @@ libgudev-dev
 libmusicbrainz-dev
 meson
 wayland-dev
-webkit2gtk-dev
+webkit2gtk3-dev

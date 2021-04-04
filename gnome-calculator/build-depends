@@ -2,6 +2,7 @@ gtksourceview4-dev
 intltool
 itstool
 libgee-dev
+libhandy-dev
 libsoup-dev
 libxml2-dev
 meson

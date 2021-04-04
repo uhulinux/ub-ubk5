@@ -1,0 +1,4 @@
+#!/usr/bin/env dl
+
+gnome-themes-extra-${UB_VERSION}.tar.xz gnome-themes-extra-${UB_VERSION}/
+	https://download.gnome.org/sources/gnome-themes-extra/${UB_VERSION_HEAD2}/

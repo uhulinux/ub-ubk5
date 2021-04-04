@@ -1,5 +1,5 @@
 clutter-gst-dev
-clutter-gtk-dev
+clutter-gtk3-dev
 curl-dev
 dbus-glib-dev
 docbook-dtds
@@ -12,7 +12,7 @@ gst-plugins-bad-dev
 gst-plugins-good
 gst-plugins-ugly
 gstreamer-dev
-gtk-dev
+gtk3-dev
 icon-theme-gnome
 intltool
 itstool

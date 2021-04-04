@@ -5,7 +5,7 @@ gnome-desktop-dev
 gobject-introspection-dev
 gsettings-desktop-schemas
 gst-plugins-base-dev
-gtk-dev
+gtk3-dev
 intltool
 iso-codes
 itstool
@@ -23,5 +23,5 @@ meson
 nss-dev
 sqlite-dev
 systemd-dev
-webkit2gtk-dev
+webkit2gtk3-dev
 xcb-util-dev

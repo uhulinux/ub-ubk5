@@ -1,3 +1,4 @@
+libhandy
 baobab
 caribou
 gnome-video-effects
@@ -19,7 +20,6 @@ nautilus-sendto
 eog
 eog-plugins
 icon-theme-gnome-symbolic
-libhandy
 epiphany
 libgxps
 gnome-autoar
@@ -68,7 +68,7 @@ gnome-applets
 gnome-shell-extensions
 gnome-system-monitor
 gnome-terminal
-gnome-themes-standard
+gnome-themes-extra
 gnome-user-docs
 gnome-user-share
 gom

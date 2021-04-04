@@ -6,7 +6,7 @@ gnome-common
 gnome-online-accounts-dev
 gobject-introspection-dev
 gperf
-gtk-dev
+gtk3-dev
 intltool
 libcanberra-dev
 libgcrypt-dev
@@ -21,4 +21,4 @@ nss-dev
 openldap-dev
 sqlite-dev
 vala-dev
-webkit2gtk-dev
+webkit2gtk3-dev

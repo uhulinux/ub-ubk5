@@ -1,5 +1,5 @@
 clutter-gst-dev
-clutter-gtk-dev
+clutter-gtk3-dev
 dbus-glib-dev
 docbook-dtds
 docbook-xsl

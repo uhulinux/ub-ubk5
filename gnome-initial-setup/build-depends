@@ -27,4 +27,4 @@ rest-dev
 telepathy-glib-dev
 util-linux-dev
 vala-dev
-webkit2gtk-dev
+webkit2gtk3-dev
