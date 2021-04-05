@@ -1,8 +1,7 @@
 alsa-lib-dev
 dbus-glib-dev
-gtk-dev
+gtk3-dev
 intltool
-libgee06-dev
 libjpeg-turbo-dev
 libsm-dev
 polkit-dev
