@@ -3,7 +3,7 @@ double-conversion
 gc-dev
 graphicsmagick-dev
 gtkmm3-dev
-gtkspell-dev
+gtkspell3-dev
 intltool
 libexif-dev
 libgdl-dev
