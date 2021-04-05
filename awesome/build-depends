@@ -2,7 +2,7 @@ cairo-dev
 dbus-dev
 gdk-pixbuf-dev
 gobject-introspection-dev
-gtk-dev
+gtk3-dev
 imagemagick-dev
 libx11-dev
 libxcb-dev
