@@ -1,5 +1,5 @@
 bogofilter
-clutter-gtk-dev
+clutter-gtk3-dev
 db4-dev
 evolution-data-server-dev
 geoclue-dev
@@ -9,10 +9,9 @@ gnome-common
 gnome-desktop-dev
 gnome-online-accounts-dev
 gsettings-desktop-schemas
-gspell-dev
+gspell3-dev
 gst-plugins-base-dev
-gtkhtml-dev
-gtkspell-dev
+gtkspell3-dev
 highlight
 icon-theme-gnome
 intltool
@@ -30,8 +29,7 @@ libytnef-dev
 networkmanager-dev
 nss-dev
 openldap-dev
-spamassassin
 startup-notification-dev
 systemd-dev
-webkit2gtk-dev
+webkit2gtk3-dev
 xcb-util-dev

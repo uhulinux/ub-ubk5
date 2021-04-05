@@ -1,6 +1,6 @@
 appstream-glib-dev
 gconf2-dev
-gtk-dev
+gtk3-dev
 guile-dev
 intltool
 itstool

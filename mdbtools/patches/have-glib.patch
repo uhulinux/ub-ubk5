@@ -1,0 +1,15 @@
+diff -Naur orig/include/mdbtools.h patched/include/mdbtools.h
+--- orig/include/mdbtools.h	2021-04-05 04:04:56.574486116 +0200
++++ patched/include/mdbtools.h	2021-04-05 04:17:01.367624631 +0200
+@@ -32,11 +32,7 @@
+ #include <string.h>
+ #include <locale.h>
+ 
+-#ifdef HAVE_GLIB
+ #include <glib.h>
+-#else
+-#include <mdbfakeglib.h>
+-#endif
+ 
+ #if defined(HAVE_ICONV)
+ #include <iconv.h>

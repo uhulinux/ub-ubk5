@@ -1,5 +1,5 @@
-clutter-gtk-dev
-colord-gtk-dev
+clutter-gtk3-dev
+colord-gtk3-dev
 exiv2-dev
 gnome-desktop-dev
 intltool

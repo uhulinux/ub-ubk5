@@ -1,6 +1,6 @@
 enchant-dev
 gsettings-desktop-schemas
-gspell-dev
+gspell3-dev
 gtksourceview4-dev
 intltool
 iso-codes

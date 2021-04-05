@@ -22,5 +22,5 @@ spice-gtk-dev
 tracker-dev
 vala-dev
 vte-dev
-webkit2gtk-dev
+webkit2gtk3-dev
 yelp-tools

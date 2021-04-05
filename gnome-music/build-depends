@@ -2,7 +2,7 @@ gnome-online-accounts-dev
 gobject-introspection-dev
 grilo-dev
 grilo-plugins
-gtk-dev
+gtk3-dev
 intltool
 itstool
 libdazzle-dev

@@ -1,10 +1,13 @@
 amtk-dev
+appstream-glib-dev
 dconf-dev
+gobject-introspection-dev
 gsettings-desktop-schemas
-gspell-dev
+gspell3-dev
 gtksourceview4-dev
 intltool
 itstool
 libgee-dev
 tepl-dev
 vala-dev
+yelp-tools

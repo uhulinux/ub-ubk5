@@ -1,10 +1,10 @@
 amtk-dev
 appstream-glib-dev
 gobject-introspection-dev
-gtk-dev
+gtk3-dev
 intltool
 itstool
 libxslt
 meson
 systemd-dev
-webkit2gtk-dev
+webkit2gtk3-dev

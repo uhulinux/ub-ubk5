@@ -1,0 +1,55 @@
+diff -Naur orig/configure patched/configure
+--- orig/configure	2020-09-11 02:37:00.000000000 +0200
++++ patched/configure	2021-04-05 14:05:58.130405036 +0200
+@@ -17699,7 +17699,7 @@
+ 
+ 
+ # Generate files
+-ac_config_files="$ac_config_files Makefile data/Makefile data/org.gnome.gnome-latex.gschema.xml data/build_tools/Makefile data/icons/Makefile data/icons/16x16/Makefile data/icons/24x24/Makefile data/images/Makefile data/templates/Makefile docs/Makefile docs/reference/Makefile help/Makefile man/Makefile po/Makefile.in src/Makefile src/evince/Makefile src/liblatexila/Makefile src/ui/Makefile tests/Makefile"
++ac_config_files="$ac_config_files Makefile data/Makefile data/org.gnome.gnome-latex.gschema.xml data/build_tools/Makefile data/icons/Makefile data/icons/16x16/Makefile data/icons/24x24/Makefile data/images/Makefile data/templates/Makefile help/Makefile man/Makefile po/Makefile.in src/Makefile src/evince/Makefile src/liblatexila/Makefile src/ui/Makefile tests/Makefile"
+ 
+ 
+ cat >confcache <<\_ACEOF
+diff -Naur orig/configure.ac patched/configure.ac
+--- orig/configure.ac	2020-09-11 02:31:40.000000000 +0200
++++ patched/configure.ac	2021-04-05 14:03:29.838280299 +0200
+@@ -151,9 +151,6 @@
+ AX_REQUIRE_DEFINED([VAPIGEN_CHECK])
+ VAPIGEN_CHECK
+ 
+-AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
+-GTK_DOC_CHECK([1.14], [--flavour no-tmpl])
+-
+ AX_REQUIRE_DEFINED([AX_CODE_COVERAGE])
+ AX_CODE_COVERAGE
+ 
+@@ -171,8 +168,6 @@
+ 	data/icons/24x24/Makefile
+ 	data/images/Makefile
+ 	data/templates/Makefile
+-	docs/Makefile
+-	docs/reference/Makefile
+ 	help/Makefile
+ 	man/Makefile
+ 	po/Makefile.in
+diff -Naur orig/Makefile.am patched/Makefile.am
+--- orig/Makefile.am	2020-05-21 18:18:50.000000000 +0200
++++ patched/Makefile.am	2021-04-05 13:55:34.669587641 +0200
+@@ -1,4 +1,4 @@
+-SUBDIRS = data man po help src tests docs
++SUBDIRS = data man po help src tests
+ 
+ include $(top_srcdir)/aminclude_static.am
+ clean-local: code-coverage-clean
+diff -Naur orig/Makefile.in patched/Makefile.in
+--- orig/Makefile.in	2020-09-11 02:37:18.000000000 +0200
++++ patched/Makefile.in	2021-04-05 13:55:59.717663054 +0200
+@@ -419,7 +419,7 @@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-SUBDIRS = data man po help src tests docs
++SUBDIRS = data man po help src tests
+ @CODE_COVERAGE_ENABLED_TRUE@GITIGNOREFILES := $(GITIGNOREFILES) $(CODE_COVERAGE_OUTPUT_FILE) $(CODE_COVERAGE_OUTPUT_DIRECTORY)
+ @CODE_COVERAGE_ENABLED_TRUE@code_coverage_v_lcov_cap = $(code_coverage_v_lcov_cap_$(V))
+ @CODE_COVERAGE_ENABLED_TRUE@code_coverage_v_lcov_cap_ = $(code_coverage_v_lcov_cap_$(AM_DEFAULT_VERBOSITY))

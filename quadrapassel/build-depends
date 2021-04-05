@@ -1,6 +1,6 @@
-clutter-gtk-dev
+clutter-gtk3-dev
 gsound-dev
-gtk-dev
+gtk3-dev
 intltool
 itstool
 libcanberra-dev

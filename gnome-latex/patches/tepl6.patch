@@ -1,0 +1,204 @@
+diff -Naur a/configure b/configure
+--- a/configure	2020-09-11 02:37:00.000000000 +0200
++++ b/configure	2021-04-05 13:40:56.815709030 +0200
+@@ -12299,7 +12299,7 @@
+ GTK_REQUIRED_VERSION="3.22"
+ GTKSOURCEVIEW_REQUIRED_VERSION="4.0"
+ AMTK_REQUIRED_VERSION="5.2"
+-TEPL_REQUIRED_VERSION="5.0"
++TEPL_REQUIRED_VERSION="6.0"
+ GSPELL_REQUIRED_VERSION="1.8"
+ VALA_REQUIRED_VERSION="0.46"
+ GEE_REQUIRED_VERSION="0.10"
+@@ -13405,7 +13405,7 @@
+ 	gtk+-3.0 >= \${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= \${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= \${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= \${TEPL_REQUIRED_VERSION}
++	tepl-6 >= \${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= \${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= \${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13416,7 +13416,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13430,7 +13430,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13452,7 +13452,7 @@
+ 	gtk+-3.0 >= \${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= \${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= \${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= \${TEPL_REQUIRED_VERSION}
++	tepl-6 >= \${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= \${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= \${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13463,7 +13463,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13477,7 +13477,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13508,7 +13508,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13520,7 +13520,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+@@ -13535,7 +13535,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+diff -Naur a/configure.ac b/configure.ac
+--- a/configure.ac	2020-09-11 02:31:40.000000000 +0200
++++ b/configure.ac	2021-04-05 13:37:40.134750476 +0200
+@@ -32,7 +32,7 @@
+ GTK_REQUIRED_VERSION="3.22"
+ GTKSOURCEVIEW_REQUIRED_VERSION="4.0"
+ AMTK_REQUIRED_VERSION="5.2"
+-TEPL_REQUIRED_VERSION="5.0"
++TEPL_REQUIRED_VERSION="6.0"
+ GSPELL_REQUIRED_VERSION="1.8"
+ VALA_REQUIRED_VERSION="0.46"
+ GEE_REQUIRED_VERSION="0.10"
+@@ -96,7 +96,7 @@
+ 	gtk+-3.0 >= ${GTK_REQUIRED_VERSION}
+ 	gtksourceview-4 >= ${GTKSOURCEVIEW_REQUIRED_VERSION}
+ 	amtk-5 >= ${AMTK_REQUIRED_VERSION}
+-	tepl-5 >= ${TEPL_REQUIRED_VERSION}
++	tepl-6 >= ${TEPL_REQUIRED_VERSION}
+ 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
+ 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+ 	gsettings-desktop-schemas
+diff -Naur a/README b/README
+--- a/README	2020-09-11 02:33:55.000000000 +0200
++++ b/README	2021-04-05 13:37:40.134750476 +0200
+@@ -21,7 +21,7 @@
+ * GLib >= 2.56
+ * GTK >= 3.22
+ * GtkSourceView >= 4.0
+-* Tepl >= 5.0 - https://wiki.gnome.org/Projects/Tepl
++* Tepl >= 6.0 - https://wiki.gnome.org/Projects/Tepl
+ * gspell >= 1.8
+ * gee-0.8 >= 0.10
+ * gsettings-desktop-schemas
+diff -Naur a/src/document.vala b/src/document.vala
+--- a/src/document.vala	2020-05-21 18:18:58.000000000 +0200
++++ b/src/document.vala	2021-04-05 13:37:40.134750476 +0200
+@@ -224,7 +224,7 @@
+                     string primary_msg = _("Impossible to save the file.");
+                     Tepl.InfoBar infobar = new Tepl.InfoBar.simple (MessageType.ERROR,
+                         primary_msg, e.message);
+-                    infobar.add_close_button ();
++                    infobar.setup_close_button ();
+                     tab.add_info_bar (infobar);
+                     infobar.show ();
+                 }
+diff -Naur a/src/liblatexila/Makefile.am b/src/liblatexila/Makefile.am
+--- a/src/liblatexila/Makefile.am	2020-05-21 18:18:55.000000000 +0200
++++ b/src/liblatexila/Makefile.am	2021-04-05 13:37:40.134750476 +0200
+@@ -135,7 +135,7 @@
+ 
+ Latexila.gir: liblatexila.la
+ Latexila_gir_NAMESPACE = Latexila
+-Latexila_gir_INCLUDES = Gtk-3.0 GtkSource-4 Tepl-5
++Latexila_gir_INCLUDES = Gtk-3.0 GtkSource-4 Tepl-6
+ Latexila_gir_LIBS = liblatexila.la
+ Latexila_gir_FILES =				\
+ 	$(liblatexila_public_headers)		\
+@@ -156,7 +156,7 @@
+ 
+ VAPIGEN_VAPIS = latexila.vapi
+ 
+-latexila_vapi_DEPS = gio-2.0 gtk+-3.0 gtksourceview-4 Tepl-5
++latexila_vapi_DEPS = gio-2.0 gtk+-3.0 gtksourceview-4 Tepl-6
+ latexila_vapi_FILES = Latexila.gir
+ 
+ noinst_DATA += latexila.vapi
+diff -Naur a/src/liblatexila/Makefile.in b/src/liblatexila/Makefile.in
+--- a/src/liblatexila/Makefile.in	2020-09-11 02:37:19.000000000 +0200
++++ b/src/liblatexila/Makefile.in	2021-04-05 13:39:34.479243650 +0200
+@@ -608,7 +608,7 @@
+ 
+ @HAVE_INTROSPECTION_TRUE@INTROSPECTION_GIRS = Latexila.gir
+ @HAVE_INTROSPECTION_TRUE@Latexila_gir_NAMESPACE = Latexila
+-@HAVE_INTROSPECTION_TRUE@Latexila_gir_INCLUDES = Gtk-3.0 GtkSource-4 Tepl-5
++@HAVE_INTROSPECTION_TRUE@Latexila_gir_INCLUDES = Gtk-3.0 GtkSource-4 Tepl-6
+ @HAVE_INTROSPECTION_TRUE@Latexila_gir_LIBS = liblatexila.la
+ @HAVE_INTROSPECTION_TRUE@Latexila_gir_FILES = \
+ @HAVE_INTROSPECTION_TRUE@	$(liblatexila_public_headers)		\
+@@ -618,7 +618,7 @@
+ 
+ @HAVE_INTROSPECTION_TRUE@Latexila_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
+ @ENABLE_VAPIGEN_TRUE@VAPIGEN_VAPIS = latexila.vapi
+-@ENABLE_VAPIGEN_TRUE@latexila_vapi_DEPS = gio-2.0 gtk+-3.0 gtksourceview-4 Tepl-5
++@ENABLE_VAPIGEN_TRUE@latexila_vapi_DEPS = gio-2.0 gtk+-3.0 gtksourceview-4 Tepl-6
+ @ENABLE_VAPIGEN_TRUE@latexila_vapi_FILES = Latexila.gir
+ all: $(BUILT_SOURCES)
+ 	$(MAKE) $(AM_MAKEFLAGS) all-am
+diff -Naur a/src/Makefile.am b/src/Makefile.am
+--- a/src/Makefile.am	2020-05-21 18:18:58.000000000 +0200
++++ b/src/Makefile.am	2021-04-05 13:37:40.134750476 +0200
+@@ -8,7 +8,7 @@
+ 	--disable-since-check			\
+ 	--pkg gtk+-3.0				\
+ 	--pkg gtksourceview-4			\
+-	--pkg Tepl-5				\
++	--pkg Tepl-6				\
+ 	--pkg gspell-1				\
+ 	--pkg gee-0.8				\
+ 	--pkg posix				\
+diff -Naur a/src/Makefile.in b/src/Makefile.in
+--- a/src/Makefile.in	2020-09-11 02:37:01.000000000 +0200
++++ b/src/Makefile.in	2021-04-05 13:38:59.759095697 +0200
+@@ -525,7 +525,7 @@
+ 	--disable-since-check			\
+ 	--pkg gtk+-3.0				\
+ 	--pkg gtksourceview-4			\
+-	--pkg Tepl-5				\
++	--pkg Tepl-6				\
+ 	--pkg gspell-1				\
+ 	--pkg gee-0.8				\
+ 	--pkg posix				\

@@ -1,6 +1,6 @@
 gjs-dev
 gobject-introspection-dev
-gtk-dev
+gtk3-dev
 intltool
 itstool
 meson

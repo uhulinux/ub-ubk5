@@ -3,7 +3,7 @@ gobject-introspection-dev
 gst-plugins-bad-dev
 gst-plugins-base-dev
 gstreamer-dev
-gtk-dev
+gtk3-dev
 intltool
 itstool
 libhandy-dev
