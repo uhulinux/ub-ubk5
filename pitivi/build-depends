@@ -1,7 +1,7 @@
 gst-plugins-bad-dev
 gst-plugins-base-dev
 gst-validate-dev
-gtk-dev
+gtk3-dev
 intltool
 itstool
 python3-cairo-dev

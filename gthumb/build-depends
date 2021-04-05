@@ -1,10 +1,10 @@
 brasero-dev
-clutter-gtk-dev
+clutter-gtk3-dev
 colord-dev
 exiv2-dev
 gsettings-desktop-schemas
 gst-plugins-base-dev
-gtk-dev
+gtk3-dev
 itstool
 lcms2-dev
 libchamplain-dev
@@ -12,4 +12,4 @@ librsvg-dev
 libtiff-dev
 meson
 wayland-dev
-webkit2gtk-dev
+webkit2gtk3-dev

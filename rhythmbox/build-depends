@@ -2,7 +2,7 @@ avahi-dev
 brasero-dev
 check-dev
 clutter-gst-dev
-clutter-gtk-dev
+clutter-gtk3-dev
 gobject-introspection-dev
 grilo-dev
 gst-plugins-base-dev

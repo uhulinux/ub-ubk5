@@ -1,6 +1,6 @@
 gsettings-desktop-schemas
-gspell-dev
-gtk-dev
+gspell3-dev
+gtk3-dev
 gtksourceview4-dev
 intltool
 iso-codes
@@ -8,5 +8,6 @@ itstool
 json-glib-dev
 libdazzle-dev
 libgda-dev
+libhandy-dev
 libsoup-dev
 meson

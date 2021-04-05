@@ -12,7 +12,6 @@ jsonrpc-glib
 gst-validate
 atomix
 lasem
-gnubiff
 meld
 d-feet
 dropbox

@@ -1,7 +1,7 @@
 gobject-introspection-dev
-gtk-dev
+gtk3-dev
 intltool
 json-glib-dev
 libnotify-dev
 libpeas-dev
-webkit2gtk-dev
+webkit2gtk3-dev

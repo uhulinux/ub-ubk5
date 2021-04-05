@@ -1,0 +1,463 @@
+diff -Naur orig/pan/data/article-cache.cc patched/pan/data/article-cache.cc
+--- orig/pan/data/article-cache.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/data/article-cache.cc	2021-04-05 15:53:10.143642775 +0200
+@@ -19,18 +19,15 @@
+ 
+ #include <config.h>
+ 
+-extern "C"
+-{
+-  #include <errno.h>
+-  #include <sys/types.h>
+-  #include <sys/stat.h>
+-  #include <unistd.h>
+-  #include <dirent.h>
++#include <errno.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <unistd.h>
++#include <dirent.h>
+ 
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-  #include <gmime/gmime.h>
+-}
++#include <glib.h>
++#include <glib/gi18n.h>
++#include <gmime/gmime.h>
+ 
+ #include <pan/general/debug.h>
+ #include <pan/general/file-util.h>
+diff -Naur orig/pan/data-impl/data-impl.cc patched/pan/data-impl/data-impl.cc
+--- orig/pan/data-impl/data-impl.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/data-impl/data-impl.cc	2021-04-05 16:01:36.861069630 +0200
+@@ -22,10 +22,8 @@
+ **************/
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include <glib.h> // for g_build_filename
+-}
++#include <glib/gi18n.h>
++#include <glib.h> // for g_build_filename
+ #include <pan/general/debug.h>
+ #include <pan/general/file-util.h>
+ #include <pan/general/log.h>
+diff -Naur orig/pan/general/file-util.cc patched/pan/general/file-util.cc
+--- orig/pan/general/file-util.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/general/file-util.cc	2021-04-05 15:50:32.139264475 +0200
+@@ -22,17 +22,14 @@
+ #include <cerrno>
+ #include <cctype>
+ 
+-extern "C"
+-{
+-  #include <unistd.h>
+-  #include <sys/stat.h>
+-  #include <sys/types.h>
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-  #ifndef G_OS_WIN32
+-    #include <pwd.h>
+-  #endif
+-}
++#include <unistd.h>
++#include <sys/stat.h>
++#include <sys/types.h>
++#include <glib.h>
++#include <glib/gi18n.h>
++#ifndef G_OS_WIN32
++  #include <pwd.h>
++#endif
+ 
+ #include "debug.h"
+ #include "log.h"
+diff -Naur orig/pan/general/line-reader.cc patched/pan/general/line-reader.cc
+--- orig/pan/general/line-reader.cc	2017-12-23 20:51:55.000000000 +0100
++++ patched/pan/general/line-reader.cc	2021-04-05 15:47:35.518859372 +0200
+@@ -1,9 +1,7 @@
+ #include <config.h>
+ #include <cstdio>
+ #include <cstdlib>
+-extern "C"{ 
+-  #include <glib/gi18n.h>
+-}
++#include <glib/gi18n.h>
+ #include <cerrno>
+ #include "file-util.h"
+ #include "line-reader.h"
+diff -Naur orig/pan/general/text-match.cc patched/pan/general/text-match.cc
+--- orig/pan/general/text-match.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/general/text-match.cc	2021-04-05 15:49:33.599130069 +0200
+@@ -18,11 +18,9 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <ctype.h>
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-}
++#include <ctype.h>
++#include <glib.h>
++#include <glib/gi18n.h>
+ #include "debug.h"
+ #include "log.h"
+ #include "text-match.h"
+diff -Naur orig/pan/gui/actions.cc patched/pan/gui/actions.cc
+--- orig/pan/gui/actions.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/actions.cc	2021-04-05 16:03:12.137332450 +0200
+@@ -18,10 +18,8 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ 
+ #include <pan/general/macros.h>
+ #include <pan/general/debug.h>
+diff -Naur orig/pan/gui/dl-headers-ui.cc patched/pan/gui/dl-headers-ui.cc
+--- orig/pan/gui/dl-headers-ui.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/dl-headers-ui.cc	2021-04-05 16:04:28.177541103 +0200
+@@ -18,11 +18,9 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib.h>
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ #include <pan/general/macros.h>
+ #include <pan/tasks/queue.h>
+ #include <pan/tasks/task-xover.h>
+diff -Naur orig/pan/gui/group-prefs.cc patched/pan/gui/group-prefs.cc
+--- orig/pan/gui/group-prefs.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/group-prefs.cc	2021-04-05 16:05:35.001723683 +0200
+@@ -17,12 +17,10 @@
+  *
+  */
+ 
+-extern "C" {
+-  #include <config.h>
+-  #include <sys/types.h> // chmod
+-  #include <sys/stat.h> // chmod
+-  #include <glib.h>
+-}
++#include <config.h>
++#include <sys/types.h> // chmod
++#include <sys/stat.h> // chmod
++#include <glib.h>
+ #include <iostream>
+ #include <fstream>
+ #include <pan/general/file-util.h>
+diff -Naur orig/pan/gui/group-prefs-dialog.cc patched/pan/gui/group-prefs-dialog.cc
+--- orig/pan/gui/group-prefs-dialog.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/group-prefs-dialog.cc	2021-04-05 16:06:48.833924589 +0200
+@@ -18,14 +18,12 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include <glib.h>
+-  #include "gtk-compat.h"
++#include <glib/gi18n.h>
++#include <glib.h>
++#include "gtk-compat.h"
+ #ifdef HAVE_GTKSPELL
+   #include <enchant/enchant.h>
+ #endif
+-}
+ #include <pan/general/debug.h>
+ #include <pan/general/macros.h>
+ #include <pan/data/data.h>
+diff -Naur orig/pan/gui/header-pane.cc patched/pan/gui/header-pane.cc
+--- orig/pan/gui/header-pane.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/header-pane.cc	2021-04-05 16:08:11.738149196 +0200
+@@ -17,12 +17,10 @@
+  *
+  */
+ 
+-extern "C" {
+-  #include <config.h>
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-  #include "gtk-compat.h"
+-}
++#include <config.h>
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
++#include "gtk-compat.h"
+ #include <cctype>
+ #include <cmath>
+ #include <algorithm>
+diff -Naur orig/pan/gui/prefs-ui.cc patched/pan/gui/prefs-ui.cc
+--- orig/pan/gui/prefs-ui.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/prefs-ui.cc	2021-04-05 16:10:41.074551278 +0200
+@@ -18,10 +18,8 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ #include <pan/general/debug.h>
+ #include <pan/general/macros.h>
+ #include <pan/general/file-util.h>
+diff -Naur orig/pan/gui/progress-view.cc patched/pan/gui/progress-view.cc
+--- orig/pan/gui/progress-view.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/progress-view.cc	2021-04-05 16:09:28.610356561 +0200
+@@ -18,9 +18,7 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include "gtk-compat.h"
+-}
++#include "gtk-compat.h"
+ #include <pan/general/string-view.h>
+ #include <pan/usenet-utils/mime-utils.h>
+ #include "progress-view.h"
+diff -Naur orig/pan/gui/save-attach-ui.cc patched/pan/gui/save-attach-ui.cc
+--- orig/pan/gui/save-attach-ui.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/save-attach-ui.cc	2021-04-05 16:17:33.959647758 +0200
+@@ -18,10 +18,8 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ #include <pan/general/debug.h>
+ #include <pan/general/macros.h>
+ #include <pan/icons/pan-pixbufs.h>
+diff -Naur orig/pan/gui/save-ui.cc patched/pan/gui/save-ui.cc
+--- orig/pan/gui/save-ui.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/save-ui.cc	2021-04-05 16:14:13.823118894 +0200
+@@ -18,10 +18,8 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ #include <pan/general/debug.h>
+ #include <pan/general/macros.h>
+ #include <pan/icons/pan-pixbufs.h>
+diff -Naur orig/pan/gui/score-add-ui.cc patched/pan/gui/score-add-ui.cc
+--- orig/pan/gui/score-add-ui.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/score-add-ui.cc	2021-04-05 16:11:53.378744847 +0200
+@@ -20,9 +20,7 @@
+ #include <config.h>
+ #include <cassert>
+ #include <climits>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-}
++#include <glib/gi18n.h>
+ #include <pan/general/debug.h>
+ #include <pan/general/text-match.h>
+ #include "hig.h"
+diff -Naur orig/pan/gui/score-view-ui.cc patched/pan/gui/score-view-ui.cc
+--- orig/pan/gui/score-view-ui.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/score-view-ui.cc	2021-04-05 16:13:05.398936973 +0200
+@@ -18,10 +18,8 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ #include <pan/general/debug.h>
+ #include "pad.h"
+ #include "score-add-ui.h"
+diff -Naur orig/pan/gui/server-ui.cc patched/pan/gui/server-ui.cc
+--- orig/pan/gui/server-ui.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/server-ui.cc	2021-04-05 16:19:57.384024624 +0200
+@@ -21,11 +21,9 @@
+ #include <cstdlib>
+ #include <cstring>
+ #include <climits>
+-extern "C" {
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib.h>
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ 
+ #include <pan/icons/pan-pixbufs.h>
+ #include <pan/general/file-util.h>
+diff -Naur orig/pan/gui/task-pane.cc patched/pan/gui/task-pane.cc
+--- orig/pan/gui/task-pane.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/gui/task-pane.cc	2021-04-05 16:18:41.859826149 +0200
+@@ -18,11 +18,9 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-  #include "gtk-compat.h"
+-}
++#include <glib.h>
++#include <glib/gi18n.h>
++#include "gtk-compat.h"
+ #include <pan/general/e-util.h>
+ #include <pan/general/debug.h>
+ #include <pan/general/file-util.h>
+diff -Naur orig/pan/tasks/nntp.cc patched/pan/tasks/nntp.cc
+--- orig/pan/tasks/nntp.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/tasks/nntp.cc	2021-04-05 15:59:05.040647463 +0200
+@@ -22,10 +22,8 @@
+ #include <cstdarg>
+ #include <cstdlib> // abort, atoi, strtoul
+ #include <cstdio> // snprintf
+-extern "C" {
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-}
++#include <glib.h>
++#include <glib/gi18n.h>
+ #include <pan/general/debug.h>
+ #include <pan/general/log.h>
+ #include <pan/general/messages.h>
+diff -Naur orig/pan/tasks/socket.cc patched/pan/tasks/socket.cc
+--- orig/pan/tasks/socket.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/tasks/socket.cc	2021-04-05 16:00:14.636841516 +0200
+@@ -21,9 +21,7 @@
+ #include <cstdarg>
+ #include <ctime>
+ #include <cmath>
+-extern "C" {
+-  #include <glib.h>
+-}
++#include <glib.h>
+ #include <pan/general/debug.h>
+ #include <pan/general/string-view.h>
+ #include "socket.h"
+diff -Naur orig/pan/tasks/task-article.cc patched/pan/tasks/task-article.cc
+--- orig/pan/tasks/task-article.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/tasks/task-article.cc	2021-04-05 15:55:40.252070947 +0200
+@@ -24,10 +24,7 @@
+ #include <config.h>
+ #include <algorithm>
+ #include <cassert>
+-extern "C"
+-{
+-  #include <glib/gi18n.h>
+-}
++#include <glib/gi18n.h>
+ #include <pan/general/debug.h>
+ #include <pan/general/file-util.h>
+ #include <pan/general/utf8-utils.h>
+diff -Naur orig/pan/tasks/task-groups.cc patched/pan/tasks/task-groups.cc
+--- orig/pan/tasks/task-groups.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/tasks/task-groups.cc	2021-04-05 15:58:13.336502696 +0200
+@@ -19,10 +19,8 @@
+ 
+ #include <config.h>
+ #include <cassert>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-  #include <stdlib.h>
+-}
++#include <glib/gi18n.h>
++#include <stdlib.h>
+ #include <pan/general/debug.h>
+ #include <pan/general/macros.h>
+ #include <pan/general/messages.h>
+diff -Naur orig/pan/tasks/task-post.cc patched/pan/tasks/task-post.cc
+--- orig/pan/tasks/task-post.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/tasks/task-post.cc	2021-04-05 15:57:20.996355614 +0200
+@@ -18,9 +18,7 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib/gi18n.h>
+-}
++#include <glib/gi18n.h>
+ #include "task-post.h"
+ #include <pan/general/debug.h>
+ #include <pan/general/log.h>
+diff -Naur orig/pan/tasks/task-xover.cc patched/pan/tasks/task-xover.cc
+--- orig/pan/tasks/task-xover.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/tasks/task-xover.cc	2021-04-05 15:56:32.436218662 +0200
+@@ -21,14 +21,11 @@
+ #include <cassert>
+ #include <cerrno>
+ 
+-extern "C"
+-{
+ #define PROTOTYPES
+ #include <stdio.h>
+ #include <uulib/uudeview.h>
+ #include <glib/gi18n.h>
+ #include <gmime/gmime-utils.h>
+-}
+ 
+ #include <fstream>
+ #include <iostream>
+diff -Naur orig/pan/tasks/task-xoverinfo.cc patched/pan/tasks/task-xoverinfo.cc
+--- orig/pan/tasks/task-xoverinfo.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/tasks/task-xoverinfo.cc	2021-04-05 15:55:29.808041312 +0200
+@@ -20,14 +20,12 @@
+ #include <config.h>
+ #include <cassert>
+ #include <cerrno>
+-extern "C" {
+-  #define PROTOTYPES
+-  #include <stdio.h>
+-  #include <uulib/uudeview.h>
+-  #include <glib/gi18n.h>
+-  #include <gmime/gmime-utils.h>
+-  #include <zlib.h>
+-}
++#define PROTOTYPES
++#include <stdio.h>
++#include <uulib/uudeview.h>
++#include <glib/gi18n.h>
++#include <gmime/gmime-utils.h>
++#include <zlib.h>
+ #include <fstream>
+ #include <iostream>
+ #include <pan/general/debug.h>
+diff -Naur orig/pan/usenet-utils/filter-info.cc patched/pan/usenet-utils/filter-info.cc
+--- orig/pan/usenet-utils/filter-info.cc	2017-12-29 18:15:47.000000000 +0100
++++ patched/pan/usenet-utils/filter-info.cc	2021-04-05 15:52:08.699486436 +0200
+@@ -18,10 +18,8 @@
+  */
+ 
+ #include <config.h>
+-extern "C" {
+-  #include <glib.h>
+-  #include <glib/gi18n.h>
+-}
++#include <glib.h>
++#include <glib/gi18n.h>
+ #include <pan/general/macros.h>
+ #include "filter-info.h"
+ 

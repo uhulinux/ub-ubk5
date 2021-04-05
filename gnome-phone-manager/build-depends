@@ -4,7 +4,7 @@ gconf2-dev
 gnokii-dev
 gnome-bluetooth-dev
 gnome-common
-gtk-dev
+gtk3-dev
 icon-theme-gnome
 intltool
 krb5-dev

@@ -1,6 +1,6 @@
 db4-dev
 evolution-dev
-gtkspell-dev
+gtkspell3-dev
 intltool
 json-glib-dev
 libcanberra-dev
