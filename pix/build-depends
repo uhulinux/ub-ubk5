@@ -1,13 +1,13 @@
 brasero-dev
 clutter-dev
-clutter-gtk-dev
+clutter-gtk3-dev
 exiv2-dev
 glib-dev
 gnome-common
 gsettings-desktop-schemas
 gst-plugins-base-dev
 gstreamer-dev
-gtk-dev
+gtk3-dev
 intltool
 itstool
 libjpeg-turbo-dev
@@ -16,5 +16,5 @@ libsoup-dev
 libtiff-dev
 libwebp-dev
 wayland-dev
-webkit2gtk-dev
+webkit2gtk3-dev
 yelp-tools

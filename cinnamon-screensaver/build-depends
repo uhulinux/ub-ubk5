@@ -6,4 +6,4 @@ intltool
 libgnomekbd-dev
 libsm-dev
 libxscrnsaver-dev
-webkit2gtk-dev
+webkit2gtk3-dev
