@@ -80,8 +80,6 @@ libetonyek
 libvirt
 libvirt-python3
 libvirt-glib
-freepascal
-lazarus
 ois
 ogre
 devil
