@@ -54,6 +54,7 @@ gsmartcontrol
 latencytop
 openocd
 xsensors
+gdk-pixbuf-xlib
 open-vm-tools
 hwinfo
 libva-utils

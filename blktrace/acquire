@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 blktrace_${UB_VERSION}.orig.tar.bz2 blktrace-${UB_VERSION}/
-	 http://ftp.debian.org/debian/pool/main/b/blktrace/
+	 https://ftp.debian.org/debian/pool/main/b/blktrace/
