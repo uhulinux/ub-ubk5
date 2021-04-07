@@ -73,6 +73,7 @@ rapidjson
 libxml++3
 transcode
 upower
+smartmontools
 icon-theme-gnome
 rinutils
 mdds

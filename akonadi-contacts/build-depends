@@ -18,5 +18,5 @@ ktextwidgets-dev
 libkleo-dev
 prison-dev
 qt5-dev
-qtwebengine-dev
+qt5-qtwebengine-dev
 shared-mime-info

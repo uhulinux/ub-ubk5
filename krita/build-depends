@@ -24,7 +24,7 @@ libpng-dev
 libquazip-dev
 libtiff-dev
 libungif-dev
-opencolorio-dev
+-opencolorio-dev
 openexr-dev
 poppler-qt5-dev
 qt5-dev
