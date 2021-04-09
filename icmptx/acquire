@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 icmptx-${UB_VERSION}.tar.gz icmptx-${UB_VERSION}/
-	http://thomer.com/icmptx/
+	https://thomer.com/icmptx/

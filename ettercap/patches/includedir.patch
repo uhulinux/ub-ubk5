@@ -1,0 +1,11 @@
+diff -Naur orig/cmake/Modules/FindGTK3.cmake patched/cmake/Modules/FindGTK3.cmake
+--- orig/cmake/Modules/FindGTK3.cmake	2020-08-01 16:32:06.000000000 +0200
++++ patched/cmake/Modules/FindGTK3.cmake	2021-04-08 19:09:24.493241639 +0200
+@@ -173,6 +173,7 @@
+       # fix for Ubuntu >= 11.10 (Oneiric Ocelot)
+       /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}
+       # end
++      /usr/lib/glib-2.0/include
+       /usr/lib64
+       /usr
+       /opt/gnome

@@ -4,9 +4,9 @@ docbook-xsl
 gmime-dev
 gpg
 gpgme-dev
-gtk-dev
+gtk3-dev
 gtksourceview4-dev
-gtkspell-dev
+gtkspell3-dev
 intltool
 krb5-dev
 libcanberra-dev
@@ -19,4 +19,4 @@ meson
 networkmanager-dev
 openldap-dev
 openssl-dev
-webkit2gtk-dev
+webkit2gtk3-dev

@@ -1,5 +1,5 @@
 #!/usr/bin/env dl
 
 compface-${UB_VERSION}.tar.gz compface-${UB_VERSION}/
-	http://ftp.osuosl.org/pub/blfs/conglomeration/compface/
-	http://ftp.xemacs.org/pub/xemacs/aux/
+	https://ftp.osuosl.org/pub/blfs/conglomeration/compface/
+	https://ftp.xemacs.org/pub/xemacs/aux/

@@ -2,7 +2,7 @@ binutils-dev
 freetype2-dev
 glew-dev
 glib-dev
-java-jre
+java
 libjpeg-turbo-dev
 libpng-dev
 libxml2-dev
@@ -14,4 +14,4 @@ python3-markupsafe
 python3-setuptools
 python3-sphinx
 qt5-dev
-qtwebengine-dev
+qt5-qtwebengine-dev

@@ -9,7 +9,7 @@ glib-dev
 gnutls-dev
 gpg
 gpgme-dev
-gtk-dev
+gtk3-dev
 icu-dev
 intltool
 libarchive-dev
@@ -31,5 +31,5 @@ networkmanager-dev
 poppler-glib-dev
 sqlite-dev
 startup-notification-dev
-webkit2gtk-dev
+webkit2gtk3-dev
 xcb-util-dev

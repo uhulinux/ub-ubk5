@@ -1,4 +1,6 @@
 #!/bin/sh -eux
 
+rm -f CMakeLists.txt
+rm -f GNUmakefile
 ub_replace -O3 -O2 Makefile
 ub_compile

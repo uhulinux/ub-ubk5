@@ -1,5 +1,5 @@
 #!/usr/bin/env dl
 
 pv-${UB_VERSION}.tar.gz pv-${UB_VERSION}/
-	http://www.ivarch.com/programs/sources/
-	http://pipeviewer.googlecode.com/files/
+	https://www.ivarch.com/programs/sources/
+	https://pipeviewer.googlecode.com/files/
