@@ -45,7 +45,6 @@ qshutdown
 tack
 urlview
 vbindiff
-0install
 ncdu
 renameutils
 jp2a
