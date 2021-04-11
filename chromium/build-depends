@@ -4,11 +4,10 @@ dbus-dev
 ffmpeg-dev
 flac-dev
 gperf
-gtk2-dev
-gtk-dev
+gtk3-dev
 hwdata
 icu-dev
-java-jre
+java
 krb5-dev
 lcms2-dev
 libdrm-dev
