@@ -1,4 +1,5 @@
 perl-clone
+perl-dbi
 perl-digest-hmac
 perl-digest-nilsimsa
 perl-digest-sha1

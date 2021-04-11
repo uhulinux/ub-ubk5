@@ -2,4 +2,4 @@
 
 hostapd-${UB_VERSION}.tar.gz hostapd-${UB_VERSION}/
     https://w1.fi/releases/
-	http://hostap.epitest.fi/releases/
+	https://hostap.epitest.fi/releases/
