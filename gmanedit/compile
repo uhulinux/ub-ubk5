@@ -1,4 +1,4 @@
 #!/bin/sh -eux
 
-export LDFLAGS+="-lz"
+# autoreconf -vif
 ub_compile

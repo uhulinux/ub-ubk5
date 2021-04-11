@@ -1,4 +1,4 @@
 atk-dev
-gtk2-dev
+gtk3-dev
 libx11-dev
 pango-dev
