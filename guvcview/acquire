@@ -2,5 +2,5 @@
 
 guvcview-src-"$UB_VERSION".tar.gz guvcview-src-"$UB_VERSION"/
 	https://downloads.sourceforge.net/project/guvcview/source/
-	http://download.berlios.de/guvcview/
-	http://download2.berlios.de/guvcview/
+	https://download.berlios.de/guvcview/
+	https://download2.berlios.de/guvcview/

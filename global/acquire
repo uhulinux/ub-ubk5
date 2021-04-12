@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 global-${UB_VERSION}.tar.gz global-${UB_VERSION}/
-	http://tamacom.com/global/
+	https://tamacom.com/global/

@@ -1,10 +1,12 @@
 cairo-dev
 colord-dev
 gdk-pixbuf-dev
-gtk-dev
+gobject-introspection-dev
+gtk3-dev
 intltool
 itstool
 libgusb-dev
+libhandy-dev
 libjpeg-turbo-dev
 meson
 sane-backends-dev

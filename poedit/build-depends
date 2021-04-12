@@ -1,7 +1,7 @@
 boost-dev
 db4-dev
 expat-dev
-gtkspell-dev
+gtkspell3-dev
 icu-dev
 lucene++-dev
 pugixml-dev

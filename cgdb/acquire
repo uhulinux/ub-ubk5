@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 cgdb-${UB_VERSION}.tar.gz cgdb-${UB_VERSION}/
-	http://cgdb.me/files/
+	https://cgdb.me/files/

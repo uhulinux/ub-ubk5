@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 mscgen-src-${UB_VERSION}.tar.gz mscgen-${UB_VERSION}/
-	http://www.mcternan.me.uk/mscgen/software/
+	https://www.mcternan.me.uk/mscgen/software/
