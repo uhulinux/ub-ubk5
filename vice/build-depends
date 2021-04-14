@@ -2,7 +2,7 @@ dos2unix
 ffmpeg-dev
 glew-dev
 glu-dev
-gtk-dev
+gtk3-dev
 libieee1284-dev
 libjpeg-turbo-dev
 liblame-dev

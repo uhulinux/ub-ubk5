@@ -17,6 +17,7 @@ libxmu-dev
 libxslt-dev
 lvm-dev
 opus-dev
+patchelf
 pulseaudio-dev
 python2
 python3-dev

@@ -1,4 +1,5 @@
 boost-dev
+expat-dev
 ffmpeg-dev
 fftw3-dev
 freealut-dev
@@ -25,3 +26,4 @@ python3-dev
 python3-numpy
 scons
 sdl-dev
+yaml-cpp

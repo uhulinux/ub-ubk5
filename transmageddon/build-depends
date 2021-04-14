@@ -2,7 +2,7 @@ gst-libav
 gst-plugins-bad-dev
 gst-plugins-good
 gst-plugins-ugly
-gtk
+gtk3
 intltool
 libnotify
 python3-dev

@@ -3,7 +3,7 @@ enca-dev
 ffmpeg-dev
 ffnvcodec-headers
 glu-dev
-gtk-dev
+gtk3-dev
 jack-dev
 lcms2-dev
 libarchive-dev

@@ -4,7 +4,7 @@ expat-dev
 ffmpeg-dev
 flac-dev
 gstreamer-dev
-gtk-dev
+gtk3-dev
 jack-dev
 libid3tag-dev
 liblame-dev

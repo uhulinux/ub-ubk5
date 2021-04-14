@@ -1,4 +1,4 @@
 ffmpeg-dev
-gtk-dev
+gtk3-dev
 libexif-dev
 wxwidgets-dev

@@ -137,6 +137,7 @@ openjpeg
 gc
 libunistring
 guile2.0
+guile2.2
 gdb
 valgrind
 libdrm
