@@ -5,7 +5,7 @@ socnetv
 librecad
 xephem
 phun
-gtkbox
+gtkdatabox
 klavaro
 xplanet
 celestia

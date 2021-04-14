@@ -1,7 +1,5 @@
 #!/bin/sh -eux
 
-#chmod +x waf-2.0.9
-
 waf configure \
 	--prefix=/usr \
 	--confdir=/etc/mpv \
