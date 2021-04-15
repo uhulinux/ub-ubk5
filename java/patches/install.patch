@@ -1,7 +1,13 @@
 diff -Naur orig/make/Install.gmk patched/make/Install.gmk
---- orig/make/Install.gmk	2020-06-11 18:24:51.000000000 +0200
-+++ patched/make/Install.gmk	2020-11-28 23:21:33.840473806 +0100
-@@ -33,11 +33,11 @@
+--- orig/make/Install.gmk	2020-11-19 20:09:22.000000000 +0100
++++ patched/make/Install.gmk	2021-04-15 15:47:29.518738291 +0200
+@@ -28,16 +28,16 @@
+ include $(SPEC)
+ 
+ BINARIES := $(notdir $(wildcard $(JDK_IMAGE_DIR)/bin/*))
+-INSTALLDIR := openjdk-$(VERSION_SHORT)
++INSTALLDIR := openjdk-15
+ 
  # Install the jdk image, in a very crude way. Not taking into
  # account, how to install properly on macosx or windows etc.
  install:

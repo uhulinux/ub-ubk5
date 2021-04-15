@@ -9,7 +9,7 @@ bash configure \
     --sysconfdir=/etc \
     --sharedstatedir=/var \
     --with-boot-jdk=./bootjdk \
-    --with-version-build="${UB_VERSION_TAIL1}" \
+    --with-version-string="${UB_VERSION}" \
     --with-version-pre="" \
     --with-version-opt="" \
     --with-stdc++lib=dynamic \

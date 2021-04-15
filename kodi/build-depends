@@ -17,7 +17,7 @@ glew-dev
 glu-dev
 gperf
 gtest
-java-jre
+java
 lcms2-dev
 liba52-dev
 libass-dev

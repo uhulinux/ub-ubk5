@@ -1,10 +1,10 @@
 #!/usr/bin/env dl
 
-jdk-${UB_VERSION_HEAD1}+${UB_VERSION_TAIL1}.tar.gz jdk-jdk-${UB_VERSION_HEAD1}-${UB_VERSION_TAIL1}/
-	https://github.com/openjdk/jdk/archive/
+#jdk-${UB_VERSION_HEAD1}+${UB_VERSION_TAIL1}.tar.gz jdk-jdk-${UB_VERSION_HEAD1}-${UB_VERSION_TAIL1}/
+#	https://github.com/openjdk/jdk/archive/
+
+jdk-${UB_VERSION}.tar.gz jdk15u-jdk-${UB_VERSION/+/-}/
+    https://github.com/openjdk/jdk15u/archive/
 
 java-bin-15.36.tar.gz java-bin-15.36/ :bootjdk
     http://download.ubk.hu/src/java/
-
-#openjdk-15.0.1_linux-x64_bin.tar.gz jdk-15.0.1/ :bootjdk
-#    https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_linux-x64_bin.tar.gz
