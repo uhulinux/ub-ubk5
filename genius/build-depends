@@ -1,7 +1,7 @@
 amtk-dev
 glib-dev
 gmp-dev
-gtk-dev
+gtk3-dev
 gtksourceview4-dev
 icon-theme-hicolor
 intltool

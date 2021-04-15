@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-v${UB_VERSION}.tar.gz skinsoppalusikka-${UB_VERSION}/
-	https://github.com/rofafor/vdr-plugin-skinsoppalusikka/
+v${UB_VERSION}.tar.gz vdr-plugin-skinsoppalusikka-${UB_VERSION}/
+	https://github.com/rofafor/vdr-plugin-skinsoppalusikka/archive/

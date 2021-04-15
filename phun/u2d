@@ -1,1 +1,1 @@
-urllist http://distrib-coffee.ipsl.jussieu.fr/pub/linux/Mageia/distrib/5/SRPMS/nonfree/release/ | grep phun- | sed s/phun-// | sed s/-0.*/~b/
+urllist https://distrib-coffee.ipsl.jussieu.fr/pub/linux/Mageia/distrib/5/SRPMS/nonfree/release/ | grep phun- | sed s/phun-// | sed s/-0.*/~b/

@@ -1,6 +1,5 @@
 genius
 mathomatic
-euler
 socnetv
 librecad
 xephem
