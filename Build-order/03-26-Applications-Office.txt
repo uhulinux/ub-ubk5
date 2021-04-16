@@ -2,8 +2,6 @@ sdedit
 osm-gps-map
 gramps
 zsh
-apache-ant
-freemind
 calcoo
 galculator
 homebank
