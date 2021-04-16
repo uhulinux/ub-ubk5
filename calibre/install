@@ -2,3 +2,11 @@
 
 mkdir -p ${UB_INSTALLDIR}/usr/lib/calibre
 tar x -f calibre-${UB_VERSION}-x86_64.txz -C ${UB_INSTALLDIR}/usr/lib/calibre
+
+find ${UB_INSTALLDIR}/usr/lib/calibre -maxdepth 1 -type f | while read file; do
+	patchelf --set-interpreter /usr/lib/ld-linux-x86-64.so.2 "$file"
+done
+find ${UB_INSTALLDIR}/usr/lib/calibre/{bin,libexec} -type f | while read file; do
+	patchelf --set-interpreter /usr/lib/ld-linux-x86-64.so.2 "$file"
+done
+patchelf --set-interpreter /usr/lib/ld-linux-x86-64.so.2 ${UB_INSTALLDIR}/usr/lib/calibre/lib/libQt5Core.so.5

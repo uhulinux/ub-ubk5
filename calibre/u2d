@@ -1,2 +1,2 @@
-maindir=$(urllist http://download.calibre-ebook.com/ | grep -E '^[0-9.].+$' | sort -V | tail -n 1)
-urllist http://download.calibre-ebook.com/$maindir | grep -E '^[0-9.].+$' | sort -V | tail -n 1
+maindir=$(urllist https://download.calibre-ebook.com/ | grep -E '^[0-9.].+$' | sort -V | tail -n 1)
+urllist https://download.calibre-ebook.com/$maindir | grep -E '^[0-9.].+$' | sort -V | tail -n 1

@@ -4,6 +4,7 @@ libinput
 libsm
 libxdamage
 nss
+patchelf
 qt5
 xcb-util-image
 xcb-util-keysyms
