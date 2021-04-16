@@ -15,4 +15,8 @@ mkdir -p "$UB_INSTALLDIR"/usr/lib/opera/
 cp -r "$UB_INSTALLDIR"/usr/lib/x86_64-linux-gnu/opera "$UB_INSTALLDIR"/usr/lib/
 rm -Rf "$UB_INSTALLDIR"/usr/lib/x86_64-linux-gnu
 
+for file in crashpad_handler opera opera_autoupdate opera_crashreporter opera_sandbox; do
+patchelf --set-interpreter /usr/lib/ld-linux-x86-64.so.2 "$UB_INSTALLDIR"/usr/lib/opera/"$file"
+done
+
 ln -sf /usr/lib/opera/opera "$UB_INSTALLDIR"/usr/bin/opera
