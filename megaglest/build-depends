@@ -3,7 +3,7 @@ ftgl-dev
 glew-dev
 glu-dev
 gnutls-dev
-gtk-dev
+gtk3-dev
 help2man
 icu-dev
 libjpeg-turbo-dev

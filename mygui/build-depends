@@ -3,7 +3,6 @@ freetype2-dev
 glu-dev
 libx11-dev
 mesa-dev
-ogre-dev
 ois-dev
 sdl2-dev
 sdl2-image-dev

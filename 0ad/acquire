@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-0ad-${UB_VERSION/~/-}-unix-build.tar.gz 0ad-${UB_VERSION/~/-}/
+0ad-${UB_VERSION/~/-}-unix-build.tar.gz .
       http://releases.wildfiregames.com/
