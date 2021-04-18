@@ -34,17 +34,23 @@ mkdir -p "$cellibdir"/nvidia \
 #kernelmodulok
 cp kernel/*.ko "$moduldir"/
 
-# binárisok
-mv	nvidia-xconfig \
-	nvidia-settings \
-	nvidia-bug-report.sh \
-	nvidia-smi \
-	nvidia-cuda-mps-server \
-	nvidia-cuda-mps-control \
-	nvidia-modprobe \
-	nvidia-persistenced \
-	nvidia-debugdump \
-	"$UB_INSTALLDIR"/usr/bin/
+# binárisok (patchelf)
+binaries='
+    nvidia-xconfig
+	nvidia-settings
+	nvidia-smi
+	nvidia-modprobe
+	nvidia-debugdump
+	nvidia-persistenced
+	nvidia-cuda-mps-server
+	nvidia-cuda-mps-control
+'
+for binary in $binaries;do
+    patchelf --set-interpreter /usr/lib/ld-linux-x86-64.so.2 $binary
+    mv $binary "$UB_INSTALLDIR"/usr/bin/
+done
+
+mv	nvidia-bug-report.sh "$UB_INSTALLDIR"/usr/bin/
 
 # desktop
 mv	nvidia-settings.desktop "$desktopdir"/

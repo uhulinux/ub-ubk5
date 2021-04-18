@@ -27,16 +27,22 @@ mkdir -p "$cellibdir"/nvidia \
 cp kernel/{nvidia.ko,uvm/nvidia-uvm.ko} "$moduldir"/
 
 # binárisok
-mv	nvidia-xconfig \
-	nvidia-settings \
-	nvidia-bug-report.sh \
-	nvidia-smi \
-	nvidia-modprobe \
-	nvidia-debugdump \
-	nvidia-persistenced \
-	nvidia-cuda-mps-server \
-	nvidia-cuda-mps-control \
-	"$UB_INSTALLDIR"/usr/bin/
+#patchelf
+binaries='
+    nvidia-xconfig
+	nvidia-settings
+	nvidia-smi
+	nvidia-modprobe
+	nvidia-debugdump
+	nvidia-persistenced
+	nvidia-cuda-mps-server
+	nvidia-cuda-mps-control
+'
+for binary in $binaries;do
+    patchelf --set-interpreter /usr/lib/ld-linux-x86-64.so.2 $binary
+    mv $binary "$UB_INSTALLDIR"/usr/bin/
+done
+mv	nvidia-bug-report.sh "$UB_INSTALLDIR"/usr/bin/
 
 # desktop
 mv	nvidia-settings.desktop "$desktopdir"/
@@ -50,12 +56,12 @@ mv	*.1 "$mandir"/
 # vendor
 mv	nvidia.icd "$vendordir"/
 
+mv	tls "$cellibdir"
+
 # biztonságba helyezés a régi módon
 mv	libglx.so."$UB_VERSION" "$cellibdir"/nvidia/
-
 #Áthelyezzük a nem a $cellibdir alá kerülő *.so-kat
 mv	nvidia_drv.so "$xmoduldir"/drivers/
-mv	tls "$cellibdir"
 
 # vdpau cuccok
 mv libvdpau_nvidia.so.${UB_VERSION} $vdpaudir

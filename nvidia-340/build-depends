@@ -4,4 +4,5 @@ kernel-dev
 libelf-dev
 libxv
 libxvmc
+patchelf
 x.org-server-dev

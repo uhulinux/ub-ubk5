@@ -4,5 +4,6 @@ gtk3-dev
 kernel-dev
 libxv
 libxvmc
+patchelf
 wayland-dev
 x.org-server-dev
