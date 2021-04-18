@@ -3,7 +3,7 @@ bullet-dev
 ffmpeg-dev
 libxt-dev
 mygui-dev
-ogre-dev
+ogre1.9-dev
 openscenegraph-dev
 qt5-dev
 sdl2-dev

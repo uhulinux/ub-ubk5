@@ -82,7 +82,7 @@ libvirt
 libvirt-python3
 libvirt-glib
 ois
-ogre
+ogre1.9
 devil
 cegui
 qtwebkit
