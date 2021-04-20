@@ -84,4 +84,3 @@ proj
 spice-protocol
 libnfs
 pavucontrol
-
