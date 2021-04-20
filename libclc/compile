@@ -1,3 +1,5 @@
 #!/bin/sh -eux
 
+# spirv targets: https://github.com/KhronosGroup/SPIRV-LLVM-Translator
+
 ub_compile

@@ -96,6 +96,7 @@ grep
 psutils
 gzip
 icu
+libxml2
 libffi
 libidn2
 libjpeg-turbo
@@ -160,7 +161,6 @@ python3-setuptools
 python2-setuptools
 git
 lcms2
-libxml2
 libxslt
 xmlto
 opensp
