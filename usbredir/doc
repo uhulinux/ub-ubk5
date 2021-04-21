@@ -1,7 +1,2 @@
-ChangeLog
-COPYING
-COPYING.LIB
-README
-README.multi-thread
-TODO
-usb-redirection-protocol.txt
+COPYING*
+README.md

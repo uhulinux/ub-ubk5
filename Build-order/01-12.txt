@@ -52,6 +52,7 @@ pm-utils
 consolekit
 glfw
 mesa-demos
+gdk-pixbuf-xlib
 xscreensaver
 dconf
 exiv2

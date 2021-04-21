@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-usbredir-${UB_VERSION}.tar.bz2 usbredir-${UB_VERSION}/
+usbredir-${UB_VERSION}.tar.xz usbredir-${UB_VERSION}/
 	https://spice-space.org/download/usbredir/
