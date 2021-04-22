@@ -1,0 +1,92 @@
+diff -Naur orig/Source/cmake/OptionsGTK.cmake patched/Source/cmake/OptionsGTK.cmake
+--- orig/Source/cmake/OptionsGTK.cmake	2021-03-26 11:46:47.000000000 +0100
++++ patched/Source/cmake/OptionsGTK.cmake	2021-04-22 20:35:17.620781167 +0200
+@@ -197,7 +197,7 @@
+     set(SOUP_MINIMUM_VERSION 2.54.0)
+     set(SOUP_API_VERSION 2.4)
+ else ()
+-    set(SOUP_MINIMUM_VERSION 2.99.2)
++    set(SOUP_MINIMUM_VERSION 2.99.4)
+     set(SOUP_API_VERSION 3.0)
+ endif ()
+ find_package(LibSoup ${SOUP_MINIMUM_VERSION} REQUIRED)
+diff -Naur orig/Source/WebCore/platform/network/soup/GUniquePtrSoup.h patched/Source/WebCore/platform/network/soup/GUniquePtrSoup.h
+--- orig/Source/WebCore/platform/network/soup/GUniquePtrSoup.h	2021-02-26 10:57:14.000000000 +0100
++++ patched/Source/WebCore/platform/network/soup/GUniquePtrSoup.h	2021-04-22 19:08:33.879470461 +0200
+@@ -29,13 +29,17 @@
+ namespace WTF {
+ 
+ WTF_DEFINE_GPTR_DELETER(SoupCookie, soup_cookie_free)
+-WTF_DEFINE_GPTR_DELETER(SoupMessageHeaders, soup_message_headers_free)
+ #if SOUP_CHECK_VERSION(2, 67, 1)
+ WTF_DEFINE_GPTR_DELETER(SoupHSTSPolicy, soup_hsts_policy_free)
+ #endif
+ #if USE(SOUP2)
+ WTF_DEFINE_GPTR_DELETER(SoupURI, soup_uri_free)
+ #endif
++#if SOUP_CHECK_VERSION(2, 99, 3)
++WTF_DEFINE_GPTR_DELETER(SoupMessageHeaders, soup_message_headers_unref)
++#else
++WTF_DEFINE_GPTR_DELETER(SoupMessageHeaders, soup_message_headers_free)
++#endif
+ 
+ } // namespace WTF
+ 
+diff -Naur orig/Source/WebCore/platform/network/soup/ResourceResponseSoup.cpp patched/Source/WebCore/platform/network/soup/ResourceResponseSoup.cpp
+--- orig/Source/WebCore/platform/network/soup/ResourceResponseSoup.cpp	2021-02-26 10:57:14.000000000 +0100
++++ patched/Source/WebCore/platform/network/soup/ResourceResponseSoup.cpp	2021-04-22 20:34:20.848251834 +0200
+@@ -24,6 +24,7 @@
+ 
+ #include "ResourceResponse.h"
+ 
++#include "GUniquePtrSoup.h"
+ #include "HTTPHeaderNames.h"
+ #include "HTTPParsers.h"
+ #include "MIMETypeRegistry.h"
+@@ -51,8 +52,8 @@
+     m_httpStatusCode = soup_message_get_status(soupMessage);
+     setHTTPStatusText(soup_message_get_reason_phrase(soupMessage));
+ 
+-    m_certificate = soup_message_get_tls_certificate(soupMessage);
+-    m_tlsErrors = soup_message_get_tls_certificate_errors(soupMessage);
++    m_certificate = soup_message_get_tls_peer_certificate(soupMessage);
++    m_tlsErrors = soup_message_get_tls_peer_certificate_errors(soupMessage);
+ 
+     auto* responseHeaders = soup_message_get_response_headers(soupMessage);
+     updateFromSoupMessageHeaders(responseHeaders);
+@@ -134,11 +135,10 @@
+ 
+     if (contentDisposition.is8Bit())
+         contentDisposition = String::fromUTF8WithLatin1Fallback(contentDisposition.characters8(), contentDisposition.length());
+-    SoupMessageHeaders* soupHeaders = soup_message_headers_new(SOUP_MESSAGE_HEADERS_RESPONSE);
+-    soup_message_headers_append(soupHeaders, "Content-Disposition", contentDisposition.utf8().data());
++    GUniquePtr<SoupMessageHeaders> soupHeaders(soup_message_headers_new(SOUP_MESSAGE_HEADERS_RESPONSE));
++    soup_message_headers_append(soupHeaders.get(), "Content-Disposition", contentDisposition.utf8().data());
+     GRefPtr<GHashTable> params;
+-    soup_message_headers_get_content_disposition(soupHeaders, nullptr, &params.outPtr());
+-    soup_message_headers_free(soupHeaders);
++    soup_message_headers_get_content_disposition(soupHeaders.get(), nullptr, &params.outPtr());
+     auto filename = params ? String::fromUTF8(static_cast<char*>(g_hash_table_lookup(params.get(), "filename"))) : String();
+     return sanitizeFilename(filename);
+ }
+diff -Naur orig/Source/WebCore/platform/network/soup/SoupVersioning.h patched/Source/WebCore/platform/network/soup/SoupVersioning.h
+--- orig/Source/WebCore/platform/network/soup/SoupVersioning.h	2021-02-26 10:57:14.000000000 +0100
++++ patched/Source/WebCore/platform/network/soup/SoupVersioning.h	2021-04-22 20:36:19.385362231 +0200
+@@ -105,7 +105,7 @@
+ }
+ 
+ static inline GTlsCertificate*
+-soup_message_get_tls_certificate(SoupMessage* message)
++soup_message_get_tls_peer_certificate(SoupMessage* message)
+ {
+     g_return_val_if_fail(SOUP_IS_MESSAGE(message), nullptr);
+     GTlsCertificate* certificate = nullptr;
+@@ -114,7 +114,7 @@
+ }
+ 
+ static inline GTlsCertificateFlags
+-soup_message_get_tls_certificate_errors(SoupMessage* message)
++soup_message_get_tls_peer_certificate_errors(SoupMessage* message)
+ {
+     g_return_val_if_fail(SOUP_IS_MESSAGE(message), static_cast<GTlsCertificateFlags>(0));
+     GTlsCertificateFlags flags = static_cast<GTlsCertificateFlags>(0);

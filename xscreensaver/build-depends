@@ -7,3 +7,5 @@ libjpeg-turbo-dev
 libxi-dev
 libxmu-dev
 libxpm-dev
+pam
+systemd-dev

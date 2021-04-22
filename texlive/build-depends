@@ -17,7 +17,6 @@ luajit-dev
 mpfr-dev
 perl
 pixman-dev
-poppler-dev
 python2
 python3
 ruby

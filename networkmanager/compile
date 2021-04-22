@@ -13,4 +13,5 @@ ub_compile \
 	-Dqt=false \
 	-Dbluez5_dun=true \
 	-Dpolkit_agent=true \
+	-Dtests=no
 #	-Dteamdctl=true \
