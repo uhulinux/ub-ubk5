@@ -37,7 +37,6 @@ xdg-utils
 libdbusmenu-qt
 zziplib
 luajit
-openmpi
 texlive
 
 #kigyófeloldás
