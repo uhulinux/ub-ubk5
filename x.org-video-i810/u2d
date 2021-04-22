@@ -1,1 +1,2 @@
-u2d https://www.x.org/releases/individual/driver/ xf86-video-intel-
+echo "2.99.917"
+# u2d https://www.x.org/releases/individual/driver/ xf86-video-intel-
