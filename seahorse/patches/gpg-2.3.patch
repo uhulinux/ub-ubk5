@@ -1,0 +1,12 @@
+diff -Naur orig/meson.build patched/meson.build
+--- orig/meson.build	1970-01-01 01:00:00.000000000 +0100
++++ patched/meson.build	2021-04-24 01:39:02.126810249 +0200
+@@ -26,7 +26,7 @@
+ # Dependencies
+ min_glib_version = '2.58'
+ min_gcr_version = '3.38'
+-accepted_gpg_versions = [ '2.2.0' ]
++accepted_gpg_versions = [ '2.2.0', '2.3.0' ]
+ gpg_check_version = find_program('build-aux' / 'gpg_check_version.py')
+ 
+ glib_deps = [
