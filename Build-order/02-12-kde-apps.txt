@@ -60,3 +60,4 @@ kshutdown
 kdiff3
 apper
 kde-apps
+kde
