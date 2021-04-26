@@ -51,4 +51,5 @@ openldap-dev
 pimcommon-dev
 qt5-dev
 qt5-qtwebengine-dev
+qtkeychain-dev
 sonnet-dev
