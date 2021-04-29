@@ -1,0 +1,20 @@
+--- a/src/ffDiaporama/engine/_EncodeVideo.cpp	2021-04-15 21:52:22.453761867 +0200
++++ b/src/ffDiaporama/engine/_EncodeVideo.cpp	2021-04-15 22:13:40.408887854 +0200
+@@ -128,17 +128,6 @@
+             av_write_trailer(Container);
+             avio_close(Container->pb);
+         }
+-        // Because of memory leak bug in libav/ffmpeg see: https://trac.ffmpeg.org/ticket/2937
+-        for (unsigned int i=0;i<Container->nb_streams;i++) {
+-            av_freep(&Container->streams[i]->index_entries);
+-            av_freep(&Container->streams[i]->probe_data.buf);
+-            av_dict_free(&Container->streams[i]->metadata);
+-            av_freep(&Container->streams[i]->codec->extradata);
+-            av_freep(&Container->streams[i]->codec->subtitle_header);
+-            av_freep(&Container->streams[i]->priv_data);
+-            //if (Container->streams[i]->info) av_freep(&Container->streams[i]->info->duration_error);
+-        }
+-        //=== End of patch
+         avformat_free_context(Container);
+         Container=NULL;
+     }

@@ -1,10 +1,4 @@
 #!/bin/sh -eux
 
 ub_compile \
-	--disable-libgutenprintui \
-	--disable-cups-ppds \
-	--without-translated-ppds \
-	--enable-cups-level3-ps \
-	--with-foomatic \
-	--with-foomatic3 \
-	--with-ijs
+	--disable-cups-ppds

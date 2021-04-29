@@ -1,6 +1,6 @@
 diff -Naur orig/base/password.py patched/base/password.py
---- orig/base/password.py	2019-12-10 06:00:33.000000000 +0100
-+++ patched/base/password.py	2019-12-31 00:08:44.487843606 +0100
+--- orig/base/password.py	2021-02-15 00:55:21.000000000 +0100
++++ patched/base/password.py	2021-04-28 21:57:40.855724550 +0200
 @@ -56,6 +56,7 @@
                'gos': 'sudo',
                'boss': 'su',
@@ -10,8 +10,8 @@ diff -Naur orig/base/password.py patched/base/password.py
                }
  
 diff -Naur orig/installer/distros.dat patched/installer/distros.dat
---- orig/installer/distros.dat	2019-12-10 06:00:31.000000000 +0100
-+++ patched/installer/distros.dat	2019-12-31 00:18:37.345686400 +0100
+--- orig/installer/distros.dat	2021-02-15 00:55:21.000000000 +0100
++++ patched/installer/distros.dat	2021-04-28 22:01:35.573406028 +0200
 @@ -94,7 +94,7 @@
  # ****************************************
  
@@ -21,7 +21,7 @@ diff -Naur orig/installer/distros.dat patched/installer/distros.dat
  
  # ****************************************
  
-@@ -111,6 +111,283 @@
+@@ -111,6 +111,301 @@
  supported=0
  
  # ****************************************
@@ -300,6 +300,24 @@ diff -Naur orig/installer/distros.dat patched/installer/distros.dat
 +
 +[uhu-linux:UBK3:avahi-utils]
 +packages=avahi
++
++# ****************************************
++
++[uhu-linux:UBK4]
++code_name=PAFF
++supported=1
++packaged_version=
++release_date=
++same_as_version=UBK3
++
++# ****************************************
++
++[uhu-linux:UBK5]
++code_name=
++supported=1
++packaged_version=
++release_date=
++same_as_version=UBK3
 +
 +# ****************************************
  

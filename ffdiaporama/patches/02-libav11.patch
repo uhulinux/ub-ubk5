@@ -1,0 +1,300 @@
+--- ffDiaporama/src/ffDiaporama/MainWindow/mainwindow.cpp	2014-05-04 07:29:11.000000000 +0200
++++ ffDiaporama/src/ffDiaporama/MainWindow/mainwindow.cpp	2016-12-06 22:34:19.187392586 +0100
+@@ -479,5 +479,5 @@
+ 
+     // Close some libav additionnals
+-    #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++    #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+     avfilter_uninit();
+     #endif
+--- ffDiaporama/src/ffDiaporama/engine/_EncodeVideo.cpp	2016-12-06 22:42:46.384001709 +0100
++++ ffDiaporama/src/ffDiaporama/engine/_EncodeVideo.cpp	2016-12-06 22:32:29.164006043 +0100
+@@ -137,5 +137,5 @@
+             av_freep(&Container->streams[i]->codec->subtitle_header);
+             av_freep(&Container->streams[i]->priv_data);
+-            if (Container->streams[i]->info) av_freep(&Container->streams[i]->info->duration_error);
++            //if (Container->streams[i]->info) av_freep(&Container->streams[i]->info->duration_error);
+         }
+         //=== End of patch
+@@ -152,5 +152,5 @@
+         #if defined(LIBAV) && (LIBAVVERSIONINT<=8)
+             audio_resample_close(AudioResampler);
+-        #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++        #elif defined(LIBAV)
+             avresample_close(AudioResampler);
+             avresample_free(&AudioResampler);
+@@ -780,5 +780,5 @@
+                 }
+             }
+-        #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++        #elif defined(LIBAV)
+             if ((AudioStream->codec->sample_fmt!=ToEncodeMusic.SampleFormat)||(AudioStream->codec->channels!=ToEncodeMusic.Channels)||(AudioSampleRate!=ToEncodeMusic.SamplingRate)) {
+                 if (!AudioResamplerBuffer) {
+@@ -848,5 +848,5 @@
+ 
+     // Define InterleaveFrame to not compute it for each frame
+-    #if defined(FFMPEG)&&(FFMPEGVERSIONINT>=201)
++    #if (defined(FFMPEG)&&(FFMPEGVERSIONINT>=201) || (LIBAVVERSIONINT >=10))
+     InterleaveFrame=(strcmp(Container->oformat->name,"avi")!=0);
+     #else
+@@ -1028,5 +1028,5 @@
+             #if defined(LIBAV) && (LIBAVVERSIONINT<=8)
+                 DestPacket=(u_int8_t *)PacketSound;
+-            #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++            #elif defined(LIBAV)
+                 // LIBAV 9 => Convert sample format (is needed)
+                 if ((AudioResampler!=NULL)&&(AudioResamplerBuffer!=NULL)) {
+--- ffDiaporama/src/ffDiaporama/engine/_EncodeVideo.h	2014-04-12 08:06:15.000000000 +0200
++++ ffDiaporama/src/ffDiaporama/engine/_EncodeVideo.h	2016-12-06 22:32:59.494939656 +0100
+@@ -83,5 +83,5 @@
+     #if defined(LIBAV) && (LIBAVVERSIONINT<=8)
+     ReSampleContext         *AudioResampler;            // Audio resampler
+-    #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++    #elif defined(LIBAV)
+     AVAudioResampleContext  *AudioResampler;
+     #elif defined(FFMPEG)
+--- ffDiaporama/src/ffDiaporama/engine/cBaseMediaFile.cpp	2016-12-06 22:42:46.383001678 +0100
++++ ffDiaporama/src/ffDiaporama/engine/cBaseMediaFile.cpp	2016-12-08 20:05:39.662115086 +0100
+@@ -1934,10 +1934,10 @@
+ 
+ cImageInCache::~cImageInCache() {
+-    #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++    #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+     if (FrameBufferYUV->opaque) {
+         avfilter_unref_buffer((AVFilterBufferRef *)FrameBufferYUV->opaque);
+         FrameBufferYUV->opaque=NULL;
+     }
+-    #elif defined(FFMPEG) && (FFMPEGVERSIONINT>=201)
++    #else
+     if (FiltFrame) {
+         av_frame_unref(FiltFrame);
+@@ -2438,5 +2438,4 @@
+ 
+                     // Setup decoder options
+-                    LibavFile->streams[VideoStreamNumber]->codec->debug_mv         =0;                    // Debug level (0=nothing)
+                     LibavFile->streams[VideoStreamNumber]->codec->debug            =0;                    // Debug level (0=nothing)
+                     LibavFile->streams[VideoStreamNumber]->codec->workaround_bugs  =1;                    // Work around bugs in encoders which sometimes cannot be detected automatically : 1=autodetection
+@@ -2455,10 +2454,10 @@
+                         // Get Aspect Ratio
+ 
+-                        AspectRatio=double(LibavFile->streams[VideoStreamNumber]->codec->sample_aspect_ratio.num)/double(LibavFile->streams[VideoStreamNumber]->codec->sample_aspect_ratio.den);
+-
+-                        if (LibavFile->streams[VideoStreamNumber]->sample_aspect_ratio.num!=0)
++                        if (LibavFile->streams[VideoStreamNumber]->codec->sample_aspect_ratio.num!=0)
++                            AspectRatio=double(LibavFile->streams[VideoStreamNumber]->codec->sample_aspect_ratio.num)/double(LibavFile->streams[VideoStreamNumber]->codec->sample_aspect_ratio.den);
++                        else if (LibavFile->streams[VideoStreamNumber]->sample_aspect_ratio.num!=0)
+                             AspectRatio=double(LibavFile->streams[VideoStreamNumber]->sample_aspect_ratio.num)/double(LibavFile->streams[VideoStreamNumber]->sample_aspect_ratio.den);
+-
+-                        if (AspectRatio==0) AspectRatio=1;
++                        else
++                            AspectRatio=1;
+ 
+                         // Special case for DVD mode video without PAR
+@@ -2583,5 +2582,4 @@
+ 
+                     // Setup decoder options
+-                    ThumbStream->codec->debug_mv         =0;                    // Debug level (0=nothing)
+                     ThumbStream->codec->debug            =0;                    // Debug level (0=nothing)
+                     ThumbStream->codec->workaround_bugs  =1;                    // Work around bugs in encoders which sometimes cannot be detected automatically : 1=autodetection
+@@ -2752,5 +2748,5 @@
+ 
+     if (FrameBufferYUV!=NULL) {
+-        #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++        #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+         if (FrameBufferYUV->opaque) {
+             avfilter_unref_buffer((AVFilterBufferRef *)FrameBufferYUV->opaque);
+@@ -2772,5 +2768,5 @@
+         #if defined(LIBAV) && (LIBAVVERSIONINT<=8)
+             audio_resample_close(RSC);
+-        #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++        #elif defined(LIBAV)
+             avresample_close(RSC);
+             avresample_free(&RSC);
+@@ -2819,5 +2817,5 @@
+                 0);                                         // cutoff
+             if (!RSC) ToLog(LOGMSG_CRITICAL,QString("CheckResampler: av_audio_resample_init failed"));
+-        #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++        #elif defined(LIBAV)
+             this->RSC_InChannelLayout =RSC_InChannelLayout;
+             this->RSC_OutChannelLayout=RSC_OutChannelLayout;
+@@ -2904,5 +2902,5 @@
+         AVFilterInOut *inputs  = (AVFilterInOut *)av_malloc(sizeof(AVFilterInOut));
+ 
+-    #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++    #elif defined(LIBAV)
+ 
+         QString args=QString("%1:%2:%3:%4:%5:%6:%7")
+@@ -2968,8 +2966,6 @@
+     inputs->next = NULL;
+ 
+-    #if defined(LIBAV) && (LIBAVVERSIONINT<=8)
++    #if defined(LIBAV)
+     if ((result=avfilter_graph_parse(VideoFilterGraph,QString("yadif=1:-1").toLocal8Bit().constData(),inputs,outputs,NULL))<0) {
+-    #elif (defined(LIBAV) && (LIBAVVERSIONINT<=9))
+-    if ((result=avfilter_graph_parse(VideoFilterGraph,QString("yadif=deint=interlaced:mode=send_frame:parity=auto").toLocal8Bit().constData(),inputs,outputs,NULL))<0) {
+     #elif (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+     if ((result=avfilter_graph_parse(VideoFilterGraph,QString("yadif=deint=interlaced:mode=send_frame:parity=auto").toLocal8Bit().constData(),&inputs,&outputs,NULL))<0) {
+@@ -2999,5 +2995,5 @@
+ //====================================================================================================================
+ 
+-#if defined(LIBAV) || (FFMPEGVERSIONINT<201)
++#if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+     int cVideoFile::VideoFilter_Process() {
+         #if defined(LIBAV) && (LIBAVVERSIONINT<=8)
+@@ -3031,5 +3027,5 @@
+             }
+ 
+-        #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++        #elif defined(LIBAV)
+             // LIBAV9
+             AVFilterBufferRef *m_pBufferRef=NULL;
+@@ -3176,5 +3172,5 @@
+         Data=(u_int8_t *)av_malloc(MaxAudioLenDecoded);
+         if (Data) *SizeDecoded=audio_resample(RSC,(short int*)Data,(short int*)Frame->data[0],Frame->nb_samples)*DstSampleSize;
+-    #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++    #elif defined(LIBAV)
+         u_int8_t *in_data[RESAMPLE_MAX_CHANNELS]={0};
+         int     in_linesize=0;
+@@ -3191,5 +3187,5 @@
+                 ToLog(LOGMSG_CRITICAL,QString("failed out_data fill arrays"));
+             } else {
+-                *SizeDecoded=avresample_convert(RSC,out_data,out_linesize,out_samples,in_data,in_linesize,Frame->nb_samples)*DstSampleSize;
++                *SizeDecoded=avresample_convert(RSC,out_data,out_linesize,out_samples,Frame->data,in_linesize,Frame->nb_samples)*DstSampleSize;
+             }
+         }
+@@ -3209,6 +3205,6 @@
+     qreal FPSDuration;
+     if ((VideoStreamNumber>=0)&&(LibavVideoFile->streams[VideoStreamNumber]))
+-        FPSDuration=qreal(LibavVideoFile->streams[VideoStreamNumber]->r_frame_rate.den*(AV_TIME_BASE/1000))/qreal(LibavVideoFile->streams[VideoStreamNumber]->r_frame_rate.num);
+-        else FPSDuration=1;
++        FPSDuration=qreal(LibavVideoFile->streams[VideoStreamNumber]->avg_frame_rate.den*(AV_TIME_BASE/1000))/qreal(LibavVideoFile->streams[VideoStreamNumber]->avg_frame_rate.num);
++    else FPSDuration=1;
+     return FPSDuration;
+ }
+@@ -3254,5 +3250,5 @@
+     if (!AudioContext.FPSDuration) {
+         if (PreviewMode)            AudioContext.FPSDuration=double(AV_TIME_BASE)/((cApplicationConfig *)ApplicationConfig)->PreviewFPS;
+-            else if (VideoStream)   AudioContext.FPSDuration=double(VideoStream->r_frame_rate.den*AV_TIME_BASE)/double(VideoStream->r_frame_rate.num);
++            else if (VideoStream)   AudioContext.FPSDuration=double(VideoStream->avg_frame_rate.den*AV_TIME_BASE)/double(VideoStream->avg_frame_rate.num);
+             else                    AudioContext.FPSDuration=double(AV_TIME_BASE)/double(SoundTrackBloc->SamplingRate);
+     }
+@@ -3461,5 +3457,5 @@
+                             if (FrameBufferYUV) {
+ 
+-                                #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++                                #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+                                 if (FrameBufferYUV->opaque) {
+                                     avfilter_unref_buffer((AVFilterBufferRef *)FrameBufferYUV->opaque);
+@@ -3500,12 +3496,12 @@
+                                         else if ((!Deinterlace)&&(VideoFilterGraph))  VideoFilter_Close();
+ 
+-                                    #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++                                    #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+                                     if (VideoFilterGraph) VideoFilter_Process();
+-                                    #elif defined(FFMPEG)&&(FFMPEGVERSIONINT>=201)
++                                    #elif (defined(LIBAV)&&(LIBAVVERSIONINT>=10) || defined(FFMPEG)&&(FFMPEGVERSIONINT>=201))
+                                     AVFrame *FiltFrame=NULL;
+                                     if (VideoFilterGraph) {
+-                                        // FFMPEG 2.0
++                                        // FFMPEG 2.0 / LIBAV 10
+                                         // push the decoded frame into the filtergraph
+-                                        if (av_buffersrc_add_frame_flags(VideoFilterIn,FrameBufferYUV,AV_BUFFERSRC_FLAG_KEEP_REF)<0) {
++                                        if (av_buffersrc_write_frame(VideoFilterIn,FrameBufferYUV)<0) {
+                                             ToLog(LOGMSG_INFORMATION,"IN:cVideoFile::ReadFrame : Error while feeding the filtergraph");
+                                         } else {
+@@ -3540,5 +3536,5 @@
+                                         // Append this frame
+                                         cImageInCache *ObjImage=
+-                                            #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++                                            #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+                                                 new cImageInCache(FrameBufferYUVPosition,NULL,FrameBufferYUV);
+                                             #else
+@@ -3562,5 +3558,5 @@
+                                     }
+                                     if (FreeFrames) {
+-                                        #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++                                        #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+                                         if (FrameBufferYUV->opaque) {
+                                             avfilter_unref_buffer((AVFilterBufferRef *)FrameBufferYUV->opaque);
+@@ -3577,5 +3573,5 @@
+                                     } else {
+                                         FrameBufferYUV=NULL;
+-                                        #if defined(FFMPEG)&&(FFMPEGVERSIONINT>=201)
++                                        #if (defined(FFMPEG)&&(FFMPEGVERSIONINT>=201) || defined(LIBAV)&&(LIBAVVERSIONINT>=10))
+                                         FiltFrame     =NULL;
+                                         #endif
+@@ -3693,5 +3689,5 @@
+         #if (defined(LIBAV)&&(LIBAVVERSIONINT<=8))
+         SizeDecoded=Frame->nb_samples*av_get_bytes_per_sample(AudioContext->AudioStream->codec->sample_fmt)*AudioContext->AudioStream->codec->channels;
+-        #elif (defined(LIBAV)&&(LIBAVVERSIONINT<=9))
++        #elif defined(LIBAV)
+         SizeDecoded=av_samples_get_buffer_size(NULL,AudioContext->AudioStream->codec->channels,Frame->nb_samples,AudioContext->AudioStream->codec->sample_fmt,0);
+         #elif defined(FFMPEG)
+@@ -3765,5 +3761,5 @@
+         if (img_convert_ctx!=NULL) {
+             int ret;
+-            #if defined(LIBAV) || (defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
++            #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+             if (Frame->opaque) {
+                 AVFilterBufferRef *Buf=(AVFilterBufferRef *)Frame->opaque;
+@@ -3882,5 +3878,4 @@
+ 
+         // Setup decoder options
+-        AudioStream->codec->debug_mv         =0;                    // Debug level (0=nothing)
+         AudioStream->codec->debug            =0;                    // Debug level (0=nothing)
+         AudioStream->codec->workaround_bugs  =1;                    // Work around bugs in encoders which sometimes cannot be detected automatically : 1=autodetection
+@@ -3923,5 +3918,4 @@
+ 
+         // Setup decoder options
+-        VideoStream->codec->debug_mv         =0;                    // Debug level (0=nothing)
+         VideoStream->codec->debug            =0;                    // Debug level (0=nothing)
+         VideoStream->codec->workaround_bugs  =1;                    // Work around bugs in encoders which sometimes cannot be detected automatically : 1=autodetection
+@@ -3937,4 +3931,16 @@
+         if (VideoStream->codec->time_base.num>1000 && VideoStream->codec->time_base.den==1)
+             VideoStream->codec->time_base.den=1000;
++            
++        if (VideoStream->codec->time_base.num == 0) {
++            VideoStream->codec->time_base.num = VideoStream->avg_frame_rate.den;
++            VideoStream->codec->time_base.den = VideoStream->avg_frame_rate.num;
++        }          
++        
++        if (VideoStream->codec->sample_aspect_ratio.num == 0) {
++            if (VideoStream->sample_aspect_ratio.num == 0)
++                VideoStream->codec->sample_aspect_ratio.num = VideoStream->codec->sample_aspect_ratio.den = 1;
++            else
++                VideoStream->codec->sample_aspect_ratio = VideoStream->sample_aspect_ratio;
++        }
+ 
+         if ((VideoDecoderCodec==NULL)||(avcodec_open2(VideoStream->codec,VideoDecoderCodec,NULL)<0)) return false;
+--- ffDiaporama/src/ffDiaporama/engine/cBaseMediaFile.h	2014-04-20 09:49:29.000000000 +0200
++++ ffDiaporama/src/ffDiaporama/engine/cBaseMediaFile.h	2016-12-06 22:21:11.555144372 +0100
+@@ -457,5 +457,5 @@
+     virtual int             VideoFilter_Open();
+     virtual void            VideoFilter_Close();
+-    #if defined(LIBAV) || (FFMPEGVERSIONINT<201)
++    #if (defined(LIBAV)&&(LIBAVVERSIONINT<=9) || defined(FFMPEG)&&(FFMPEGVERSIONINT<201))
+         virtual int         VideoFilter_Process();
+     #endif
+@@ -472,5 +472,5 @@
+     #if defined(LIBAV) && (LIBAVVERSIONINT<=8)
+     ReSampleContext         *RSC;
+-    #elif defined(LIBAV) && (LIBAVVERSIONINT<=9)
++    #elif defined(LIBAV)
+     AVAudioResampleContext  *RSC;
+     uint64_t                RSC_InChannelLayout,RSC_OutChannelLayout;
+--- ffDiaporama/src/ffDiaporama/engine/cDeviceModelDef.h	2016-12-06 22:42:46.383001678 +0100
++++ ffDiaporama/src/ffDiaporama/engine/cDeviceModelDef.h	2016-12-06 22:22:45.307031242 +0100
+@@ -65,5 +65,12 @@
+ #if (LIBAVUTIL_VERSION_MICRO<100)&&(LIBAVCODEC_VERSION_MICRO<100)&&(LIBAVFORMAT_VERSION_MICRO<100)&&(LIBAVDEVICE_VERSION_MICRO<100)&&(LIBAVFILTER_VERSION_MICRO<100)&&(LIBSWSCALE_VERSION_MICRO<100)
+     #define LIBAV
+-    #if ((LIBAVUTIL_VERSION_INT>=AV_VERSION_INT(52,3,0))&&(LIBAVCODEC_VERSION_INT>=AV_VERSION_INT(54,35,0))&&(LIBAVFORMAT_VERSION_INT>=AV_VERSION_INT(54,20,0))&&(LIBAVDEVICE_VERSION_INT>=AV_VERSION_INT(53,2,0))&&(LIBAVFILTER_VERSION_INT>=AV_VERSION_INT(3,3,0))&&(LIBSWSCALE_VERSION_INT>=AV_VERSION_INT(2,1,1)))
++    #if ((LIBAVUTIL_VERSION_INT>=AV_VERSION_INT(53,3,0))&&(LIBAVCODEC_VERSION_INT>=AV_VERSION_INT(55,34,1))&&(LIBAVFORMAT_VERSION_INT>=AV_VERSION_INT(55,12,0))&&(LIBAVDEVICE_VERSION_INT>=AV_VERSION_INT(54,0,0))&&(LIBAVFILTER_VERSION_INT>=AV_VERSION_INT(4,2,0))&&(LIBSWSCALE_VERSION_INT>=AV_VERSION_INT(2,1,2)))
++        #define LIBAVVERSION        "Libav 10 or higher"
++        #define LIBAVVERSIONINT     10
++        #include "libavresample/avresample.h"
++        #define RESAMPLE_MAX_CHANNELS AVRESAMPLE_MAX_CHANNELS
++        #include "libavfilter/buffersink.h"
++        #include "libavfilter/buffersrc.h"
++    #elif ((LIBAVUTIL_VERSION_INT>=AV_VERSION_INT(52,3,0))&&(LIBAVCODEC_VERSION_INT>=AV_VERSION_INT(54,35,0))&&(LIBAVFORMAT_VERSION_INT>=AV_VERSION_INT(54,20,0))&&(LIBAVDEVICE_VERSION_INT>=AV_VERSION_INT(53,2,0))&&(LIBAVFILTER_VERSION_INT>=AV_VERSION_INT(3,3,0))&&(LIBSWSCALE_VERSION_INT>=AV_VERSION_INT(2,1,1)))
+         #define LIBAVVERSION        "Libav 9.x"
+         #define LIBAVVERSIONINT     9
