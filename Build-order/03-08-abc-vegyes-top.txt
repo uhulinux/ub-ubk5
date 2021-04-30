@@ -52,7 +52,6 @@ apache-mod-auth-openid
 mt-daapd
 partimage
 dovecot
-ucblogo
 rpcbind
 nfs-utils
 syslog-ng
