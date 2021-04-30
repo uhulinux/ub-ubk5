@@ -1,0 +1,25 @@
+diff -Naur orig/src/mlib/regex.h patched/src/mlib/regex.h
+--- orig/src/mlib/regex.h	2021-04-30 00:42:16.970910451 +0200
++++ patched/src/mlib/regex.h	2021-04-30 00:54:04.692525635 +0200
+@@ -24,8 +24,19 @@
+ 
+ // :TRICKY: хорошо бы автор не поменял v4 на другой адрес
+ #include <boost/regex/config.hpp>
+-#include <boost/regex/v4/regbase.hpp>
+-#include <boost/regex/v4/match_flags.hpp>
++#include <boost/version.hpp>
++#if BOOST_VERSION >= 107600
++# if defined(BOOST_REGEX_CXX03)
++#  include <boost/regex/v4/match_flags.hpp>
++#  include <boost/regex/v4/regbase.hpp>
++# else // defined(BOOST_REGEX_CXX03)
++#  include <boost/regex/v5/match_flags.hpp>
++#  include <boost/regex/v5/regbase.hpp>
++# endif // defined(BOOST_REGEX_CXX03)
++#else // BOOST_VERSION >= 107600
++# include <boost/regex/v4/match_flags.hpp>
++# include <boost/regex/v4/regbase.hpp>
++#endif // BOOST_VERSION >= 107600
+ 
+ #include <mlib/ptr.h>
+ 

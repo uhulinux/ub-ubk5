@@ -14,7 +14,6 @@ ndisgtk
 sddm-config-editor
 grub-customizer
 geos
-gdal
 viking
 pgadmin3
 systemd-ui

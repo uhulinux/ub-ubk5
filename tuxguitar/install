@@ -1,6 +1,8 @@
 #!/bin/sh -eux
 
- cp doc/* ./
- rm -rf doc
- mkdir -p "$UB_INSTALLDIR"/usr/share/tuxguitar/
- cp -a . "$UB_INSTALLDIR"/usr/share/tuxguitar/
+cp doc/* ./
+rm -rf doc
+mkdir -p "$UB_INSTALLDIR"/usr/share/tuxguitar/
+cp -a . "$UB_INSTALLDIR"/usr/share/tuxguitar/
+
+ln -s /usr/lib/libfluidsynth.so.3 "$UB_INSTALLDIR"/usr/lib/libfluidsynth.so.2
