@@ -1,0 +1,12 @@
+diff -Naur orig/plugins/svg.c patched/plugins/svg.c
+--- orig/plugins/svg.c	2020-04-04 20:24:41.000000000 +0200
++++ patched/plugins/svg.c	2021-04-30 22:41:51.767429937 +0200
+@@ -32,7 +32,7 @@
+ #include <librsvg/rsvg-cairo.h>
+ #endif
+ #ifndef LIBRSVG_FEATURES_H
+-#include <librsvg/librsvg-features.h>
++#include <librsvg/rsvg-features.h>
+ #endif
+ 
+ #include <X11/Xatom.h>
