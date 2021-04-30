@@ -1,6 +1,6 @@
 --- vavoom-1.33/source/vc_object.cpp~	2016-08-09 12:35:44.000000000 +0200
 +++ vavoom-1.33/source/vc_object.cpp	2016-08-09 12:55:12.565307581 +0200
-@@ -187,7 +187,8 @@ void VObject::StaticExit()
+@@ -182,7 +182,8 @@ void VObject::StaticExit()
  	GObjObjects.Clear();
  	GObjAvailable.Clear();
  	GObjInitialised = false;

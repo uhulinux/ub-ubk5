@@ -1,7 +1,7 @@
 diff -Naur vavoom-1.21.bak/source/files.cpp vavoom-1.21/source/files.cpp
 --- vavoom-1.21.bak/source/files.cpp	2006-06-27 12:47:24.000000000 -0700
 +++ vavoom-1.21/source/files.cpp	2006-07-15 12:31:34.000000000 -0700
-@@ -336,7 +336,7 @@
+@@ -453,7 +453,7 @@
  	const char* p;
  
  	//	Set up base directory (main data files).
@@ -13,7 +13,7 @@ diff -Naur vavoom-1.21.bak/source/files.cpp vavoom-1.21/source/files.cpp
 diff -Naur vavoom-1.21.bak/source/files.h vavoom-1.21/source/files.h
 --- vavoom-1.21.bak/source/files.h	2006-06-27 12:47:24.000000000 -0700
 +++ vavoom-1.21/source/files.h	2006-07-15 12:30:51.000000000 -0700
-@@ -47,3 +47,5 @@
+@@ -48,3 +48,5 @@
  extern VStr		fl_basedir;
  extern VStr		fl_savedir;
  extern VStr		fl_gamedir;
