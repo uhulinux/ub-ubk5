@@ -7,4 +7,4 @@ libungif-dev
 lua53-dev
 pango-dev
 plotutils
-wxwidgets-dev
+wxwidgets3.1-dev

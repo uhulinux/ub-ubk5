@@ -22,5 +22,5 @@ openal-dev
 openexr-dev
 rust
 sdl2-dev
-wxwidgets-dev
+wxwidgets3.1-dev
 zip

@@ -5,4 +5,4 @@ hunspell-dev
 libssh-dev
 node
 sqlite-dev
-wxwidgets-dev
+wxwidgets3.1-dev

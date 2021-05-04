@@ -5,4 +5,4 @@ gtkspell3-dev
 icu-dev
 lucene++-dev
 pugixml-dev
-wxwidgets-dev
+wxwidgets3.1-dev
