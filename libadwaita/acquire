@@ -1,0 +1,7 @@
+#!/usr/bin/env dl
+
+libadwaita-${UB_VERSION}.tar.gz libadwaita-bad97626/
+    git+https://gitlab.gnome.org/GNOME/libadwaita.git@bad97626
+
+#libadwaita-${UB_VERSION}.tar.xz libadwaita-${UB_VERSION}/
+#	https://download.gnome.org/sources/libadwaita/${UB_VERSION_HEAD2}/

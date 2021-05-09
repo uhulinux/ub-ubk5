@@ -1,4 +1,5 @@
 libhandy
+libadwaita
 baobab
 caribou
 gnome-video-effects
