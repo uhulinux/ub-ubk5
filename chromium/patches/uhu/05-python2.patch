@@ -1,6 +1,6 @@
 diff -Naur orig/tools/gn/src/gn/json_project_writer_unittest.cc patched/tools/gn/src/gn/json_project_writer_unittest.cc
---- orig/tools/gn/src/gn/json_project_writer_unittest.cc	2021-03-02 18:54:38.000000000 +0100
-+++ patched/tools/gn/src/gn/json_project_writer_unittest.cc	2021-03-03 23:29:11.358650859 +0100
+--- orig/tools/gn/src/gn/json_project_writer_unittest.cc	2021-05-10 20:54:18.000000000 +0200
++++ patched/tools/gn/src/gn/json_project_writer_unittest.cc	2021-05-11 20:02:53.096324277 +0200
 @@ -37,7 +37,7 @@
        SubstitutionList::MakeForTest("//out/Debug/output1.out");
  
@@ -10,7 +10,7 @@ diff -Naur orig/tools/gn/src/gn/json_project_writer_unittest.cc patched/tools/gn
    std::vector<const Target*> targets;
    targets.push_back(&target);
  #if defined(OS_WIN)
-@@ -172,7 +172,7 @@
+@@ -498,7 +498,7 @@
        SubstitutionList::MakeForTest("//out/Debug/{{source_name_part}}.out");
  
    setup.build_settings()->set_python_path(
@@ -20,8 +20,8 @@ diff -Naur orig/tools/gn/src/gn/json_project_writer_unittest.cc patched/tools/gn
    targets.push_back(&target);
  #if defined(OS_WIN)
 diff -Naur orig/tools/gn/src/gn/ninja_action_target_writer_unittest.cc patched/tools/gn/src/gn/ninja_action_target_writer_unittest.cc
---- orig/tools/gn/src/gn/ninja_action_target_writer_unittest.cc	2021-03-02 18:54:38.000000000 +0100
-+++ patched/tools/gn/src/gn/ninja_action_target_writer_unittest.cc	2021-03-03 23:29:11.358650859 +0100
+--- orig/tools/gn/src/gn/ninja_action_target_writer_unittest.cc	2021-05-10 20:54:18.000000000 +0200
++++ patched/tools/gn/src/gn/ninja_action_target_writer_unittest.cc	2021-05-11 20:02:53.096324277 +0200
 @@ -54,14 +54,14 @@
    ASSERT_TRUE(target.OnResolved(&err));
  
@@ -175,11 +175,11 @@ diff -Naur orig/tools/gn/src/gn/ninja_action_target_writer_unittest.cc patched/t
          "  restat = 1\n"
          "\n"
 diff -Naur orig/tools/gn/src/gn/setup.cc patched/tools/gn/src/gn/setup.cc
---- orig/tools/gn/src/gn/setup.cc	2021-03-02 18:54:38.000000000 +0100
-+++ patched/tools/gn/src/gn/setup.cc	2021-03-03 23:29:11.358650859 +0100
-@@ -772,7 +772,7 @@
+--- orig/tools/gn/src/gn/setup.cc	2021-05-10 20:54:18.000000000 +0200
++++ patched/tools/gn/src/gn/setup.cc	2021-05-11 20:02:53.096324277 +0200
+@@ -795,7 +795,7 @@
      }
-     build_settings_.set_python_path(python_path.NormalizePathSeparatorsTo('/'));
+     build_settings_.set_python_path(python_path);
  #else
 -    build_settings_.set_python_path(base::FilePath("python"));
 +    build_settings_.set_python_path(base::FilePath("python2"));
