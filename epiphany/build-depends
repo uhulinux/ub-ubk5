@@ -17,7 +17,6 @@ libportal-dev
 libsecret-dev
 libsm-dev
 libsoup-dev
-libwnck-dev
 libxml2-dev
 meson
 nss-dev
