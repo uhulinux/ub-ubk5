@@ -1,4 +1,3 @@
 #!/bin/sh -eux
 
-BROWSER_PLUGIN_DIR=/usr/lib/firefox/plugins \
 ub_compile

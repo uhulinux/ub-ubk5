@@ -32,7 +32,6 @@ gnustep-make
 gnustep-base
 oolite
 opendungeons
-sdl2-gfx
 widelands
 lincity-ng
 bzflag

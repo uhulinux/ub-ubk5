@@ -81,7 +81,6 @@ libetonyek
 libvirt
 libvirt-python3
 libvirt-glib
-ois
 ogre1.9
 devil
 cegui

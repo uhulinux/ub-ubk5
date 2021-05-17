@@ -1,5 +1,4 @@
 ffmpeg-dev
--freerdp-dev
 glu-dev
 libcap-dev
 libinput-dev
@@ -11,7 +10,9 @@ meson
 pixman-dev
 scdoc
 systemd-dev
+wayland-dev
 wayland-protocols
 xcb-util-errors-dev
 xcb-util-image-dev
+xcb-util-renderutil-dev
 xcb-util-wm-dev

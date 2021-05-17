@@ -27,8 +27,6 @@ ttyrec
 zisofs-tools
 aamath
 txr
-utf8proc
-tre-agrep
 argon2
 keepassxc
 antiword
@@ -77,7 +75,6 @@ launchy
 hardinfo
 catdoc
 xchm
-msort
 rdiff-backup
 xmlstarlet
 cifs-utils

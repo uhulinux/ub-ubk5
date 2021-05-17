@@ -13,7 +13,6 @@ ndiswrapper
 ndisgtk
 sddm-config-editor
 grub-customizer
-geos
 viking
 pgadmin3
 systemd-ui

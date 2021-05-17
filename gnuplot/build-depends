@@ -6,5 +6,4 @@ libpng-dev
 libungif-dev
 lua53-dev
 pango-dev
-plotutils
 wxwidgets3.1-dev

@@ -346,7 +346,6 @@ mesa
 x.org-server
 x.org-input-libinput
 libgsf
-libcroco
 libvdpau
 libvpx
 lua51

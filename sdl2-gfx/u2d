@@ -1,1 +1,0 @@
-sflist sdl2gfx | parsever | sort -V | tail -n 1

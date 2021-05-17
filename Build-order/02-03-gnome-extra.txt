@@ -4,7 +4,6 @@ sg3-utils
 bodr
 gtk-stock-icons
 eiciel
-gnonlin
 template-glib
 alacarte
 openbabel
