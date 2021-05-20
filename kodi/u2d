@@ -1,1 +1,1 @@
-u2d https://github.com/xbmc/xbmc/releases/ v
+urllist https://github.com/xbmc/xbmc/releases/ | grep tar.gz | sort -V | tail -n 1 | sed s/-.*//
