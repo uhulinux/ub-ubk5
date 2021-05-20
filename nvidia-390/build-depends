@@ -1,9 +1,12 @@
 glu-dev
-gtk2
+gtk2-dev
 gtk3-dev
+jansson-dev
 kernel-dev
-libxv
-libxvmc
+libvdpau-dev
+libxv-dev
+libxvmc-dev
+libxxf86vm-dev
 patchelf
 wayland-dev
 x.org-server-dev
