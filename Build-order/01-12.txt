@@ -81,7 +81,6 @@ cldr-emoji-annotation
 emoji
 ibus
 gcab
-proj
 spice-protocol
 libnfs
 pavucontrol
