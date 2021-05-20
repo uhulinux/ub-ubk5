@@ -30,6 +30,7 @@ libofa-dev
 librsvg-dev
 libsrtp
 libssh2-dev
+libva-dev
 libvdpau-dev
 libwebp-dev
 meson
