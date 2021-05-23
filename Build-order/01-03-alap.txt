@@ -56,7 +56,6 @@ json-glib
 libmbim
 libqmi
 ntp
-orbit2
 python3-cairo
 serf
 slang
