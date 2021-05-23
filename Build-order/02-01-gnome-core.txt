@@ -27,7 +27,6 @@ gnome-autoar
 nautilus
 icon-theme-adwaita
 libgrss
-libcue
 libiptcdata
 totem-plparser
 tracker-miners
