@@ -1,2 +1,2 @@
-echo "11.1.0"
+echo "11.4.0"
 # u2d https://github.com/KhronosGroup/glslang/releases | tr "-" "."

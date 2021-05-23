@@ -1,4 +1,6 @@
+boost-dev
 cracklib-dev
+curl-dev
 libevent-dev
 liblz4-dev
 libxml2-dev

@@ -3,8 +3,11 @@
 ${UB_VERSION}.tar.gz glslang-${UB_VERSION}/
 	https://github.com/KhronosGroup/glslang/archive/
 
-v2020.6.tar.gz SPIRV-Tools-2020.6/ :External
+v2021.1.tar.gz SPIRV-Tools-2021.1/ :External
 	https://github.com/KhronosGroup/SPIRV-Tools/archive/
 
-1.5.4.raytracing.fixed.tar.gz SPIRV-Headers-1.5.4.raytracing.fixed/ :External/external/
-	https://github.com/KhronosGroup/SPIRV-Headers/archive/
+#1.5.4.raytracing.fixed.tar.gz SPIRV-Headers-1.5.4.raytracing.fixed/ :External/external/
+#	https://github.com/KhronosGroup/SPIRV-Headers/archive/
+
+SPIRV-Headers-git.tar.gz SPIRV-Headers-ba29b3f/ :External/external/
+    git://github.com/KhronosGroup/SPIRV-Headers.git@ba29b3f

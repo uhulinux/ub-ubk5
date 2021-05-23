@@ -6,8 +6,8 @@
  #
 -olcArgsFile: %LOCALSTATEDIR%/run/slapd.args
 -olcPidFile: %LOCALSTATEDIR%/run/slapd.pid
-+olcArgsFile: %LOCALSTATEDIR%/run/openldap/slapd.args
-+olcPidFile: %LOCALSTATEDIR%/run/openldap/slapd.pid
++olcArgsFile: /run/openldap/slapd.args
++olcPidFile: /run/openldap/slapd.pid
  #
  # Do not enable referrals until AFTER you have a working directory
  # service AND an understanding of referrals.

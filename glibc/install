@@ -3,8 +3,8 @@
 cd "$UB_OBJECTDIR"
 
 touch "$UB_INSTALLDIR"/etc/ld.so.conf
-mkdir -p "$UB_INSTALLDIR"/usr/lib/gconv
-touch "$UB_INSTALLDIR"/usr/lib/gconv/gconv-modules.cache
+# mkdir -p "$UB_INSTALLDIR"/usr/lib/gconv
+# touch "$UB_INSTALLDIR"/usr/lib/gconv/gconv-modules.cache
 make \
 	install_root="$UB_INSTALLDIR" \
 	install

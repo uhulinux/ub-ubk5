@@ -1,7 +1,7 @@
 diff -Naur orig/Jambase patched/Jambase
---- orig/Jambase	2016-09-28 04:58:53.000000000 +0200
-+++ patched/Jambase	2017-09-14 00:09:45.813313207 +0200
-@@ -987,8 +987,8 @@
+--- orig/Jambase	2021-05-03 14:05:06.000000000 +0200
++++ patched/Jambase	2021-05-18 23:15:45.528093484 +0200
+@@ -1013,8 +1013,8 @@
  	 || $(HOSTTYPE) = amd64 {
  		ECHO "We're on a 64 bit host" ;
  		HOST64     = true ;
@@ -11,4 +11,4 @@ diff -Naur orig/Jambase patched/Jambase
 +	#	C++FLAGS   += -m64 ;
  	}
  
- 	# Adding --hash-style=sysv to the compiler options
+ 

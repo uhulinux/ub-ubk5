@@ -1,0 +1,12 @@
+diff -Naur orig/meson.build patched/meson.build
+--- orig/meson.build	2021-04-30 21:09:52.000000000 +0200
++++ patched/meson.build	2021-05-19 00:29:18.940564932 +0200
+@@ -204,7 +204,7 @@
+ 
+ subdir('include')
+ subdir('src')
+-subdir('tests')
++# subdir('tests')
+ 
+ pkg.generate(
+   name : 'libglvnd',

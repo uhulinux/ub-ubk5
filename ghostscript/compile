@@ -1,20 +1,23 @@
 #!/bin/sh -eux
 
-rm -r  cups/libs jpeg libpng tiff zlib
+rm -r tesseract leptonica
+rm -r cups/libs expat jpeg lcms2mt libpng openjpeg tiff zlib
+rm -rf gpdl
+
 ub_configure \
 	--enable-dynamic \
 	--with-ijs \
+	--with-x \
 	--with-drivers=ALL \
 	--with-fontpath="/usr/share/fonts/ghostscript:/usr/share/fonts/Type1:/usr/share/fonts/truetype" \
 	--enable-fontconfig \
 	--enable-freetype \
 	--enable-openjpeg \
-	--without-luratech \
-	--with-system-libjpeg \
 	--with-system-libtiff \
 	--disable-compile-inits
 
-ub_make so
+ub_make
 
+# ijs
 cd ijs
 ub_compile

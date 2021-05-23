@@ -2,11 +2,16 @@
 
 # alapinstalláció
 make DESTDIR="${UB_INSTALLDIR}" \
-    CUPSSERVERROOT="${UB_INSTALLDIR}$(cups-config --serverroot)" \
-    CUPSSERVERBIN="${UB_INSTALLDIR}$(cups-config --serverbin)" \
-    soinstall
+    install-gs install-so-gs
+
+make DESTDIR="${UB_INSTALLDIR}" \
+    install-gxps install-so-gxps
+
+make DESTDIR="${UB_INSTALLDIR}" \
+    install-gpcl6 install-so-gpcl6
 
 # elegendő egy szimlink
+rm -v "${UB_INSTALLDIR}"/usr/bin/gs
 ln -s gsc "${UB_INSTALLDIR}"/usr/bin/gs
 
 # remove useless broken doc/ symlink - FS#59507
@@ -15,22 +20,11 @@ rm -f "${UB_INSTALLDIR}"/usr/share/ghostscript/${UB_VERSION}/doc
 # remove unwanted localized manpages
 rm -r "${UB_INSTALLDIR}"/usr/share/man/de
 
+# conflicts with libgxps-dev
+rm -r "${UB_INSTALLDIR}"/usr/lib/libgxps.so
+
 # ez egy hagyaték
 cp "$UB_COMPILEDIR"/base/gserrors.h "$UB_INSTALLDIR"/usr/include/ghostscript/
-
-# tools
-mkdir -p ${UB_INSTALLDIR}/usr/share/ghostpcl
-if [ -d 'tools' ]; then
-    cp -pr 'tools' "${UB_INSTALLDIR}/usr/share/ghostpcl/"
-    cp -pr 'urwfonts' "${UB_INSTALLDIR}/usr/share/ghostpcl/"
-    #install -d "${UB_INSTALLDIR}/usr/share/ghostpcl/doc"
-    for _doc in 'README.txt' doc/ghost* 'doc/who_owns_what.txt'; do
-      install -Dpm644 "${_doc}" -t "${UB_INSTALLDIR}/usr/share/ghostpcl/doc/"
-    done
-  else # as of 9.18
-    cp -pr {xps,pcl}/'tools' "${UB_INSTALLDIR}/usr/share/ghostpcl/"
-    cp -pr 'pcl/urwfonts' "${UB_INSTALLDIR}/usr/share/ghostpcl/"
-fi
 
 # ijs
 cd ijs

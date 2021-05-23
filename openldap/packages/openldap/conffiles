@@ -1,1 +1,2 @@
 /etc/openldap/ldap.conf
+/etc/openldap/slapd.ldif
