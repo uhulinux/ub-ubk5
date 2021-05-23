@@ -78,7 +78,6 @@ xchm
 rdiff-backup
 xmlstarlet
 cifs-utils
-gtkhash
 gdmap
 rsw
 gkrellm
