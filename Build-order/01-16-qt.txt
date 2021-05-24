@@ -1,5 +1,6 @@
 icon-naming-utils
 razor
+double-conversion
 qt5
 gpsd
 lightdm

@@ -1,4 +1,3 @@
-double-conversion
 potrace
 inkscape
 mate-common
