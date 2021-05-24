@@ -10,6 +10,7 @@
 	/usr/share/aclocal
 	/usr/share/applications/fluid.desktop
 	/usr/share/cmake
+	/usr/share/fltk
 	/usr/share/icons/**/fluid.png
 	/usr/share/man/man1/fltk-config.1
 	/usr/share/man/man1/fluid.1

@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-x264-snapshot-${UB_VERSION/./-}.tar.bz2 x264-snapshot-${UB_VERSION/./-}/
-	https://download.videolan.org/pub/videolan/x264/snapshots/
+x264-${UB_VERSION_TAIL1}.tar.bz2 x264-master/
+	https://code.videolan.org/videolan/x264/-/archive/master/x264-master.tar.bz2

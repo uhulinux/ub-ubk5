@@ -1,0 +1,101 @@
+diff -Naur orig/CMakeLists.txt patched/CMakeLists.txt
+--- orig/CMakeLists.txt	2010-07-13 13:15:24.000000000 +0200
++++ patched/CMakeLists.txt	2021-05-23 22:40:26.037699759 +0200
+@@ -19,6 +19,7 @@
+   set(CMAKE_C_FLAGS "-O3 -Wall -fomit-frame-pointer -pipe")
+ endif(NOT MSVC)
+ 
++add_subdirectory(libreplaygain)
+ add_subdirectory(libmpcdec)
+ add_subdirectory(libmpcpsy)
+ add_subdirectory(libmpcenc)
+diff -Naur orig/configure.in patched/configure.in
+--- orig/configure.in	2009-07-29 23:00:32.000000000 +0200
++++ patched/configure.in	2021-05-23 22:56:26.995368769 +0200
+@@ -27,6 +27,12 @@
+ AC_SUBST([EXTRALIBS])
+ 
+ AC_ARG_ENABLE([mpcchap], [AS_HELP_STRING([--enable-mpcchap], [enable building mpcchap])])
++if test "x$enable_mpcchap" = xyes; then
++  PKG_CHECK_MODULES(LIBCUE, libcue)
++  AC_SUBST(LIBCUE_CFLAGS)
++  AC_SUBST(LIBCUE_LIBS)
++fi
++
+ AM_CONDITIONAL([MPC_CHAP], [test "x$enable_mpcchap" = xyes])
+ 
+ 
+diff -Naur orig/mpcchap/CMakeLists.txt patched/mpcchap/CMakeLists.txt
+--- orig/mpcchap/CMakeLists.txt	2010-08-21 17:55:01.000000000 +0200
++++ patched/mpcchap/CMakeLists.txt	2021-05-23 22:57:48.835576773 +0200
+@@ -1,13 +1,6 @@
+-FIND_PATH(CUEFILE_INCLUDE_DIR cuetools/cuefile.h
+-	${libmpc_SOURCE_DIR}/../libcuefile/include
+-)
+-
+-FIND_LIBRARY(CUEFILE_LIBRARY NAMES cuefile PATHS
+-	${CUEFILE_INCLUDE_DIR}/../src
+-)
++FIND_LIBRARY(CUE_LIBRARY NAMES cue)
+ 
+ include_directories(${libmpc_SOURCE_DIR}/include)
+-include_directories(${CUEFILE_INCLUDE_DIR})
+ 
+ link_directories(${libmpc_BINARY_DIR}/libmpcdec)
+ link_directories(${libmpc_BINARY_DIR}/libmpcenc)
+@@ -21,7 +14,7 @@
+ endif(SHARED)
+ 
+ target_link_libraries(mpcchap mpcenc_static)
+-target_link_libraries(mpcchap ${CUEFILE_LIBRARY})
++target_link_libraries(mpcchap ${CUE_LIBRARY})
+ 
+ if(NOT MSVC)
+ target_link_libraries(mpcchap m)
+diff -Naur orig/mpcchap/Makefile.am patched/mpcchap/Makefile.am
+--- orig/mpcchap/Makefile.am	2009-07-29 23:00:32.000000000 +0200
++++ patched/mpcchap/Makefile.am	2021-05-23 22:55:29.359218783 +0200
+@@ -4,7 +4,8 @@
+ 
+ common_sources = ../common/tags.c ../common/crc32.c
+ 
+-AM_CPPFLAGS = -I$(top_srcdir)/include
++AM_CPPFLAGS = -I$(top_srcdir)/include \
++	$(LIBCUE_CFLAGS)
+ 
+ if HAVE_VISIBILITY
+   AM_CFLAGS = -fvisibility=hidden
+@@ -16,4 +17,4 @@
+ 
+ mpcchap_LDADD = $(top_builddir)/libmpcdec/libmpcdec.la \
+ 	$(top_builddir)/libmpcenc/libmpcenc.a \
+-	-lm -lcuefile
++	-lm $(LIBCUE_LIBS)
+diff -Naur orig/mpcchap/mpcchap.c patched/mpcchap/mpcchap.c
+--- orig/mpcchap/mpcchap.c	2009-02-23 19:40:47.000000000 +0100
++++ patched/mpcchap/mpcchap.c	2021-05-23 22:55:29.363218794 +0200
+@@ -24,7 +24,7 @@
+ 
+ #include <sys/stat.h>
+ 
+-#include <cuetools/cuefile.h>
++#include <libcue/libcue.h>
+ 
+ // tags.c
+ void    Init_Tags        ( void );
+@@ -153,13 +153,13 @@
+ mpc_status add_chaps_cue(char * mpc_file, char * chap_file, mpc_demux * demux, mpc_streaminfo * si)
+ {
+ 	Cd *cd = 0;
+-	int nchap, format = UNKNOWN;
++	int nchap;
+ 	struct stat stbuf;
+ 	FILE * in_file;
+ 	int chap_pos, end_pos, chap_size, i;
+ 	char * tmp_buff;
+ 
+-	if (0 == (cd = cf_parse(chap_file, &format))) {
++	if (0 == (cd = cue_parse_file(chap_file))) {
+ 		fprintf(stderr, "%s: input file error\n", chap_file);
+ 		return !MPC_STATUS_OK;
+ 	}
