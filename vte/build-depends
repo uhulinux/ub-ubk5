@@ -1,9 +1,7 @@
-glade3-dev
 gnutls-dev
 gobject-introspection-dev
 gperf
 gtk3-dev
 intltool
-meson
 pcre2-dev
 vala-dev

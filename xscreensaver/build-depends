@@ -2,9 +2,9 @@ gdk-pixbuf-xlib-dev
 glu-dev
 gtk2-dev
 intltool
-libglade2-dev
 libjpeg-turbo-dev
 libxi-dev
+libxml2-dev
 libxmu-dev
 libxpm-dev
 pam
