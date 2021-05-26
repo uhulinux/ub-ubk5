@@ -13,7 +13,6 @@ libpng-dev
 libxaw-dev
 libxmu-dev
 libxpm-dev
-luajit-dev
 mpfr-dev
 perl
 pixman-dev

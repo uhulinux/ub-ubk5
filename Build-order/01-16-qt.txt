@@ -37,7 +37,6 @@ spandsp
 xdg-utils
 libdbusmenu-qt
 zziplib
-luajit
 texlive
 
 #kigyófeloldás
