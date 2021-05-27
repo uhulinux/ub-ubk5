@@ -68,7 +68,7 @@ zeitgeist
 zenity
 gtk-vnc
 gnome-common
-glade3
+glade
 vte
 xterm
 freerdp

@@ -4,7 +4,6 @@ db4-dev
 devhelp-dev
 geoclue-dev
 gjs-dev
-glade3-dev
 gobject-introspection-dev
 graphviz-dev
 gst-plugins-base-dev
@@ -13,6 +12,7 @@ intltool
 itstool
 libgda-dev
 libgdl-dev
+libglade-dev
 libunistring-dev
 libxshmfence-dev
 neon-dev
