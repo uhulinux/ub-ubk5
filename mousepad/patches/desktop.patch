@@ -1,0 +1,11 @@
+diff -Naur orig/mousepad.desktop.in.in patched/mousepad.desktop.in.in
+--- orig/mousepad.desktop.in.in	2021-05-10 02:04:55.000000000 +0200
++++ patched/mousepad.desktop.in.in	2021-05-29 00:20:26.471397972 +0200
+@@ -10,6 +10,7 @@
+ Type=Application
+ Categories=Utility;TextEditor;GTK;
+ MimeType=text/plain;
++Actions=preferences;
+ 
+ [Desktop Action preferences]
+ _Name=Mousepad Preferences
