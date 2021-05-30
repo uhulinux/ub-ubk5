@@ -20,4 +20,5 @@ kwidgetsaddons-dev
 kxmlgui-dev
 libv4l-dev
 mlt-dev
+purpose-dev
 qt5-dev

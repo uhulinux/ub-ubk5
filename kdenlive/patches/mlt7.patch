@@ -1,0 +1,1982 @@
+diff -Naur orig/cmake/modules/FindMLT.cmake patched/cmake/modules/FindMLT.cmake
+--- orig/cmake/modules/FindMLT.cmake	2021-05-10 18:11:30.000000000 +0200
++++ patched/cmake/modules/FindMLT.cmake	2021-05-30 13:12:20.659567150 +0200
+@@ -6,7 +6,7 @@
+ # Redistribution and use is allowed according to the terms of the BSD license.
+ 
+ find_package(PkgConfig QUIET)
+-pkg_check_modules(PC_MLT mlt++)
++pkg_check_modules(PC_MLT mlt++-7)
+ 
+ # Workaround cmake 3.17 issue (dropped .dll extension for library search)
+ if(WIN32)
+@@ -21,11 +21,11 @@
+   PATHS
+     /usr/local/include
+     /usr/include
+-  PATH_SUFFIXES mlt
++  PATH_SUFFIXES mlt-7
+ )
+ 
+ find_library(MLT_LIBRARIES
+-  NAMES mlt
++  NAMES mlt-7
+   HINTS
+     ${PC_MLT_LIBDIR}
+     ${PC_MLT_PREFIX}/lib
+@@ -42,10 +42,11 @@
+   PATHS
+     /usr/local/include
+     /usr/include
++  PATH_SUFFIXES mlt-7
+ )
+ 
+ find_library(MLTPP_LIBRARIES
+-  NAMES mlt++
++  NAMES mlt++-7
+   HINTS
+     ${PC_MLT_LIBDIR}
+     ${PC_MLT_PREFIX}/lib
+diff -Naur orig/CMakeLists.txt patched/CMakeLists.txt
+--- orig/CMakeLists.txt	2021-05-10 18:11:30.000000000 +0200
++++ patched/CMakeLists.txt	2021-05-30 13:12:20.651567139 +0200
+@@ -26,8 +26,8 @@
+ option(BUILD_FUZZING "Build fuzzing target" OFF)
+ 
+ # Minimum versions of main dependencies.
+-set(MLT_MIN_MAJOR_VERSION 6)
+-set(MLT_MIN_MINOR_VERSION 20)
++set(MLT_MIN_MAJOR_VERSION 7)
++set(MLT_MIN_MINOR_VERSION 0)
+ set(MLT_MIN_PATCH_VERSION 0)
+ set(MLT_MIN_VERSION ${MLT_MIN_MAJOR_VERSION}.${MLT_MIN_MINOR_VERSION}.${MLT_MIN_PATCH_VERSION})
+ 
+diff -Naur orig/data/effects/automask.xml patched/data/effects/automask.xml
+--- orig/data/effects/automask.xml	2021-05-10 18:11:30.000000000 +0200
++++ patched/data/effects/automask.xml	1970-01-01 01:00:00.000000000 +0100
+@@ -1,42 +0,0 @@
+-<!DOCTYPE kpartgui>
+-<effect tag="autotrack_rectangle" id="autotrack_rectangle">
+-	<name>Auto Mask</name>
+-	<description>Hide a selected zone and follow its movements</description>
+-	<author>Zachary Drew</author>
+-	<parameter type="geometry" name="geometry" default="50% 50% 50% 50%" fixed="1" opacity="false">
+-		<name>Geometry</name>
+-	</parameter>
+-	<parameter type="constant" name="motion_est.macroblock_width" max="100" min="1" default="16" suffix="pixels">
+-		<name>Macroblock width</name>
+-	</parameter>
+-	<parameter type="constant" name="motion_est.macroblock_height" max="100" min="1" default="16" suffix="pixels">
+-		<name>Macroblock height</name>
+-	</parameter>
+-	<parameter type="constant" name="motion_est.limit_x" max="500" min="1" default="64" suffix="pixels">
+-		<name>Maximum x distance</name>
+-	</parameter>
+-	<parameter type="constant" name="motion_est.limit_y" max="500" min="1" default="64" suffix="pixels">
+-		<name>Maximum y distance</name>
+-	</parameter>
+-	<parameter type="bool" name="motion_est.denoise" default="0">
+-		<name>Denoise</name>
+-	</parameter>
+-	<parameter type="bool" name="debug" default="0">
+-		<name>Debug</name>
+-	</parameter>
+-	<parameter type="bool" name="obscure" default="1">
+-		<name>Obscure</name>
+-	</parameter>
+-    <parameter type="readonly" name="motion_vector_list" value="">
+-        <name>Tracking data</name>
+-        <comment>Click to copy to clipboard</comment>
+-    </parameter>
+-	<parameter type="filterjob" filtertag="autotrack_rectangle" filterparams="_serialize=1 motion_vector_list=0" consumer="null" consumerparams="all=1 terminate_on_pause=1">
+-        <name conditional="Reset">Analyse</name>
+-		<jobparam name="storedata" />
+-		<jobparam name="projecttreefilter" />
+-		<jobparam name="key">motion_vector_list</jobparam>
+-		<jobparam name="finalfilter">autotrack_rectangle</jobparam>
+-		<jobparam name="displaydataname">Motion vectors</jobparam>
+-	</parameter>
+-</effect>
+diff -Naur orig/data/effects/CMakeLists.txt patched/data/effects/CMakeLists.txt
+--- orig/data/effects/CMakeLists.txt	2021-05-10 18:11:30.000000000 +0200
++++ patched/data/effects/CMakeLists.txt	2021-05-30 16:39:22.011621072 +0200
+@@ -6,7 +6,6 @@
+ audiospectrum.xml
+ audiowave.xml
+ audiowaveform.xml
+-automask.xml
+ boxblur.xml
+ brightness.xml
+ channelcopy.xml
+diff -Naur orig/data/kdenliveeffectscategory.rc patched/data/kdenliveeffectscategory.rc
+--- orig/data/kdenliveeffectscategory.rc	2021-05-10 18:11:30.000000000 +0200
++++ patched/data/kdenliveeffectscategory.rc	2021-05-30 13:12:20.671567168 +0200
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+ <data name="effects" version="0">
+-  <group list="chroma,frei0r.alpha0ps,frei0r.alphagrad,frei0r.alphaspot,frei0r.transparency,frei0r.mask0mate,rotoscoping,frei0r.keyspillm0pup,avfilter.despill,obscure,autotrack_rectangle,frei0r.bluescreen0r,lumakey,shape,spot_remover,frei0r.select0r,frei0r.spillsupress,frei0r.bgsubtract0r,opencv.tracker,strobe">
++  <group list="chroma,frei0r.alpha0ps,frei0r.alphagrad,frei0r.alphaspot,frei0r.transparency,frei0r.mask0mate,rotoscoping,frei0r.keyspillm0pup,avfilter.despill,obscure,frei0r.bluescreen0r,lumakey,shape,spot_remover,frei0r.select0r,frei0r.spillsupress,frei0r.bgsubtract0r,opencv.tracker,strobe">
+     <text>Alpha, Mask and Keying</text>
+   </group>
+ <group list="boxblur,frei0r.squareblur,avfilter.avgblur,avfilter.gblur,avfilter.smartblur,avfilter.boxblur,avfilter.unsharp,avfilter.sab">
+diff -Naur orig/mlt7.patch patched/mlt7.patch
+--- orig/mlt7.patch	1970-01-01 01:00:00.000000000 +0100
++++ patched/mlt7.patch	2021-05-30 13:11:17.539479015 +0200
+@@ -0,0 +1,1103 @@
++From 5bceffdc3b23ad2379cfcda1ab84b2e376ea4a3f Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Fri, 16 Apr 2021 16:26:25 +0200
++Subject: [PATCH 01/11] mlt7: follow renaming
++
++Related to #991
++---
++ src/bin/projectitemmodel.cpp                 |  2 +-
++ src/capture/mltdevicecapture.cpp             | 16 ++++++++--------
++ src/doc/kthumb.cpp                           |  2 +-
++ src/effects/effectsrepository.cpp            |  2 +-
++ src/monitor/glwidget.cpp                     |  2 +-
++ src/timeline2/model/builders/meltBuilder.cpp | 18 +++++++++---------
++ src/timeline2/model/timelinefunctions.cpp    |  2 +-
++ src/timeline2/model/timelineitemmodel.cpp    |  2 +-
++ src/timeline2/model/timelinemodel.cpp        |  6 +++---
++ src/timeline2/model/trackmodel.cpp           |  2 +-
++ src/timeline2/view/timelinecontroller.cpp    |  2 +-
++ src/transitions/transitionsrepository.cpp    |  2 +-
++ thumbnailer/mltpreview.cpp                   |  2 +-
++ 13 files changed, 30 insertions(+), 30 deletions(-)
++
++diff --git a/src/bin/projectitemmodel.cpp b/src/bin/projectitemmodel.cpp
++index 773f56611..2692a0802 100644
++--- a/src/bin/projectitemmodel.cpp
+++++ b/src/bin/projectitemmodel.cpp
++@@ -1001,7 +1001,7 @@ void ProjectItemModel::loadBinPlaylist(Mlt::Tractor *documentTractor, Mlt::Tract
++     Mlt::Properties retainList(mlt_properties(documentTractor->get_data("xml_retain")));
++     if (retainList.is_valid()) {
++         Mlt::Playlist playlist(mlt_playlist(retainList.get_data(BinPlaylist::binPlaylistId.toUtf8().constData())));
++-        if (playlist.is_valid() && playlist.type() == playlist_type) {
+++        if (playlist.is_valid() && playlist.type() == mlt_service_playlist_type) {
++             if (progressDialog == nullptr && playlist.count() > 0) {
++                 // Display message on splash screen
++                 emit pCore->loadingMessageUpdated(i18n("Loading project clips..."));
++diff --git a/src/capture/mltdevicecapture.cpp b/src/capture/mltdevicecapture.cpp
++index 8c8574ca4..d963a6619 100644
++--- a/src/capture/mltdevicecapture.cpp
+++++ b/src/capture/mltdevicecapture.cpp
++@@ -94,7 +94,7 @@ bool MltDeviceCapture::buildConsumer(const QString &profileName)
++     // OpenGL monitor
++     m_mltConsumer = new Mlt::Consumer(*m_mltProfile, KdenliveSettings::audiobackend().toUtf8().constData());
++     m_mltConsumer->set("preview_off", 1);
++-    m_mltConsumer->set("preview_format", mlt_image_rgb24);
+++    m_mltConsumer->set("preview_format", mlt_image_rgb);
++     m_showFrameEvent = m_mltConsumer->listen("consumer-frame-show", this, mlt_listener(consumer_gl_frame_show));
++     // m_mltConsumer->set("resize", 1);
++     // m_mltConsumer->set("terminate_on_pause", 1);
++@@ -155,7 +155,7 @@ void MltDeviceCapture::stop()
++     if (m_mltProducer) {
++         Mlt::Service service(m_mltProducer->parent().get_service());
++         mlt_service_lock(service.get_service());
++-        if (service.type() == tractor_type) {
+++        if (service.type() == mlt_service_tractor_type) {
++             isPlaylist = true;
++             Mlt::Tractor tractor(service);
++             mlt_tractor_close(tractor.get_tractor());
++@@ -196,7 +196,7 @@ void MltDeviceCapture::emitFrameUpdated(Mlt::Frame &frame)
++     /*
++     //TEST: is it better to convert the frame in a thread outside of MLT??
++     if (processingImage) return;
++-    mlt_image_format format = (mlt_image_format) frame.get_int("format"); //mlt_image_rgb24;
+++    mlt_image_format format = (mlt_image_format) frame.get_int("format"); //mlt_image_rgb;
++     int width = frame.get_int("width");
++     int height = frame.get_int("height");
++     unsigned char *buffer = (unsigned char *) frame.get_data("image");
++@@ -205,7 +205,7 @@ void MltDeviceCapture::emitFrameUpdated(Mlt::Frame &frame)
++     }
++     */
++ 
++-    mlt_image_format format = mlt_image_rgb24;
+++    mlt_image_format format = mlt_image_rgb;
++     int width = 0;
++     int height = 0;
++     const uchar *image = frame.get_image(format, width, height);
++@@ -217,7 +217,7 @@ void MltDeviceCapture::emitFrameUpdated(Mlt::Frame &frame)
++ 
++ void MltDeviceCapture::showFrame(Mlt::Frame &frame)
++ {
++-    mlt_image_format format = mlt_image_rgb24;
+++    mlt_image_format format = mlt_image_rgb;
++     int width = 0;
++     int height = 0;
++     const uchar *image = frame.get_image(format, width, height);
++@@ -301,7 +301,7 @@ void MltDeviceCapture::slotCheckDroppedFrames()
++ 
++ void MltDeviceCapture::saveFrame(Mlt::Frame &frame)
++ {
++-    mlt_image_format format = mlt_image_rgb24;
+++    mlt_image_format format = mlt_image_rgb;
++     int width = 0;
++     int height = 0;
++     const uchar *image = frame.get_image(format, width, height);
++@@ -401,7 +401,7 @@ bool MltDeviceCapture::slotStartCapture(const QString &params, const QString &pa
++         // OpenGL monitor
++         previewProps->set("mlt_service", KdenliveSettings::audiobackend().toUtf8().constData());
++         previewProps->set("preview_off", 1);
++-        previewProps->set("preview_format", mlt_image_rgb24);
+++        previewProps->set("preview_format", mlt_image_rgb);
++         previewProps->set("terminate_on_pause", 0);
++         m_showFrameEvent = m_mltConsumer->listen("consumer-frame-show", this, mlt_listener(consumer_gl_frame_show));
++         // m_mltConsumer->set("resize", 1);
++@@ -469,7 +469,7 @@ void MltDeviceCapture::setOverlay(const QString &path)
++     }
++ 
++     Mlt::Service service(parentProd.get_service());
++-    if (service.type() != tractor_type) {
+++    if (service.type() != mlt_service_tractor_type) {
++         qCWarning(KDENLIVE_LOG) << "// TRACTOR PROBLEM";
++         return;
++     }
++diff --git a/src/doc/kthumb.cpp b/src/doc/kthumb.cpp
++index 4ea5d2182..628b835c4 100644
++--- a/src/doc/kthumb.cpp
+++++ b/src/doc/kthumb.cpp
++@@ -109,7 +109,7 @@ QImage KThumb::getFrame(Mlt::Frame *frame, int width, int height, int scaledWidt
++     }
++     int ow = width;
++     int oh = height;
++-    mlt_image_format format = mlt_image_rgb24a;
+++    mlt_image_format format = mlt_image_rgba;
++     const uchar *imagedata = frame->get_image(format, ow, oh);
++     if (imagedata) {
++         QImage temp(ow, oh, QImage::Format_ARGB32);
++diff --git a/src/effects/effectsrepository.cpp b/src/effects/effectsrepository.cpp
++index f17310c76..57738df0e 100644
++--- a/src/effects/effectsrepository.cpp
+++++ b/src/effects/effectsrepository.cpp
++@@ -63,7 +63,7 @@ Mlt::Properties *EffectsRepository::retrieveListFromMlt() const
++ 
++ Mlt::Properties *EffectsRepository::getMetadata(const QString &effectId) const
++ {
++-    return pCore->getMltRepository()->metadata(filter_type, effectId.toLatin1().data());
+++    return pCore->getMltRepository()->metadata(mlt_service_filter_type, effectId.toLatin1().data());
++ }
++ 
++ void EffectsRepository::parseCustomAssetFile(const QString &file_name, std::unordered_map<QString, Info> &customAssets) const
++diff --git a/src/monitor/glwidget.cpp b/src/monitor/glwidget.cpp
++index 8e1b6c709..f4cbba4a2 100644
++--- a/src/monitor/glwidget.cpp
+++++ b/src/monitor/glwidget.cpp
++@@ -415,7 +415,7 @@ bool GLWidget::acquireSharedFrameTextures()
++         // C & D
++         m_contextSharedAccess.lock();
++         if (m_sharedFrame.is_valid()) {
++-            m_texture[0] = *(reinterpret_cast<const GLuint *>(m_sharedFrame.get_image(mlt_image_glsl_texture)));
+++            m_texture[0] = *(reinterpret_cast<const GLuint *>(m_sharedFrame.get_image(mlt_image_opengl_texture)));
++         }
++     }
++ 
++diff --git a/src/timeline2/model/builders/meltBuilder.cpp b/src/timeline2/model/builders/meltBuilder.cpp
++index 92bf2d46c..f6436cfff 100644
++--- a/src/timeline2/model/builders/meltBuilder.cpp
+++++ b/src/timeline2/model/builders/meltBuilder.cpp
++@@ -88,10 +88,10 @@ bool constructTimelineFromMelt(const std::shared_ptr<TimelineItemModel> &timelin
++             continue;
++         }
++         switch (track->type()) {
++-        case producer_type:
+++        case mlt_service_producer_type:
++             // TODO check that it is the black track, and otherwise log an error
++             break;
++-        case tractor_type: {
+++        case mlt_service_tractor_type: {
++             // that is a double track
++             int tid;
++             bool audioTrack = track->get_int("kdenlive:audio_track") == 1;
++@@ -109,7 +109,7 @@ bool constructTimelineFromMelt(const std::shared_ptr<TimelineItemModel> &timelin
++             timeline->setTrackProperty(tid, QStringLiteral("kdenlive:timeline_active"), track->get("kdenlive:timeline_active"));
++             break;
++         }
++-        case playlist_type: {
+++        case mlt_service_playlist_type: {
++             // that is a single track
++             int tid;
++             Mlt::Playlist local_playlist(*track);
++@@ -143,7 +143,7 @@ bool constructTimelineFromMelt(const std::shared_ptr<TimelineItemModel> &timelin
++     QScopedPointer<Mlt::Service> service(tractor.producer());
++     QList<Mlt::Transition *> compositions;
++     while ((service != nullptr) && service->is_valid()) {
++-        if (service->type() == transition_type) {
+++        if (service->type() == mlt_service_transition_type) {
++             Mlt::Transition t(mlt_transition(service->get_service()));
++             if (t.get_b_track() >= timeline->tractor()->count()) {
++                 // Composition outside of available track, maybe because of a preview track
++@@ -225,7 +225,7 @@ bool constructTrackFromMelt(const std::shared_ptr<TimelineItemModel> &timeline,
++     QScopedPointer<Mlt::Service> service(track.field());
++     QList<Mlt::Transition *> compositions;
++     while ((service != nullptr) && service->is_valid()) {
++-        if (service->type() == transition_type) {
+++        if (service->type() == mlt_service_transition_type) {
++             Mlt::Transition t(mlt_transition(service->get_service()));
++             QString id(t.get("kdenlive_id"));
++             compositions << new Mlt::Transition(t);
++@@ -238,7 +238,7 @@ bool constructTrackFromMelt(const std::shared_ptr<TimelineItemModel> &timeline,
++     }
++     for (int i = 0; i < track.count(); i++) {
++         std::unique_ptr<Mlt::Producer> sub_track(track.track(i));
++-        if (sub_track->type() != playlist_type) {
+++        if (sub_track->type() != mlt_service_playlist_type) {
++             qWarning() << "subtrack must be playlist";
++             return false;
++         }
++@@ -322,8 +322,8 @@ bool constructTrackFromMelt(const std::shared_ptr<TimelineItemModel> &timeline,
++         std::shared_ptr<Mlt::Producer> clip(track.get_clip(i));
++         int position = track.clip_start(i);
++         switch (clip->type()) {
++-        case unknown_type:
++-        case producer_type: {
+++        case mlt_service_unknown_type:
+++        case mlt_service_producer_type: {
++             QString binId;
++             if (clip->parent().get_int("_kdenlive_processed") == 1) {
++                 // This is a bin clip, already processed no need to change id
++@@ -369,7 +369,7 @@ bool constructTrackFromMelt(const std::shared_ptr<TimelineItemModel> &timeline,
++             }
++             break;
++         }
++-        case tractor_type: {
+++        case mlt_service_tractor_type: {
++             // TODO This is a nested timeline
++             qWarning() << "nested timelines not yet implemented";
++             break;
++diff --git a/src/timeline2/model/timelinefunctions.cpp b/src/timeline2/model/timelinefunctions.cpp
++index 9e76194c2..0a2f92051 100644
++--- a/src/timeline2/model/timelinefunctions.cpp
+++++ b/src/timeline2/model/timelinefunctions.cpp
++@@ -1030,7 +1030,7 @@ QStringList TimelineFunctions::enableMultitrackView(const std::shared_ptr<Timeli
++     Mlt::Field *field = timeline->m_tractor->field();
++     field->lock();
++     while ((service != nullptr) && service->is_valid()) {
++-        if (service->type() == transition_type) {
+++        if (service->type() == mlt_service_transition_type) {
++             Mlt::Transition t(mlt_transition(service->get_service()));
++             service.reset(service->producer());
++             QString serviceName = t.get("mlt_service");
++diff --git a/src/timeline2/model/timelineitemmodel.cpp b/src/timeline2/model/timelineitemmodel.cpp
++index 2bdb4d4bc..82b37d115 100644
++--- a/src/timeline2/model/timelineitemmodel.cpp
+++++ b/src/timeline2/model/timelineitemmodel.cpp
++@@ -646,7 +646,7 @@ void TimelineItemModel::buildTrackCompositing(bool rebuild)
++     // Make sure all previous track compositing is removed
++     if (rebuild) {
++         while (service != nullptr && service->is_valid()) {
++-            if (service->type() == transition_type) {
+++            if (service->type() == mlt_service_transition_type) {
++                 Mlt::Transition t(mlt_transition(service->get_service()));
++                 service.reset(service->producer());
++                 if (t.get_int("internal_added") == 237) {
++diff --git a/src/timeline2/model/timelinemodel.cpp b/src/timeline2/model/timelinemodel.cpp
++index d525bf5c9..86ff3a1cf 100644
++--- a/src/timeline2/model/timelinemodel.cpp
+++++ b/src/timeline2/model/timelinemodel.cpp
++@@ -4311,7 +4311,7 @@ bool TimelineModel::replantCompositions(int currentCompo, bool updateView)
++ 
++     mlt_service_type mlt_type = mlt_service_identify(nextservice);
++     QList<Mlt::Transition *> trackCompositions;
++-    while (mlt_type == transition_type) {
+++    while (mlt_type == mlt_service_transition_type) {
++         Mlt::Transition transition(reinterpret_cast<mlt_transition>(nextservice));
++         nextservice = mlt_service_producer(nextservice);
++         int internal = transition.get_int("internal_added");
++@@ -4507,7 +4507,7 @@ bool TimelineModel::checkConsistency()
++     mlt_service nextservice = mlt_service_get_producer(field->get_service());
++     mlt_service_type mlt_type = mlt_service_identify(nextservice);
++     while (nextservice != nullptr) {
++-        if (mlt_type == transition_type) {
+++        if (mlt_type == mlt_service_transition_type) {
++             auto tr = mlt_transition(nextservice);
++             if (mlt_properties_get_int( MLT_TRANSITION_PROPERTIES(tr), "internal_added") > 0) {
++                 // Skip track compositing
++@@ -4828,7 +4828,7 @@ void TimelineModel::updateProfile(Mlt::Profile *profile)
++     for (int i = 0; i < m_tractor->count(); i++) {
++         std::shared_ptr<Mlt::Producer> tk(m_tractor->track(i));
++         tk->set_profile(*m_profile);
++-        if (tk->type() == tractor_type) {
+++        if (tk->type() == mlt_service_tractor_type) {
++             Mlt::Tractor sub(*tk.get());
++             for (int j = 0; j < sub.count(); j++) {
++                 std::shared_ptr<Mlt::Producer> subtk(sub.track(j));
++diff --git a/src/timeline2/model/trackmodel.cpp b/src/timeline2/model/trackmodel.cpp
++index b302dbea3..a431f395a 100644
++--- a/src/timeline2/model/trackmodel.cpp
+++++ b/src/timeline2/model/trackmodel.cpp
++@@ -1046,7 +1046,7 @@ bool TrackModel::checkConsistency()
++     int mixCount = 0;
++     qDebug()<<"=== STARTING MIX CHECK ======";
++     while (service != nullptr && service->is_valid()) {
++-        if (service->type() == transition_type) {
+++        if (service->type() == mlt_service_transition_type) {
++             Mlt::Transition t(mlt_transition(service->get_service()));
++             service.reset(service->producer());
++             // Check that the mix has correct in/out
++diff --git a/src/timeline2/view/timelinecontroller.cpp b/src/timeline2/view/timelinecontroller.cpp
++index 8af5b33aa..a8e67e4ca 100644
++--- a/src/timeline2/view/timelinecontroller.cpp
+++++ b/src/timeline2/view/timelinecontroller.cpp
++@@ -2210,7 +2210,7 @@ void TimelineController::switchCompositing(int mode)
++     QScopedPointer<Mlt::Field>field(m_model->m_tractor->field());
++     field->lock();
++     while ((service != nullptr) && service->is_valid()) {
++-        if (service->type() == transition_type) {
+++        if (service->type() == mlt_service_transition_type) {
++             Mlt::Transition t(mlt_transition(service->get_service()));
++             service.reset(service->producer());
++             QString serviceName = t.get("mlt_service");
++diff --git a/src/transitions/transitionsrepository.cpp b/src/transitions/transitionsrepository.cpp
++index 1b049d04c..4901b3211 100644
++--- a/src/transitions/transitionsrepository.cpp
+++++ b/src/transitions/transitionsrepository.cpp
++@@ -60,7 +60,7 @@ Mlt::Properties *TransitionsRepository::retrieveListFromMlt() const
++ 
++ Mlt::Properties *TransitionsRepository::getMetadata(const QString &assetId) const
++ {
++-    return pCore->getMltRepository()->metadata(transition_type, assetId.toLatin1().data());
+++    return pCore->getMltRepository()->metadata(mlt_service_transition_type, assetId.toLatin1().data());
++ }
++ 
++ void TransitionsRepository::parseCustomAssetFile(const QString &file_name, std::unordered_map<QString, Info> &customAssets) const
++diff --git a/thumbnailer/mltpreview.cpp b/thumbnailer/mltpreview.cpp
++index 9358c2caa..2299268df 100644
++--- a/thumbnailer/mltpreview.cpp
+++++ b/thumbnailer/mltpreview.cpp
++@@ -109,7 +109,7 @@ QImage MltPreview::getFrame(std::shared_ptr<Mlt::Producer> producer, int framepo
++         return mltImage;
++     }
++ 
++-    mlt_image_format format = mlt_image_rgb24a;
+++    mlt_image_format format = mlt_image_rgba;
++     const uchar *imagedata = frame->get_image(format, width, height);
++     if (imagedata != nullptr) {
++         memcpy(mltImage.bits(), imagedata, size_t(width * height * 4));
++-- 
++GitLab
++
++
++From 4954716bc4d61643bc420e01ac5c63d7533c9849 Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Fri, 16 Apr 2021 17:59:55 +0200
++Subject: [PATCH 02/11] mlt7: replace deprecated mlt_sample_calculator()
++
++Related to #991
++---
++ src/jobs/audiothumbjob.cpp      | 2 +-
++ src/lib/audio/audioEnvelope.cpp | 2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/src/jobs/audiothumbjob.cpp b/src/jobs/audiothumbjob.cpp
++index f114193b8..8a68682b2 100644
++--- a/src/jobs/audiothumbjob.cpp
+++++ b/src/jobs/audiothumbjob.cpp
++@@ -90,7 +90,7 @@ bool AudioThumbJob::computeWithMlt()
++         }
++         QScopedPointer<Mlt::Frame> mltFrame(audioProducer->get_frame());
++         if ((mltFrame != nullptr) && mltFrame->is_valid() && (mltFrame->get_int("test_audio") == 0)) {
++-            int samples = mlt_sample_calculator(float(framesPerSecond), m_frequency, z);
+++            int samples = mlt_audio_calculate_frame_samples(float(framesPerSecond), m_frequency, z);
++             mltFrame->get_audio(audioFormat, m_frequency, m_channels, samples);
++             for (int channel = 0; channel < m_channels; ++channel) {
++                 double lev = mltFrame->get_double(keys.at(channel).toUtf8().constData());
++diff --git a/src/lib/audio/audioEnvelope.cpp b/src/lib/audio/audioEnvelope.cpp
++index 829fc9e25..7c4127914 100644
++--- a/src/lib/audio/audioEnvelope.cpp
+++++ b/src/lib/audio/audioEnvelope.cpp
++@@ -113,7 +113,7 @@ AudioEnvelope::AudioSummary AudioEnvelope::loadAndNormalizeEnvelope() const
++     for (size_t i = 0; i < max; ++i) {
++         std::unique_ptr<Mlt::Frame> frame(m_producer->get_frame(int(i)));
++         qint64 position = mlt_frame_get_position(frame->get_frame());
++-        int samples = mlt_sample_calculator(float(m_producer->get_fps()), samplingRate, position);
+++        int samples = mlt_audio_calculate_frame_samples(float(m_producer->get_fps()), samplingRate, position);
++         auto *data = static_cast<qint16 *>(frame->get_audio(format_s16, samplingRate, channels, samples));
++ 
++         summary.audioAmplitudes[i] = 0;
++-- 
++GitLab
++
++
++From ad41a1c91ee5f0d80313ad686bcdaba2606b1825 Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Fri, 16 Apr 2021 18:14:25 +0200
++Subject: [PATCH 03/11] mlt7: update mlt min version
++
++Related to #991
++---
++ CMakeLists.txt | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index 538c4bbea..a03099012 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -26,8 +26,8 @@ option(CRASH_AUTO_TEST "Auto-generate testcases upon some crashes (uses RTTR lib
++ option(BUILD_FUZZING "Build fuzzing target" OFF)
++ 
++ # Minimum versions of main dependencies.
++-set(MLT_MIN_MAJOR_VERSION 6)
++-set(MLT_MIN_MINOR_VERSION 20)
+++set(MLT_MIN_MAJOR_VERSION 7)
+++set(MLT_MIN_MINOR_VERSION 0)
++ set(MLT_MIN_PATCH_VERSION 0)
++ set(MLT_MIN_VERSION ${MLT_MIN_MAJOR_VERSION}.${MLT_MIN_MINOR_VERSION}.${MLT_MIN_PATCH_VERSION})
++ 
++-- 
++GitLab
++
++
++From 9917df1a55e9f829c36601ff87d1e11ac93ce967 Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Fri, 16 Apr 2021 18:28:20 +0200
++Subject: [PATCH 04/11] remove unnecessary version checks for mlt 6 versions
++ (new min is ver 7)
++
++Related to #991
++---
++ src/mainwindow.cpp         | 10 ----------
++ src/monitor/glwidget.cpp   | 16 ----------------
++ src/titler/titlewidget.cpp | 13 -------------
++ 3 files changed, 39 deletions(-)
++
++diff --git a/src/mainwindow.cpp b/src/mainwindow.cpp
++index 3b42631f7..43b41c5f2 100644
++--- a/src/mainwindow.cpp
+++++ b/src/mainwindow.cpp
++@@ -76,8 +76,6 @@
++ #include "dialogs/textbasededit.h"
++ #include "project/dialogs/temporarydata.h"
++ 
++-#include <framework/mlt_version.h>
++-
++ #ifdef USE_JOGSHUTTLE
++ #include "jogshuttle/jogmanager.h"
++ #endif
++@@ -105,7 +103,6 @@
++ #include <kns3/knewstuffaction.h>
++ #include <ktogglefullscreenaction.h>
++ #include <kwidgetsaddons_version.h>
++-#include <KRun>
++ 
++ #include "kdenlive_debug.h"
++ #include <QAction>
++@@ -360,14 +357,9 @@ void MainWindow::init(const QString &mltPath)
++     auto *onlineResources = new ResourceWidget(this);
++     m_onlineResourcesDock = addDock(i18n("Online Resources"), QStringLiteral("onlineresources"), onlineResources);
++     connect(onlineResources, &ResourceWidget::previewClip, [&](const QString &path, const QString &title) {
++-    qDebug()<<"MLT VER: "<<LIBMLT_VERSION_INT<<"; QTVER: "<<QT_VERSION_CHECK(6,26,0);
++-#if LIBMLT_VERSION_INT == QT_VERSION_CHECK(6,26,0)
++-        new KRun(QUrl(path), this);
++-#else
++         m_clipMonitor->slotPreviewResource(path, title);
++         m_clipMonitorDock->show();
++         m_clipMonitorDock->raise();
++-#endif
++     });
++ 
++     connect(onlineResources, &ResourceWidget::addClip, this, &MainWindow::slotAddProjectClip);
++@@ -1461,7 +1453,6 @@ void MainWindow::setupActions()
++         overlayAudioInfo->setEnabled(toggled);
++     });
++ 
++-#if LIBMLT_VERSION_INT >= QT_VERSION_CHECK(6,20,0)
++     // Monitor resolution scaling
++     KActionCategory *resolutionActionCategory = new KActionCategory(i18n("Preview Resolution"), actionCollection());
++     m_scaleGroup = new QActionGroup(this);
++@@ -1513,7 +1504,6 @@ void MainWindow::setupActions()
++         // Clear timeline selection so that any qml monitor scene is reset
++         emit pCore->monitorManager()->updatePreviewScaling();
++     });
++-#endif
++ 
++     QAction *dropFrames = new QAction(QIcon(), i18n("Real Time (drop frames)"), this);
++     dropFrames->setCheckable(true);
++diff --git a/src/monitor/glwidget.cpp b/src/monitor/glwidget.cpp
++index f4cbba4a2..b02c0b8df 100644
++--- a/src/monitor/glwidget.cpp
+++++ b/src/monitor/glwidget.cpp
++@@ -1844,7 +1844,6 @@ void GLWidget::setConsumerProperty(const QString &name, const QString &value)
++ 
++ bool GLWidget::updateScaling()
++ {
++-#if LIBMLT_VERSION_INT >= QT_VERSION_CHECK(6,20,0)
++     int previewHeight = pCore->getCurrentFrameSize().height();
++     switch (KdenliveSettings::previewScaling()) {
++         case 2:
++@@ -1876,21 +1875,6 @@ bool GLWidget::updateScaling()
++         m_consumer->set("height", m_profileSize.height());
++         resizeGL(width(), height());
++     }
++-#else
++-    int previewHeight = pCore->getCurrentFrameSize().height();
++-    int pWidth = previewHeight * pCore->getCurrentDar() / pCore->getCurrentSar();
++-    if (pWidth% 2 > 0) {
++-        pWidth ++;
++-    }
++-    QSize profileSize(pWidth, previewHeight);
++-    if (profileSize == m_profileSize) {
++-        return false;
++-    }
++-    m_profileSize = profileSize;
++-    if (m_consumer) {
++-        resizeGL(width(), height());
++-    }
++-#endif
++     return true;
++ }
++ 
++diff --git a/src/titler/titlewidget.cpp b/src/titler/titlewidget.cpp
++index cd8837b5c..d8e38ae82 100644
++--- a/src/titler/titlewidget.cpp
+++++ b/src/titler/titlewidget.cpp
++@@ -195,16 +195,6 @@ TitleWidget::TitleWidget(const QUrl &url, QString projectTitlePath, Monitor *mon
++     connect(tw_rd_line, &QRadioButton::toggled, this, &TitleWidget::slotUpdateTW);
++     connect(tw_rd_custom, &QRadioButton::toggled, this, &TitleWidget::slotUpdateTW);
++     tw_rd_custom->setEnabled(false);
++-    if (mlt_version_get_int() < 0x061900) {
++-        typewriterBox->setEnabled(false);
++-
++-        auto *twinfo = new KMessageWidget(typewriterBox);
++-        twinfo->setText(i18n("Typewriter requires MLT-6.26.0 or newer."));
++-        twinfo->setMessageType(KMessageWidget::Warning);
++-        twinfo->setCloseButtonVisible(false);
++-        twinfo->setEnabled(true);
++-        gridLayout_12->addWidget(twinfo, 3, 0, 1, 4);
++-    }
++ 
++     connect(fontColorButton, &KColorButton::changed, this, &TitleWidget::slotUpdateText);
++     connect(plain_color, &QAbstractButton::clicked, this, &TitleWidget::slotUpdateText);
++@@ -411,9 +401,6 @@ TitleWidget::TitleWidget(const QUrl &url, QString projectTitlePath, Monitor *mon
++     m_buttonEllipse->setShortcut(Qt::ALT + Qt::Key_E);
++     m_buttonEllipse->setToolTip(i18n("Add Ellipse") + QLatin1Char(' ') + m_buttonEllipse->shortcut().toString());
++     connect(m_buttonEllipse, &QAction::triggered, this, &TitleWidget::slotEllipseTool);
++-    if (mlt_version_get_int() < 0x061900) {
++-        m_buttonEllipse->setVisible(false);
++-    }
++ 
++     m_buttonImage = m_toolbar->addAction(QIcon::fromTheme(QStringLiteral("insert-image")), i18n("Add Image"));
++     m_buttonImage->setCheckable(false);
++-- 
++GitLab
++
++
++From 3dcf866784c7454d5da42b8ae8094cf3aac8d42f Mon Sep 17 00:00:00 2001
++From: Jean-Baptiste Mardelle <jb@kdenlive.org>
++Date: Sun, 18 Apr 2021 09:10:43 +0200
++Subject: [PATCH 05/11] Compile and run on MLT-7 (some TODO's left)
++
++---
++ cmake/modules/FindMLT.cmake                    |  9 +++++----
++ src/CMakeLists.txt                             |  4 ++--
++ src/assets/view/widgets/geometryeditwidget.cpp | 16 ++++++++--------
++ src/bin/projectclip.cpp                        | 10 +++++++---
++ src/capture/CMakeLists.txt                     |  2 +-
++ src/doc/documentvalidator.cpp                  |  3 +++
++ src/monitor/glwidget.cpp                       |  2 +-
++ src/monitor/recmanager.cpp                     |  2 +-
++ 8 files changed, 28 insertions(+), 20 deletions(-)
++
++diff --git a/cmake/modules/FindMLT.cmake b/cmake/modules/FindMLT.cmake
++index 39fd1fe2f..57c598241 100644
++--- a/cmake/modules/FindMLT.cmake
+++++ b/cmake/modules/FindMLT.cmake
++@@ -6,7 +6,7 @@
++ # Redistribution and use is allowed according to the terms of the BSD license.
++ 
++ find_package(PkgConfig QUIET)
++-pkg_check_modules(PC_MLT mlt++)
+++pkg_check_modules(PC_MLT mlt++-7)
++ 
++ # Workaround cmake 3.17 issue (dropped .dll extension for library search)
++ if(WIN32)
++@@ -21,11 +21,11 @@ find_path(MLT_INCLUDE_DIR
++   PATHS
++     /usr/local/include
++     /usr/include
++-  PATH_SUFFIXES mlt
+++  PATH_SUFFIXES mlt-7
++ )
++ 
++ find_library(MLT_LIBRARIES
++-  NAMES mlt
+++  NAMES mlt-7
++   HINTS
++     ${PC_MLT_LIBDIR}
++     ${PC_MLT_PREFIX}/lib
++@@ -42,10 +42,11 @@ find_path(MLTPP_INCLUDE_DIR
++   PATHS
++     /usr/local/include
++     /usr/include
+++  PATH_SUFFIXES mlt-7
++ )
++ 
++ find_library(MLTPP_LIBRARIES
++-  NAMES mlt++
+++  NAMES mlt++-7
++   HINTS
++     ${PC_MLT_LIBDIR}
++     ${PC_MLT_PREFIX}/lib
++diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
++index e71acf91f..ad3ee6722 100644
++--- a/src/CMakeLists.txt
+++++ b/src/CMakeLists.txt
++@@ -9,7 +9,7 @@ set_package_properties(LibV4L2 PROPERTIES
++ if(NOT WIN32)
++     find_package(PkgConfig QUIET)
++     execute_process(
++-        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=mltdatadir mlt-framework
+++        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=mltdatadir mlt-framework-7
++         OUTPUT_VARIABLE MLT_DATADIR
++         RESULT_VARIABLE MLT_DATADIR_failed)
++     if(NOT MLT_DATADIR_failed)
++@@ -17,7 +17,7 @@ if(NOT WIN32)
++     endif()
++ 
++     execute_process(
++-        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=meltbin mlt-framework
+++        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=meltbin mlt-framework-7
++         OUTPUT_VARIABLE MLT_MELTBIN
++         RESULT_VARIABLE MLT_MELTBIN_failed)
++     if(NOT MLT_MELTBIN_failed)
++diff --git a/src/assets/view/widgets/geometryeditwidget.cpp b/src/assets/view/widgets/geometryeditwidget.cpp
++index fdf7bee51..16b21b618 100644
++--- a/src/assets/view/widgets/geometryeditwidget.cpp
+++++ b/src/assets/view/widgets/geometryeditwidget.cpp
++@@ -27,7 +27,8 @@
++ #include "monitor/monitormanager.h"
++ #include "timecodedisplay.h"
++ #include "widgets/geometrywidget.h"
++-#include <mlt++/MltGeometry.h>
+++#include <mlt++/MltProperties.h>
+++#include <framework/mlt_types.h>
++ #include <QVBoxLayout>
++ 
++ GeometryEditWidget::GeometryEditWidget(std::shared_ptr<AssetParameterModel> model, QModelIndex index, QSize frameSize, QWidget *parent)
++@@ -38,13 +39,12 @@ GeometryEditWidget::GeometryEditWidget(std::shared_ptr<AssetParameterModel> mode
++     const QString value = m_model->data(m_index, AssetParameterModel::ValueRole).toString().simplified();
++     int start = m_model->data(m_index, AssetParameterModel::ParentInRole).toInt();
++     int end = start + m_model->data(m_index, AssetParameterModel::ParentDurationRole).toInt();
++-    QSize profileSize = pCore->getCurrentFrameSize();
++-    Mlt::Geometry geometry(value.toUtf8().data(), end, profileSize.width(), profileSize.height());
++-    Mlt::GeometryItem item;
++-    QRect rect;
++-    if (geometry.fetch(&item, 0) == 0) {
++-        rect = QRect(int(item.x()), int(item.y()), int(item.w()), int(item.h()));
++-    } else {
+++    Mlt::Properties mlt_prop;
+++    m_model->passProperties(mlt_prop);
+++    mlt_prop.set("rect", value.toUtf8().data());
+++    mlt_rect r = mlt_prop.get_rect("rect");
+++    QRect rect = QRect(int(r.x), int(r.y), int(r.w), int(r.h));;
+++    if (rect.isNull()) {
++         // Cannot read value, use random default
++         rect = QRect(50, 50, 200, 200);
++     }
++diff --git a/src/bin/projectclip.cpp b/src/bin/projectclip.cpp
++index c9d48f93f..669fb6316 100644
++--- a/src/bin/projectclip.cpp
+++++ b/src/bin/projectclip.cpp
++@@ -1548,7 +1548,8 @@ QStringList ProjectClip::updatedAnalysisData(const QString &name, const QString
++         if (KMessageBox::questionYesNo(QApplication::activeWindow(), i18n("Clip already contains analysis data %1", name), QString(), KGuiItem(i18n("Merge")),
++                                        KGuiItem(i18n("Add"))) == KMessageBox::Yes) {
++             // Merge data
++-            auto &profile = pCore->getCurrentProfile();
+++            //TODO MLT7: convert to Mlt::Animation
+++            /*auto &profile = pCore->getCurrentProfile();
++             Mlt::Geometry geometry(current.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
++             Mlt::Geometry newGeometry(data.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
++             Mlt::GeometryItem item;
++@@ -1559,7 +1560,7 @@ QStringList ProjectClip::updatedAnalysisData(const QString &name, const QString
++                 pos++;
++                 geometry.insert(item);
++             }
++-            return QStringList() << QString("kdenlive:clipanalysis." + name) << geometry.serialise();
+++            return QStringList() << QString("kdenlive:clipanalysis." + name) << geometry.serialise();*/
++             // m_controller->setProperty("kdenlive:clipanalysis." + name, geometry.serialise());
++         }
++         // Add data with another name
++@@ -1587,7 +1588,8 @@ const QString ProjectClip::geometryWithOffset(const QString &data, int offset)
++         return data;
++     }
++     auto &profile = pCore->getCurrentProfile();
++-    Mlt::Geometry geometry(data.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
+++    // TODO MLT7: port to Mlt::Animation
+++    /*Mlt::Geometry geometry(data.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
++     Mlt::Geometry newgeometry(nullptr, duration().frames(profile->fps()), profile->width(), profile->height());
++     Mlt::GeometryItem item;
++     int pos = 0;
++@@ -1598,6 +1600,8 @@ const QString ProjectClip::geometryWithOffset(const QString &data, int offset)
++         newgeometry.insert(item);
++     }
++     return newgeometry.serialise();
+++    */
+++    return QString();
++ }
++ 
++ bool ProjectClip::isSplittable() const
++diff --git a/src/capture/CMakeLists.txt b/src/capture/CMakeLists.txt
++index f588b2e30..c3404fa7d 100644
++--- a/src/capture/CMakeLists.txt
+++++ b/src/capture/CMakeLists.txt
++@@ -7,7 +7,7 @@ endif()
++ set(kdenlive_SRCS
++   ${kdenlive_SRCS}
++   capture/managecapturesdialog.cpp
++-  capture/mltdevicecapture.cpp
+++#  capture/mltdevicecapture.cpp
++   capture/mediacapture.cpp
++   PARENT_SCOPE)
++ 
++diff --git a/src/doc/documentvalidator.cpp b/src/doc/documentvalidator.cpp
++index 111178e87..2eadc46a1 100644
++--- a/src/doc/documentvalidator.cpp
+++++ b/src/doc/documentvalidator.cpp
++@@ -866,6 +866,8 @@ bool DocumentValidator::upgrade(double version, const double currentVersion)
++             QDomElement trans = transitions.at(i).toElement();
++             int out = trans.attribute(QStringLiteral("out")).toInt() - trans.attribute(QStringLiteral("in")).toInt();
++             QString geom = Xml::getXmlProperty(trans, QStringLiteral("geometry"));
+++            //TODO MLT7: port?
+++            /*
++             Mlt::Geometry *g = new Mlt::Geometry(geom.toUtf8().data(), out, profileWidth, profileHeight);
++             Mlt::GeometryItem item;
++             if (g->next_key(&item, out) == 0) {
++@@ -878,6 +880,7 @@ bool DocumentValidator::upgrade(double version, const double currentVersion)
++                 }
++             }
++             delete g;
+++            */
++         }
++     }
++ 
++diff --git a/src/monitor/glwidget.cpp b/src/monitor/glwidget.cpp
++index b02c0b8df..2c2af0ac5 100644
++--- a/src/monitor/glwidget.cpp
+++++ b/src/monitor/glwidget.cpp
++@@ -1128,7 +1128,7 @@ int GLWidget::reconfigure()
++ 
++         delete m_threadCreateEvent;
++         delete m_threadJoinEvent;
++-        if (m_consumer) {
+++        if (m_glslManager) {
++             m_threadCreateEvent = m_consumer->listen("consumer-thread-create", this, mlt_listener(onThreadCreate));
++             m_threadJoinEvent = m_consumer->listen("consumer-thread-join", this, mlt_listener(onThreadJoin));
++         }
++diff --git a/src/monitor/recmanager.cpp b/src/monitor/recmanager.cpp
++index 3f577d739..74d278533 100644
++--- a/src/monitor/recmanager.cpp
+++++ b/src/monitor/recmanager.cpp
++@@ -21,7 +21,7 @@
++ 
++ #include "recmanager.h"
++ #include "capture/managecapturesdialog.h"
++-#include "capture/mltdevicecapture.h"
+++//#include "capture/mltdevicecapture.h"
++ #include "core.h"
++ #include "dialogs/profilesdialog.h"
++ #include "kdenlivesettings.h"
++-- 
++GitLab
++
++
++From 55c39948ae11342da42dd40dae11a34740037717 Mon Sep 17 00:00:00 2001
++From: Jean-Baptiste Mardelle <jb@kdenlive.org>
++Date: Sun, 18 Apr 2021 10:04:48 +0200
++Subject: [PATCH 06/11] Fix MLT7 % rect parsing
++
++---
++ src/assets/view/widgets/geometryeditwidget.cpp | 3 ++-
++ 1 file changed, 2 insertions(+), 1 deletion(-)
++
++diff --git a/src/assets/view/widgets/geometryeditwidget.cpp b/src/assets/view/widgets/geometryeditwidget.cpp
++index 16b21b618..67ff3148d 100644
++--- a/src/assets/view/widgets/geometryeditwidget.cpp
+++++ b/src/assets/view/widgets/geometryeditwidget.cpp
++@@ -39,11 +39,12 @@ GeometryEditWidget::GeometryEditWidget(std::shared_ptr<AssetParameterModel> mode
++     const QString value = m_model->data(m_index, AssetParameterModel::ValueRole).toString().simplified();
++     int start = m_model->data(m_index, AssetParameterModel::ParentInRole).toInt();
++     int end = start + m_model->data(m_index, AssetParameterModel::ParentDurationRole).toInt();
+++    QSize profileSize = pCore->getCurrentFrameSize();
++     Mlt::Properties mlt_prop;
++     m_model->passProperties(mlt_prop);
++     mlt_prop.set("rect", value.toUtf8().data());
++     mlt_rect r = mlt_prop.get_rect("rect");
++-    QRect rect = QRect(int(r.x), int(r.y), int(r.w), int(r.h));;
+++    QRect rect = QRect(int(profileSize.width() * r.x), int(profileSize.height() * r.y), int(profileSize.width()* r.w), int(profileSize.height() * r.h));;
++     if (rect.isNull()) {
++         // Cannot read value, use random default
++         rect = QRect(50, 50, 200, 200);
++-- 
++GitLab
++
++
++From e484320e94ae1e44daa745d004bd0183b4fc36df Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Mon, 19 Apr 2021 21:21:00 +0200
++Subject: [PATCH 07/11] mlt7: fix automated mlt detection
++
++Related to #991
++---
++ src/mltconnection.cpp | 18 +++++++++---------
++ 1 file changed, 9 insertions(+), 9 deletions(-)
++
++diff --git a/src/mltconnection.cpp b/src/mltconnection.cpp
++index 13d0e8d8c..4c0868085 100644
++--- a/src/mltconnection.cpp
+++++ b/src/mltconnection.cpp
++@@ -113,7 +113,7 @@ void MltConnection::locateMeltAndProfilesPath(const QString &mltPath)
++         profilePath = qgetenv("MLT_DATA") + QStringLiteral("/profiles");
++     }
++     if ((profilePath.isEmpty() || !QFile::exists(profilePath)) && qEnvironmentVariableIsSet("MLT_PREFIX")) {
++-        profilePath = qgetenv("MLT_PREFIX") + QStringLiteral("/share/mlt/profiles");
+++        profilePath = qgetenv("MLT_PREFIX") + QStringLiteral("/share/mlt-7/profiles");
++     }
++ #ifndef Q_OS_WIN
++     // stored setting should not be considered on windows as MLT is distributed with each new Kdenlive version
++@@ -121,7 +121,7 @@ void MltConnection::locateMeltAndProfilesPath(const QString &mltPath)
++ #endif
++     // try to automatically guess MLT path if installed with the same prefix as kdenlive with default data path
++     if (profilePath.isEmpty() || !QFile::exists(profilePath)) {
++-        profilePath = QDir::cleanPath(qApp->applicationDirPath() + QStringLiteral("/../share/mlt/profiles"));
+++        profilePath = QDir::cleanPath(qApp->applicationDirPath() + QStringLiteral("/../share/mlt-7/profiles"));
++     }
++     // fallback to build-time definition
++     if ((profilePath.isEmpty() || !QFile::exists(profilePath)) && !QStringLiteral(MLT_DATADIR).isEmpty()) {
++@@ -136,14 +136,14 @@ void MltConnection::locateMeltAndProfilesPath(const QString &mltPath)
++ #endif
++     QString meltPath;
++     if (qEnvironmentVariableIsSet("MLT_PREFIX")) {
++-        meltPath = qgetenv("MLT_PREFIX") + QStringLiteral("/bin/melt") + exeSuffix;
+++        meltPath = qgetenv("MLT_PREFIX") + QStringLiteral("/bin/melt-7") + exeSuffix;
++     } else {
++         meltPath = KdenliveSettings::rendererpath();
++     }
++     if (!QFile::exists(meltPath)) {
++-        meltPath = QDir::cleanPath(profilePath + QStringLiteral("/../../../bin/melt")) + exeSuffix;
+++        meltPath = QDir::cleanPath(profilePath + QStringLiteral("/../../../bin/melt-7")) + exeSuffix;
++         if (!QFile::exists(meltPath)) {
++-            meltPath = QStandardPaths::findExecutable("melt");
+++            meltPath = QStandardPaths::findExecutable("melt-7");
++             if (meltPath.isEmpty()) {
++                 meltPath = QStandardPaths::findExecutable("mlt-melt");
++             }
++@@ -167,7 +167,7 @@ void MltConnection::locateMeltAndProfilesPath(const QString &mltPath)
++         }
++     }
++     if (profilePath.isEmpty()) {
++-        profilePath = QDir::cleanPath(meltPath + QStringLiteral("/../../share/mlt/profiles"));
+++        profilePath = QDir::cleanPath(meltPath + QStringLiteral("/../../share/mlt-7/profiles"));
++         KdenliveSettings::setMltpath(profilePath);
++     }
++     QStringList profilesFilter;
++@@ -177,11 +177,11 @@ void MltConnection::locateMeltAndProfilesPath(const QString &mltPath)
++         // Cannot find MLT path, try finding melt
++         if (!meltPath.isEmpty()) {
++             if (meltPath.contains(QLatin1Char('/'))) {
++-                profilePath = meltPath.section(QLatin1Char('/'), 0, -2) + QStringLiteral("/share/mlt/profiles");
+++                profilePath = meltPath.section(QLatin1Char('/'), 0, -2) + QStringLiteral("/share/mlt-7/profiles");
++             } else {
++-                profilePath = qApp->applicationDirPath() + QStringLiteral("/share/mlt/profiles");
+++                profilePath = qApp->applicationDirPath() + QStringLiteral("/share/mlt-7/profiles");
++             }
++-            profilePath = QStringLiteral("/usr/local/share/mlt/profiles");
+++            profilePath = QStringLiteral("/usr/local/share/mlt-7/profiles");
++             KdenliveSettings::setMltpath(profilePath);
++             profilesList = QDir(profilePath).entryList(profilesFilter, QDir::Files);
++         }
++-- 
++GitLab
++
++
++From f6753f2698290ba23e24f5cdfb6f71581077c93f Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Tue, 20 Apr 2021 09:00:51 +0200
++Subject: [PATCH 08/11] appimage: switch to mlt7
++
++---
++ .../appimage/3rdparty/ext_mlt/CMakeLists.txt     |  8 ++------
++ packaging/appimage/build-image.sh                | 16 ++++++++--------
++ 2 files changed, 10 insertions(+), 14 deletions(-)
++
++diff --git a/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt b/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt
++index 6f933d4f3..ffe2008a7 100644
++--- a/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt
+++++ b/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt
++@@ -2,12 +2,8 @@ ExternalProject_Add(
++   ext_mlt
++   DOWNLOAD_DIR ${EXT_DOWNLOAD_DIR}
++   GIT_REPOSITORY https://github.com/mltframework/mlt.git
++-  GIT_TAG v6
+++  GIT_TAG master
++ 
++-  CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=${EXT_INSTALL_DIR} ${AT_HOST} ${AT_SHARED_ONLY} --enable-gpl --enable-gpl3 --enable-opencv --enable-opengl
+++  CMAKE_ARGS ${CMAKE_GLOBAL_PROFILE} -DMOD_OPENCV=ON -DMOD_MOVIT=ON
++   BUILD_IN_SOURCE 1
++-  BUILD_ALWAYS TRUE
++-  BUILD_COMMAND $(MAKE) clean
++-  COMMAND $(MAKE)
++-  INSTALL_COMMAND $(MAKE) install
++ )
++diff --git a/packaging/appimage/build-image.sh b/packaging/appimage/build-image.sh
++index 6e05eb64b..b3e1cd4a2 100755
++--- a/packaging/appimage/build-image.sh
+++++ b/packaging/appimage/build-image.sh
++@@ -66,8 +66,8 @@ cp -r $DEPS_INSTALL_PREFIX/translations $APPDIR/usr/
++ # TO remove once we switch to the newer Qt5.12 Appimage dependency
++ # cp -r $DEPS_INSTALL_PREFIX/openssl/lib/*  $APPDIR/usr/lib
++ 
++-cp -r $DEPS_INSTALL_PREFIX/share/mlt  $APPDIR/usr/share
++-cp -r $DEPS_INSTALL_PREFIX/lib/mlt  $APPDIR/usr/lib
+++cp -r $DEPS_INSTALL_PREFIX/share/mlt-7  $APPDIR/usr/share
+++cp -r $DEPS_INSTALL_PREFIX/lib/mlt-7  $APPDIR/usr/lib
++ cp -r $DEPS_INSTALL_PREFIX/lib/libharfbuzz*  $APPDIR/usr/lib
++ cp -r $DEPS_INSTALL_PREFIX/lib/libfribidi*  $APPDIR/usr/lib
++ cp -r $DEPS_INSTALL_PREFIX/lib/libpango*  $APPDIR/usr/lib
++@@ -128,7 +128,7 @@ done
++ #  patchelf --set-rpath '$ORIGIN/../../lib' $lib;
++ #done
++ 
++-for lib in $APPDIR/usr/lib/mlt/*.so*; do
+++for lib in $APPDIR/usr/lib/mlt-7/*.so*; do
++   patchelf --set-rpath '$ORIGIN/..' $lib;
++ done
++ 
++@@ -189,7 +189,7 @@ linuxdeployqt $APPDIR/usr/share/applications/org.kde.kdenlive.desktop \
++   -qmldir=$DEPS_INSTALL_PREFIX/qml \
++   -verbose=2 \
++   -bundle-non-qt-libs \
++-  -extra-plugins=$APPDIR/usr/lib/mlt,$APPDIR/usr/plugins,$APPDIR/usr/qml,$APPDIR/usr/share/locale \
+++  -extra-plugins=$APPDIR/usr/lib/mlt-7,$APPDIR/usr/plugins,$APPDIR/usr/qml,$APPDIR/usr/share/locale \
++   -exclude-libs=libnss3.so,libnssutil3.so,libGL.so.1
++ 
++ #  -appimage \
++@@ -229,14 +229,14 @@ export XDG_CONFIG_HOME=\$HOME/.config/
++ export PATH=\$DIR/usr/bin:\$DIR/usr/lib:\$DIR/usr/lib/libexec/kf5::\$PATH
++ export KDE_FORK_SLAVES=1
++ 
++-export MLT_REPOSITORY=\$DIR/usr/lib/mlt/
++-export MLT_DATA=\$DIR/usr/share/mlt/
+++export MLT_REPOSITORY=\$DIR/usr/lib/mlt-7/
+++export MLT_DATA=\$DIR/usr/share/mlt-7/
++ export MLT_ROOT_DIR=\$DIR/usr/
++ export LADSPA_PATH=\$DIR/usr/lib/ladspa
++ export LIBVA_DRIVERS_PATH=\$DIR/usr/lib/va
++ export FREI0R_PATH=\$DIR/usr/lib/frei0r-1
++-export MLT_PROFILES_PATH=\$DIR/usr/share/mlt/profiles/
++-export MLT_PRESETS_PATH=\$DIR/usr/share/mlt/presets/
+++export MLT_PROFILES_PATH=\$DIR/usr/share/mlt-7/profiles/
+++export MLT_PRESETS_PATH=\$DIR/usr/share/mlt-7/presets/
++ export SDL_AUDIODRIVER=pulseaudio
++ export GST_PLUGIN_SCANNER=\$DIR/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
++ export GST_PLUGIN_PATH=\$DIR/usr/lib/x86_64-linux-gnu/gstreamer1.0/
++-- 
++GitLab
++
++
++From ba32259d268779f7feb7336b74316babe826cb71 Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Tue, 20 Apr 2021 09:32:49 +0200
++Subject: [PATCH 09/11] appimage: mlt7 fix find melt
++
++---
++ packaging/appimage/build-image.sh | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/packaging/appimage/build-image.sh b/packaging/appimage/build-image.sh
++index b3e1cd4a2..6609b3b24 100755
++--- a/packaging/appimage/build-image.sh
+++++ b/packaging/appimage/build-image.sh
++@@ -74,6 +74,7 @@ cp -r $DEPS_INSTALL_PREFIX/lib/libpango*  $APPDIR/usr/lib
++ cp -r $DEPS_INSTALL_PREFIX/lib/libmlt*  $APPDIR/usr/lib
++ cp -r $DEPS_INSTALL_PREFIX/lib/frei0r-1  $APPDIR/usr/lib
++ cp -r $DEPS_INSTALL_PREFIX/bin/melt  $APPDIR/usr/bin
+++cp -r $DEPS_INSTALL_PREFIX/bin/melt-7  $APPDIR/usr/bin
++ cp -r $DEPS_INSTALL_PREFIX/bin/ffmpeg  $APPDIR/usr/bin
++ cp -r $DEPS_INSTALL_PREFIX/bin/ffplay  $APPDIR/usr/bin
++ cp -r $DEPS_INSTALL_PREFIX/bin/ffprobe  $APPDIR/usr/bin
++@@ -212,7 +213,7 @@ rm  $APPDIR/AppRun
++ cat > $APPDIR/AppRun << EOF
++ #!/bin/bash
++ 
++-DIR="\`dirname \"\$0\"\`" 
+++DIR="\`dirname \"\$0\"\`"
++ DIR="\`( cd \"\$DIR\" && pwd )\`"
++ export APPDIR=\$DIR
++ export LC_ALL=\$LANG
++@@ -277,4 +278,3 @@ appimagetool $APPDIR
++ # Generate a new name for the Appimage file and rename it accordingly
++ APPIMAGE=kdenlive-"$VERSION"-x86_64.appimage
++ mv Kdenlive-x86_64.AppImage $APPIMAGE
++-
++-- 
++GitLab
++
++
++From 5bc595c82d624d568c54cd012419d649f4f9865a Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Wed, 21 Apr 2021 11:57:51 +0200
++Subject: [PATCH 10/11] mlt7: Remove autotrack_rectangle (motion_est)
++
++mlt7 has dropped the motion_est module. You can use opencv.tracker
++instead
++---
++ data/effects/automask.xml | 42 ---------------------------------------
++ 1 file changed, 42 deletions(-)
++ delete mode 100644 data/effects/automask.xml
++
++diff --git a/data/effects/automask.xml b/data/effects/automask.xml
++deleted file mode 100644
++index 8b6ab2d30..000000000
++--- a/data/effects/automask.xml
+++++ /dev/null
++@@ -1,42 +0,0 @@
++-<!DOCTYPE kpartgui>
++-<effect tag="autotrack_rectangle" id="autotrack_rectangle">
++-	<name>Auto Mask</name>
++-	<description>Hide a selected zone and follow its movements</description>
++-	<author>Zachary Drew</author>
++-	<parameter type="geometry" name="geometry" default="50% 50% 50% 50%" fixed="1" opacity="false">
++-		<name>Geometry</name>
++-	</parameter>
++-	<parameter type="constant" name="motion_est.macroblock_width" max="100" min="1" default="16" suffix="pixels">
++-		<name>Macroblock width</name>
++-	</parameter>
++-	<parameter type="constant" name="motion_est.macroblock_height" max="100" min="1" default="16" suffix="pixels">
++-		<name>Macroblock height</name>
++-	</parameter>
++-	<parameter type="constant" name="motion_est.limit_x" max="500" min="1" default="64" suffix="pixels">
++-		<name>Maximum x distance</name>
++-	</parameter>
++-	<parameter type="constant" name="motion_est.limit_y" max="500" min="1" default="64" suffix="pixels">
++-		<name>Maximum y distance</name>
++-	</parameter>
++-	<parameter type="bool" name="motion_est.denoise" default="0">
++-		<name>Denoise</name>
++-	</parameter>
++-	<parameter type="bool" name="debug" default="0">
++-		<name>Debug</name>
++-	</parameter>
++-	<parameter type="bool" name="obscure" default="1">
++-		<name>Obscure</name>
++-	</parameter>
++-    <parameter type="readonly" name="motion_vector_list" value="">
++-        <name>Tracking data</name>
++-        <comment>Click to copy to clipboard</comment>
++-    </parameter>
++-	<parameter type="filterjob" filtertag="autotrack_rectangle" filterparams="_serialize=1 motion_vector_list=0" consumer="null" consumerparams="all=1 terminate_on_pause=1">
++-        <name conditional="Reset">Analyse</name>
++-		<jobparam name="storedata" />
++-		<jobparam name="projecttreefilter" />
++-		<jobparam name="key">motion_vector_list</jobparam>
++-		<jobparam name="finalfilter">autotrack_rectangle</jobparam>
++-		<jobparam name="displaydataname">Motion vectors</jobparam>
++-	</parameter>
++-</effect>
++-- 
++GitLab
++
++
++From c9ca75367658259d663d501c67a60232f003b717 Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Julius=20K=C3=BCnzel?= <jk.kdedev@smartlab.uber.space>
++Date: Wed, 21 Apr 2021 13:43:31 +0200
++Subject: [PATCH 11/11] mlt7: Remove autotrack_rectangle (motion_est) further
++ cleanup
++
++---
++ data/kdenliveeffectscategory.rc          | 2 +-
++ src/assets/model/assetparametermodel.cpp | 4 ++--
++ 2 files changed, 3 insertions(+), 3 deletions(-)
++
++diff --git a/data/kdenliveeffectscategory.rc b/data/kdenliveeffectscategory.rc
++index 27a3ae024..70baf978c 100644
++--- a/data/kdenliveeffectscategory.rc
+++++ b/data/kdenliveeffectscategory.rc
++@@ -1,7 +1,7 @@
++ <?xml version="1.0" encoding="UTF-8"?>
++ <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
++ <data name="effects" version="0">
++-  <group list="chroma,frei0r.alpha0ps,frei0r.alphagrad,frei0r.alphaspot,frei0r.transparency,frei0r.mask0mate,rotoscoping,frei0r.keyspillm0pup,avfilter.despill,obscure,autotrack_rectangle,frei0r.bluescreen0r,lumakey,shape,spot_remover,frei0r.select0r,frei0r.spillsupress,frei0r.bgsubtract0r,opencv.tracker,strobe">
+++  <group list="chroma,frei0r.alpha0ps,frei0r.alphagrad,frei0r.alphaspot,frei0r.transparency,frei0r.mask0mate,rotoscoping,frei0r.keyspillm0pup,avfilter.despill,obscure,frei0r.bluescreen0r,lumakey,shape,spot_remover,frei0r.select0r,frei0r.spillsupress,frei0r.bgsubtract0r,opencv.tracker,strobe">
++     <text>Alpha, Mask and Keying</text>
++   </group>
++ <group list="boxblur,frei0r.squareblur,avfilter.avgblur,avfilter.gblur,avfilter.smartblur,avfilter.boxblur,avfilter.unsharp,avfilter.sab">
++diff --git a/src/assets/model/assetparametermodel.cpp b/src/assets/model/assetparametermodel.cpp
++index 5976861b0..a06ef8f3b 100644
++--- a/src/assets/model/assetparametermodel.cpp
+++++ b/src/assets/model/assetparametermodel.cpp
++@@ -278,7 +278,7 @@ void AssetParameterModel::setParameter(const QString &name, int value, bool upda
++         }
++         m_asset->set("effect", effectParam.join(QLatin1Char(' ')).toUtf8().constData());
++         emit replugEffect(shared_from_this());
++-    } else if (m_assetId == QLatin1String("autotrack_rectangle") || m_assetId.startsWith(QStringLiteral("ladspa"))) {
+++    } else if (m_assetId.startsWith(QStringLiteral("ladspa"))) {
++         // these effects don't understand param change and need to be rebuild
++         emit replugEffect(shared_from_this());
++     }
++@@ -368,7 +368,7 @@ void AssetParameterModel::setParameter(const QString &name, const QString &param
++         m_asset->set("effect", effectParam.join(QLatin1Char(' ')).toUtf8().constData());
++         emit replugEffect(shared_from_this());
++         updateChildRequired = false;
++-    } else if (m_assetId == QLatin1String("autotrack_rectangle") || m_assetId.startsWith(QStringLiteral("ladspa"))) {
+++    } else if (m_assetId.startsWith(QStringLiteral("ladspa"))) {
++         // these effects don't understand param change and need to be rebuild
++         emit replugEffect(shared_from_this());
++         updateChildRequired = false;
++-- 
++GitLab
+diff -Naur orig/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt patched/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt
+--- orig/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt	2021-05-10 18:11:30.000000000 +0200
++++ patched/packaging/appimage/3rdparty/ext_mlt/CMakeLists.txt	2021-05-30 13:16:50.923967310 +0200
+@@ -2,12 +2,8 @@
+   ext_mlt
+   DOWNLOAD_DIR ${EXT_DOWNLOAD_DIR}
+   GIT_REPOSITORY https://github.com/mltframework/mlt.git
+-  GIT_TAG v6
++  GIT_TAG master
+ 
+-  CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=${EXT_INSTALL_DIR} ${AT_HOST} ${AT_SHARED_ONLY} --enable-gpl --enable-gpl3 --enable-opencv --enable-opengl --enable-lumas --avformat-swscale
++  CMAKE_ARGS ${CMAKE_GLOBAL_PROFILE} -DMOD_OPENCV=ON -DMOD_MOVIT=ON
+   BUILD_IN_SOURCE 1
+-  BUILD_ALWAYS TRUE
+-  BUILD_COMMAND $(MAKE) clean
+-  COMMAND $(MAKE)
+-  INSTALL_COMMAND $(MAKE) install
+ )
+diff -Naur orig/packaging/appimage/build-image.sh patched/packaging/appimage/build-image.sh
+--- orig/packaging/appimage/build-image.sh	2021-05-10 18:11:30.000000000 +0200
++++ patched/packaging/appimage/build-image.sh	2021-05-30 13:12:20.671567168 +0200
+@@ -66,14 +66,15 @@
+ # TO remove once we switch to the newer Qt5.12 Appimage dependency
+ # cp -r $DEPS_INSTALL_PREFIX/openssl/lib/*  $APPDIR/usr/lib
+ 
+-cp -r $DEPS_INSTALL_PREFIX/share/mlt  $APPDIR/usr/share
+-cp -r $DEPS_INSTALL_PREFIX/lib/mlt  $APPDIR/usr/lib
++cp -r $DEPS_INSTALL_PREFIX/share/mlt-7  $APPDIR/usr/share
++cp -r $DEPS_INSTALL_PREFIX/lib/mlt-7  $APPDIR/usr/lib
+ cp -r $DEPS_INSTALL_PREFIX/lib/libharfbuzz*  $APPDIR/usr/lib
+ cp -r $DEPS_INSTALL_PREFIX/lib/libfribidi*  $APPDIR/usr/lib
+ cp -r $DEPS_INSTALL_PREFIX/lib/libpango*  $APPDIR/usr/lib
+ cp -r $DEPS_INSTALL_PREFIX/lib/libmlt*  $APPDIR/usr/lib
+ cp -r $DEPS_INSTALL_PREFIX/lib/frei0r-1  $APPDIR/usr/lib
+ cp -r $DEPS_INSTALL_PREFIX/bin/melt  $APPDIR/usr/bin
++cp -r $DEPS_INSTALL_PREFIX/bin/melt-7  $APPDIR/usr/bin
+ cp -r $DEPS_INSTALL_PREFIX/bin/ffmpeg  $APPDIR/usr/bin
+ cp -r $DEPS_INSTALL_PREFIX/bin/ffplay  $APPDIR/usr/bin
+ cp -r $DEPS_INSTALL_PREFIX/bin/ffprobe  $APPDIR/usr/bin
+@@ -128,7 +129,7 @@
+ #  patchelf --set-rpath '$ORIGIN/../../lib' $lib;
+ #done
+ 
+-for lib in $APPDIR/usr/lib/mlt/*.so*; do
++for lib in $APPDIR/usr/lib/mlt-7/*.so*; do
+   patchelf --set-rpath '$ORIGIN/..' $lib;
+ done
+ 
+@@ -189,7 +190,7 @@
+   -qmldir=$DEPS_INSTALL_PREFIX/qml \
+   -verbose=2 \
+   -bundle-non-qt-libs \
+-  -extra-plugins=$APPDIR/usr/lib/mlt,$APPDIR/usr/plugins,$APPDIR/usr/qml,$APPDIR/usr/share/locale \
++  -extra-plugins=$APPDIR/usr/lib/mlt-7,$APPDIR/usr/plugins,$APPDIR/usr/qml,$APPDIR/usr/share/locale \
+   -exclude-libs=libnss3.so,libnssutil3.so,libGL.so.1
+ 
+ #  -appimage \
+@@ -212,7 +213,7 @@
+ cat > $APPDIR/AppRun << EOF
+ #!/bin/bash
+ 
+-DIR="\`dirname \"\$0\"\`" 
++DIR="\`dirname \"\$0\"\`"
+ DIR="\`( cd \"\$DIR\" && pwd )\`"
+ export APPDIR=\$DIR
+ export LC_ALL=\$LANG
+@@ -229,14 +230,14 @@
+ export PATH=\$DIR/usr/bin:\$DIR/usr/lib:\$DIR/usr/lib/libexec/kf5::\$PATH
+ export KDE_FORK_SLAVES=1
+ 
+-export MLT_REPOSITORY=\$DIR/usr/lib/mlt/
+-export MLT_DATA=\$DIR/usr/share/mlt/
++export MLT_REPOSITORY=\$DIR/usr/lib/mlt-7/
++export MLT_DATA=\$DIR/usr/share/mlt-7/
+ export MLT_ROOT_DIR=\$DIR/usr/
+ export LADSPA_PATH=\$DIR/usr/lib/ladspa
+ export LIBVA_DRIVERS_PATH=\$DIR/usr/lib/va
+ export FREI0R_PATH=\$DIR/usr/lib/frei0r-1
+-export MLT_PROFILES_PATH=\$DIR/usr/share/mlt/profiles/
+-export MLT_PRESETS_PATH=\$DIR/usr/share/mlt/presets/
++export MLT_PROFILES_PATH=\$DIR/usr/share/mlt-7/profiles/
++export MLT_PRESETS_PATH=\$DIR/usr/share/mlt-7/presets/
+ export SDL_AUDIODRIVER=pulseaudio
+ export GST_PLUGIN_SCANNER=\$DIR/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
+ export GST_PLUGIN_PATH=\$DIR/usr/lib/x86_64-linux-gnu/gstreamer1.0/
+@@ -277,4 +278,3 @@
+ # Generate a new name for the Appimage file and rename it accordingly
+ APPIMAGE=kdenlive-"$VERSION"-x86_64.appimage
+ mv Kdenlive-x86_64.AppImage $APPIMAGE
+-
+diff -Naur orig/src/assets/model/assetparametermodel.cpp patched/src/assets/model/assetparametermodel.cpp
+--- orig/src/assets/model/assetparametermodel.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/assets/model/assetparametermodel.cpp	2021-05-30 13:12:20.671567168 +0200
+@@ -278,7 +278,7 @@
+         }
+         m_asset->set("effect", effectParam.join(QLatin1Char(' ')).toUtf8().constData());
+         emit replugEffect(shared_from_this());
+-    } else if (m_assetId == QLatin1String("autotrack_rectangle") || m_assetId.startsWith(QStringLiteral("ladspa"))) {
++    } else if (m_assetId.startsWith(QStringLiteral("ladspa"))) {
+         // these effects don't understand param change and need to be rebuild
+         emit replugEffect(shared_from_this());
+     }
+@@ -368,7 +368,7 @@
+         m_asset->set("effect", effectParam.join(QLatin1Char(' ')).toUtf8().constData());
+         emit replugEffect(shared_from_this());
+         updateChildRequired = false;
+-    } else if (m_assetId == QLatin1String("autotrack_rectangle") || m_assetId.startsWith(QStringLiteral("ladspa"))) {
++    } else if (m_assetId.startsWith(QStringLiteral("ladspa"))) {
+         // these effects don't understand param change and need to be rebuild
+         emit replugEffect(shared_from_this());
+         updateChildRequired = false;
+diff -Naur orig/src/assets/view/widgets/geometryeditwidget.cpp patched/src/assets/view/widgets/geometryeditwidget.cpp
+--- orig/src/assets/view/widgets/geometryeditwidget.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/assets/view/widgets/geometryeditwidget.cpp	2021-05-30 13:12:20.671567168 +0200
+@@ -27,7 +27,8 @@
+ #include "monitor/monitormanager.h"
+ #include "timecodedisplay.h"
+ #include "widgets/geometrywidget.h"
+-#include <mlt++/MltGeometry.h>
++#include <mlt++/MltProperties.h>
++#include <framework/mlt_types.h>
+ #include <QVBoxLayout>
+ 
+ GeometryEditWidget::GeometryEditWidget(std::shared_ptr<AssetParameterModel> model, QModelIndex index, QSize frameSize, QWidget *parent)
+@@ -39,12 +40,12 @@
+     int start = m_model->data(m_index, AssetParameterModel::ParentInRole).toInt();
+     int end = start + m_model->data(m_index, AssetParameterModel::ParentDurationRole).toInt();
+     QSize profileSize = pCore->getCurrentFrameSize();
+-    Mlt::Geometry geometry(value.toUtf8().data(), end, profileSize.width(), profileSize.height());
+-    Mlt::GeometryItem item;
+-    QRect rect;
+-    if (geometry.fetch(&item, 0) == 0) {
+-        rect = QRect(int(item.x()), int(item.y()), int(item.w()), int(item.h()));
+-    } else {
++    Mlt::Properties mlt_prop;
++    m_model->passProperties(mlt_prop);
++    mlt_prop.set("rect", value.toUtf8().data());
++    mlt_rect r = mlt_prop.get_rect("rect");
++    QRect rect = QRect(int(profileSize.width() * r.x), int(profileSize.height() * r.y), int(profileSize.width()* r.w), int(profileSize.height() * r.h));;
++    if (rect.isNull()) {
+         // Cannot read value, use random default
+         rect = QRect(50, 50, 200, 200);
+     }
+diff -Naur orig/src/bin/projectclip.cpp patched/src/bin/projectclip.cpp
+--- orig/src/bin/projectclip.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/bin/projectclip.cpp	2021-05-30 13:12:20.659567150 +0200
+@@ -1544,7 +1544,8 @@
+         if (KMessageBox::questionYesNo(QApplication::activeWindow(), i18n("Clip already contains analysis data %1", name), QString(), KGuiItem(i18n("Merge")),
+                                        KGuiItem(i18n("Add"))) == KMessageBox::Yes) {
+             // Merge data
+-            auto &profile = pCore->getCurrentProfile();
++            //TODO MLT7: convert to Mlt::Animation
++            /*auto &profile = pCore->getCurrentProfile();
+             Mlt::Geometry geometry(current.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
+             Mlt::Geometry newGeometry(data.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
+             Mlt::GeometryItem item;
+@@ -1555,7 +1556,7 @@
+                 pos++;
+                 geometry.insert(item);
+             }
+-            return QStringList() << QString("kdenlive:clipanalysis." + name) << geometry.serialise();
++            return QStringList() << QString("kdenlive:clipanalysis." + name) << geometry.serialise();*/
+             // m_controller->setProperty("kdenlive:clipanalysis." + name, geometry.serialise());
+         }
+         // Add data with another name
+@@ -1583,7 +1584,8 @@
+         return data;
+     }
+     auto &profile = pCore->getCurrentProfile();
+-    Mlt::Geometry geometry(data.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
++    // TODO MLT7: port to Mlt::Animation
++    /*Mlt::Geometry geometry(data.toUtf8().data(), duration().frames(profile->fps()), profile->width(), profile->height());
+     Mlt::Geometry newgeometry(nullptr, duration().frames(profile->fps()), profile->width(), profile->height());
+     Mlt::GeometryItem item;
+     int pos = 0;
+@@ -1594,6 +1596,8 @@
+         newgeometry.insert(item);
+     }
+     return newgeometry.serialise();
++    */
++    return QString();
+ }
+ 
+ bool ProjectClip::isSplittable() const
+diff -Naur orig/src/bin/projectitemmodel.cpp patched/src/bin/projectitemmodel.cpp
+--- orig/src/bin/projectitemmodel.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/bin/projectitemmodel.cpp	2021-05-30 13:12:20.643567128 +0200
+@@ -1001,7 +1001,7 @@
+     Mlt::Properties retainList(mlt_properties(documentTractor->get_data("xml_retain")));
+     if (retainList.is_valid()) {
+         Mlt::Playlist playlist(mlt_playlist(retainList.get_data(BinPlaylist::binPlaylistId.toUtf8().constData())));
+-        if (playlist.is_valid() && playlist.type() == playlist_type) {
++        if (playlist.is_valid() && playlist.type() == mlt_service_playlist_type) {
+             if (progressDialog == nullptr && playlist.count() > 0) {
+                 // Display message on splash screen
+                 emit pCore->loadingMessageUpdated(i18n("Loading project clips..."));
+diff -Naur orig/src/capture/CMakeLists.txt patched/src/capture/CMakeLists.txt
+--- orig/src/capture/CMakeLists.txt	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/capture/CMakeLists.txt	2021-05-30 13:12:20.659567150 +0200
+@@ -7,7 +7,7 @@
+ set(kdenlive_SRCS
+   ${kdenlive_SRCS}
+   capture/managecapturesdialog.cpp
+-  capture/mltdevicecapture.cpp
++#  capture/mltdevicecapture.cpp
+   capture/mediacapture.cpp
+   PARENT_SCOPE)
+ 
+diff -Naur orig/src/capture/mltdevicecapture.cpp patched/src/capture/mltdevicecapture.cpp
+--- orig/src/capture/mltdevicecapture.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/capture/mltdevicecapture.cpp	2021-05-30 13:12:20.643567128 +0200
+@@ -94,7 +94,7 @@
+     // OpenGL monitor
+     m_mltConsumer = new Mlt::Consumer(*m_mltProfile, KdenliveSettings::audiobackend().toUtf8().constData());
+     m_mltConsumer->set("preview_off", 1);
+-    m_mltConsumer->set("preview_format", mlt_image_rgb24);
++    m_mltConsumer->set("preview_format", mlt_image_rgb);
+     m_showFrameEvent = m_mltConsumer->listen("consumer-frame-show", this, mlt_listener(consumer_gl_frame_show));
+     // m_mltConsumer->set("resize", 1);
+     // m_mltConsumer->set("terminate_on_pause", 1);
+@@ -155,7 +155,7 @@
+     if (m_mltProducer) {
+         Mlt::Service service(m_mltProducer->parent().get_service());
+         mlt_service_lock(service.get_service());
+-        if (service.type() == tractor_type) {
++        if (service.type() == mlt_service_tractor_type) {
+             isPlaylist = true;
+             Mlt::Tractor tractor(service);
+             mlt_tractor_close(tractor.get_tractor());
+@@ -196,7 +196,7 @@
+     /*
+     //TEST: is it better to convert the frame in a thread outside of MLT??
+     if (processingImage) return;
+-    mlt_image_format format = (mlt_image_format) frame.get_int("format"); //mlt_image_rgb24;
++    mlt_image_format format = (mlt_image_format) frame.get_int("format"); //mlt_image_rgb;
+     int width = frame.get_int("width");
+     int height = frame.get_int("height");
+     unsigned char *buffer = (unsigned char *) frame.get_data("image");
+@@ -205,7 +205,7 @@
+     }
+     */
+ 
+-    mlt_image_format format = mlt_image_rgb24;
++    mlt_image_format format = mlt_image_rgb;
+     int width = 0;
+     int height = 0;
+     const uchar *image = frame.get_image(format, width, height);
+@@ -217,7 +217,7 @@
+ 
+ void MltDeviceCapture::showFrame(Mlt::Frame &frame)
+ {
+-    mlt_image_format format = mlt_image_rgb24;
++    mlt_image_format format = mlt_image_rgb;
+     int width = 0;
+     int height = 0;
+     const uchar *image = frame.get_image(format, width, height);
+@@ -301,7 +301,7 @@
+ 
+ void MltDeviceCapture::saveFrame(Mlt::Frame &frame)
+ {
+-    mlt_image_format format = mlt_image_rgb24;
++    mlt_image_format format = mlt_image_rgb;
+     int width = 0;
+     int height = 0;
+     const uchar *image = frame.get_image(format, width, height);
+@@ -401,7 +401,7 @@
+         // OpenGL monitor
+         previewProps->set("mlt_service", KdenliveSettings::audiobackend().toUtf8().constData());
+         previewProps->set("preview_off", 1);
+-        previewProps->set("preview_format", mlt_image_rgb24);
++        previewProps->set("preview_format", mlt_image_rgb);
+         previewProps->set("terminate_on_pause", 0);
+         m_showFrameEvent = m_mltConsumer->listen("consumer-frame-show", this, mlt_listener(consumer_gl_frame_show));
+         // m_mltConsumer->set("resize", 1);
+@@ -469,7 +469,7 @@
+     }
+ 
+     Mlt::Service service(parentProd.get_service());
+-    if (service.type() != tractor_type) {
++    if (service.type() != mlt_service_tractor_type) {
+         qCWarning(KDENLIVE_LOG) << "// TRACTOR PROBLEM";
+         return;
+     }
+diff -Naur orig/src/CMakeLists.txt patched/src/CMakeLists.txt
+--- orig/src/CMakeLists.txt	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/CMakeLists.txt	2021-05-30 13:12:20.659567150 +0200
+@@ -9,7 +9,7 @@
+ if(NOT WIN32)
+     find_package(PkgConfig QUIET)
+     execute_process(
+-        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=mltdatadir mlt-framework
++        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=mltdatadir mlt-framework-7
+         OUTPUT_VARIABLE MLT_DATADIR
+         RESULT_VARIABLE MLT_DATADIR_failed)
+     if(NOT MLT_DATADIR_failed)
+@@ -17,7 +17,7 @@
+     endif()
+ 
+     execute_process(
+-        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=meltbin mlt-framework
++        COMMAND ${PKG_CONFIG_EXECUTABLE} --variable=meltbin mlt-framework-7
+         OUTPUT_VARIABLE MLT_MELTBIN
+         RESULT_VARIABLE MLT_MELTBIN_failed)
+     if(NOT MLT_MELTBIN_failed)
+diff -Naur orig/src/doc/documentvalidator.cpp patched/src/doc/documentvalidator.cpp
+--- orig/src/doc/documentvalidator.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/doc/documentvalidator.cpp	2021-05-30 13:12:20.659567150 +0200
+@@ -866,6 +866,8 @@
+             QDomElement trans = transitions.at(i).toElement();
+             int out = trans.attribute(QStringLiteral("out")).toInt() - trans.attribute(QStringLiteral("in")).toInt();
+             QString geom = Xml::getXmlProperty(trans, QStringLiteral("geometry"));
++            //TODO MLT7: port?
++            /*
+             Mlt::Geometry *g = new Mlt::Geometry(geom.toUtf8().data(), out, profileWidth, profileHeight);
+             Mlt::GeometryItem item;
+             if (g->next_key(&item, out) == 0) {
+@@ -878,6 +880,7 @@
+                 }
+             }
+             delete g;
++            */
+         }
+     }
+ 
+diff -Naur orig/src/doc/kthumb.cpp patched/src/doc/kthumb.cpp
+--- orig/src/doc/kthumb.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/doc/kthumb.cpp	2021-05-30 13:12:20.643567128 +0200
+@@ -109,7 +109,7 @@
+     }
+     int ow = width;
+     int oh = height;
+-    mlt_image_format format = mlt_image_rgb24a;
++    mlt_image_format format = mlt_image_rgba;
+     const uchar *imagedata = frame->get_image(format, ow, oh);
+     if (imagedata) {
+         QImage temp(ow, oh, QImage::Format_ARGB32);
+diff -Naur orig/src/effects/effectsrepository.cpp patched/src/effects/effectsrepository.cpp
+--- orig/src/effects/effectsrepository.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/effects/effectsrepository.cpp	2021-05-30 13:12:20.647567133 +0200
+@@ -63,7 +63,7 @@
+ 
+ Mlt::Properties *EffectsRepository::getMetadata(const QString &effectId) const
+ {
+-    return pCore->getMltRepository()->metadata(filter_type, effectId.toLatin1().data());
++    return pCore->getMltRepository()->metadata(mlt_service_filter_type, effectId.toLatin1().data());
+ }
+ 
+ void EffectsRepository::parseCustomAssetFile(const QString &file_name, std::unordered_map<QString, Info> &customAssets) const
+diff -Naur orig/src/jobs/audiothumbjob.cpp patched/src/jobs/audiothumbjob.cpp
+--- orig/src/jobs/audiothumbjob.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/jobs/audiothumbjob.cpp	2021-05-30 13:12:20.651567139 +0200
+@@ -90,7 +90,7 @@
+         }
+         QScopedPointer<Mlt::Frame> mltFrame(audioProducer->get_frame());
+         if ((mltFrame != nullptr) && mltFrame->is_valid() && (mltFrame->get_int("test_audio") == 0)) {
+-            int samples = mlt_sample_calculator(float(framesPerSecond), m_frequency, z);
++            int samples = mlt_audio_calculate_frame_samples(float(framesPerSecond), m_frequency, z);
+             mltFrame->get_audio(audioFormat, m_frequency, m_channels, samples);
+             for (int channel = 0; channel < m_channels; ++channel) {
+                 double lev = mltFrame->get_double(keys.at(channel).toUtf8().constData());
+diff -Naur orig/src/lib/audio/audioEnvelope.cpp patched/src/lib/audio/audioEnvelope.cpp
+--- orig/src/lib/audio/audioEnvelope.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/lib/audio/audioEnvelope.cpp	2021-05-30 13:12:20.651567139 +0200
+@@ -113,7 +113,7 @@
+     for (size_t i = 0; i < max; ++i) {
+         std::unique_ptr<Mlt::Frame> frame(m_producer->get_frame(int(i)));
+         qint64 position = mlt_frame_get_position(frame->get_frame());
+-        int samples = mlt_sample_calculator(float(m_producer->get_fps()), samplingRate, position);
++        int samples = mlt_audio_calculate_frame_samples(float(m_producer->get_fps()), samplingRate, position);
+         auto *data = static_cast<qint16 *>(frame->get_audio(format_s16, samplingRate, channels, samples));
+ 
+         summary.audioAmplitudes[i] = 0;
+diff -Naur orig/src/mainwindow.cpp patched/src/mainwindow.cpp
+--- orig/src/mainwindow.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/mainwindow.cpp	2021-05-30 13:12:20.651567139 +0200
+@@ -76,8 +76,6 @@
+ #include "dialogs/textbasededit.h"
+ #include "project/dialogs/temporarydata.h"
+ 
+-#include <framework/mlt_version.h>
+-
+ #ifdef USE_JOGSHUTTLE
+ #include "jogshuttle/jogmanager.h"
+ #endif
+@@ -103,7 +101,6 @@
+ #include <kns3/knewstuffaction.h>
+ #include <ktogglefullscreenaction.h>
+ #include <kwidgetsaddons_version.h>
+-#include <KRun>
+ 
+ #include "kdenlive_debug.h"
+ #include <QAction>
+@@ -358,14 +355,9 @@
+     auto *onlineResources = new ResourceWidget(this);
+     m_onlineResourcesDock = addDock(i18n("Online Resources"), QStringLiteral("onlineresources"), onlineResources);
+     connect(onlineResources, &ResourceWidget::previewClip, [&](const QString &path, const QString &title) {
+-    qDebug()<<"MLT VER: "<<LIBMLT_VERSION_INT<<"; QTVER: "<<QT_VERSION_CHECK(6,26,0);
+-#if LIBMLT_VERSION_INT == QT_VERSION_CHECK(6,26,0)
+-        new KRun(QUrl(path), this);
+-#else
+         m_clipMonitor->slotPreviewResource(path, title);
+         m_clipMonitorDock->show();
+         m_clipMonitorDock->raise();
+-#endif
+     });
+ 
+     connect(onlineResources, &ResourceWidget::addClip, this, &MainWindow::slotAddProjectClip);
+@@ -1459,7 +1451,6 @@
+         overlayAudioInfo->setEnabled(toggled);
+     });
+ 
+-#if LIBMLT_VERSION_INT >= QT_VERSION_CHECK(6,20,0)
+     // Monitor resolution scaling
+     KActionCategory *resolutionActionCategory = new KActionCategory(i18n("Preview Resolution"), actionCollection());
+     m_scaleGroup = new QActionGroup(this);
+@@ -1511,7 +1502,6 @@
+         // Clear timeline selection so that any qml monitor scene is reset
+         emit pCore->monitorManager()->updatePreviewScaling();
+     });
+-#endif
+ 
+     QAction *dropFrames = new QAction(QIcon(), i18n("Real Time (drop frames)"), this);
+     dropFrames->setCheckable(true);
+diff -Naur orig/src/mltconnection.cpp patched/src/mltconnection.cpp
+--- orig/src/mltconnection.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/mltconnection.cpp	2021-05-30 13:12:20.671567168 +0200
+@@ -113,7 +113,7 @@
+         profilePath = qgetenv("MLT_DATA") + QStringLiteral("/profiles");
+     }
+     if ((profilePath.isEmpty() || !QFile::exists(profilePath)) && qEnvironmentVariableIsSet("MLT_PREFIX")) {
+-        profilePath = qgetenv("MLT_PREFIX") + QStringLiteral("/share/mlt/profiles");
++        profilePath = qgetenv("MLT_PREFIX") + QStringLiteral("/share/mlt-7/profiles");
+     }
+ #ifndef Q_OS_WIN
+     // stored setting should not be considered on windows as MLT is distributed with each new Kdenlive version
+@@ -121,7 +121,7 @@
+ #endif
+     // try to automatically guess MLT path if installed with the same prefix as kdenlive with default data path
+     if (profilePath.isEmpty() || !QFile::exists(profilePath)) {
+-        profilePath = QDir::cleanPath(qApp->applicationDirPath() + QStringLiteral("/../share/mlt/profiles"));
++        profilePath = QDir::cleanPath(qApp->applicationDirPath() + QStringLiteral("/../share/mlt-7/profiles"));
+     }
+     // fallback to build-time definition
+     if ((profilePath.isEmpty() || !QFile::exists(profilePath)) && !QStringLiteral(MLT_DATADIR).isEmpty()) {
+@@ -136,14 +136,14 @@
+ #endif
+     QString meltPath;
+     if (qEnvironmentVariableIsSet("MLT_PREFIX")) {
+-        meltPath = qgetenv("MLT_PREFIX") + QStringLiteral("/bin/melt") + exeSuffix;
++        meltPath = qgetenv("MLT_PREFIX") + QStringLiteral("/bin/melt-7") + exeSuffix;
+     } else {
+         meltPath = KdenliveSettings::rendererpath();
+     }
+     if (!QFile::exists(meltPath)) {
+-        meltPath = QDir::cleanPath(profilePath + QStringLiteral("/../../../bin/melt")) + exeSuffix;
++        meltPath = QDir::cleanPath(profilePath + QStringLiteral("/../../../bin/melt-7")) + exeSuffix;
+         if (!QFile::exists(meltPath)) {
+-            meltPath = QStandardPaths::findExecutable("melt");
++            meltPath = QStandardPaths::findExecutable("melt-7");
+             if (meltPath.isEmpty()) {
+                 meltPath = QStandardPaths::findExecutable("mlt-melt");
+             }
+@@ -167,7 +167,7 @@
+         }
+     }
+     if (profilePath.isEmpty()) {
+-        profilePath = QDir::cleanPath(meltPath + QStringLiteral("/../../share/mlt/profiles"));
++        profilePath = QDir::cleanPath(meltPath + QStringLiteral("/../../share/mlt-7/profiles"));
+         KdenliveSettings::setMltpath(profilePath);
+     }
+     QStringList profilesFilter;
+@@ -177,11 +177,11 @@
+         // Cannot find MLT path, try finding melt
+         if (!meltPath.isEmpty()) {
+             if (meltPath.contains(QLatin1Char('/'))) {
+-                profilePath = meltPath.section(QLatin1Char('/'), 0, -2) + QStringLiteral("/share/mlt/profiles");
++                profilePath = meltPath.section(QLatin1Char('/'), 0, -2) + QStringLiteral("/share/mlt-7/profiles");
+             } else {
+-                profilePath = qApp->applicationDirPath() + QStringLiteral("/share/mlt/profiles");
++                profilePath = qApp->applicationDirPath() + QStringLiteral("/share/mlt-7/profiles");
+             }
+-            profilePath = QStringLiteral("/usr/local/share/mlt/profiles");
++            profilePath = QStringLiteral("/usr/local/share/mlt-7/profiles");
+             KdenliveSettings::setMltpath(profilePath);
+             profilesList = QDir(profilePath).entryList(profilesFilter, QDir::Files);
+         }
+diff -Naur orig/src/monitor/glwidget.cpp patched/src/monitor/glwidget.cpp
+--- orig/src/monitor/glwidget.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/monitor/glwidget.cpp	2021-05-30 13:12:20.671567168 +0200
+@@ -415,7 +415,7 @@
+         // C & D
+         m_contextSharedAccess.lock();
+         if (m_sharedFrame.is_valid()) {
+-            m_texture[0] = *(reinterpret_cast<const GLuint *>(m_sharedFrame.get_image(mlt_image_glsl_texture)));
++            m_texture[0] = *(reinterpret_cast<const GLuint *>(m_sharedFrame.get_image(mlt_image_opengl_texture)));
+         }
+     }
+ 
+@@ -1128,7 +1128,7 @@
+ 
+         delete m_threadCreateEvent;
+         delete m_threadJoinEvent;
+-        if (m_consumer) {
++        if (m_glslManager) {
+             m_threadCreateEvent = m_consumer->listen("consumer-thread-create", this, mlt_listener(onThreadCreate));
+             m_threadJoinEvent = m_consumer->listen("consumer-thread-join", this, mlt_listener(onThreadJoin));
+         }
+@@ -1844,7 +1844,6 @@
+ 
+ bool GLWidget::updateScaling()
+ {
+-#if LIBMLT_VERSION_INT >= QT_VERSION_CHECK(6,20,0)
+     int previewHeight = pCore->getCurrentFrameSize().height();
+     switch (KdenliveSettings::previewScaling()) {
+         case 2:
+@@ -1876,21 +1875,6 @@
+         m_consumer->set("height", m_profileSize.height());
+         resizeGL(width(), height());
+     }
+-#else
+-    int previewHeight = pCore->getCurrentFrameSize().height();
+-    int pWidth = previewHeight * pCore->getCurrentDar() / pCore->getCurrentSar();
+-    if (pWidth% 2 > 0) {
+-        pWidth ++;
+-    }
+-    QSize profileSize(pWidth, previewHeight);
+-    if (profileSize == m_profileSize) {
+-        return false;
+-    }
+-    m_profileSize = profileSize;
+-    if (m_consumer) {
+-        resizeGL(width(), height());
+-    }
+-#endif
+     return true;
+ }
+ 
+diff -Naur orig/src/monitor/recmanager.cpp patched/src/monitor/recmanager.cpp
+--- orig/src/monitor/recmanager.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/monitor/recmanager.cpp	2021-05-30 13:12:20.671567168 +0200
+@@ -21,7 +21,7 @@
+ 
+ #include "recmanager.h"
+ #include "capture/managecapturesdialog.h"
+-#include "capture/mltdevicecapture.h"
++//#include "capture/mltdevicecapture.h"
+ #include "core.h"
+ #include "dialogs/profilesdialog.h"
+ #include "kdenlivesettings.h"
+diff -Naur orig/src/timeline2/model/builders/meltBuilder.cpp patched/src/timeline2/model/builders/meltBuilder.cpp
+--- orig/src/timeline2/model/builders/meltBuilder.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/timeline2/model/builders/meltBuilder.cpp	2021-05-30 13:12:20.647567133 +0200
+@@ -88,10 +88,10 @@
+             continue;
+         }
+         switch (track->type()) {
+-        case producer_type:
++        case mlt_service_producer_type:
+             // TODO check that it is the black track, and otherwise log an error
+             break;
+-        case tractor_type: {
++        case mlt_service_tractor_type: {
+             // that is a double track
+             int tid;
+             bool audioTrack = track->get_int("kdenlive:audio_track") == 1;
+@@ -109,7 +109,7 @@
+             timeline->setTrackProperty(tid, QStringLiteral("kdenlive:timeline_active"), track->get("kdenlive:timeline_active"));
+             break;
+         }
+-        case playlist_type: {
++        case mlt_service_playlist_type: {
+             // that is a single track
+             int tid;
+             Mlt::Playlist local_playlist(*track);
+@@ -143,7 +143,7 @@
+     QScopedPointer<Mlt::Service> service(tractor.producer());
+     QList<Mlt::Transition *> compositions;
+     while ((service != nullptr) && service->is_valid()) {
+-        if (service->type() == transition_type) {
++        if (service->type() == mlt_service_transition_type) {
+             Mlt::Transition t(mlt_transition(service->get_service()));
+             if (t.get_b_track() >= timeline->tractor()->count()) {
+                 // Composition outside of available track, maybe because of a preview track
+@@ -225,7 +225,7 @@
+     QScopedPointer<Mlt::Service> service(track.field());
+     QList<Mlt::Transition *> compositions;
+     while ((service != nullptr) && service->is_valid()) {
+-        if (service->type() == transition_type) {
++        if (service->type() == mlt_service_transition_type) {
+             Mlt::Transition t(mlt_transition(service->get_service()));
+             QString id(t.get("kdenlive_id"));
+             compositions << new Mlt::Transition(t);
+@@ -238,7 +238,7 @@
+     }
+     for (int i = 0; i < track.count(); i++) {
+         std::unique_ptr<Mlt::Producer> sub_track(track.track(i));
+-        if (sub_track->type() != playlist_type) {
++        if (sub_track->type() != mlt_service_playlist_type) {
+             qWarning() << "subtrack must be playlist";
+             return false;
+         }
+@@ -322,8 +322,8 @@
+         std::shared_ptr<Mlt::Producer> clip(track.get_clip(i));
+         int position = track.clip_start(i);
+         switch (clip->type()) {
+-        case unknown_type:
+-        case producer_type: {
++        case mlt_service_unknown_type:
++        case mlt_service_producer_type: {
+             QString binId;
+             if (clip->parent().get_int("_kdenlive_processed") == 1) {
+                 // This is a bin clip, already processed no need to change id
+@@ -369,7 +369,7 @@
+             }
+             break;
+         }
+-        case tractor_type: {
++        case mlt_service_tractor_type: {
+             // TODO This is a nested timeline
+             qWarning() << "nested timelines not yet implemented";
+             break;
+diff -Naur orig/src/timeline2/model/timelinefunctions.cpp patched/src/timeline2/model/timelinefunctions.cpp
+--- orig/src/timeline2/model/timelinefunctions.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/timeline2/model/timelinefunctions.cpp	2021-05-30 13:12:20.647567133 +0200
+@@ -1036,7 +1036,7 @@
+     Mlt::Field *field = timeline->m_tractor->field();
+     field->lock();
+     while ((service != nullptr) && service->is_valid()) {
+-        if (service->type() == transition_type) {
++        if (service->type() == mlt_service_transition_type) {
+             Mlt::Transition t(mlt_transition(service->get_service()));
+             service.reset(service->producer());
+             QString serviceName = t.get("mlt_service");
+diff -Naur orig/src/timeline2/model/timelineitemmodel.cpp patched/src/timeline2/model/timelineitemmodel.cpp
+--- orig/src/timeline2/model/timelineitemmodel.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/timeline2/model/timelineitemmodel.cpp	2021-05-30 13:12:20.647567133 +0200
+@@ -646,7 +646,7 @@
+     // Make sure all previous track compositing is removed
+     if (rebuild) {
+         while (service != nullptr && service->is_valid()) {
+-            if (service->type() == transition_type) {
++            if (service->type() == mlt_service_transition_type) {
+                 Mlt::Transition t(mlt_transition(service->get_service()));
+                 service.reset(service->producer());
+                 if (t.get_int("internal_added") == 237) {
+diff -Naur orig/src/timeline2/model/timelinemodel.cpp patched/src/timeline2/model/timelinemodel.cpp
+--- orig/src/timeline2/model/timelinemodel.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/timeline2/model/timelinemodel.cpp	2021-05-30 13:12:20.647567133 +0200
+@@ -4311,7 +4311,7 @@
+ 
+     mlt_service_type mlt_type = mlt_service_identify(nextservice);
+     QList<Mlt::Transition *> trackCompositions;
+-    while (mlt_type == transition_type) {
++    while (mlt_type == mlt_service_transition_type) {
+         Mlt::Transition transition(reinterpret_cast<mlt_transition>(nextservice));
+         nextservice = mlt_service_producer(nextservice);
+         int internal = transition.get_int("internal_added");
+@@ -4507,7 +4507,7 @@
+     mlt_service nextservice = mlt_service_get_producer(field->get_service());
+     mlt_service_type mlt_type = mlt_service_identify(nextservice);
+     while (nextservice != nullptr) {
+-        if (mlt_type == transition_type) {
++        if (mlt_type == mlt_service_transition_type) {
+             auto tr = mlt_transition(nextservice);
+             if (mlt_properties_get_int( MLT_TRANSITION_PROPERTIES(tr), "internal_added") > 0) {
+                 // Skip track compositing
+@@ -4837,7 +4837,7 @@
+     for (int i = 0; i < m_tractor->count(); i++) {
+         std::shared_ptr<Mlt::Producer> tk(m_tractor->track(i));
+         tk->set_profile(*m_profile);
+-        if (tk->type() == tractor_type) {
++        if (tk->type() == mlt_service_tractor_type) {
+             Mlt::Tractor sub(*tk.get());
+             for (int j = 0; j < sub.count(); j++) {
+                 std::shared_ptr<Mlt::Producer> subtk(sub.track(j));
+diff -Naur orig/src/timeline2/model/trackmodel.cpp patched/src/timeline2/model/trackmodel.cpp
+--- orig/src/timeline2/model/trackmodel.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/timeline2/model/trackmodel.cpp	2021-05-30 13:12:20.647567133 +0200
+@@ -1046,7 +1046,7 @@
+     int mixCount = 0;
+     qDebug()<<"=== STARTING MIX CHECK ======";
+     while (service != nullptr && service->is_valid()) {
+-        if (service->type() == transition_type) {
++        if (service->type() == mlt_service_transition_type) {
+             Mlt::Transition t(mlt_transition(service->get_service()));
+             service.reset(service->producer());
+             // Check that the mix has correct in/out
+diff -Naur orig/src/timeline2/view/timelinecontroller.cpp patched/src/timeline2/view/timelinecontroller.cpp
+--- orig/src/timeline2/view/timelinecontroller.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/timeline2/view/timelinecontroller.cpp	2021-05-30 13:12:20.651567139 +0200
+@@ -2215,7 +2215,7 @@
+     QScopedPointer<Mlt::Field>field(m_model->m_tractor->field());
+     field->lock();
+     while ((service != nullptr) && service->is_valid()) {
+-        if (service->type() == transition_type) {
++        if (service->type() == mlt_service_transition_type) {
+             Mlt::Transition t(mlt_transition(service->get_service()));
+             service.reset(service->producer());
+             QString serviceName = t.get("mlt_service");
+diff -Naur orig/src/titler/titlewidget.cpp patched/src/titler/titlewidget.cpp
+--- orig/src/titler/titlewidget.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/titler/titlewidget.cpp	2021-05-30 13:12:20.659567150 +0200
+@@ -195,16 +195,6 @@
+     connect(tw_rd_line, &QRadioButton::toggled, this, &TitleWidget::slotUpdateTW);
+     connect(tw_rd_custom, &QRadioButton::toggled, this, &TitleWidget::slotUpdateTW);
+     tw_rd_custom->setEnabled(false);
+-    if (mlt_version_get_int() < 0x061900) {
+-        typewriterBox->setEnabled(false);
+-
+-        auto *twinfo = new KMessageWidget(typewriterBox);
+-        twinfo->setText(i18n("Typewriter requires MLT-6.26.0 or newer."));
+-        twinfo->setMessageType(KMessageWidget::Warning);
+-        twinfo->setCloseButtonVisible(false);
+-        twinfo->setEnabled(true);
+-        gridLayout_12->addWidget(twinfo, 3, 0, 1, 4);
+-    }
+ 
+     connect(fontColorButton, &KColorButton::changed, this, &TitleWidget::slotUpdateText);
+     connect(plain_color, &QAbstractButton::clicked, this, &TitleWidget::slotUpdateText);
+@@ -411,9 +401,6 @@
+     m_buttonEllipse->setShortcut(Qt::ALT + Qt::Key_E);
+     m_buttonEllipse->setToolTip(i18n("Add Ellipse") + QLatin1Char(' ') + m_buttonEllipse->shortcut().toString());
+     connect(m_buttonEllipse, &QAction::triggered, this, &TitleWidget::slotEllipseTool);
+-    if (mlt_version_get_int() < 0x061900) {
+-        m_buttonEllipse->setVisible(false);
+-    }
+ 
+     m_buttonImage = m_toolbar->addAction(QIcon::fromTheme(QStringLiteral("insert-image")), i18n("Add Image"));
+     m_buttonImage->setCheckable(false);
+diff -Naur orig/src/transitions/transitionsrepository.cpp patched/src/transitions/transitionsrepository.cpp
+--- orig/src/transitions/transitionsrepository.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/src/transitions/transitionsrepository.cpp	2021-05-30 13:12:20.651567139 +0200
+@@ -60,7 +60,7 @@
+ 
+ Mlt::Properties *TransitionsRepository::getMetadata(const QString &assetId) const
+ {
+-    return pCore->getMltRepository()->metadata(transition_type, assetId.toLatin1().data());
++    return pCore->getMltRepository()->metadata(mlt_service_transition_type, assetId.toLatin1().data());
+ }
+ 
+ void TransitionsRepository::parseCustomAssetFile(const QString &file_name, std::unordered_map<QString, Info> &customAssets) const
+diff -Naur orig/thumbnailer/mltpreview.cpp patched/thumbnailer/mltpreview.cpp
+--- orig/thumbnailer/mltpreview.cpp	2021-05-10 18:11:30.000000000 +0200
++++ patched/thumbnailer/mltpreview.cpp	2021-05-30 13:12:20.651567139 +0200
+@@ -109,7 +109,7 @@
+         return mltImage;
+     }
+ 
+-    mlt_image_format format = mlt_image_rgb24a;
++    mlt_image_format format = mlt_image_rgba;
+     const uchar *imagedata = frame->get_image(format, width, height);
+     if (imagedata != nullptr) {
+         memcpy(mltImage.bits(), imagedata, size_t(width * height * 4));
