@@ -1,4 +1,4 @@
 #!/bin/sh -eux
 
-rm -f configure
+# rm -f configure
 ub_compile
