@@ -9,7 +9,6 @@ kconfigwidgets-dev
 kcoreaddons-dev
 kcrash-dev
 kdbusaddons-dev
--kded-dev
 kdoctools
 kguiaddons-dev
 ki18n-dev
