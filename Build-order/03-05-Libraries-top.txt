@@ -5,7 +5,6 @@ bsdiff
 kelbt
 icon-theme-gnome-extras
 alsa-tools
-libgdamm
 pam-ldap
 anjuta-extras
 gnuplot
