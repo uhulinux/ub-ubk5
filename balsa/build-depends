@@ -1,6 +1,4 @@
 compface
-docbook-dtds
-docbook-xsl
 gmime-dev
 gpg
 gpgme-dev
@@ -15,7 +13,6 @@ libical-dev
 libnotify-dev
 libsecret-dev
 libxshmfence-dev
-meson
 networkmanager-dev
 openldap-dev
 openssl-dev
