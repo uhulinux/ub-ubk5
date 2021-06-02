@@ -1,3 +1,6 @@
 #!/bin/sh -eux
 
+export CFLAGS=' -I/usr/include/Imath '
+export CXXFLAGS=' -I/usr/include/Imath '
+
 ub_compile
