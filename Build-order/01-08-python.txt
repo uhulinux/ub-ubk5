@@ -24,7 +24,6 @@ python3-automat
 python3-babel
 python3-constantly
 python3-distutils-extra
-python3-flask
 python3-idna
 python3-hyperlink
 python3-incremental
@@ -104,9 +103,6 @@ python3-gst
 python3-pillow
 python3-mutagen
 python3-pydf
-python3-flask-babel
-python3-flask-babelex
-python3-flask-sqlalchemy
 python3-jsmin
 python3-pyflakes
 python3-stevedore
