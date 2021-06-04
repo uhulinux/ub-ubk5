@@ -13,7 +13,7 @@ diff -Naur orig/ac/debugging_profiling.m4 patched/ac/debugging_profiling.m4
 diff -Naur orig/configure patched/configure
 --- orig/configure	2019-11-09 11:28:18.000000000 +0100
 +++ patched/configure	2019-11-21 14:34:40.250482617 +0100
-@@ -1466,7 +1466,7 @@
+@@ -1510,7 +1510,7 @@
                            building AppImages or generic portable builds (no)
    --enable-debug          compile with debug information (no)
    --enable-profiling      compile with profiling information (no)
@@ -25,7 +25,7 @@ diff -Naur orig/configure patched/configure
 diff -Naur orig/lib/fmt/test/fuzzing/build.sh patched/lib/fmt/test/fuzzing/build.sh
 --- orig/lib/fmt/test/fuzzing/build.sh	2019-11-09 11:28:17.000000000 +0100
 +++ patched/lib/fmt/test/fuzzing/build.sh	2019-11-21 14:39:11.934237155 +0100
-@@ -85,7 +85,7 @@
+@@ -63,7 +63,7 @@
  mkdir -p $builddir
  cd $builddir
  CXX="clang++" \
@@ -37,7 +37,7 @@ diff -Naur orig/lib/fmt/test/fuzzing/build.sh patched/lib/fmt/test/fuzzing/build
 diff -Naur orig/Rakefile patched/Rakefile
 --- orig/Rakefile	2019-11-09 11:26:18.000000000 +0100
 +++ patched/Rakefile	2019-11-21 14:39:21.806416110 +0100
-@@ -222,7 +222,7 @@
+@@ -229,7 +229,7 @@
    return ""                   if !c?(:USE_OPTIMIZATION)
    return " -O1"               if is_clang? && !check_compiler_version("clang", "3.8.0") # LLVM bug 11962
    return " -O2 -fno-ipa-icf"  if $building_for[:windows] && check_compiler_version("gcc", "5.1.0") && !check_compiler_version("gcc", "7.2.0")

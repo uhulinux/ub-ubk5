@@ -33,7 +33,7 @@ libxxf86vm-dev
 mesa-dev
 mpg123-dev
 openal-dev
-openldap-dev
+-openldap-dev
 openssl-dev
 prelink
 pulseaudio-dev

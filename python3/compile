@@ -7,9 +7,7 @@ find -name '*.exe' -print -delete
 
 # Remove bundled libraries to ensure that we're using the system copy.
 rm -r Modules/expat
-
-# A -O3 veszélyes
-# ub_replace -O3 -O2 configure
+rm -r Modules/_ctypes/{darwin,libffi}*
 
 # PGO should be done with -O3
 # Also included the -fno-semantic-interposition optimization:

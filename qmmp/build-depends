@@ -4,7 +4,6 @@ ffmpeg-dev
 flac-dev
 libcddb-dev
 libfaad2-dev
-libmad-dev
 libmms-dev
 libmodplug-dev
 libsndfile-dev
