@@ -1,15 +1,17 @@
 diff -Naur orig/third_party/closure_compiler/compiler.py patched/third_party/closure_compiler/compiler.py
---- orig/third_party/closure_compiler/compiler.py	2021-01-18 22:29:44.000000000 +0100
-+++ patched/third_party/closure_compiler/compiler.py	2021-01-21 16:36:21.125187714 +0100
-@@ -12,9 +12,9 @@
+--- orig/third_party/closure_compiler/compiler.py	2021-06-06 19:40:05.954174642 +0200
++++ patched/third_party/closure_compiler/compiler.py	2021-06-06 19:58:55.097449124 +0200
+@@ -12,9 +12,10 @@
  import subprocess
  
  
 -_CURRENT_DIR = os.path.join(os.path.dirname(__file__))
+-_JAVA_PATH = os.path.join(_CURRENT_DIR, "..", "jdk", "current", "bin", "java")
+-assert os.path.isfile(_JAVA_PATH), "java only allowed in android builds"
 +_CURRENT_DIR = "/usr"
- _JAVA_BIN = "java"
--_JDK_PATH = os.path.join(_CURRENT_DIR, "..", "jdk", "current", "bin", _JAVA_BIN)
-+_JDK_PATH = os.path.join(_CURRENT_DIR, "lib", "java", "jre", "bin", _JAVA_BIN)
- _JAVA_PATH = _JDK_PATH if os.path.isfile(_JDK_PATH) else _JAVA_BIN
++#_JAVA_PATH = os.path.join(_CURRENT_DIR, "lib", "java", "jre", "bin", "java")
++_JAVA_PATH = os.path.join(_CURRENT_DIR, "lib", "jvm", "openjdk-15", "bin", "java")
++# assert os.path.isfile(_JAVA_PATH), "java only allowed in android builds"
  
- 
+ class Compiler(object):
+   """Runs the Closure compiler on given source files to typecheck them

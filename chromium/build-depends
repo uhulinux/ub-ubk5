@@ -1,5 +1,6 @@
 alsa-lib-dev
 cups-dev
+curl-dev
 dbus-dev
 ffmpeg-dev
 flac-dev
@@ -27,6 +28,7 @@ nspr-dev
 nss-dev
 opus-dev
 pciutils-dev
+pipewire-dev
 pulseaudio-dev
 python2-dev
 python2-setuptools

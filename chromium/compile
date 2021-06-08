@@ -10,9 +10,9 @@ fi
 
 # gcc-vel sokkal gyorsabb a build, mivel használja a ccache-t
 # linkelni viszont az lld-vel kell (use_lld=true), a többi elszáll
-export CC=gcc
-export CXX=g++
-export AR=ar
+export CC=clang
+export CXX=clang++
+export AR=llvm-ar
 export NM=nm
 
 # ccache
@@ -33,6 +33,7 @@ treat_warnings_as_errors=false
 fieldtrial_testing_like_official_build=true
 ffmpeg_branding=\"Chrome\"
 proprietary_codecs=true
+rtc_use_pipewire=true
 use_gold=false
 use_lld=true
 use_sysroot=false
