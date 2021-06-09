@@ -6,4 +6,6 @@ libsm-dev
 libwnck-dev
 libxml2-dev
 mate-common
+mate-desktop-dev
+mate-panel-dev
 xcb-util-dev

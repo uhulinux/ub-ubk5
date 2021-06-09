@@ -330,7 +330,7 @@ libwacom
 libinput
 pinentry
 libsecret
-net-snmp
+snmp
 check
 swig
 sysfsutils

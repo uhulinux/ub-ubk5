@@ -4,5 +4,6 @@ lcms2-dev
 libjpeg-turbo-dev
 libxi-dev
 libxml2-dev
+nss-dev
 openjpeg-dev
 qt5-dev

@@ -2,8 +2,8 @@
 
 ub_install
 
-# remove execute bit from these examples, we dont want to depend on tcsh
-chmod -x "$UB_INSTALLDIR"/usr/share/doc/util-linux/getopt/*
+# remove this example, we dont want to depend on tcsh
+rm -f "$UB_INSTALLDIR"/usr/share/doc/util-linux/getopt-example.tcsh
 
 # fix version in .pc files
 if [ "$UB_VERSION_HEAD2" = "$UB_VERSION" ]; then
