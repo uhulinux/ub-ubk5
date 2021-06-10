@@ -1,4 +1,4 @@
-for i in $(urllist https://www.python.org/ftp/python/ | grep ^3.9);do
+for i in $(urllist https://www.python.org/ftp/python/ | grep ^3.8);do
 tag=$(urllist https://www.python.org/ftp/python/$i/ | splitver '^Python-([0-9.]+).tar.xz$')
 veg=$(echo -e "$veg"'\n'"$tag")
 done

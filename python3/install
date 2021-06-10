@@ -3,8 +3,3 @@
 ub_install
 
 ln -sf python"$UB_VERSION_HEAD1" "$UB_INSTALLDIR"/usr/bin/python
-
-# some useful "stuff" FS#46146
-install -dm755 "$UB_INSTALLDIR"/usr/lib/python${UB_VERSION_HEAD2}/Tools/{i18n,scripts}
-install -m755 Tools/i18n/{msgfmt,pygettext}.py "$UB_INSTALLDIR"/usr/lib/python${UB_VERSION_HEAD2}/Tools/i18n/
-install -m755 Tools/scripts/{README,*py} "$UB_INSTALLDIR"/usr/lib/python${UB_VERSION_HEAD2}/Tools/scripts/
