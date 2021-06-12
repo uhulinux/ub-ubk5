@@ -60,5 +60,6 @@ libva-utils
 epson-scanner-driver
 epson-printer-utility
 plymouth
+pinentry-qt
 usb-modeswitch-data
 usb-modeswitch
