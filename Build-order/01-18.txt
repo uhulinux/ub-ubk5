@@ -34,7 +34,6 @@ fonts-unicode
 lndir
 makedepend
 mdadm
-scsh
 squashfs-tools
 syslinux
 reiser4progs
