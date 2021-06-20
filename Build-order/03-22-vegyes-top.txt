@@ -19,7 +19,6 @@ systemd-ui
 systemdgenie
 nvidia-340
 nvidia-390
-nvidia
 synapse
 ckbcomp
 calamares
