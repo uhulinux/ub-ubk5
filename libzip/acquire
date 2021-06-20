@@ -2,3 +2,4 @@
 
 libzip-${UB_VERSION}.tar.gz libzip-${UB_VERSION}/
 	https://www.nih.at/libzip/
+	https://libzip.org/download/

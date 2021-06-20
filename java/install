@@ -4,4 +4,4 @@ make install DESTDIR=${UB_INSTALLDIR}
 
 rm -Rf ${UB_INSTALLDIR}/usr/lib/jvm/openjdk-${UB_VERSION_HEAD1}/legal
 
-ln -s /usr/lib/jvm/openjdk-${UB_VERSION_HEAD1} ${UB_INSTALLDIR}/usr/lib/java
+ln -sT jvm/openjdk-${UB_VERSION_HEAD1} ${UB_INSTALLDIR}/usr/lib/java
