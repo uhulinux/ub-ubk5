@@ -7,7 +7,7 @@ gcr-dev
 gpg
 gpgme-dev
 gtk2-dev
-gtksourceview3-dev
+gtksourceview4-dev
 gupnp-dev
 intltool
 libcryptui-dev

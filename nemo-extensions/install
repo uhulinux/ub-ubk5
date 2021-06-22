@@ -4,10 +4,6 @@ extensions="nemo-seahorse nemo-preview nemo-fileroller nemo-python nemo-image-co
 for progs in ${extensions};do
 cd $progs
 ub_install
-if [ "$progs" == "nemo-seahorse" ];then
-make -C tool DESTDIR=$UB_INSTALLDIR uninstall
-rm -rf $UB_INSTALLDIR/usr/share/{GConf,glib-2.0,nemo-seahorse}
-fi
 cd ..
 done
 mkdir -p "$UB_INSTALLDIR"/usr/share/{nemo-terminal,glib-2.0/schemas,nemo-python/extensions/}
