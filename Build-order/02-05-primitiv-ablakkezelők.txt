@@ -25,7 +25,6 @@ swaybg
 idesk
 i3lock
 swaylock
-bmpanel2
 jwm
 afterstep
 windowmaker
