@@ -90,6 +90,7 @@ khtml
 kross
 kio-extras
 kdegraphics-thumbnailers
+layer-shell-qt
 kactivitymanagerd
 plasma-workspace-wallpapers
 bluedevil
