@@ -104,7 +104,7 @@ kscreen
 kscreenlocker
 ksshaskpass
 libksysguard
-ksysguard
+ksystemstats
 kwallet-pam
 kwayland-integration
 kwayland-server
@@ -126,6 +126,7 @@ sddm-kcm
 systemsettings
 kinfocenter
 discover
+plasma-systemmonitor
 plasma-browser-integration
 plasma-disks
 phonon-backend-gstreamer
