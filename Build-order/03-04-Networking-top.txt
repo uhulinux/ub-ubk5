@@ -63,7 +63,6 @@ opera
 wireshark
 balsa
 falkon
-seamonkey
 firefox
 thunderbird
 chromium
