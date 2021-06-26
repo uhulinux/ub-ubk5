@@ -1,13 +1,13 @@
-diff -Nur orig/utils/cups-browsed.service mod/utils/cups-browsed.service
---- orig/utils/cups-browsed.service	2019-06-06 15:17:11.000000000 +0200
-+++ mod/utils/cups-browsed.service	2019-08-06 21:53:54.653066024 +0200
+diff -Naur orig/utils/cups-browsed.service patched/utils/cups-browsed.service
+--- orig/utils/cups-browsed.service	2021-06-15 21:25:56.000000000 +0200
++++ patched/utils/cups-browsed.service	2021-06-26 14:43:39.793785702 +0200
 @@ -1,7 +1,7 @@
  [Unit]
  Description=Make remote CUPS printers available locally
 -Requires=cups.service
--After=cups.service avahi-daemon.service
+-After=cups.service avahi-daemon.service network-online.target
 +Requires=org.cups.cupsd.service
-+After=org.cups.cupsd.service avahi-daemon.service
- Wants=avahi-daemon.service
++After=org.cups.cupsd.service avahi-daemon.service network-online.target
+ Wants=avahi-daemon.service network-online.target
  
  [Service]

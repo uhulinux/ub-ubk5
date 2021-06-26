@@ -1,8 +1,6 @@
 #!/bin/sh -eux
 
-make \
-	MANDIR="$UB_INSTALLDIR"/usr/share/man \
-	install
+make DESTDIR=$UB_INSTALLDIR prefix=/usr install
 
 # attr
 for i in fgetxattr flistxattr fremovexattr fsetxattr getxattr \

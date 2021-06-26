@@ -26,7 +26,6 @@ trunc
 ttyrec
 zisofs-tools
 aamath
-txr
 argon2
 keepassxc
 antiword
