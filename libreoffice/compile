@@ -85,4 +85,4 @@ export QT5DIR=/usr/lib/qt5
     --enable-release-build
 
 # az unitcheck és a slowcheck nem kell
-make build-nocheck
+make build
