@@ -26,8 +26,6 @@ libfmt
 0ad
 0ad-data
 dangerdeep
-glfw2
-dark-oberon
 gnustep-make
 gnustep-base
 oolite
