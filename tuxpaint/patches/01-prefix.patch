@@ -1,0 +1,12 @@
+diff -Naur orig/Makefile patched/Makefile
+--- orig/Makefile	2021-06-29 01:46:55.000000000 +0200
++++ patched/Makefile	2021-06-30 23:40:27.052314756 +0200
+@@ -211,7 +211,7 @@
+ windows_PREFIX:=/usr/local
+ macos_PREFIX:=Resources
+ ios_PREFIX:=.
+-linux_PREFIX:=/usr/local
++linux_PREFIX:=/usr
+ PREFIX:=$($(OS)_PREFIX)
+ 
+ # Root directory to place files when creating packages.
