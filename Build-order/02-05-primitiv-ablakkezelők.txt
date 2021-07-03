@@ -30,6 +30,7 @@ afterstep
 windowmaker
 fvwm
 icewm
+libseat
 wlroots
 i3-wm
 awesome

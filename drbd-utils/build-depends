@@ -1,5 +1,3 @@
-docbook-dtds
-docbook-xsl
 libxslt-dev
 po4a
 systemd-dev

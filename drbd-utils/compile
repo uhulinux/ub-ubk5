@@ -4,6 +4,7 @@ ub_compile \
 	--with-distro=generic \
 	--with-bashcompletion \
 	--with-udev \
+	--with-prebuiltman \
 	--without-rgmanager \
 	--without-pacemaker \
 	--without-heartbeat \

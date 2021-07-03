@@ -5,5 +5,5 @@ gtk3-dev
 libfilezilla-dev
 libidn-dev
 sqlite-dev
-wxwidgets-dev
+wxwidgets3.0-dev
 xdg-utils

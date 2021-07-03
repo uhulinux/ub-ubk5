@@ -3,6 +3,7 @@ glu-dev
 libcap-dev
 libinput-dev
 libpng-dev
+libseat-dev
 libxcb-dev
 libxkbcommon-dev
 mesa-dev
