@@ -65,6 +65,7 @@ balsa
 falkon
 firefox
 thunderbird
+seamonkey
 chromium
 claws-mail
 anydesk
