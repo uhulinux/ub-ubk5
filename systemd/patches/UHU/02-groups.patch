@@ -1,31 +1,31 @@
 diff -Naur orig/sysusers.d/basic.conf.in patched/sysusers.d/basic.conf.in
---- orig/sysusers.d/basic.conf.in	2021-03-30 22:59:02.000000000 +0200
-+++ patched/sysusers.d/basic.conf.in	2021-04-18 20:23:20.744440256 +0200
-@@ -18,21 +18,11 @@
- g wheel   -     -            -
+--- orig/sysusers.d/basic.conf.in	2021-07-07 19:41:29.000000000 +0200
++++ patched/sysusers.d/basic.conf.in	2021-07-20 00:22:54.469990798 +0200
+@@ -17,21 +17,9 @@
+ # Administrator group: can *do* more than normal users
+ g wheel   {{WHEEL_GID  }}     -            -
  
- # Access to certain kernel and userspace facilities
--g kmem    -     -            -
- g tty     @TTY_GID@     -            -
--g utmp    -     -            -
+-# Access to shared database of users on the system
+-g utmp    {{UTMP_GID   }}     -            -
+-
+ # Physical and virtual hardware access groups
+ g audio   {{AUDIO_GID  }}     -            -
+-g cdrom   {{CDROM_GID  }}     -            -
+-g dialout {{DIALOUT_GID}}     -            -
+-g disk    {{DISK_GID   }}     -            -
+-g input   {{INPUT_GID  }}     -            -
+-g kmem    {{KMEM_GID   }}     -            -
+-g kvm     {{KVM_GID    }}     -            -
+ g lp      {{LP_GID     }}     -            -
+-g render  {{RENDER_GID }}     -            -
+-g sgx     {{SGX_GID    }}     -            -
+-g tape    {{TAPE_GID   }}     -            -
+ g tty     {{TTY_GID    }}     -            -
+ g video   {{VIDEO_GID  }}     -            -
  
- # Hardware access groups
- g audio   -     -            -
--g cdrom   -     -            -
--g dialout -     -            -
--g disk    -     -            -
--g input   -     -            -
--g kvm     -     -            -
- g lp      -     -            -
--g render  -     -            -
--g sgx     -     -            -
--g tape    -     -            -
- g video   -     -            -
- 
- # Default group for normal users
 diff -Naur orig/tmpfiles.d/static-nodes-permissions.conf.in patched/tmpfiles.d/static-nodes-permissions.conf.in
---- orig/tmpfiles.d/static-nodes-permissions.conf.in	2021-03-30 22:59:02.000000000 +0200
-+++ patched/tmpfiles.d/static-nodes-permissions.conf.in	2021-04-18 20:25:29.601225463 +0200
+--- orig/tmpfiles.d/static-nodes-permissions.conf.in	2021-07-07 19:41:29.000000000 +0200
++++ patched/tmpfiles.d/static-nodes-permissions.conf.in	2021-07-20 00:24:35.150524574 +0200
 @@ -11,9 +11,9 @@
  
  z /dev/snd/seq      0660 - audio -
@@ -34,37 +34,37 @@ diff -Naur orig/tmpfiles.d/static-nodes-permissions.conf.in patched/tmpfiles.d/s
 +z /dev/loop-control 0660 - media -
  z /dev/net/tun      0666 - -     -
  z /dev/fuse         0666 - -     -
--z /dev/kvm          @DEV_KVM_MODE@ - kvm -
--z /dev/vhost-net    @DEV_KVM_MODE@ - kvm -
--z /dev/vhost-vsock  @DEV_KVM_MODE@ - kvm -
-+z /dev/kvm          @DEV_KVM_MODE@ - users -
-+z /dev/vhost-net    @DEV_KVM_MODE@ - users -
-+z /dev/vhost-vsock  @DEV_KVM_MODE@ - users -
-diff -Naur orig/tmpfiles.d/systemd.conf.m4 patched/tmpfiles.d/systemd.conf.m4
---- orig/tmpfiles.d/systemd.conf.m4	2021-03-30 22:59:02.000000000 +0200
-+++ patched/tmpfiles.d/systemd.conf.m4	2021-04-18 20:26:21.581540533 +0200
+-z /dev/kvm          {{DEV_KVM_MODE}} - kvm -
+-z /dev/vhost-net    {{DEV_KVM_MODE}} - kvm -
+-z /dev/vhost-vsock  {{DEV_KVM_MODE}} - kvm -
++z /dev/kvm          {{DEV_KVM_MODE}} - users -
++z /dev/vhost-net    {{DEV_KVM_MODE}} - users -
++z /dev/vhost-vsock  {{DEV_KVM_MODE}} - users -
+diff -Naur orig/tmpfiles.d/systemd.conf.in patched/tmpfiles.d/systemd.conf.in
+--- orig/tmpfiles.d/systemd.conf.in	2021-07-07 19:41:29.000000000 +0200
++++ patched/tmpfiles.d/systemd.conf.in	2021-07-20 00:25:00.498661971 +0200
 @@ -9,7 +9,7 @@
  
  d /run/user 0755 root root -
- m4_ifdef(`ENABLE_UTMP',
+ {% if ENABLE_UTMP %}
 -F! /run/utmp 0664 root utmp -
 +F! /run/utmp 0664 root root -
- )m4_dnl
+ {% endif %}
  
  d /run/systemd/ask-password 0755 root root -
-diff -Naur orig/tmpfiles.d/var.conf.m4 patched/tmpfiles.d/var.conf.m4
---- orig/tmpfiles.d/var.conf.m4	2021-03-30 22:59:02.000000000 +0200
-+++ patched/tmpfiles.d/var.conf.m4	2021-04-18 20:27:10.093834865 +0200
+diff -Naur orig/tmpfiles.d/var.conf.in patched/tmpfiles.d/var.conf.in
+--- orig/tmpfiles.d/var.conf.in	2021-07-07 19:41:29.000000000 +0200
++++ patched/tmpfiles.d/var.conf.in	2021-07-20 00:25:54.026955866 +0200
 @@ -13,9 +13,9 @@
  
  d /var/log 0755 - - -
- m4_ifdef(`ENABLE_UTMP',
+ {% if ENABLE_UTMP %}
 -f /var/log/wtmp 0664 root utmp -
 -f /var/log/btmp 0660 root utmp -
 -f /var/log/lastlog 0664 root utmp -
 +f /var/log/wtmp 0664 root root -
 +f /var/log/btmp 0660 root root -
 +f /var/log/lastlog 0664 root root -
- )m4_dnl
+ {% endif %}
  
  d /var/cache 0755 - - -

@@ -1,6 +1,6 @@
-diff -Naur orig/units/getty@.service.m4 patched/units/getty@.service.m4
---- orig/units/getty@.service.m4	2019-04-11 18:28:36.000000000 +0200
-+++ patched/units/getty@.service.m4	2019-04-24 00:41:41.871892296 +0200
+diff -Naur orig/units/getty@.service.in patched/units/getty@.service.in
+--- orig/units/getty@.service.in	2021-07-07 19:41:29.000000000 +0200
++++ patched/units/getty@.service.in	2021-07-20 00:29:39.024195717 +0200
 @@ -9,7 +9,7 @@
  
  [Unit]
@@ -9,7 +9,7 @@ diff -Naur orig/units/getty@.service.m4 patched/units/getty@.service.m4
 +Documentation=man:fbgetty(8) man:systemd-getty-generator(8)
  Documentation=http://0pointer.de/blog/projects/serial-console.html
  After=systemd-user-sessions.service plymouth-quit-wait.service getty-pre.target
- m4_ifdef(`HAVE_SYSV_COMPAT',
+ {% if HAVE_SYSV_COMPAT %}
 @@ -38,7 +38,7 @@
  # The '-o' option value tells agetty to replace 'login' arguments with an
  # option to preserve environment (-p), followed by '--' for safety, and then
