@@ -1,11 +1,7 @@
 acpid
 alien
 brainfuck
-fonts-freeware
 fonts-libertine
-fonts-shareware
-fonts-thai
-fonts-win
 htop
 man-pages
 memtest86+
@@ -26,7 +22,6 @@ exfat-utils
 hostapd
 logrotate
 fonts-bitstream-vera
-fonts-roboto
 libucl
 upx
 a2ps
