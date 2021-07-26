@@ -9,3 +9,4 @@ libxmu-dev
 libxpm-dev
 pam
 systemd-dev
+xdg-utils
