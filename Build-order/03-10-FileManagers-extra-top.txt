@@ -1,5 +1,6 @@
 nnn
 vifm
+doublecmd
 eaglemode
 emelfm2
 gentoo
@@ -11,3 +12,6 @@ xfe
 mc
 ytree
 spacefm
+tuxcmd
+tuxcmd-modules
+tuxcmd-modules-unrar
