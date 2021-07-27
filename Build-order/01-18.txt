@@ -9,7 +9,6 @@ wxwidgets3.0
 wxwidgets3.1
 python3-wxpython
 python3-matplotlib
-python3-squaremap
 acpitool
 aoetools
 bdfresize
