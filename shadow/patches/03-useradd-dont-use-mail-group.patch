@@ -1,7 +1,7 @@
 diff -Naur orig/src/useradd.c patched/src/useradd.c
---- orig/src/useradd.c	2019-08-05 00:41:06.171943214 +0200
-+++ patched/src/useradd.c	2019-08-05 00:43:22.021813575 +0200
-@@ -2175,7 +2175,6 @@
+--- orig/src/useradd.c	2021-07-27 14:50:09.293627853 +0200
++++ patched/src/useradd.c	2021-07-27 14:53:12.932758832 +0200
+@@ -2317,7 +2317,6 @@
  		const char *spool;
  		char *file;
  		int fd;
@@ -9,7 +9,7 @@ diff -Naur orig/src/useradd.c patched/src/useradd.c
  		gid_t gid;
  		mode_t mode;
  
-@@ -2194,16 +2193,8 @@
+@@ -2346,16 +2345,8 @@
  			return;
  		}
  
