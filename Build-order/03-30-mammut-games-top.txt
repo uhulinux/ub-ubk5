@@ -76,7 +76,6 @@ trigger-rally
 tuxracer
 ultimatestunts
 stuntrally
-hedgewars
 jumpnbump-levels
 jumpnbump
 x-moto

@@ -1,0 +1,2 @@
+echo 2.6.1
+# noupdate: ennek még jó a glibc-2.32

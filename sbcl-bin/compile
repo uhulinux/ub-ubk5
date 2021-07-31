@@ -1,0 +1,4 @@
+#!/bin/sh -eux
+
+tar -xf  sbcl-2.1.6-x86-64-linux-binary.tar.bz2
+rm sbcl-2.1.6-x86-64-linux-binary.tar.bz2

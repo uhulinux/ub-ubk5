@@ -1,4 +1,4 @@
-ghc
+ghc-bin
 gmp-dev
 happy
 libffi-dev
