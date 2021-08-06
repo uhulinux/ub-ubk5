@@ -1,4 +1,5 @@
 binutils-dev
+gcc
 gtest
 libedit-dev
 libffi-dev

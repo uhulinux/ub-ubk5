@@ -188,6 +188,7 @@ asciidoc
 ninja
 util-linux
 quota
+python3-jinja2
 systemd
 autoconf2.13
 patchelf
@@ -203,6 +204,7 @@ libedit
 gyp
 nss
 vala
+libpcap
 umockdev
 libgudev
 libgusb

@@ -2,7 +2,7 @@ db4-dev
 groff
 krb5-dev
 libpq-dev
-mysql-dev
+mariadb-dev
 openldap-dev
 openssl-dev
 postgresql-dev

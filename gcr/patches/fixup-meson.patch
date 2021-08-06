@@ -1,0 +1,22 @@
+diff --git a/ui/meson.build b/ui/meson.build
+index e656ea2..34c7b10 100644
+--- a/ui/meson.build
++++ b/ui/meson.build
+@@ -205,7 +205,7 @@ i18n.merge_file(
+     output: '@BASENAME@',
+     configuration: { 'bindir': gcr_prefix / get_option('bindir') },
+   ),
+-  output: '@BASENAME@',
++  output: 'gcr-viewer.desktop',
+   type: 'desktop',
+   po_dir: podir,
+   install: true,
+@@ -228,7 +228,7 @@ i18n.merge_file(
+     output: '@BASENAME@',
+     configuration: { 'libexecdir': gcr_prefix / get_option('libexecdir') },
+   ),
+-  output: '@BASENAME@',
++  output: 'gcr-prompter.desktop',
+   type: 'desktop',
+   po_dir: podir,
+   install: true,
