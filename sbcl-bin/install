@@ -1,6 +1,0 @@
-#!/bin/sh -eux
-
-cd sbcl-2.1.6-x86-64-linux
-SBCL_HOME="" INSTALL_ROOT=${UB_INSTALLDIR}/usr sh install.sh
-patchelf --set-interpreter /usr/lib/ld-linux-x86-64.so.2 $UB_INSTALLDIR/usr/bin/sbcl
-rm -rf ${UB_INSTALLDIR}/usr/share/doc

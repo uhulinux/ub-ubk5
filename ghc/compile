@@ -1,6 +1,0 @@
-#!/bin/sh -eux
-
-ub_compile \
-    --docdir=/usr/share/doc/Packages/ghc \
-    --with-system-libffi \
-    --with-ffi-includes=$(pkg-config --variable=includedir libffi)
