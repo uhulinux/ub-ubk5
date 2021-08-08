@@ -53,6 +53,7 @@ consolekit
 glfw
 mesa-demos
 gdk-pixbuf-xlib
+xdg-utils
 xscreensaver
 dconf
 exiv2

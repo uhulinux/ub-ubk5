@@ -31,14 +31,15 @@ SED=sed \
 	--enable-libmpx \
 	--enable-default-ssp \
 	--enable-tls \
-	--enable-install-libiberty \
 	--enable-cet \
 	--enable-libsanitizer \
+	--disable-install-libiberty \
 	--disable-multilib \
 	--disable-libssp \
 	--disable-libstdcxx-pch \
 	--disable-libunwind-exceptions \
 	--disable-werror \
+	--with-pic \
 	--with-gnu-as \
 	--with-gnu-ld \
 	--with-system-zlib \

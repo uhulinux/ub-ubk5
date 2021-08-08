@@ -3,8 +3,8 @@ db4-dev
 gdbm-dev
 krb5-dev
 libnsl-dev
-mysql-common
-mysql-dev
+mariadb-common
+mariadb-dev
 openldap-dev
 openssl-dev
 pcre-dev

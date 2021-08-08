@@ -1,3 +1,4 @@
+bash-completion
 glib-dev
 gobject-introspection-dev
 libgudev-dev

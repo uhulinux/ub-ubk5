@@ -1,6 +1,6 @@
 diff -Naur orig/setup.py patched/setup.py
---- orig/setup.py	2019-04-08 04:25:09.000000000 +0200
-+++ patched/setup.py	2019-05-29 00:31:55.698012943 +0200
+--- orig/setup.py	1970-01-01 01:00:00.000000000 +0100
++++ patched/setup.py	2021-08-07 22:22:56.887849404 +0200
 @@ -15,9 +15,6 @@
      sys.exit(1)
  
@@ -8,15 +8,15 @@ diff -Naur orig/setup.py patched/setup.py
 -    'sphinxcontrib-applehelp',
 -    'sphinxcontrib-devhelp',
 -    'sphinxcontrib-jsmath',
-     'sphinxcontrib-htmlhelp',
-     'sphinxcontrib-serializinghtml',
+     'sphinxcontrib-htmlhelp>=2.0.0',
+     'sphinxcontrib-serializinghtml>=1.1.5',
      'sphinxcontrib-qthelp',
 diff -Naur orig/sphinx/application.py patched/sphinx/application.py
---- orig/sphinx/application.py	2019-04-08 17:10:05.000000000 +0200
-+++ patched/sphinx/application.py	2019-05-29 00:32:46.418603624 +0200
-@@ -103,8 +103,6 @@
+--- orig/sphinx/application.py	1970-01-01 01:00:00.000000000 +0100
++++ patched/sphinx/application.py	2021-08-07 22:24:00.776330147 +0200
+@@ -108,8 +108,6 @@
+     'sphinx.environment.collectors.title',
      'sphinx.environment.collectors.toctree',
-     'sphinx.environment.collectors.indexentries',
      # 1st party extensions
 -    'sphinxcontrib.applehelp',
 -    'sphinxcontrib.devhelp',
@@ -24,12 +24,12 @@ diff -Naur orig/sphinx/application.py patched/sphinx/application.py
      'sphinxcontrib.serializinghtml',
      'sphinxcontrib.qthelp',
 diff -Naur orig/Sphinx.egg-info/requires.txt patched/Sphinx.egg-info/requires.txt
---- orig/Sphinx.egg-info/requires.txt	2019-04-08 17:12:28.000000000 +0200
-+++ patched/Sphinx.egg-info/requires.txt	2019-05-29 00:32:23.386335607 +0200
+--- orig/Sphinx.egg-info/requires.txt	1970-01-01 01:00:00.000000000 +0100
++++ patched/Sphinx.egg-info/requires.txt	2021-08-07 22:24:25.556508986 +0200
 @@ -1,6 +1,3 @@
 -sphinxcontrib-applehelp
 -sphinxcontrib-devhelp
 -sphinxcontrib-jsmath
- sphinxcontrib-htmlhelp
- sphinxcontrib-serializinghtml
+ sphinxcontrib-htmlhelp>=2.0.0
+ sphinxcontrib-serializinghtml>=1.1.5
  sphinxcontrib-qthelp

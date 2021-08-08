@@ -79,6 +79,7 @@ python3-pyopenssl
 python3-pysmbc
 python3-rencode
 python3-chardet
+python3-charset-normalizer
 python3-dateutil
 python3-decorator
 python3-itsdangerous

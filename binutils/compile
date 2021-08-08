@@ -1,21 +1,22 @@
 #!/bin/sh -eux
 
-./configure \
-    --prefix=/usr \
-    --with-lib-path=/lib:/usr/lib:/usr/local/lib \
+# Turn off development mode (-Werror, gas run-time checks, date in sonames)
+sed -i '/^development=/s/true/false/' bfd/development.sh
+# hack! - libiberty configure tests for header files using "$CPP $CPPFLAGS"
+sed -i "/ac_cpp=/s/\$CPPFLAGS/\$CPPFLAGS -O2/" libiberty/configure
+
+ub_configure \
+    --with-lib-path=/usr/lib:/usr/local/lib \
     --with-pic \
     --with-system-zlib \
-    --enable-cet \
-    --enable-deterministic-archives \
-    --enable-gold \
-    --enable-ld=default \
-    --enable-lto \
-    --enable-plugins \
-    --enable-relro \
-    --enable-targets=x86_64-pep \
-    --enable-threads \
-    --disable-gdb \
-    --disable-werror
+	--enable-64-bit-bfd \
+	--enable-ld=default \
+	--enable-gold \
+	--enable-plugins \
+	--enable-deterministic-archives \
+	--enable-targets=x86_64-pep \
+	--disable-gdb \
+	--disable-werror
 
 make configure-host
 make -e \

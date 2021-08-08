@@ -1,0 +1,25 @@
+diff -Naur orig/setup.py patched/setup.py
+--- orig/setup.py	2021-08-07 22:25:24.488934703 +0200
++++ patched/setup.py	2021-08-08 20:09:14.608309013 +0200
+@@ -15,8 +15,8 @@
+     sys.exit(1)
+ 
+ install_requires = [
+-    'sphinxcontrib-htmlhelp>=2.0.0',
+-    'sphinxcontrib-serializinghtml>=1.1.5',
++    'sphinxcontrib-htmlhelp',
++    'sphinxcontrib-serializinghtml',
+     'sphinxcontrib-qthelp',
+     'Jinja2>=2.3',
+     'Pygments>=2.0',
+diff -Naur orig/Sphinx.egg-info/requires.txt patched/Sphinx.egg-info/requires.txt
+--- orig/Sphinx.egg-info/requires.txt	2021-08-07 22:25:24.568935282 +0200
++++ patched/Sphinx.egg-info/requires.txt	2021-08-08 20:09:40.936323507 +0200
+@@ -1,5 +1,5 @@
+-sphinxcontrib-htmlhelp>=2.0.0
+-sphinxcontrib-serializinghtml>=1.1.5
++sphinxcontrib-htmlhelp
++sphinxcontrib-serializinghtml
+ sphinxcontrib-qthelp
+ Jinja2>=2.3
+ Pygments>=2.0
