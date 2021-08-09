@@ -9,10 +9,14 @@ ub_configure \
     --with-lib-path=/usr/lib:/usr/local/lib \
     --with-pic \
     --with-system-zlib \
+    --enable-cet \
+    --enable-threads \
 	--enable-64-bit-bfd \
 	--enable-ld=default \
 	--enable-gold \
+	--enable-lto \
 	--enable-plugins \
+	--enable-relro \
 	--enable-deterministic-archives \
 	--enable-targets=x86_64-pep \
 	--disable-gdb \

@@ -1,0 +1,430 @@
+From 260a370790623f24b2485a3bf272edd76982b209 Mon Sep 17 00:00:00 2001
+From: Carlos Garcia Campos <cgarcia@igalia.com>
+Date: Tue, 29 Jun 2021 12:38:06 +0200
+Subject: [PATCH 1/3] message: add API to get TLS ciphersuite name and protocol
+ version
+
+---
+ docs/reference/libsoup-3.0-sections.txt |   2 +
+ libsoup/soup-connection.c               |  63 +++++++++++
+ libsoup/soup-connection.h               |   2 +
+ libsoup/soup-message.c                  | 135 ++++++++++++++++++++++++
+ libsoup/soup-message.h                  |   6 ++
+ tests/ssl-test.c                        |   8 ++
+ 6 files changed, 216 insertions(+)
+
+diff --git a/docs/reference/libsoup-3.0-sections.txt b/docs/reference/libsoup-3.0-sections.txt
+index 15bb9b4b..e6b20324 100644
+--- a/docs/reference/libsoup-3.0-sections.txt
++++ b/docs/reference/libsoup-3.0-sections.txt
+@@ -32,6 +32,8 @@ soup_message_get_connection_id
+ soup_message_get_remote_address
+ soup_message_get_tls_peer_certificate
+ soup_message_get_tls_peer_certificate_errors
++soup_message_get_tls_protocol_version
++soup_message_get_tls_ciphersuite_name
+ soup_message_set_tls_client_certificate
+ soup_message_tls_client_certificate_password_request_complete
+ <SUBSECTION>
+diff --git a/libsoup/soup-connection.c b/libsoup/soup-connection.c
+index 3d06a870..df2e1768 100644
+--- a/libsoup/soup-connection.c
++++ b/libsoup/soup-connection.c
+@@ -73,6 +73,8 @@ enum {
+ 	PROP_SSL,
+ 	PROP_TLS_CERTIFICATE,
+ 	PROP_TLS_CERTIFICATE_ERRORS,
++        PROP_TLS_PROTOCOL_VERSION,
++        PROP_TLS_CIPHERSUITE_NAME,
+         PROP_FORCE_HTTP1,
+ 
+ 	LAST_PROPERTY
+@@ -194,6 +196,12 @@ soup_connection_get_property (GObject *object, guint prop_id,
+ 	case PROP_TLS_CERTIFICATE_ERRORS:
+ 		g_value_set_flags (value, soup_connection_get_tls_certificate_errors (SOUP_CONNECTION (object)));
+ 		break;
++        case PROP_TLS_PROTOCOL_VERSION:
++                g_value_set_enum (value, soup_connection_get_tls_protocol_version (SOUP_CONNECTION (object)));
++                break;
++        case PROP_TLS_CIPHERSUITE_NAME:
++                g_value_set_string (value, soup_connection_get_tls_ciphersuite_name (SOUP_CONNECTION (object)));
++                break;
+ 	case PROP_FORCE_HTTP1:
+ 		g_value_set_boolean (value, priv->force_http1);
+ 		break;
+@@ -321,6 +329,21 @@ soup_connection_class_init (SoupConnectionClass *connection_class)
+                                     G_TYPE_TLS_CERTIFICATE_FLAGS, 0,
+                                     G_PARAM_READABLE |
+                                     G_PARAM_STATIC_STRINGS);
++        properties[PROP_TLS_PROTOCOL_VERSION] =
++                g_param_spec_enum ("tls-protocol-version",
++                                   "TLS Protocol Version",
++                                   "TLS protocol version negotiated for this connection",
++                                   G_TYPE_TLS_PROTOCOL_VERSION,
++                                   G_TLS_PROTOCOL_VERSION_UNKNOWN,
++                                   G_PARAM_READABLE |
++                                   G_PARAM_STATIC_STRINGS);
++        properties[PROP_TLS_CIPHERSUITE_NAME] =
++                g_param_spec_string ("tls-ciphersuite-name",
++                                     "TLS Ciphersuite Name",
++                                     "Name of TLS ciphersuite negotiated for this connection",
++                                     NULL,
++                                     G_PARAM_READABLE |
++                                     G_PARAM_STATIC_STRINGS);
+         properties[PROP_FORCE_HTTP1] =
+                 g_param_spec_boolean ("force-http1",
+                                       "Force HTTP 1.x",
+@@ -522,6 +545,18 @@ tls_connection_peer_certificate_changed (SoupConnection *conn)
+ 	g_object_notify_by_pspec (G_OBJECT (conn), properties[PROP_TLS_CERTIFICATE]);
+ }
+ 
++static void
++tls_connection_protocol_version_changed (SoupConnection *conn)
++{
++        g_object_notify_by_pspec (G_OBJECT (conn), properties[PROP_TLS_PROTOCOL_VERSION]);
++}
++
++static void
++tls_connection_ciphersuite_name_changed (SoupConnection *conn)
++{
++        g_object_notify_by_pspec (G_OBJECT (conn), properties[PROP_TLS_CIPHERSUITE_NAME]);
++}
++
+ static GTlsClientConnection *
+ new_tls_connection (SoupConnection    *conn,
+                     GSocketConnection *connection,
+@@ -564,6 +599,12 @@ new_tls_connection (SoupConnection    *conn,
+ 	g_signal_connect_object (tls_connection, "notify::peer-certificate",
+ 				 G_CALLBACK (tls_connection_peer_certificate_changed),
+ 				 conn, G_CONNECT_SWAPPED);
++        g_signal_connect_object (tls_connection, "notify::protocol-version",
++				 G_CALLBACK (tls_connection_protocol_version_changed),
++				 conn, G_CONNECT_SWAPPED);
++        g_signal_connect_object (tls_connection, "notify::ciphersuite-name",
++				 G_CALLBACK (tls_connection_ciphersuite_name_changed),
++				 conn, G_CONNECT_SWAPPED);
+ 
+         return tls_connection;
+ }
+@@ -1146,6 +1187,28 @@ soup_connection_get_tls_certificate_errors (SoupConnection *conn)
+ 	return g_tls_connection_get_peer_certificate_errors (G_TLS_CONNECTION (priv->connection));
+ }
+ 
++GTlsProtocolVersion
++soup_connection_get_tls_protocol_version (SoupConnection *conn)
++{
++        SoupConnectionPrivate *priv = soup_connection_get_instance_private (conn);
++
++        if (!G_IS_TLS_CONNECTION (priv->connection))
++                return G_TLS_PROTOCOL_VERSION_UNKNOWN;
++
++        return g_tls_connection_get_protocol_version (G_TLS_CONNECTION (priv->connection));
++}
++
++char *
++soup_connection_get_tls_ciphersuite_name (SoupConnection *conn)
++{
++        SoupConnectionPrivate *priv = soup_connection_get_instance_private (conn);
++
++        if (!G_IS_TLS_CONNECTION (priv->connection))
++                return NULL;
++
++        return g_tls_connection_get_ciphersuite_name (G_TLS_CONNECTION (priv->connection));
++}
++
+ void
+ soup_connection_set_tls_client_certificate (SoupConnection  *conn,
+                                             GTlsCertificate *certificate)
+diff --git a/libsoup/soup-connection.h b/libsoup/soup-connection.h
+index 6a369a95..9454c9d8 100644
+--- a/libsoup/soup-connection.h
++++ b/libsoup/soup-connection.h
+@@ -65,6 +65,8 @@ SoupClientMessageIO *soup_connection_setup_message_io    (SoupConnection *conn,
+ 
+ GTlsCertificate     *soup_connection_get_tls_certificate                       (SoupConnection  *conn);
+ GTlsCertificateFlags soup_connection_get_tls_certificate_errors                (SoupConnection  *conn);
++GTlsProtocolVersion  soup_connection_get_tls_protocol_version                  (SoupConnection  *conn);
++char                *soup_connection_get_tls_ciphersuite_name                  (SoupConnection  *conn);
+ void                 soup_connection_request_tls_certificate                   (SoupConnection  *conn,
+                                                                                 GTlsConnection  *connection,
+                                                                                 GTask           *task);
+diff --git a/libsoup/soup-message.c b/libsoup/soup-message.c
+index 41aed806..2b9cbdb5 100644
+--- a/libsoup/soup-message.c
++++ b/libsoup/soup-message.c
+@@ -89,6 +89,8 @@ typedef struct {
+ 
+ 	GTlsCertificate      *tls_peer_certificate;
+ 	GTlsCertificateFlags  tls_peer_certificate_errors;
++        GTlsProtocolVersion   tls_protocol_version;
++        char                 *tls_ciphersuite_name;
+ 
+         GTlsCertificate *tls_client_certificate;
+         GTask *pending_tls_cert_request;
+@@ -151,6 +153,8 @@ enum {
+ 	PROP_RESPONSE_HEADERS,
+ 	PROP_TLS_PEER_CERTIFICATE,
+ 	PROP_TLS_PEER_CERTIFICATE_ERRORS,
++        PROP_TLS_PROTOCOL_VERSION,
++        PROP_TLS_CIPHERSUITE_NAME,
+         PROP_REMOTE_ADDRESS,
+ 	PROP_PRIORITY,
+ 	PROP_SITE_FOR_COOKIES,
+@@ -198,6 +202,7 @@ soup_message_finalize (GObject *object)
+ 	g_clear_pointer (&priv->first_party, g_uri_unref);
+ 	g_clear_pointer (&priv->site_for_cookies, g_uri_unref);
+         g_clear_pointer (&priv->metrics, soup_message_metrics_free);
++        g_clear_pointer (&priv->tls_ciphersuite_name, g_free);
+ 
+ 	g_clear_object (&priv->auth);
+ 	g_clear_object (&priv->proxy_auth);
+@@ -301,6 +306,12 @@ soup_message_get_property (GObject *object, guint prop_id,
+ 	case PROP_TLS_PEER_CERTIFICATE_ERRORS:
+ 		g_value_set_flags (value, priv->tls_peer_certificate_errors);
+ 		break;
++        case PROP_TLS_PROTOCOL_VERSION:
++                g_value_set_enum (value, priv->tls_protocol_version);
++		break;
++        case PROP_TLS_CIPHERSUITE_NAME:
++		g_value_set_string (value, priv->tls_ciphersuite_name);
++                break;
+         case PROP_REMOTE_ADDRESS:
+                 g_value_set_object (value, priv->remote_address);
+                 break;
+@@ -814,6 +825,33 @@ soup_message_class_init (SoupMessageClass *message_class)
+ 				    G_TYPE_TLS_CERTIFICATE_FLAGS, 0,
+ 				    G_PARAM_READABLE |
+ 				    G_PARAM_STATIC_STRINGS);
++        /**
++         * SoupMessage:tls-protocol-version:
++         *
++         * The TLS protocol version negotiated for the message connection.
++         */
++        properties[PROP_TLS_PROTOCOL_VERSION] =
++	        g_param_spec_enum ("tls-protocol-version",
++                                   "TLS Protocol Version",
++                                   "TLS protocol version negotiated for this connection",
++                                   G_TYPE_TLS_PROTOCOL_VERSION,
++                                   G_TLS_PROTOCOL_VERSION_UNKNOWN,
++                                   G_PARAM_READABLE |
++                                   G_PARAM_STATIC_STRINGS);
++
++        /**
++         * SoupMessage:tls-ciphersuite-name:
++         *
++         * The Name of TLS ciphersuite negotiated for this message connection.
++         */
++        properties[PROP_TLS_CIPHERSUITE_NAME] =
++                g_param_spec_string ("tls-ciphersuite-name",
++                                     "TLS Ciphersuite Name",
++                                     "Name of TLS ciphersuite negotiated for this connection",
++                                     NULL,
++                                     G_PARAM_READABLE |
++                                     G_PARAM_STATIC_STRINGS);
++
+         /**
+          * SoupMessage:remote-address:
+          *
+@@ -1396,6 +1434,35 @@ soup_message_set_tls_peer_certificate (SoupMessage         *msg,
+         g_object_notify_by_pspec (G_OBJECT (msg), properties[PROP_TLS_PEER_CERTIFICATE_ERRORS]);
+ }
+ 
++static void
++soup_message_set_tls_protocol_version (SoupMessage        *msg,
++                                       GTlsProtocolVersion version)
++{
++        SoupMessagePrivate *priv = soup_message_get_instance_private (msg);
++
++        if (priv->tls_protocol_version == version)
++                return;
++
++        priv->tls_protocol_version = version;
++        g_object_notify_by_pspec (G_OBJECT (msg), properties[PROP_TLS_PROTOCOL_VERSION]);
++}
++
++static void
++soup_message_set_tls_ciphersuite_name (SoupMessage *msg,
++                                       char        *name)
++{
++        SoupMessagePrivate *priv = soup_message_get_instance_private (msg);
++
++        if (g_strcmp0 (priv->tls_ciphersuite_name, name) == 0) {
++                g_free (name);
++                return;
++        }
++
++        g_clear_pointer (&priv->tls_ciphersuite_name, g_free);
++        priv->tls_ciphersuite_name = name;
++        g_object_notify_by_pspec (G_OBJECT (msg), properties[PROP_TLS_CIPHERSUITE_NAME]);
++}
++
+ static void
+ soup_message_set_remote_address (SoupMessage    *msg,
+                                  GSocketAddress *address)
+@@ -1533,6 +1600,22 @@ re_emit_tls_certificate_changed (SoupMessage    *msg,
+                                                soup_connection_get_tls_certificate_errors (conn));
+ }
+ 
++static void
++connection_tls_protocol_version_changed (SoupMessage    *msg,
++                                         GParamSpec     *pspec,
++                                         SoupConnection *conn)
++{
++        soup_message_set_tls_protocol_version (msg, soup_connection_get_tls_protocol_version (conn));
++}
++
++static void
++connection_tls_ciphersuite_name_changed (SoupMessage    *msg,
++                                         GParamSpec     *pspec,
++                                         SoupConnection *conn)
++{
++        soup_message_set_tls_ciphersuite_name (msg, soup_connection_get_tls_ciphersuite_name (conn));
++}
++
+ static void
+ connection_remote_address_changed (SoupMessage    *msg,
+                                    GParamSpec     *pspec,
+@@ -1575,6 +1658,8 @@ soup_message_set_connection (SoupMessage    *msg,
+         soup_message_set_tls_peer_certificate (msg,
+                                                soup_connection_get_tls_certificate (priv->connection),
+                                                soup_connection_get_tls_certificate_errors (priv->connection));
++        soup_message_set_tls_protocol_version (msg, soup_connection_get_tls_protocol_version (conn));
++        soup_message_set_tls_ciphersuite_name (msg, soup_connection_get_tls_ciphersuite_name (conn));
+         soup_message_set_remote_address (msg, soup_connection_get_remote_address (priv->connection));
+ 
+         if (priv->tls_client_certificate) {
+@@ -1598,6 +1683,12 @@ soup_message_set_connection (SoupMessage    *msg,
+ 	g_signal_connect_object (priv->connection, "notify::tls-certificate",
+ 				 G_CALLBACK (re_emit_tls_certificate_changed),
+ 				 msg, G_CONNECT_SWAPPED);
++        g_signal_connect_object (priv->connection, "notify::tls-protocol-version",
++                                 G_CALLBACK (connection_tls_protocol_version_changed),
++                                 msg, G_CONNECT_SWAPPED);
++        g_signal_connect_object (priv->connection, "notify::tls-ciphersuite-name",
++                                 G_CALLBACK (connection_tls_ciphersuite_name_changed),
++                                 msg, G_CONNECT_SWAPPED);
+         g_signal_connect_object (priv->connection, "notify::remote-address",
+                                  G_CALLBACK (connection_remote_address_changed),
+                                  msg, G_CONNECT_SWAPPED);
+@@ -1699,6 +1790,8 @@ soup_message_cleanup_response (SoupMessage *msg)
+ 
+         if (!priv->connection) {
+                 soup_message_set_tls_peer_certificate (msg, NULL, 0);
++                soup_message_set_tls_protocol_version (msg, G_TLS_PROTOCOL_VERSION_UNKNOWN);
++                soup_message_set_tls_ciphersuite_name (msg, NULL);
+                 soup_message_set_remote_address (msg, NULL);
+                 priv->last_connection_id = 0;
+         }
+@@ -2328,6 +2421,48 @@ soup_message_get_tls_peer_certificate_errors (SoupMessage *msg)
+ 	return priv->tls_peer_certificate_errors;
+ }
+ 
++/**
++ * soup_message_get_tls_protocol_version:
++ * @msg: a #SoupMessage
++ *
++ * Gets the TLS protocol version negotiated for @msg's connection.
++ * If the message connection is not SSL, %G_TLS_PROTOCOL_VERSION_UNKNOWN is returned.
++ *
++ * Returns: a #GTlsProtocolVersion
++ */
++GTlsProtocolVersion
++soup_message_get_tls_protocol_version (SoupMessage *msg)
++{
++        SoupMessagePrivate *priv;
++
++        g_return_val_if_fail (SOUP_IS_MESSAGE (msg), G_TLS_PROTOCOL_VERSION_UNKNOWN);
++
++        priv = soup_message_get_instance_private (msg);
++
++        return priv->tls_protocol_version;
++}
++
++/**
++ * soup_message_get_tls_ciphersuite_name:
++ * @msg: a #SoupMessage
++ *
++ * Gets the name of the TLS ciphersuite negotiated for @msg's connection.
++ *
++ * Returns: (transfer none): the name of the TLS ciphersuite,
++ *    or %NULL if @msg's connection is not SSL.
++ */
++const char *
++soup_message_get_tls_ciphersuite_name (SoupMessage *msg)
++{
++        SoupMessagePrivate *priv;
++
++        g_return_val_if_fail (SOUP_IS_MESSAGE (msg), NULL);
++
++        priv = soup_message_get_instance_private (msg);
++
++        return priv->tls_ciphersuite_name;
++}
++
+ /**
+  * soup_message_set_tls_client_certificate:
+  * @msg: a #SoupMessage
+diff --git a/libsoup/soup-message.h b/libsoup/soup-message.h
+index 9208ec24..69b2088f 100644
+--- a/libsoup/soup-message.h
++++ b/libsoup/soup-message.h
+@@ -106,6 +106,12 @@ GTlsCertificate     *soup_message_get_tls_peer_certificate
+ SOUP_AVAILABLE_IN_ALL
+ GTlsCertificateFlags soup_message_get_tls_peer_certificate_errors                  (SoupMessage     *msg);
+ 
++SOUP_AVAILABLE_IN_ALL
++GTlsProtocolVersion  soup_message_get_tls_protocol_version                         (SoupMessage     *msg);
++
++SOUP_AVAILABLE_IN_ALL
++const char          *soup_message_get_tls_ciphersuite_name                         (SoupMessage     *msg);
++
+ SOUP_AVAILABLE_IN_ALL
+ void                 soup_message_set_tls_client_certificate                       (SoupMessage     *msg,
+                                                                                     GTlsCertificate *certificate);
+diff --git a/tests/ssl-test.c b/tests/ssl-test.c
+index 08563515..ecd0e63e 100644
+--- a/tests/ssl-test.c
++++ b/tests/ssl-test.c
+@@ -72,6 +72,14 @@ do_strictness_test (gconstpointer data)
+ 	g_assert_nonnull (soup_message_get_tls_peer_certificate (msg));
+ 	flags = soup_message_get_tls_peer_certificate_errors (msg);
+ 
++        if (test->expected_status == SOUP_STATUS_OK) {
++                g_assert_cmpuint (soup_message_get_tls_protocol_version (msg), ==, G_TLS_PROTOCOL_VERSION_TLS_1_3);
++                g_assert_cmpstr (soup_message_get_tls_ciphersuite_name (msg), ==, "TLS_AES-256-GCM_SHA384");
++        } else {
++                g_assert_cmpuint (soup_message_get_tls_protocol_version (msg), ==, G_TLS_PROTOCOL_VERSION_UNKNOWN);
++                g_assert_null (soup_message_get_tls_ciphersuite_name (msg));
++        }
++
+ 	g_test_bug ("665182");
+ 	if (test->with_ca_list && !error)
+ 		g_assert_cmpuint (flags, ==, 0);
+-- 
+GitLab
+
+
+From 365d61da6b1a9ee0e253f5397f4f8595acc835ff Mon Sep 17 00:00:00 2001
+From: Patrick Griffis <pgriffis@igalia.com>
+Date: Thu, 8 Jul 2021 13:29:46 -0500
+Subject: [PATCH 3/3] build: Depend on glib 2.69.0
+
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index a5ebc63a..48922b89 100644
+--- a/meson.build
++++ b/meson.build
+@@ -90,7 +90,7 @@ endif
+ 
+ add_project_arguments(common_flags, language : 'c')
+ 
+-glib_required_version = '>= 2.67.4'
++glib_required_version = '>= 2.69.0'
+ glib_dep = dependency('glib-2.0', version : glib_required_version,
+                        fallback: ['glib', 'libglib_dep'])
+ gobject_dep = dependency('gobject-2.0', version : glib_required_version,
+-- 
+GitLab
