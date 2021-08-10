@@ -4,7 +4,7 @@ intltool
 libusb-compat-dev
 libusb-dev
 libxpm-dev
-mysql-dev
+mariadb-dev
 pcsc-lite-dev
 postgresql-dev
 sqlite-dev
