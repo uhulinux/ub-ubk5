@@ -1,6 +1,6 @@
 diff -Naur orig/desktop-directories/Makefile.am patched/desktop-directories/Makefile.am
---- orig/desktop-directories/Makefile.am	2021-06-05 15:57:58.000000000 +0200
-+++ patched/desktop-directories/Makefile.am	2021-06-09 12:35:10.765166937 +0200
+--- orig/desktop-directories/Makefile.am	2021-08-04 16:24:19.000000000 +0200
++++ patched/desktop-directories/Makefile.am	2021-08-08 00:59:56.664954573 +0200
 @@ -10,17 +10,66 @@
  
  directory_in_files = \
@@ -70,7 +70,7 @@ diff -Naur orig/desktop-directories/Makefile.am patched/desktop-directories/Make
  	mate-menu-system.directory.in \
 diff -Naur orig/desktop-directories/mate-audio-video-sub-audiovideoediting.directory.in patched/desktop-directories/mate-audio-video-sub-audiovideoediting.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-audiovideoediting.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-audiovideoediting.directory.in	2021-06-09 12:35:10.765166937 +0200
++++ patched/desktop-directories/mate-audio-video-sub-audiovideoediting.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Sound & Video editing
@@ -81,7 +81,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-audiovideoediting.direc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-discburning.directory.in patched/desktop-directories/mate-audio-video-sub-discburning.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-discburning.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-discburning.directory.in	2021-06-09 12:35:10.765166937 +0200
++++ patched/desktop-directories/mate-audio-video-sub-discburning.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Disc burning
@@ -92,7 +92,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-discburning.directory.i
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-midi.directory.in patched/desktop-directories/mate-audio-video-sub-midi.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-midi.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-midi.directory.in	2021-06-09 12:35:10.765166937 +0200
++++ patched/desktop-directories/mate-audio-video-sub-midi.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=MIDI
@@ -103,7 +103,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-midi.directory.in patch
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-mixer.directory.in patched/desktop-directories/mate-audio-video-sub-mixer.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-mixer.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-mixer.directory.in	2021-06-09 12:35:10.765166937 +0200
++++ patched/desktop-directories/mate-audio-video-sub-mixer.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=Mixer
@@ -112,7 +112,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-mixer.directory.in patc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-music.directory.in patched/desktop-directories/mate-audio-video-sub-music.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-music.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-music.directory.in	2021-06-09 12:35:10.765166937 +0200
++++ patched/desktop-directories/mate-audio-video-sub-music.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Music
@@ -123,7 +123,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-music.directory.in patc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-player.directory.in patched/desktop-directories/mate-audio-video-sub-player.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-player.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-player.directory.in	2021-06-09 12:35:10.765166937 +0200
++++ patched/desktop-directories/mate-audio-video-sub-player.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Player
@@ -134,7 +134,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-player.directory.in pat
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-recorder.directory.in patched/desktop-directories/mate-audio-video-sub-recorder.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-recorder.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-recorder.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-audio-video-sub-recorder.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Recorder
@@ -145,7 +145,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-recorder.directory.in p
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-sequencer.directory.in patched/desktop-directories/mate-audio-video-sub-sequencer.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-sequencer.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-sequencer.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-audio-video-sub-sequencer.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=Sequencer
@@ -154,7 +154,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-sequencer.directory.in 
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-tuner.directory.in patched/desktop-directories/mate-audio-video-sub-tuner.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-tuner.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-tuner.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-audio-video-sub-tuner.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=Tuner
@@ -163,7 +163,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-tuner.directory.in patc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-audio-video-sub-tv.directory.in patched/desktop-directories/mate-audio-video-sub-tv.directory.in
 --- orig/desktop-directories/mate-audio-video-sub-tv.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-audio-video-sub-tv.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-audio-video-sub-tv.directory.in	2021-08-08 00:59:56.664954573 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=TV
@@ -174,7 +174,7 @@ diff -Naur orig/desktop-directories/mate-audio-video-sub-tv.directory.in patched
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-action.directory.in patched/desktop-directories/mate-game-sub-action.directory.in
 --- orig/desktop-directories/mate-game-sub-action.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-action.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-action.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Action
@@ -185,7 +185,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-action.directory.in patched/de
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-adventure.directory.in patched/desktop-directories/mate-game-sub-adventure.directory.in
 --- orig/desktop-directories/mate-game-sub-adventure.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-adventure.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-adventure.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Adventure
@@ -196,7 +196,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-adventure.directory.in patched
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-arcade.directory.in patched/desktop-directories/mate-game-sub-arcade.directory.in
 --- orig/desktop-directories/mate-game-sub-arcade.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-arcade.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-arcade.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Arcade
@@ -207,7 +207,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-arcade.directory.in patched/de
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-blocks.directory.in patched/desktop-directories/mate-game-sub-blocks.directory.in
 --- orig/desktop-directories/mate-game-sub-blocks.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-blocks.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-blocks.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Blocks
@@ -218,7 +218,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-blocks.directory.in patched/de
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-board.directory.in patched/desktop-directories/mate-game-sub-board.directory.in
 --- orig/desktop-directories/mate-game-sub-board.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-board.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-board.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Board
@@ -229,7 +229,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-board.directory.in patched/des
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-card.directory.in patched/desktop-directories/mate-game-sub-card.directory.in
 --- orig/desktop-directories/mate-game-sub-card.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-card.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-card.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Card
@@ -240,7 +240,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-card.directory.in patched/desk
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-kids.directory.in patched/desktop-directories/mate-game-sub-kids.directory.in
 --- orig/desktop-directories/mate-game-sub-kids.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-kids.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-kids.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Kids
@@ -251,7 +251,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-kids.directory.in patched/desk
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-logic.directory.in patched/desktop-directories/mate-game-sub-logic.directory.in
 --- orig/desktop-directories/mate-game-sub-logic.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-logic.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-logic.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Logic
@@ -262,7 +262,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-logic.directory.in patched/des
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-roleplaying.directory.in patched/desktop-directories/mate-game-sub-roleplaying.directory.in
 --- orig/desktop-directories/mate-game-sub-roleplaying.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-roleplaying.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-roleplaying.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=Role playing
@@ -271,7 +271,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-roleplaying.directory.in patch
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-simulation.directory.in patched/desktop-directories/mate-game-sub-simulation.directory.in
 --- orig/desktop-directories/mate-game-sub-simulation.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-simulation.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-simulation.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Simulation
@@ -282,7 +282,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-simulation.directory.in patche
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-sports.directory.in patched/desktop-directories/mate-game-sub-sports.directory.in
 --- orig/desktop-directories/mate-game-sub-sports.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-sports.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-sports.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Sports
@@ -293,7 +293,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-sports.directory.in patched/de
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-game-sub-strategy.directory.in patched/desktop-directories/mate-game-sub-strategy.directory.in
 --- orig/desktop-directories/mate-game-sub-strategy.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-game-sub-strategy.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-game-sub-strategy.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Strategy
@@ -304,7 +304,7 @@ diff -Naur orig/desktop-directories/mate-game-sub-strategy.directory.in patched/
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-chat.directory.in patched/desktop-directories/mate-network-sub-chat.directory.in
 --- orig/desktop-directories/mate-network-sub-chat.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-chat.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-chat.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Chat
@@ -315,7 +315,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-chat.directory.in patched/d
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-dialup.directory.in patched/desktop-directories/mate-network-sub-dialup.directory.in
 --- orig/desktop-directories/mate-network-sub-dialup.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-dialup.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-dialup.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Dial-up
@@ -326,7 +326,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-dialup.directory.in patched
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-email.directory.in patched/desktop-directories/mate-network-sub-email.directory.in
 --- orig/desktop-directories/mate-network-sub-email.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-email.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-email.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Email
@@ -337,7 +337,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-email.directory.in patched/
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-feed.directory.in patched/desktop-directories/mate-network-sub-feed.directory.in
 --- orig/desktop-directories/mate-network-sub-feed.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-feed.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-feed.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Feed
@@ -348,7 +348,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-feed.directory.in patched/d
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-filetransfer.directory.in patched/desktop-directories/mate-network-sub-filetransfer.directory.in
 --- orig/desktop-directories/mate-network-sub-filetransfer.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-filetransfer.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-filetransfer.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=File transfer
@@ -359,7 +359,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-filetransfer.directory.in p
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-hamradio.directory.in patched/desktop-directories/mate-network-sub-hamradio.directory.in
 --- orig/desktop-directories/mate-network-sub-hamradio.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-hamradio.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-hamradio.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=HAM radio
@@ -370,7 +370,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-hamradio.directory.in patch
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-instantmessaging.directory.in patched/desktop-directories/mate-network-sub-instantmessaging.directory.in
 --- orig/desktop-directories/mate-network-sub-instantmessaging.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-instantmessaging.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-instantmessaging.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Instant messaging
@@ -381,7 +381,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-instantmessaging.directory.
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-ircclient.directory.in patched/desktop-directories/mate-network-sub-ircclient.directory.in
 --- orig/desktop-directories/mate-network-sub-ircclient.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-ircclient.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-ircclient.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=IRC client
@@ -390,7 +390,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-ircclient.directory.in patc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-news.directory.in patched/desktop-directories/mate-network-sub-news.directory.in
 --- orig/desktop-directories/mate-network-sub-news.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-news.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-news.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=News
@@ -401,7 +401,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-news.directory.in patched/d
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-p2p.directory.in patched/desktop-directories/mate-network-sub-p2p.directory.in
 --- orig/desktop-directories/mate-network-sub-p2p.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-p2p.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-p2p.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=P2P
@@ -412,7 +412,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-p2p.directory.in patched/de
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-remoteaccess.directory.in patched/desktop-directories/mate-network-sub-remoteaccess.directory.in
 --- orig/desktop-directories/mate-network-sub-remoteaccess.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-remoteaccess.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-remoteaccess.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Remote access
@@ -423,7 +423,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-remoteaccess.directory.in p
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-telephony.directory.in patched/desktop-directories/mate-network-sub-telephony.directory.in
 --- orig/desktop-directories/mate-network-sub-telephony.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-telephony.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-telephony.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Telephony
@@ -434,7 +434,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-telephony.directory.in patc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-videoconference.directory.in patched/desktop-directories/mate-network-sub-videoconference.directory.in
 --- orig/desktop-directories/mate-network-sub-videoconference.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-videoconference.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-videoconference.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Video conference
@@ -445,7 +445,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-videoconference.directory.i
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-network-sub-webbrowser.directory.in patched/desktop-directories/mate-network-sub-webbrowser.directory.in
 --- orig/desktop-directories/mate-network-sub-webbrowser.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-network-sub-webbrowser.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-network-sub-webbrowser.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=Web browser
@@ -454,7 +454,7 @@ diff -Naur orig/desktop-directories/mate-network-sub-webbrowser.directory.in pat
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-system-tools-sub-emulator.directory.in patched/desktop-directories/mate-system-tools-sub-emulator.directory.in
 --- orig/desktop-directories/mate-system-tools-sub-emulator.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-system-tools-sub-emulator.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-system-tools-sub-emulator.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Emulator
@@ -465,7 +465,7 @@ diff -Naur orig/desktop-directories/mate-system-tools-sub-emulator.directory.in 
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-system-tools-sub-filemanager.directory.in patched/desktop-directories/mate-system-tools-sub-filemanager.directory.in
 --- orig/desktop-directories/mate-system-tools-sub-filemanager.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-system-tools-sub-filemanager.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-system-tools-sub-filemanager.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=File manager
@@ -474,7 +474,7 @@ diff -Naur orig/desktop-directories/mate-system-tools-sub-filemanager.directory.
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-system-tools-sub-filesystem.directory.in patched/desktop-directories/mate-system-tools-sub-filesystem.directory.in
 --- orig/desktop-directories/mate-system-tools-sub-filesystem.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-system-tools-sub-filesystem.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-system-tools-sub-filesystem.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Filesystem
@@ -485,7 +485,7 @@ diff -Naur orig/desktop-directories/mate-system-tools-sub-filesystem.directory.i
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-system-tools-sub-monitor.directory.in patched/desktop-directories/mate-system-tools-sub-monitor.directory.in
 --- orig/desktop-directories/mate-system-tools-sub-monitor.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-system-tools-sub-monitor.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-system-tools-sub-monitor.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Monitor
@@ -496,7 +496,7 @@ diff -Naur orig/desktop-directories/mate-system-tools-sub-monitor.directory.in p
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-system-tools-sub-terminalemulator.directory.in patched/desktop-directories/mate-system-tools-sub-terminalemulator.directory.in
 --- orig/desktop-directories/mate-system-tools-sub-terminalemulator.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-system-tools-sub-terminalemulator.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-system-tools-sub-terminalemulator.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Terminal emulator
@@ -507,7 +507,7 @@ diff -Naur orig/desktop-directories/mate-system-tools-sub-terminalemulator.direc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-archiving.directory.in patched/desktop-directories/mate-utility-sub-archiving.directory.in
 --- orig/desktop-directories/mate-utility-sub-archiving.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-archiving.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-archiving.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Archiving
@@ -518,7 +518,7 @@ diff -Naur orig/desktop-directories/mate-utility-sub-archiving.directory.in patc
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-calculator.directory.in patched/desktop-directories/mate-utility-sub-calculator.directory.in
 --- orig/desktop-directories/mate-utility-sub-calculator.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-calculator.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-calculator.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=Calculator
@@ -527,7 +527,7 @@ diff -Naur orig/desktop-directories/mate-utility-sub-calculator.directory.in pat
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-clock.directory.in patched/desktop-directories/mate-utility-sub-clock.directory.in
 --- orig/desktop-directories/mate-utility-sub-clock.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-clock.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-clock.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=Clock
@@ -536,7 +536,7 @@ diff -Naur orig/desktop-directories/mate-utility-sub-clock.directory.in patched/
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-compression.directory.in patched/desktop-directories/mate-utility-sub-compression.directory.in
 --- orig/desktop-directories/mate-utility-sub-compression.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-compression.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-compression.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Compression
@@ -547,7 +547,7 @@ diff -Naur orig/desktop-directories/mate-utility-sub-compression.directory.in pa
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-filetool.directory.in patched/desktop-directories/mate-utility-sub-filetool.directory.in
 --- orig/desktop-directories/mate-utility-sub-filetool.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-filetool.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-filetool.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,5 @@
 +[Desktop Entry]
 +_Name=File tool
@@ -556,7 +556,7 @@ diff -Naur orig/desktop-directories/mate-utility-sub-filetool.directory.in patch
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-telephonytool.directory.in patched/desktop-directories/mate-utility-sub-telephonytool.directory.in
 --- orig/desktop-directories/mate-utility-sub-telephonytool.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-telephonytool.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-telephonytool.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Telephony tool
@@ -567,7 +567,7 @@ diff -Naur orig/desktop-directories/mate-utility-sub-telephonytool.directory.in 
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-texteditor.directory.in patched/desktop-directories/mate-utility-sub-texteditor.directory.in
 --- orig/desktop-directories/mate-utility-sub-texteditor.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-texteditor.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-texteditor.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Text editor
@@ -578,7 +578,7 @@ diff -Naur orig/desktop-directories/mate-utility-sub-texteditor.directory.in pat
 +Type=Directory
 diff -Naur orig/desktop-directories/mate-utility-sub-texttool.directory.in patched/desktop-directories/mate-utility-sub-texttool.directory.in
 --- orig/desktop-directories/mate-utility-sub-texttool.directory.in	1970-01-01 01:00:00.000000000 +0100
-+++ patched/desktop-directories/mate-utility-sub-texttool.directory.in	2021-06-09 12:35:10.769166945 +0200
++++ patched/desktop-directories/mate-utility-sub-texttool.directory.in	2021-08-08 00:59:56.668954601 +0200
 @@ -0,0 +1,7 @@
 +[Desktop Entry]
 +_Name=Text tool
@@ -588,8 +588,8 @@ diff -Naur orig/desktop-directories/mate-utility-sub-texttool.directory.in patch
 +Icon=accessories-text-editor
 +Type=Directory
 diff -Naur orig/layout/mate-applications.menu patched/layout/mate-applications.menu
---- orig/layout/mate-applications.menu	2021-06-05 15:57:58.000000000 +0200
-+++ patched/layout/mate-applications.menu	2021-06-09 12:35:10.773166951 +0200
+--- orig/layout/mate-applications.menu	2021-08-04 16:24:19.000000000 +0200
++++ patched/layout/mate-applications.menu	2021-08-08 00:59:56.668954601 +0200
 @@ -34,6 +34,72 @@
          <Not><Category>System</Category></Not>
        </And>
@@ -1039,9 +1039,9 @@ diff -Naur orig/layout/mate-applications.menu patched/layout/mate-applications.m
  
    <!-- Collection-->
 diff -Naur orig/po/POTFILES.in patched/po/POTFILES.in
---- orig/po/POTFILES.in	2021-06-05 15:57:58.000000000 +0200
-+++ patched/po/POTFILES.in	2021-06-09 12:42:40.198065389 +0200
-@@ -1,22 +1,71 @@
+--- orig/po/POTFILES.in	2021-08-04 16:24:19.000000000 +0200
++++ patched/po/POTFILES.in	2021-08-08 01:04:02.978671383 +0200
+@@ -1,23 +1,72 @@
  # List of source files containing translatable strings.
  # Please keep this file sorted alphabetically.
  desktop-directories/mate-audio-video.directory.in
@@ -1102,6 +1102,7 @@ diff -Naur orig/po/POTFILES.in patched/po/POTFILES.in
 +desktop-directories/mate-system-tools-sub-monitor.directory.in
 +desktop-directories/mate-system-tools-sub-terminalemulator.directory.in
  desktop-directories/mate-utility-accessibility.directory.in
+ desktop-directories/mate-utility.directory.in
 +desktop-directories/mate-utility-sub-archiving.directory.in
 +desktop-directories/mate-utility-sub-calculator.directory.in
 +desktop-directories/mate-utility-sub-clock.directory.in
@@ -1110,6 +1111,6 @@ diff -Naur orig/po/POTFILES.in patched/po/POTFILES.in
 +desktop-directories/mate-utility-sub-telephonytool.directory.in
 +desktop-directories/mate-utility-sub-texteditor.directory.in
 +desktop-directories/mate-utility-sub-texttool.directory.in
- desktop-directories/mate-utility.directory.in
  desktop-directories/mate-menu-applications.directory.in
  desktop-directories/mate-menu-system.directory.in
+ desktop-directories/mate-other.directory.in
