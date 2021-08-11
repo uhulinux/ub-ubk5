@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-LIBSTATGRAB_${UB_VERSION/./_}.tar.gz libstatgrab-LIBSTATGRAB_${UB_VERSION/./_}/
+LIBSTATGRAB_${UB_VERSION//./_}.tar.gz libstatgrab-LIBSTATGRAB_${UB_VERSION//./_}/
 	https://github.com/libstatgrab/libstatgrab/archive/

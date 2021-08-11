@@ -16,8 +16,8 @@ kwidgetsaddons-dev
 kwindowsystem-dev
 kxmlgui-dev
 libxml2-dev
-mysql-dev
-mysql-server
+mariadb-dev
+mariadb-server
 postgresql-dev
 qt5-dev
 shared-mime-info

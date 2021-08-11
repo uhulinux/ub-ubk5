@@ -1,5 +1,7 @@
 #!/bin/sh -eux
 
+# kajongg kibobva: python3-twisted >= 16.6.0 függőségű, de nem találja a 21.7.0.-t
+
 for i in *; do
 	cd $i
 	ub_compile \
