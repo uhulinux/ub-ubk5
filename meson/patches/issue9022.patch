@@ -1,0 +1,134 @@
+From 8d95e33ca436ca0c50ac0351217e15e9fee5b5e2 Mon Sep 17 00:00:00 2001
+From: Xavier Claessens <xavier.claessens@collabora.com>
+Date: Mon, 9 Aug 2021 10:38:14 -0400
+Subject: [PATCH] Fix i18n target name when using @BASENAME@ and
+ configure_file() input
+
+Fixes: #9022
+---
+ mesonbuild/modules/i18n.py                    | 24 ++++++++--------
+ .../frameworks/6 gettext/data/meson.build     | 28 +++++++++++++++++++
+ .../6 gettext/data/test5.desktop.in.in        |  6 ++++
+ .../6 gettext/data/test6.desktop.in.in        |  6 ++++
+ test cases/frameworks/6 gettext/test.json     |  4 ++-
+ 5 files changed, 55 insertions(+), 13 deletions(-)
+ create mode 100644 test cases/frameworks/6 gettext/data/test5.desktop.in.in
+ create mode 100644 test cases/frameworks/6 gettext/data/test6.desktop.in.in
+
+diff --git a/mesonbuild/modules/i18n.py b/mesonbuild/modules/i18n.py
+index f10fdbe491f..a64838b5792 100644
+--- a/mesonbuild/modules/i18n.py
++++ b/mesonbuild/modules/i18n.py
+@@ -107,18 +107,15 @@ def merge_file(self, state, args, kwargs):
+ 
+         kwargs['command'] = command
+ 
+-        inputfile = kwargs['input']
+-        # I have no idea why/how this if isinstance(inputfile, mesonlib.HoldableObject) works / used to work...
+-        if isinstance(inputfile, mesonlib.HoldableObject):
+-            ct = build.CustomTarget(kwargs['output'] + '_merge', state.subdir, state.subproject, kwargs)
+-        else:
+-            if isinstance(inputfile, list):
+-                # We only use this input file to create a name of the custom target.
+-                # Thus we can ignore the other entries.
+-                inputfile = inputfile[0]
+-            if isinstance(inputfile, str):
+-                inputfile = mesonlib.File.from_source_file(state.environment.source_dir,
+-                                                           state.subdir, inputfile)
++        # We only use this input file to create a name of the custom target.
++        # Thus we can ignore the other entries.
++        inputfile = mesonlib.extract_as_list(kwargs, 'input')[0]
++        if isinstance(inputfile, str):
++            inputfile = mesonlib.File.from_source_file(state.environment.source_dir,
++                                                       state.subdir, inputfile)
++        if isinstance(inputfile, mesonlib.File):
++            # output could be '@BASENAME@' in which case we need to do substitutions
++            # to get a unique target name.
+             output = kwargs['output']
+             ifile_abs = inputfile.absolute_path(state.environment.source_dir,
+                                                 state.environment.build_dir)
+@@ -126,6 +123,9 @@ def merge_file(self, state, args, kwargs):
+             outputs = mesonlib.substitute_values([output], values)
+             output = outputs[0]
+             ct = build.CustomTarget(output + '_' + state.subdir.replace('/', '@').replace('\\', '@') + '_merge', state.subdir, state.subproject, kwargs)
++        else:
++            ct = build.CustomTarget(kwargs['output'] + '_merge', state.subdir, state.subproject, kwargs)
++
+         return ModuleReturnValue(ct, [ct])
+ 
+     @FeatureNewKwargs('i18n.gettext', '0.37.0', ['preset'])
+diff --git a/test cases/frameworks/6 gettext/data/meson.build b/test cases/frameworks/6 gettext/data/meson.build
+index d78c19e6a5d..1afb403707a 100644
+--- a/test cases/frameworks/6 gettext/data/meson.build	
++++ b/test cases/frameworks/6 gettext/data/meson.build	
+@@ -27,4 +27,32 @@ i18n.merge_file(
+   install_dir: join_paths(get_option('datadir'), 'applications')
+ )
+ 
++# Regression test when passing File object as input and '@BASENAME@' as output
++# in multiple i18n.merge_file() calls. It used to make target name collision.
++# https://github.com/mesonbuild/meson/issues/9022
++i18n.merge_file(
++  input: configure_file(
++    input: 'test5.desktop.in.in',
++    output: '@BASENAME@',
++    configuration: { 'NAME': 'Application' },
++  ),
++  output: '@BASENAME@',
++  type: 'desktop',
++  po_dir: '../po',
++  install: true,
++  install_dir: join_paths(get_option('datadir'), 'applications')
++)
++i18n.merge_file(
++  input: configure_file(
++    input: 'test6.desktop.in.in',
++    output: '@BASENAME@',
++    configuration: { 'NAME': 'Application' },
++  ),
++  output: '@BASENAME@',
++  type: 'desktop',
++  po_dir: '../po',
++  install: true,
++  install_dir: join_paths(get_option('datadir'), 'applications')
++)
++
+ subdir('data3')
+diff --git a/test cases/frameworks/6 gettext/data/test5.desktop.in.in b/test cases/frameworks/6 gettext/data/test5.desktop.in.in
+new file mode 100644
+index 00000000000..c75bf739190
+--- /dev/null
++++ b/test cases/frameworks/6 gettext/data/test5.desktop.in.in	
+@@ -0,0 +1,6 @@
++[Desktop Entry]
++Name=Test 2
++GenericName=@NAME@
++Comment=Test Application
++Type=Application
++
+diff --git a/test cases/frameworks/6 gettext/data/test6.desktop.in.in b/test cases/frameworks/6 gettext/data/test6.desktop.in.in
+new file mode 100644
+index 00000000000..c75bf739190
+--- /dev/null
++++ b/test cases/frameworks/6 gettext/data/test6.desktop.in.in	
+@@ -0,0 +1,6 @@
++[Desktop Entry]
++Name=Test 2
++GenericName=@NAME@
++Comment=Test Application
++Type=Application
++
+diff --git a/test cases/frameworks/6 gettext/test.json b/test cases/frameworks/6 gettext/test.json
+index 1ed2dbf79b2..23cac0d0fe2 100644
+--- a/test cases/frameworks/6 gettext/test.json	
++++ b/test cases/frameworks/6 gettext/test.json	
+@@ -9,6 +9,8 @@
+     {"type": "file", "file": "usr/share/applications/test.plugin"},
+     {"type": "file", "file": "usr/share/applications/test2.desktop"},
+     {"type": "file", "file": "usr/share/applications/test3.desktop"},
+-    {"type": "file", "file": "usr/share/applications/test4.desktop"}
++    {"type": "file", "file": "usr/share/applications/test4.desktop"},
++    {"type": "file", "file": "usr/share/applications/test5.desktop"},
++    {"type": "file", "file": "usr/share/applications/test6.desktop"}
+   ]
+ }

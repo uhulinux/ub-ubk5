@@ -17,7 +17,6 @@ ac_add_options --enable-release
 ac_add_options --enable-official-branding
 ac_add_options --enable-optimize="-O2"
 ac_add_options --enable-crashreporter
-ac_add_options --enable-calendar
 ac_add_options --with-system-icu
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-libvpx

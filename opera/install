@@ -4,9 +4,6 @@ dpkg-deb -x opera-stable_${UB_VERSION}_amd64.deb .
 
 rm -f opera-stable_*.deb
 
-cd usr/share/applications
-patch -i $UB_SRCDIR/patches/desktop.patch.skip
-cd -
 cp -r "$UB_COMPILEDIR"/usr "$UB_INSTALLDIR"/
 
 rm -Rf "$UB_INSTALLDIR"/usr/share/{lintian,menu}
@@ -16,3 +13,5 @@ cp -r "$UB_INSTALLDIR"/usr/lib/x86_64-linux-gnu/opera "$UB_INSTALLDIR"/usr/lib/
 rm -Rf "$UB_INSTALLDIR"/usr/lib/x86_64-linux-gnu
 
 ln -sf /usr/lib/opera/opera "$UB_INSTALLDIR"/usr/bin/opera
+
+sed -i -e '/TargetEnvironment/d' "$UB_INSTALLDIR"/usr/share/applications/opera.desktop
