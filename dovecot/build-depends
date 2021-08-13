@@ -1,6 +1,6 @@
 curl-dev
 expat-dev
-mysql-dev
+mariadb-dev
 openldap-dev
 openssl-dev
 postgresql-dev
