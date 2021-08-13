@@ -4,6 +4,7 @@ CC="ccache clang -march=k8 -m64"
 CXX="ccache clang++ -march=k8 -m64"
 
 export RUSTFLAGS="-Cdebuginfo=0 -Cembed-bitcode=yes"
+export RUSTC_BOOTSTRAP="packed_simd,encoding_rs"
 export LDFLAGS="-Wl,-rpath,/usr/lib/seamonkey/ -Wl,--no-keep-memory -Wl,-z,relro -Wl,-z,now"
 export PYTHON=/usr/bin/python2
 export MACH_USE_SYSTEM_PYTHON=1
