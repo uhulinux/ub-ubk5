@@ -51,9 +51,9 @@ libxrender-dev
 libxslt-dev
 libyajl-dev
 lirc-dev
+mariadb-dev
 mesa-demos
 mesa-dev
-mysql-dev
 nasm
 openssl-dev
 pcre-dev
