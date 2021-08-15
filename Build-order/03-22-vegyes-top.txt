@@ -10,7 +10,6 @@ shared-desktop-ontologies
 media-player-info
 lightdm-gtk-greeter-settings
 ndiswrapper
-ndisgtk
 sddm-config-editor
 grub-customizer
 viking
