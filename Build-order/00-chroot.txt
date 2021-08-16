@@ -146,7 +146,7 @@ libpciaccess
 libxshmfence
 libxcursor
 libevent
-mysql
+mariadb
 libusb
 libevdev
 lynx
