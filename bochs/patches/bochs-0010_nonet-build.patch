@@ -1,6 +1,7 @@
---- a/Makefile.in	2003-10-31 22:50:04.000000000 +0200
-+++ b/Makefile.in	2003-11-30 00:36:20.000000000 +0200
-@@ -393,8 +393,8 @@
+diff -Naur a/Makefile.in b/Makefile.in
+--- a/Makefile.in	2021-07-25 20:10:39.000000000 +0200
++++ b/Makefile.in	2021-08-17 21:34:41.520930461 +0200
+@@ -469,8 +469,8 @@
  download_dlx: $(DLXLINUX_TAR)
  
  $(DLXLINUX_TAR):
