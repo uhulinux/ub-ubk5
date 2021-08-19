@@ -33,7 +33,7 @@ SED=sed \
 	--enable-tls \
 	--enable-cet \
 	--enable-libsanitizer \
-	--disable-install-libiberty \
+	--enable-install-libiberty \
 	--disable-multilib \
 	--disable-libssp \
 	--disable-libstdcxx-pch \
