@@ -5,7 +5,7 @@ kio-dev
 knewstuff-dev
 kwindowsystem-dev
 libv4l-dev
-libxscrnsaver-dev
+libxss-dev
 qt5-dev
 solid-dev
 vlc-dev

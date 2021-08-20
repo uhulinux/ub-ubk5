@@ -3,5 +3,5 @@ gconf2
 libxcursor
 libxdamage
 libxrandr
-libxscrnsaver
+libxss
 nss-dev

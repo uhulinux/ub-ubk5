@@ -6,8 +6,8 @@ libsm-dev
 libxext-dev
 libxi-dev
 libxkbfile-dev
-libxscrnsaver-dev
 libxshmfence-dev
+libxss-dev
 mate-desktop-dev
 mate-menus-dev
 mesa-dev

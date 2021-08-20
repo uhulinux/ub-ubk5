@@ -7,6 +7,6 @@ libxcursor-dev
 libxdamage-dev
 libxfixes-dev
 libxrender-dev
-libxscrnsaver-dev
+libxss-dev
 lxqt-build-tools
 polkit-qt-dev

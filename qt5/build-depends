@@ -13,8 +13,8 @@ libsrtp
 libvpx-dev
 libwebp-dev
 libxml2-dev
-libxscrnsaver-dev
 libxslt-dev
+libxss-dev
 libxtst-dev
 llvm
 mesa-dev

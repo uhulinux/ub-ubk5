@@ -11,7 +11,7 @@ cppp
 gcc
 sgml-common
 libyaml
-libxscrnsaver
+libxss
 ruby
 kmod
 inetutils

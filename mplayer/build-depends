@@ -41,8 +41,8 @@ libva-dev
 libvdpau-dev
 libvorbis-dev
 libvpx-dev
-libxscrnsaver-dev
 libxslt-dev
+libxss-dev
 libxt-dev
 libxv-dev
 libxvmc-dev

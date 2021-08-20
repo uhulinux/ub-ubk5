@@ -8,7 +8,7 @@ libdbusmenu-gtk3-dev
 libindicator3-dev
 libsm-dev
 libxext-dev
-libxscrnsaver-dev
+libxss-dev
 libxtst-dev
 mate-panel-dev
 pulseaudio-dev

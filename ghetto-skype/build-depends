@@ -4,6 +4,6 @@ gtk2
 libxcursor
 libxdamage
 libxrandr
-libxscrnsaver
+libxss
 node
 nss-dev

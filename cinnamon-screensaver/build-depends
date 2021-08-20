@@ -5,5 +5,4 @@ gsettings-desktop-schemas
 intltool
 libgnomekbd-dev
 libsm-dev
-libxscrnsaver-dev
 webkit2gtk3-dev

@@ -10,8 +10,8 @@ librsvg-dev
 libsm-dev
 libxi-dev
 libxkbfile-dev
-libxscrnsaver-dev
 libxslt-dev
+libxss-dev
 marco-dev
 mate-desktop-dev
 mate-menus-dev

@@ -9,7 +9,7 @@ libxfixes-dev
 libxinerama-dev
 libxrandr-dev
 libxrender-dev
-libxscrnsaver-dev
+libxss-dev
 libxtst-dev
 libxv-dev
 libxvmc-dev

@@ -8,7 +8,7 @@ libvpx-dev
 libx11-dev
 libxext-dev
 libxft-dev
-libxscrnsaver-dev
+libxss-dev
 libxt-dev
 llvm
 mesa-dev

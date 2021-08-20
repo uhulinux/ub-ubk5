@@ -7,5 +7,5 @@ libgnomekbd-dev
 libseccomp-dev
 libsm-dev
 libxkbfile-dev
-libxscrnsaver-dev
+libxss-dev
 libxxf86vm-dev

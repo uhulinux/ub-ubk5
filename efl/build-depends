@@ -22,7 +22,7 @@ libxinerama-dev
 libxkbcommon-dev
 libxp-dev
 libxrandr-dev
-libxscrnsaver-dev
+libxss-dev
 luajit-dev
 mesa-dev
 meson

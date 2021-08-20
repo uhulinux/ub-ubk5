@@ -5,5 +5,5 @@ libx11-dev
 libxext-dev
 libxinerama-dev
 libxrandr-dev
-libxscrnsaver-dev
+libxss-dev
 libxxf86vm-dev

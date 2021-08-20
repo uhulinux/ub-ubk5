@@ -18,7 +18,7 @@ libunistring-dev
 libunwind-dev
 libxext-dev
 libxml2-dev
-libxscrnsaver-dev
+libxss-dev
 ncurses-dev
 networkmanager-dev
 nspr-dev
