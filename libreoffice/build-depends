@@ -41,9 +41,9 @@ libxmu-dev
 libxslt-dev
 libxt-dev
 libxtst-dev
+mariadb-dev
 mdds
 mesa-dev
-mysql-dev
 neon-dev
 nspr-dev
 nss-dev

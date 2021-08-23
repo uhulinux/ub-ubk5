@@ -68,6 +68,7 @@ export QT5DIR=/usr/lib/qt5
     --disable-debug \
     --disable-odk \
     --disable-firebird-sdbc \
+    --disable-skia \
     --enable-avahi \
     --enable-fetch-external \
     --enable-gstreamer-1-0 \
