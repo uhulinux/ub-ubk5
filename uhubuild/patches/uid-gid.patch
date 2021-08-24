@@ -12,7 +12,7 @@ index 12e74bb..37b7ce2 100755
  			if [ "$name" = "" -o "$uid" = "" -o "$gid" = "" ]; then
  				error "Hiányos $pkg/users fájl!"
  			fi
-+			if [ "$uid" >= "1000" -o "$gid" >= "1000" ]; then
++			if [ "$uid" -ge "1000" -o "$gid" -ge "1000" ]; then
 +				error "$pkg/users: csak rendszer felhasználó / csoport adható meg!"
 +			fi
  			printf "%-8s %4s %4s  %s\n" "$name" "$uid" "$gid" "$rest"
@@ -22,7 +22,7 @@ index 12e74bb..37b7ce2 100755
  			if [ "$name" = "" -o "$gid" = "" ]; then
  				error "Hiányos $pkg/groups fájl!"
  			fi
-+			if [ "$gid" >= "1000" ]; then
++			if [ "$gid" -ge "1000" ]; then
 +				error "$pkg/users: csak rendszer csoport adható meg!"
 +			fi
  			printf "%-8s %4s  %s\n" "$name" "$gid" "$rest"
