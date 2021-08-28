@@ -5,5 +5,5 @@ libxcursor
 libxdamage
 libxrandr
 libxss
-node
+nodejs
 nss-dev

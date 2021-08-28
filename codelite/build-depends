@@ -3,6 +3,6 @@ gtk3-dev
 harfbuzz-dev
 hunspell-dev
 libssh-dev
-node
+nodejs
 sqlite-dev
 wxwidgets3.1-dev

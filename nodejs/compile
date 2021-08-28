@@ -1,0 +1,10 @@
+#!/bin/sh -eux
+
+./configure \
+	--prefix=/usr \
+	--shared-zlib \
+	--shared-openssl \
+	--shared-cares \
+	--with-intl=system-icu \
+	--ninja
+ub_make
