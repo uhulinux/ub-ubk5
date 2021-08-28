@@ -1,6 +1,11 @@
 #!/bin/sh -eux
 
-export CC=gcc CXX=g++ PYTHON=/usr/bin/python3
+export CC=clang
+export CXX=clang++
+export AR=llvm-ar
+export NM=llvm-nm
+export RANLIB=llvm-ranlib
+export PYTHON=/usr/bin/python3
 
 cd js/src
 export MOZ_OBJDIR=$UB_OBJECTDIR
@@ -13,6 +18,9 @@ cd "$UB_OBJECTDIR"
     --with-system-zlib \
     --with-intl-api \
     --enable-shared-js \
+    --enable-linker=lld \
+    --disable-debug \
+    --disable-debug-symbols \
     --disable-jemalloc \
     --disable-optimize \
     --disable-strip
