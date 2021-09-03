@@ -1,0 +1,22 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2019-11-15 12:09:41.000000000 +0100
++++ b/Makefile	2021-09-03 16:08:56.843575595 +0200
+@@ -4,6 +4,7 @@
+ CFLAGS?=-g -O2 -Wall
+ LDFLAGS?=
+ 
++DESTDIR?=
+ PREFIX?=/usr/local
+ 
+ # arch hardening
+@@ -30,8 +31,8 @@
+ hsr-outputs: hsr-outputs.o
+ 
+ install: hsetroot hsr-outputs
+-	install -st $(PREFIX)/bin/ hsetroot
+-	install -st $(PREFIX)/bin/ hsr-outputs
++	install -st $(DESTDIR)/$(PREFIX)/bin/ hsetroot
++	install -st $(DESTDIR)/$(PREFIX)/bin/ hsr-outputs
+ 
+ clean:
+ 	rm -f *.o hsetroot hsr-outputs

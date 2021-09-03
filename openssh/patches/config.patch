@@ -1,6 +1,6 @@
-diff -Naur orig/ssh_config patched/ssh_config
---- orig/ssh_config	2018-04-02 07:38:28.000000000 +0200
-+++ patched/ssh_config	2018-04-14 15:49:02.702739626 +0200
+diff -Naur a/ssh_config b/ssh_config
+--- a/ssh_config	2021-08-20 06:03:49.000000000 +0200
++++ b/ssh_config	2021-09-03 17:27:38.938058157 +0200
 @@ -19,7 +19,8 @@
  
  # Host *
@@ -20,9 +20,9 @@ diff -Naur orig/ssh_config patched/ssh_config
  #   IdentityFile ~/.ssh/id_rsa
  #   IdentityFile ~/.ssh/id_dsa
  #   IdentityFile ~/.ssh/id_ecdsa
-diff -Naur orig/sshd_config patched/sshd_config
---- orig/sshd_config	2018-04-02 07:38:28.000000000 +0200
-+++ patched/sshd_config	2018-04-14 15:51:01.120141722 +0200
+diff -Naur a/sshd_config b/sshd_config
+--- a/sshd_config	2021-08-20 06:03:49.000000000 +0200
++++ b/sshd_config	2021-09-03 17:29:34.814565500 +0200
 @@ -67,7 +67,7 @@
  #KerberosGetAFSToken no
  
@@ -35,7 +35,7 @@ diff -Naur orig/sshd_config patched/sshd_config
 @@ -79,16 +79,16 @@
  # If you just want the PAM account and session checks to run without
  # PAM authentication, then enable this but set PasswordAuthentication
- # and ChallengeResponseAuthentication to 'no'.
+ # and KbdInteractiveAuthentication to 'no'.
 -#UsePAM no
 +UsePAM yes
  
@@ -51,4 +51,4 @@ diff -Naur orig/sshd_config patched/sshd_config
 +PrintMotd no
  #PrintLastLog yes
  #TCPKeepAlive yes
- #UseLogin no
+ #PermitUserEnvironment no

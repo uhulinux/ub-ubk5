@@ -7,6 +7,7 @@ export RUSTFLAGS="-Cdebuginfo=0"
 export LDFLAGS="-Wl,-rpath,/usr/lib/firefox/ -Wl,--no-keep-memory -Wl,-z,relro -Wl,-z,now"
 export PYTHON=/usr/bin/python3
 export MACH_USE_SYSTEM_PYTHON=1
+export DISPLAY=:0
 
 : > .mozconfig
 cat > .mozconfig << _EOF_

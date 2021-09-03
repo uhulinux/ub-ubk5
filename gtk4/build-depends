@@ -18,6 +18,7 @@ libx11-dev
 libxcomposite-dev
 libxcursor-dev
 libxdamage-dev
+libxinerama-dev
 libxkbcommon-dev
 libxrandr-dev
 libxslt-dev

@@ -4,7 +4,6 @@ export CPPFLAGS=-I/usr/include/openssl-1.0
 export LDFLAGS=-L/usr/lib/openssl-1.0
 
 ub_compile \
-    --prefix=/usr \
 	--sysconfdir=/etc/ssh \
 	--datadir=/usr/share/openssh \
 	--with-kerberos5=/usr \
