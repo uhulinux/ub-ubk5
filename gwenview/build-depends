@@ -3,6 +3,7 @@ exiv2-dev
 extra-cmake-modules
 kactivities-dev
 kdoctools
+kguiaddons-dev
 kiconthemes-dev
 kio-dev
 kitemmodels-dev
