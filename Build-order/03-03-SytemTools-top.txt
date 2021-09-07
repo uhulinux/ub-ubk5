@@ -63,3 +63,5 @@ plymouth
 pinentry-qt
 usb-modeswitch-data
 usb-modeswitch
+tlp
+inxi

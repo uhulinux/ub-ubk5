@@ -52,6 +52,7 @@ cmus
 moc
 audacity
 handbrake
+cinelerra
 mpv
 celluloid
 xawtv
