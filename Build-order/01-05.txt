@@ -34,7 +34,6 @@ liblqr
 libmms
 libmtp
 libsrtp
-libssh
 schroedinger
 x264
 x265

@@ -158,7 +158,6 @@ bash-completion
 python2
 python3
 python3-setuptools
-python2-setuptools
 git
 lcms2
 libxslt
@@ -188,7 +187,10 @@ asciidoc
 ninja
 util-linux
 quota
+python3-markupsafe
 python3-jinja2
+libssh
+cryptsetup
 systemd
 autoconf2.13
 patchelf
@@ -371,7 +373,6 @@ alsa-firmware
 bluez-firmware
 nouveau-vdpau-fw
 gd
-cryptsetup
 fbgetty
 gtest
 kbd
@@ -379,7 +380,6 @@ linux-firmware
 python3-six
 python3-beaker
 python3-mako
-python3-markupsafe
 python3-pygments
 libtirpc
 fuse2
