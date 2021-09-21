@@ -1,5 +1,6 @@
 #!/bin/sh -eux
 
-rm -Rf build/autoconf
-rm -f build/autogen.sh
+# rm -Rf build/autoconf
+# rm -f build/autogen.sh
+rm -f CMakeLists.txt
 ub_compile

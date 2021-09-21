@@ -4,7 +4,6 @@ libnsl
 postfix
 libvisual
 cdparanoia
-cmocka
 cron
 jansson
 libmnl
@@ -28,7 +27,6 @@ dhcp
 gnome2-mime-data
 gpm
 libidl2
-libnfnetlink
 libnftnl
 libnetfilter-conntrack
 iptables

@@ -2,6 +2,6 @@ gdbm-dev
 groff
 libyaml-dev
 ncurses-dev
-openssl-dev
+-openssl-dev
 readline-dev
 tk-dev

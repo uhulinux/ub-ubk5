@@ -17,5 +17,6 @@ ub_compile \
 	--with-gnu-ld \
 	--without-selinux \
 	--enable-python \
-	--without-lua \
+	LUA_CFLAGS="-I/usr/include/lua5.3" \
+	LUA_LIBS="-llua5.3 -lm" \
 	CPPFLAGS="-I/usr/include/nspr4 -I/usr/include/nss3"

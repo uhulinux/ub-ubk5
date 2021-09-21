@@ -1,4 +1,0 @@
-	/etc/snmp/snmpd.conf
-	/etc/sysconfig
-	/usr/lib/systemd
-	/usr/sbin

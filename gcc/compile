@@ -29,6 +29,7 @@ SED=sed \
 	--enable-lto \
 	--enable-plugin \
 	--enable-libmpx \
+	--enable-default-pie \
 	--enable-default-ssp \
 	--enable-tls \
 	--enable-cet \
@@ -39,7 +40,6 @@ SED=sed \
 	--disable-libstdcxx-pch \
 	--disable-libunwind-exceptions \
 	--disable-werror \
-	--with-pic \
 	--with-gnu-as \
 	--with-gnu-ld \
 	--with-system-zlib \

@@ -1,6 +1,6 @@
 diff -Naur orig/man/CMakeLists.txt patched/man/CMakeLists.txt
---- orig/man/CMakeLists.txt	2021-07-05 12:15:47.000000000 +0200
-+++ patched/man/CMakeLists.txt	2021-07-20 03:00:12.141469114 +0200
+--- orig/man/CMakeLists.txt	2021-08-03 16:48:39.000000000 +0200
++++ patched/man/CMakeLists.txt	2021-09-19 00:47:55.893485339 +0200
 @@ -17,7 +17,7 @@
  SET(MAN1_SERVER innochecksum.1 myisam_ftdump.1 myisamchk.1
                  aria_chk.1 aria_dump_log.1 aria_ftdump.1 aria_pack.1 aria_read_log.1
@@ -11,8 +11,8 @@ diff -Naur orig/man/CMakeLists.txt patched/man/CMakeLists.txt
  		mysql_install_db.1
  		mysql_upgrade.1
 diff -Naur orig/support-files/CMakeLists.txt patched/support-files/CMakeLists.txt
---- orig/support-files/CMakeLists.txt	2021-07-05 12:15:50.000000000 +0200
-+++ patched/support-files/CMakeLists.txt	2021-07-20 02:59:04.328981992 +0200
+--- orig/support-files/CMakeLists.txt	2021-08-03 16:48:41.000000000 +0200
++++ patched/support-files/CMakeLists.txt	2021-09-19 00:50:36.654028588 +0200
 @@ -50,8 +50,8 @@
  
  IF(UNIX AND NOT WITHOUT_SERVER)
@@ -48,7 +48,7 @@ diff -Naur orig/support-files/CMakeLists.txt patched/support-files/CMakeLists.tx
 -        INSTALL(FILES ${out} DESTINATION ${inst_location}/policy/selinux COMPONENT SupportFiles)
 -      ENDFOREACH()
 -      IF(RPM)
--        EXECUTE_PROCESS(COMMAND rpm -q --qf "%{VERSION}-%{RELEASE}" libsepol
+-        EXECUTE_PROCESS(COMMAND rpm -q --qf "%{VERSION}" libsepol
 -                        OUTPUT_VARIABLE LIBSEPOL_VERSION RESULT_VARIABLE err)
 -        IF (NOT err)
 -          SET(CPACK_RPM_server_PACKAGE_REQUIRES

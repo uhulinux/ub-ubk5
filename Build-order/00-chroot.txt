@@ -189,12 +189,14 @@ util-linux
 quota
 python3-markupsafe
 python3-jinja2
+cmocka
 libssh
 cryptsetup
 systemd
 autoconf2.13
 patchelf
 rust
+double-conversion
 js78
 polkit
 e2fsprogs
@@ -301,7 +303,6 @@ libungif
 libwebp
 gdk-pixbuf
 gtk2
-argyllcms
 jam
 argyllcms
 colord
@@ -334,7 +335,7 @@ libwacom
 libinput
 pinentry
 libsecret
-snmp
+libnetsnmp
 check
 swig
 sysfsutils
@@ -346,6 +347,11 @@ libglvnd
 vulkan-headers
 vulkan-loader
 glslang
+python3-six
+python3-beaker
+python3-mako
+python3-markupsafe
+python3-pygments
 mesa
 x.org-server
 x.org-input-libinput
@@ -377,10 +383,6 @@ fbgetty
 gtest
 kbd
 linux-firmware
-python3-six
-python3-beaker
-python3-mako
-python3-pygments
 libtirpc
 fuse2
 librsvg

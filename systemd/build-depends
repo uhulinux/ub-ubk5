@@ -25,7 +25,6 @@ meson
 pcre2-dev
 procps
 python3-jinja2
-python3-lxml
 quota
 rsync
 util-linux-dev

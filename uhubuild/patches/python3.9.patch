@@ -1,0 +1,19 @@
+From 0cf40c72066dc286019ca9cbcbaa11533139be13 Mon Sep 17 00:00:00 2001
+From: rezso <rezso@rezso.net>
+Date: Sun, 19 Sep 2021 22:51:08 +0200
+Subject: depends: add python 3.9
+
+
+diff --git a/src/steps/depends b/src/steps/depends
+index 8562f27..74d2062 100755
+--- a/src/steps/depends
++++ b/src/steps/depends
+@@ -483,7 +483,7 @@ for pkg in $UB_PACKAGES; do
+             echo "python" >> "$UB_TMPDIR/pkg-noversion"
+         fi
+     fi
+-    for pv in 3.8 3.7 3.6 3.5; do
++    for pv in 3.9 3.8 3.7 3.6 3.5; do
+         if [ -d ./usr/lib/python$pv ]; then
+             echo "python3" >> "$UB_TMPDIR/pkg-noversion"
+         fi
