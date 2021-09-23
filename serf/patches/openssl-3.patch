@@ -1,0 +1,11 @@
+diff -Naur orig/buckets/ssl_buckets.c patched/buckets/ssl_buckets.c
+--- orig/buckets/ssl_buckets.c	2016-06-30 17:45:07.000000000 +0200
++++ patched/buckets/ssl_buckets.c	2021-09-22 22:55:59.660081563 +0200
+@@ -1326,7 +1326,6 @@
+             }
+             else {
+                 printf("OpenSSL cert error: %d %d %d\n", ERR_GET_LIB(err),
+-                       ERR_GET_FUNC(err),
+                        ERR_GET_REASON(err));
+                 PKCS12_free(p12);
+                 bio_meth_free(biom);

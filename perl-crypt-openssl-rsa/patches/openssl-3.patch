@@ -1,0 +1,39 @@
+diff -Naur orig/RSA.pm patched/RSA.pm
+--- orig/RSA.pm	2021-09-08 17:49:02.000000000 +0200
++++ patched/RSA.pm	2021-09-23 02:27:38.120994729 +0200
+@@ -37,7 +37,6 @@
+   Crypt::OpenSSL::Random::random_seed($good_entropy);
+   Crypt::OpenSSL::RSA->import_random_seed();
+   $rsa_pub = Crypt::OpenSSL::RSA->new_public_key($key_string);
+-  $rsa_pub->use_sslv23_padding(); # use_pkcs1_oaep_padding is the default
+   $ciphertext = $rsa->encrypt($plaintext);
+ 
+   $rsa_priv = Crypt::OpenSSL::RSA->new_private_key($key_string);
+@@ -223,11 +222,6 @@
+ all new applications.  It is the default mode used by
+ C<Crypt::OpenSSL::RSA>.
+ 
+-=item use_sslv23_padding
+-
+-Use C<PKCS #1 v1.5> padding with an SSL-specific modification that
+-denotes that the server is SSL3 capable.
+-
+ =item use_md5_hash
+ 
+ Use the RFC 1321 MD5 hashing algorithm by Ron Rivest when signing and
+diff -Naur orig/RSA.xs patched/RSA.xs
+--- orig/RSA.xs	2021-09-08 17:49:02.000000000 +0200
++++ patched/RSA.xs	2021-09-23 02:28:09.573072215 +0200
+@@ -640,12 +640,6 @@
+   CODE:
+     p_rsa->padding = RSA_PKCS1_OAEP_PADDING;
+ 
+-void
+-use_sslv23_padding(p_rsa)
+-    rsaData* p_rsa;
+-  CODE:
+-    p_rsa->padding = RSA_SSLV23_PADDING;
+-
+ # Sign text. Returns the signature.
+ 
+ SV*

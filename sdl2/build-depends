@@ -9,7 +9,7 @@ libxcursor-dev
 libxinerama-dev
 libxkbcommon-dev
 libxrandr-dev
-libxscrnsaver-dev
+libxss-dev
 libxt-dev
 mesa-dev
 pulseaudio-dev
