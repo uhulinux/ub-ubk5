@@ -2,4 +2,3 @@
 
 REL_${UB_VERSION//./_}.tar.gz pycurl-REL_${UB_VERSION//./_}/
 	https://github.com/pycurl/pycurl/archive/
-	https://github.com/pycurl/pycurl/archive/refs/tags/REL_7_44_1.tar.gz
