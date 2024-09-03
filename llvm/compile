@@ -4,7 +4,6 @@
 # LLVM_BUILD_LLVM_DYLIB=OFF / LLVM_LINK_LLVM_DYLIB=OFF
 # másképp nem működik
 
-# a spirv-llvm-translator
 triple=$(gcc -dumpmachine)
 
 cd llvm

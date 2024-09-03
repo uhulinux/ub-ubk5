@@ -17,7 +17,6 @@ UB_CONFIGURE_DIR="$UB_COMPILEDIR" ub_configure \
 	--with-headers=/usr/include \
 	--enable-bind-now \
 	--enable-cet \
-	--enable-crypt \
 	--enable-fortify-source \
 	--enable-kernel=5.4.40 \
 	--enable-lock-elision \

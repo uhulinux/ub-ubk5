@@ -6,4 +6,5 @@ libuser-dev
 libxcrypt-dev
 ncurses-dev
 readline-dev
+sqlite-dev
 systemd-dev

@@ -1,7 +1,7 @@
 diff -Naur a/sysusers.d/basic.conf.in b/sysusers.d/basic.conf.in
---- a/sysusers.d/basic.conf.in	2022-05-21 15:23:41.000000000 +0200
-+++ b/sysusers.d/basic.conf.in	2022-08-22 21:36:03.610336141 +0200
-@@ -18,21 +18,9 @@
+--- a/sysusers.d/basic.conf.in	2024-08-15 22:46:49.000000000 +0200
++++ b/sysusers.d/basic.conf.in	2024-08-30 22:44:26.635521928 +0200
+@@ -19,21 +19,9 @@
  # Administrator group: can *do* more than normal users
  g wheel   {{WHEEL_GID  }}     -            -
  
@@ -24,9 +24,9 @@ diff -Naur a/sysusers.d/basic.conf.in b/sysusers.d/basic.conf.in
  g video   {{VIDEO_GID  }}     -            -
  
 diff -Naur a/tmpfiles.d/static-nodes-permissions.conf.in b/tmpfiles.d/static-nodes-permissions.conf.in
---- a/tmpfiles.d/static-nodes-permissions.conf.in	2022-05-21 15:23:41.000000000 +0200
-+++ b/tmpfiles.d/static-nodes-permissions.conf.in	2022-08-22 21:37:47.702762918 +0200
-@@ -11,9 +11,9 @@
+--- a/tmpfiles.d/static-nodes-permissions.conf.in	2024-08-15 22:46:49.000000000 +0200
++++ b/tmpfiles.d/static-nodes-permissions.conf.in	2024-08-30 22:46:24.724080872 +0200
+@@ -11,10 +11,10 @@
  
  z /dev/snd/seq      0660 - audio -
  z /dev/snd/timer    0660 - audio -
@@ -34,6 +34,7 @@ diff -Naur a/tmpfiles.d/static-nodes-permissions.conf.in b/tmpfiles.d/static-nod
 +z /dev/loop-control 0660 - media -
  z /dev/net/tun      0666 - -     -
  z /dev/fuse         0666 - -     -
+ z /dev/vfio/vfio    0666 - -     -
 -z /dev/kvm          {{DEV_KVM_MODE}} - kvm -
 -z /dev/vhost-net    {{DEV_KVM_MODE}} - kvm -
 -z /dev/vhost-vsock  {{DEV_KVM_MODE}} - kvm -
@@ -41,20 +42,20 @@ diff -Naur a/tmpfiles.d/static-nodes-permissions.conf.in b/tmpfiles.d/static-nod
 +z /dev/vhost-net    {{DEV_KVM_MODE}} - users -
 +z /dev/vhost-vsock  {{DEV_KVM_MODE}} - users -
 diff -Naur a/tmpfiles.d/systemd.conf.in b/tmpfiles.d/systemd.conf.in
---- a/tmpfiles.d/systemd.conf.in	2022-05-21 15:23:41.000000000 +0200
-+++ b/tmpfiles.d/systemd.conf.in	2022-08-22 21:38:07.662844335 +0200
+--- a/tmpfiles.d/systemd.conf.in	2024-08-15 22:46:49.000000000 +0200
++++ b/tmpfiles.d/systemd.conf.in	2024-08-30 22:46:59.252243710 +0200
 @@ -9,7 +9,7 @@
  
  d /run/user 0755 root root -
  {% if ENABLE_UTMP %}
--F! /run/utmp 0664 root utmp -
-+F! /run/utmp 0664 root root -
+-f+! /run/utmp 0664 root utmp -
++f+! /run/utmp 0664 root root -
  {% endif %}
  
  d /run/systemd/ask-password 0755 root root -
 diff -Naur a/tmpfiles.d/var.conf.in b/tmpfiles.d/var.conf.in
---- a/tmpfiles.d/var.conf.in	2022-05-21 15:23:41.000000000 +0200
-+++ b/tmpfiles.d/var.conf.in	2022-08-22 21:39:00.179057923 +0200
+--- a/tmpfiles.d/var.conf.in	2024-08-15 22:46:49.000000000 +0200
++++ b/tmpfiles.d/var.conf.in	2024-08-30 22:44:26.635521928 +0200
 @@ -13,9 +13,9 @@
  
  d /var/log 0755 - - -

@@ -1,2 +1,2 @@
-urllist https://mesa.freedesktop.org/archive/ | grep 'mesa-23.' | splitver | sort -V | tail -n 1
-# u2d https://mesa.freedesktop.org/archive/
+# urllist https://mesa.freedesktop.org/archive/ | grep 'mesa-23.' | splitver | sort -V | tail -n 1
+u2d https://mesa.freedesktop.org/archive/

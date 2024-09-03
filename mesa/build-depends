@@ -2,6 +2,7 @@ expat-dev
 glslang
 gtk3-dev
 libarchive-dev
+libclc
 libdrm-dev
 libelf-dev
 libepoxy-dev
@@ -26,7 +27,10 @@ lua-dev
 meson
 python3-dev
 python3-mako
+python3-ply
+python3-pyyaml
 python3-setuptools
+spirv-llvm-translator
 systemd-dev
 wayland-dev
 wayland-protocols

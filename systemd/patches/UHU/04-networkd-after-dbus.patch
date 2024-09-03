@@ -1,12 +1,12 @@
-diff -Naur orig/units/systemd-networkd.service.in patched/units/systemd-networkd.service.in
---- orig/units/systemd-networkd.service.in	2020-11-26 19:00:50.000000000 +0100
-+++ patched/units/systemd-networkd.service.in	2020-12-27 22:16:15.818159151 +0100
-@@ -13,7 +13,7 @@
+diff -Naur a/units/systemd-networkd.service.in b/units/systemd-networkd.service.in
+--- a/units/systemd-networkd.service.in	2024-08-15 22:46:49.000000000 +0200
++++ b/units/systemd-networkd.service.in	2024-08-30 22:55:49.690959478 +0200
+@@ -14,7 +14,7 @@
  ConditionCapability=CAP_NET_ADMIN
  DefaultDependencies=no
  # systemd-udevd.service can be dropped once tuntap is moved to netlink
 -After=systemd-networkd.socket systemd-udevd.service network-pre.target systemd-sysusers.service systemd-sysctl.service
 +After=systemd-networkd.socket systemd-udevd.service network-pre.target systemd-sysusers.service systemd-sysctl.service dbus.service
- Before=network.target multi-user.target shutdown.target
- Conflicts=shutdown.target
- Wants=systemd-networkd.socket network.target
+ Before=network.target multi-user.target shutdown.target initrd-switch-root.target
+ Conflicts=shutdown.target initrd-switch-root.target
+ Wants=systemd-networkd.socket network.target systemd-networkd-persistent-storage.service

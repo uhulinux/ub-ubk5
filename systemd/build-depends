@@ -3,8 +3,6 @@ attr-dev
 audit-dev
 cryptsetup-dev
 dbus-dev
-docbook-dtds
-docbook-xsl
 glib-dev
 gnutls-dev
 gobject-introspection-dev
@@ -19,9 +17,8 @@ liblz4-dev
 libqrencode-dev
 libtasn1-dev
 libxkbcommon-dev
-libxslt
+libxslt-dev
 lvm-dev
-meson
 pcre2-dev
 procps
 python3-jinja2

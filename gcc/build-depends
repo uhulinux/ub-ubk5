@@ -1,4 +1,5 @@
 isl-dev
+libxcrypt-dev
 mpc-dev
 mpfr-dev
 zip

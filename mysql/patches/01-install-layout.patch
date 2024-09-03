@@ -1,6 +1,6 @@
-diff -Naur orig/cmake/install_layout.cmake patched/cmake/install_layout.cmake
---- orig/cmake/install_layout.cmake	2021-07-05 12:15:47.000000000 +0200
-+++ patched/cmake/install_layout.cmake	2021-07-20 02:52:13.022031318 +0200
+diff -Naur a/cmake/install_layout.cmake b/cmake/install_layout.cmake
+--- a/cmake/install_layout.cmake	2024-08-05 10:49:38.000000000 +0200
++++ b/cmake/install_layout.cmake	2024-08-30 19:51:48.401736126 +0200
 @@ -175,29 +175,29 @@
  SET(INSTALL_SYSCONFDIR_DEB              "/etc")
  SET(INSTALL_SYSCONF2DIR_DEB             "/etc/mysql/mariadb.conf.d")
@@ -19,11 +19,11 @@ diff -Naur orig/cmake/install_layout.cmake patched/cmake/install_layout.cmake
  SET(INSTALL_INFODIR_DEB                 "share/info")
  #
  SET(INSTALL_SHAREDIR_DEB                "share")
- SET(INSTALL_MYSQLSHAREDIR_DEB           "share/mysql")
- SET(INSTALL_MYSQLTESTDIR_DEB            "share/mysql/mysql-test")
+ SET(INSTALL_MYSQLSHAREDIR_DEB           "share/mariadb")
+ SET(INSTALL_MYSQLTESTDIR_DEB            "share/mariadb/mariadb-test")
 -SET(INSTALL_SQLBENCHDIR_DEB             ".")
 +SET(INSTALL_SQLBENCHDIR_DEB             "")
- SET(INSTALL_SUPPORTFILESDIR_DEB         "share/mysql")
+ SET(INSTALL_SUPPORTFILESDIR_DEB         "share/mariadb")
  #
  SET(INSTALL_MYSQLDATADIR_DEB            "/var/lib/mysql")
  
@@ -37,9 +37,9 @@ diff -Naur orig/cmake/install_layout.cmake patched/cmake/install_layout.cmake
  SET(INSTALL_PAMDATADIR_DEB              "/etc/security")
  
  #
-diff -Naur orig/libmariadb/cmake/install.cmake patched/libmariadb/cmake/install.cmake
---- orig/libmariadb/cmake/install.cmake	2021-07-05 12:15:50.000000000 +0200
-+++ patched/libmariadb/cmake/install.cmake	2021-07-20 02:52:13.022031318 +0200
+diff -Naur a/libmariadb/cmake/install.cmake b/libmariadb/cmake/install.cmake
+--- a/libmariadb/cmake/install.cmake	2024-08-05 10:49:43.000000000 +0200
++++ b/libmariadb/cmake/install.cmake	2024-08-30 19:48:28.353391169 +0200
 @@ -94,8 +94,8 @@
  # DEB layout
  #
@@ -51,9 +51,9 @@ diff -Naur orig/libmariadb/cmake/install.cmake patched/libmariadb/cmake/install.
  SET(INSTALL_PLUGINDIR_DEB "${INSTALL_LIBDIR_DEB}/libmariadb${CPACK_PACKAGE_VERSION_MAJOR}/plugin")
  SET(INSTALL_INCLUDEDIR_DEB "include/mariadb")
  SET(INSTALL_MANDIR_DEB "share/man")
-diff -Naur orig/support-files/rpm/my.cnf patched/support-files/rpm/my.cnf
---- orig/support-files/rpm/my.cnf	2021-07-05 12:15:50.000000000 +0200
-+++ patched/support-files/rpm/my.cnf	2021-07-20 02:52:13.022031318 +0200
+diff -Naur a/support-files/rpm/my.cnf b/support-files/rpm/my.cnf
+--- a/support-files/rpm/my.cnf	2024-08-05 10:49:42.000000000 +0200
++++ b/support-files/rpm/my.cnf	2024-08-30 19:48:28.353391169 +0200
 @@ -7,5 +7,5 @@
  #
  # include *.cnf from the config directory

@@ -2,7 +2,6 @@
 
 cp -a modules/pam_envfeed/Makefile{,.in}
 
-export UB_MAKE_PROCS=1
 CFLAGS="-fPIC -O2" \
 ub_compile \
 	--sbindir=/usr/sbin \

@@ -25,10 +25,3 @@ install -m 644 "$UB_COMPILEDIR"/nscd/nscd.service "$UB_INSTALLDIR"/usr/lib/syste
 rm -f "$UB_INSTALLDIR"/etc/ld.so.cache
 
 rm -f "$UB_INSTALLDIR"/var/lib/nss_db/Makefile
-
-# forcing libxcrypt in other codes
-rm -f "$UB_INSTALLDIR"/usr/include/crypt.h
-rm -f "$UB_INSTALLDIR"/usr/lib/libcrypt.{a,so}
-
-# compat symlink
-# ln -s usr/lib "$UB_INSTALLDIR"/lib64

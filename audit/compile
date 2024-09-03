@@ -2,6 +2,4 @@
 
 ub_compile \
 	--enable-gssapi-krb5=yes \
-	--enable-systemd \
-	--without-python \
 	--without-python3

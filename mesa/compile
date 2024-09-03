@@ -11,13 +11,14 @@ ub_compile \
 	-Dglx=dri \
 	-Degl=enabled \
 	-Dgallium-drivers=auto \
-	-Dglvnd=true \
+	-Dglvnd=enabled \
 	-Dvulkan-drivers=amd,intel \
 	-Dvulkan-layers=device-select,intel-nullhw,overlay \
 	-Dllvm=enabled \
+	-Dintel-clc=enabled \
 	-Dlibunwind=enabled \
 	-Dlmsensors=enabled \
 	-Dtools=all \
 	-Db_ndebug=true \
 	-Db_lto=true \
-	-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
+	-Dvideo-codecs=all
