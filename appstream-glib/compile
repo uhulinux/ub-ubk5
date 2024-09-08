@@ -1,5 +1,4 @@
 #!/bin/sh -eux
 
 ub_compile \
-    -Dstemmer=false \
     -Drpm=false

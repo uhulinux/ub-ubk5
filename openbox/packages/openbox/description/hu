@@ -1,3 +1,0 @@
-Beállításhoz &segítség:https://urukrama.wordpress.com/openbox-guide/
-A /etc/xdg/openbox/autostart példa fájlt be kell másolni a ~/.config/openbox
-mappába, és ott a kívánt módosításokat végre lehet hajtani rajta.

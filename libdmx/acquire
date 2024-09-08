@@ -1,4 +1,0 @@
-#!/usr/bin/env dl
-
-libdmx-$UB_VERSION.tar.xz libdmx-$UB_VERSION/
-	https://www.x.org/releases/individual/lib/

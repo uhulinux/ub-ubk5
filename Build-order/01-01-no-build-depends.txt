@@ -5,10 +5,8 @@ adduser
 agedu
 alien
 alsa-lib
-ansifilter
 antiword
 aoetools
-apr
 argon2
 autoconf2.13
 at

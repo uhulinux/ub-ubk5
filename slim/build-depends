@@ -1,4 +1,5 @@
 libjpeg-turbo-dev
+libxcrypt-dev
 libxft-dev
 libxmu-dev
 libxrandr-dev

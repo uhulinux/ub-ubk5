@@ -2,4 +2,6 @@
 
 ub_compile \
 	--enable-wayland \
-	--disable-python2
+	--disable-python2 \
+	--disable-gtk2 \
+	--disable-gtk4

@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-vpnc-${UB_VERSION}.tar.gz vpnc-${UB_VERSION}/
-	https://www.unix-ag.uni-kl.de/~massar/vpnc/
+vpnc-${UB_VERSION}.tar.gz vpnc-c4837a1/
+	git+https://github.com/streambinder/vpnc.git@c4837a1

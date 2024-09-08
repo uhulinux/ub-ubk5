@@ -1,0 +1,21 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2024-09-05 09:59:31.000000000 +0200
++++ b/Makefile	2024-09-05 10:01:43.860689298 +0200
+@@ -20,7 +20,7 @@
+ #
+ # $Id$
+ 
+-PREFIX?=/usr/local
++PREFIX?=/usr
+ ETCDIR=/etc/vpnc
+ BINDIR=$(PREFIX)/bin
+ SBINDIR=$(PREFIX)/sbin
+@@ -74,7 +74,7 @@
+ export VERSION
+ 
+ CC ?= gcc
+-CFLAGS ?= -O3 -g
++CFLAGS ?= -O2 -g
+ CFLAGS += -W -Wall -Wmissing-declarations -Wwrite-strings
+ CFLAGS += $(LIBGCRYPT_CFLAGS) $(CRYPTO_CFLAGS)
+ CPPFLAGS += -DVERSION=\"$(VERSION)\" -DSCRIPT_PATH=\"$(SCRIPT_PATH)\"

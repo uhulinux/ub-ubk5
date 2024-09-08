@@ -2,7 +2,7 @@
 
 # A -O3 veszélyes
 ub_replace -O3 -O2 configure
-ub_replace -O3 -O2 configure.in
+ub_replace -O3 -O2 configure.ac
 
 export CFLAGS="-fPIC"
 ub_compile

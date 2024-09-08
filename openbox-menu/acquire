@@ -1,4 +1,0 @@
-#!/usr/bin/env dl
-
-v${UB_VERSION}.tar.gz openbox-menu-${UB_VERSION}/
-    https://github.com/fabriceT/openbox-menu/archive/refs/tags/

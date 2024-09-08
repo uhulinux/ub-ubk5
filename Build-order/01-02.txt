@@ -25,12 +25,13 @@ libxaw3d
 xfontsel
 xsetroot
 xfd
+gyp
+nss
 libetpan
 libxklavier
 rpm
 fontforge
 postfix
-apr-util
 apache
 aspell
 cbindgen
@@ -128,6 +129,8 @@ ndctl
 telepathy-glib
 libmpeg2
 cogl
+libvpx
+gd
 libwmf
 clutter
 parted

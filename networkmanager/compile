@@ -1,6 +1,6 @@
 #!/bin/sh -eux
 
-rm -f meson.build
+# rm -f meson.build
 
 # a meson vala kezelése időnként bugos...
 if [ -f meson.build ]; then

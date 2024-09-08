@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-chkrootkit-${UB_VERSION}.tar.gz chkrootkit-${UB_VERSION}/
-	https://fossies.org/linux/misc/
+v${UB_VERSION}.tar.gz chkrootkit-${UB_VERSION}/
+	https://github.com/everstake/chkrootkit/archive/refs/tags/

@@ -1,3 +1,1 @@
-dir=$(sflist faac faad2-src | splitver '^faad2-([0-9.]+)$' | sort -V | tail -n 1)
-sflist faac faad2-src/faad2-$dir | parsever | sort -V | tail -n 1
-
+u2d https://github.com/knik0/faad2/tags

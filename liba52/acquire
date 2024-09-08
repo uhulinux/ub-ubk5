@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
 a52dec-${UB_VERSION}.tar.gz a52dec-${UB_VERSION}/
-	https://liba52.sourceforge.net/files/
+	https://distfiles.adelielinux.org/source/a52dec/

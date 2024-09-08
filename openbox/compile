@@ -1,8 +1,0 @@
-#!/bin/sh -eux
-
-./bootstrap
-ub_compile \
-	--with-x \
-	--enable-startup-notification \
-	--libexecdir=/usr/lib/openbox \
-	--enable-nls

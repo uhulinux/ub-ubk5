@@ -3,3 +3,9 @@
 httpd-${UB_VERSION}.tar.gz httpd-${UB_VERSION}/
 	https://www.apache.org/dist/httpd/
     https://archive.apache.org/dist/httpd/
+
+apr-1.7.5.tar.gz apr-1.7.5/ :srclib/
+	https://archive.apache.org/dist/apr/
+
+apr-util-1.6.3.tar.gz apr-util-1.6.3/ :srclib/
+	https://archive.apache.org/dist/apr/

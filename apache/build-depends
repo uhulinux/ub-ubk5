@@ -1,6 +1,10 @@
-apr-util-dev
+curl-dev
 db4-dev
 expat-dev
+jansson-dev
+libnghttp2-dev
+libxcrypt-dev
 libxml2-dev
 openssl-dev
 pcre2-dev
+util-linux-dev

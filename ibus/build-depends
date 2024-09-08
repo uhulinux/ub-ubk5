@@ -2,10 +2,10 @@ cldr-emoji-annotation
 dconf-dev
 emoji
 gobject-introspection-dev
-gtk2-dev
 gtk3-dev
 intltool
 iso-codes
+libdbusmenu-gtk3-dev
 libnotify-dev
 unicode-ucd
 vala

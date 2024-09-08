@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-x264-${UB_VERSION}.tar.xz x264/
+x264-${UB_VERSION}.tar.xz x264-${UB_VERSION}/
 	https://ftp.osuosl.org/pub/blfs/conglomeration/x264/

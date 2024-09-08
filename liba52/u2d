@@ -1,2 +1,1 @@
-u2d https://liba52.sourceforge.net/downloads.html a52dec-
-
+urllist https://git.adelielinux.org/community/a52dec/-/tags | grep '^v[0-9].' | sort -V | tail -n1 | sed -e 's/v//'

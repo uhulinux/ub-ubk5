@@ -1,6 +1,6 @@
 #!/bin/sh -eux
 
-git clone -b lts_2023_01_25 https://github.com/abseil/abseil-cpp.git third_party/abseil-cpp
+git clone -b lts_2023_08_02 https://github.com/abseil/abseil-cpp.git third_party/abseil-cpp
 
 ub_compile \
     -Dprotobuf_BUILD_TESTS=OFF \

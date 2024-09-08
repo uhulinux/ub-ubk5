@@ -18,6 +18,7 @@ libosinfo
 osinfo-db-tools
 geocode-glib
 geoclue
+ruby
 webkit2gtk-4.1 # gtk3 + libsoup3
 webkitgtk-6.0 # gtk4 + libsoup3
 osinfo-db
@@ -70,10 +71,7 @@ libmatroska
 libvncserver
 x11vnc
 freerdp
-lxmenu-data
-lxpolkit
 keybinder3
-fluxbox
 python3-pyinotify
 ffmpeg-thumbnailer
 xcursorgen
@@ -120,8 +118,6 @@ python3-pyqt5
 python3-qtpy
 libplacebo
 vlc
-gd
-ruby
 texlive
 #kigyófeloldás
 libfm #-menu-cache
@@ -130,8 +126,6 @@ menu-cache
 libfm #+menu-cache
 menu-cache
 #kígyófeloldásvég
-openbox-menu
-openbox
 pcmanfm
 libextractor
 wget

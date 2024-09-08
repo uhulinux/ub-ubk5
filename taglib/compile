@@ -1,6 +1,4 @@
 #!/bin/sh -eux
 
 ub_compile \
-	-DWITH_ASF:BOOL=ON \
-	-DWITH_MP4:BOOL=ON \
 	-DBUILD_SHARED_LIBS=ON

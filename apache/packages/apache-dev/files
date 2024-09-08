@@ -1,2 +1,6 @@
+	/usr/bin/*-config
 	/usr/include
 	/usr/lib/apache/build
+	/usr/lib/*.exp
+@	/usr/lib/libapr*.so
+	/usr/lib/pkgconfig

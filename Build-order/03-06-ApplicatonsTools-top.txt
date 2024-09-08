@@ -1,3 +1,4 @@
+ansifilter
 nrg2iso
 keepassxc
 gkrellm-themes

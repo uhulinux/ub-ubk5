@@ -1,4 +1,5 @@
 libspectre
+libgsf
 libwpd
 libwpg
 libwps
