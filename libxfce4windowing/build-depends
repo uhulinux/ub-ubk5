@@ -1,4 +1,6 @@
 gtk3-dev
 intltool
+libdisplay-info-dev
 libwnck-dev
 wayland-dev
+wayland-protocols

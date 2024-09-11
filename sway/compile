@@ -2,4 +2,5 @@
 
 ub_compile \
     -Dwerror=false \
-    -Db_ndebug=true
+    -Db_ndebug=true \
+    -Dxwayland=enabled

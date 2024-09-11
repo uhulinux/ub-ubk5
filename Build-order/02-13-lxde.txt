@@ -7,7 +7,6 @@ lxdm
 lxappearance
 lxnm
 lxtask
-lxshortcut
 gpicview
 lxterminal
 lxsession

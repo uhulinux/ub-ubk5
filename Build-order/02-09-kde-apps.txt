@@ -42,5 +42,5 @@ yaz
 tellico
 digikam
 #kaffeine # kf5, multimedia lejátszó
-#krusader # kf5
+krusader # kf5 + patch
 kshutdown # kf5 + patch

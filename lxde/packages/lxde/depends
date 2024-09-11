@@ -3,7 +3,6 @@ icon-theme-adwaita >=
 icon-theme-lxde >=
 libfm >=
 lxappearance >=
-lxappearance-obconf >=
 lxde-common >=
 lxdm >=
 lxinput >=

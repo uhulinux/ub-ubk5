@@ -37,6 +37,7 @@ kitemmodels
 kitemviews
 kplotting
 kwidgetsaddons
+kwayland
 kwindowsystem
 kstatusnotifieritem
 modemmanager-qt
@@ -120,7 +121,6 @@ libksysguard
 ksystemstats
 kwallet-pam
 kglobalacceld
-kwayland
 kwin
 milou
 ocean-sound-theme

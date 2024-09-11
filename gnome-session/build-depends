@@ -8,7 +8,7 @@ libglvnd-dev
 librsvg-dev
 libseccomp-dev
 libsm-dev
-libxslt
+libxslt-dev
 meson
 systemd-dev
 x.org-xtrans-dev

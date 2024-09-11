@@ -5,4 +5,5 @@ intltool
 libsecret-dev
 libxslt-dev
 openssh
+p11-kit-dev
 vala

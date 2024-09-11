@@ -131,4 +131,6 @@ libextractor
 wget
 inkscape
 rust-bindgen
-guile
+guile # gnucash
+x.org-xwayland
+libxpresent # metacity, xfwm4, mpv

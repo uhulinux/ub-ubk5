@@ -3,6 +3,7 @@ cheese-dev
 colord-gtk-dev
 cups-dev
 dbus-dev
+gcr-dev
 gnome-bluetooth-1.0-dev
 gnome-desktop-dev
 gnome-online-accounts-dev

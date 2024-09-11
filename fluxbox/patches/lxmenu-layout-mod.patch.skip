@@ -1,22 +1,23 @@
-diff -Nur orig/lxde-applications.menu mod/lxde-applications.menu
---- orig/lxde-applications.menu	2018-08-29 21:02:06.000000000 +0200
-+++ mod/lxde-applications.menu	2018-09-07 10:17:12.000000000 +0200
-@@ -561,18 +561,7 @@
- 				<Category>System</Category>
- 			</Or>
+diff -Naur a/lxde-applications.menu b/lxde-applications.menu
+--- a/lxde-applications.menu	2024-09-06 11:18:00.000000000 +0200
++++ b/lxde-applications.menu	2024-09-06 11:30:32.050556172 +0200
+@@ -536,19 +536,6 @@
+ 				<Category>Settings</Category>
+ 				<Category>PackageManager</Category>
  		</Include>
 -		<Layout>
 -			<Merge type="menus"/>
 -			<Merge type="files"/>
 -		</Layout>
 -
- 	</Menu> <!-- End Settings -->
+ 	</Menu>
  
 -	<Layout>
 -		<Merge type="files"/>
 -		<Merge type="menus"/>
+-		<Menuname>Other</Menuname>
 -		<Separator/>
--		<Menuname>DesktopSettings</Menuname>
+-		<Menuname>Settings</Menuname>
 -	</Layout>
- 
- </Menu> <!-- End Applications -->
+-
+ </Menu>
