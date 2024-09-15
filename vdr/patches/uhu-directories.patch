@@ -1,7 +1,7 @@
 diff -Naur orig/Make.config.template mod/Make.config.template
 --- orig/Make.config.template	2015-02-09 10:58:45.000000000 +0100
 +++ mod/Make.config.template	2015-02-18 19:42:12.816800195 +0100
-@@ -26,7 +26,7 @@
+@@ -32,7 +32,7 @@
  
  # Default directories (adjust as necessary or desired):
  
@@ -10,7 +10,7 @@ diff -Naur orig/Make.config.template mod/Make.config.template
  #BINDIR    = $(PREFIX)/bin
  #INCDIR    = $(PREFIX)/include
  #LIBDIR    = $(PREFIX)/lib/vdr
-@@ -36,8 +36,8 @@
+@@ -42,8 +42,8 @@
  #RESDIR    = $(PREFIX)/share/vdr
  #DVBDIR    = /usr/src/v4l-dvb/linux/include/uapi
  
@@ -21,7 +21,7 @@ diff -Naur orig/Make.config.template mod/Make.config.template
  #ARGSDIR   = /etc/vdr/conf.d
  #CACHEDIR  = /var/cache/vdr
  
-@@ -76,7 +76,7 @@
+@@ -84,7 +84,7 @@
  #NO_KBD = 1
  
  ### Define if you want vdr to not run as root:

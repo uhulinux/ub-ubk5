@@ -1,4 +1,5 @@
 e2fsprogs-dev
+libxcrypt-dev
 newt-dev
 openssl-dev
 parted-dev

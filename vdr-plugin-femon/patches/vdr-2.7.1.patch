@@ -1,0 +1,11 @@
+diff -Naur a/Makefile b/Makefile
+--- a/Makefile	2024-09-15 22:41:55.667852858 +0200
++++ b/Makefile	2024-09-15 22:42:40.375961594 +0200
+@@ -51,6 +51,7 @@
+ INCLUDES +=
+ 
+ DEFINES += -DPLUGIN_NAME_I18N='"$(PLUGIN)"'
++DEFINES += -DDEPRECATED_CCONTROL=1
+ 
+ ifneq ($(strip $(GITTAG)),)
+ DEFINES += -DGITVERSION='"-GIT-$(GITTAG)"'

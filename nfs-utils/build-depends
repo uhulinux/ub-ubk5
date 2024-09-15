@@ -4,6 +4,7 @@ krb5-dev
 libcap-dev
 libevent-dev
 libtirpc-dev
+libxml2-dev
 lvm-dev
 rpcsvc-proto
 sqlite-dev

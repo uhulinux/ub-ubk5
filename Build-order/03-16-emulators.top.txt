@@ -1,6 +1,6 @@
-xa
-iasl
-icoutils
+xa # vice
+iasl # bochs, virtualbox
+icoutils # q4wine
 z81
 libspectrum
 spectemu

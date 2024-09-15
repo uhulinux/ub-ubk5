@@ -22,7 +22,8 @@ opus-dev
 patchelf
 pulseaudio-dev
 python3-dev
-qt5-dev
+qt6-dev
 sdl-dev
 strace
+wayland-dev
 yasm

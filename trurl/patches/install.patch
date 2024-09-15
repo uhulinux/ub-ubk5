@@ -1,0 +1,26 @@
+From f35239125622405d1425bdc27fcfa3ba63b844da Mon Sep 17 00:00:00 2001
+From: Daniel Stenberg <daniel@haxx.se>
+Date: Mon, 2 Sep 2024 15:35:21 +0200
+Subject: [PATCH] Makefile: check for trurl.1 before installing
+
+Simply skips the operation if there is no .1 file around. The manpage
+version is shipped in tarballs but is not present in git.
+---
+ Makefile | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index db41c08f..84d941e8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -52,7 +52,9 @@ install:
+ 	$(INSTALL) -d $(DESTDIR)$(BINDIR)
+ 	$(INSTALL) -m 0755 $(TARGET) $(DESTDIR)$(BINDIR)
+ 	$(INSTALL) -d $(DESTDIR)$(MANDIR)
+-	$(INSTALL) -m 0644 $(MANUAL) $(DESTDIR)$(MANDIR)
++	(if test -f $(MANUAL); then \
++	$(INSTALL) -m 0644 $(MANUAL) $(DESTDIR)$(MANDIR); \
++	fi)
+ 
+ .PHONY: clean
+ clean:

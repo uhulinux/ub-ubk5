@@ -1,0 +1,12 @@
+diff -Naur a/configure.ac b/configure.ac
+--- a/configure.ac	2020-11-08 20:20:32.000000000 +0100
++++ b/configure.ac	2024-09-15 00:11:31.753269889 +0200
+@@ -674,7 +674,7 @@
+ AC_ARG_ENABLE(turbo, [  --enable-turbo     Most optimised compile. Do NOT use if making binaries for general distribution.] , TURBO=true, TURBO=false)
+ 
+ if test "$TURBO" = "true" ; then
+-TURBO_CFLAGS="-Ofast -O3 -march=native -mtune=native -ffast-math -fno-math-errno"
++TURBO_CFLAGS="-O2"
+ echo "Turbo enabled"
+ echo TURBO_CFLAGS set to $TURBO_CFLAGS
+ fi

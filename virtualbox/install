@@ -52,7 +52,7 @@ do
     chmod +x "$UB_INSTALLDIR"/usr/bin/$file
 done
 
-mv Oracle_VM_VirtualBox_Extension_Pack.vbox-extpack "$UB_INSTALLDIR"/usr/lib/virtualbox/ExtensionPacks/
+mv Oracle_VirtualBox_Extension_Pack.vbox-extpack "$UB_INSTALLDIR"/usr/lib/virtualbox/ExtensionPacks/
 
 # remove unneeded python2 script
 rm -f "$UB_INSTALLDIR"/usr/lib/virtualbox/rdesktop-vrdp-keymaps/convert-map
