@@ -25,11 +25,11 @@ gupnp-av
 gnome-desktop
 cheese
 dconf-editor
-tracker
+tracker # tinysparql
 eog
 eog-plugins
+tracker-miners # localsearch
 nautilus
-tracker-miners
 evince
 file-roller
 gnome-session

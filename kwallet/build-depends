@@ -2,6 +2,7 @@ boost-dev
 extra-cmake-modules
 gpgmepp-dev
 kconfigwidgets-dev
+kcrash-dev
 kdbusaddons-dev
 kdoctools
 ki18n-dev

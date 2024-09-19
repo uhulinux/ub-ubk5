@@ -22,6 +22,7 @@ networkmanager-dev
 pipewire-dev
 polkit-dev
 pulseaudio-dev
+python3-docutils
 sassc
 startup-notification-dev
 systemd-dev

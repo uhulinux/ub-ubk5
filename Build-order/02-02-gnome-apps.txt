@@ -22,7 +22,7 @@ gnome-klotski
 gnome-robots
 gnome-taquin
 gnome-sound-recorder
-gnome-todo
+gnome-todo # endeavour
 bijiben
 gnome-maps
 quadrapassel

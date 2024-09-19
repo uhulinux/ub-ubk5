@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-tracker-miners-${UB_VERSION}.tar.xz tracker-miners-${UB_VERSION}/
-    https://download.gnome.org/sources/tracker-miners/${UB_VERSION_HEAD2}/
+localsearch-${UB_VERSION}.tar.xz localsearch-${UB_VERSION}/
+    https://download.gnome.org/sources/localsearch/${UB_VERSION_HEAD2}/

@@ -2,6 +2,7 @@ appstream-dev
 curl-dev
 gobject-introspection-dev
 gtk4-dev
+libxkbcommon-dev
 sassc
 vala
 wayland-protocols

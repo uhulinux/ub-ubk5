@@ -1,4 +1,5 @@
 dbus-dev
+gobject-introspection-dev
 gstreamer-dev
 intltool
 libexif-dev

@@ -47,6 +47,7 @@ networkmanager-dev
 p11-kit-dev
 polkit-dev
 pulseaudio-dev
+rest-dev
 samba-dev
 setxkbmap
 startup-notification-dev

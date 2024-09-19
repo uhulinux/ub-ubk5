@@ -14,3 +14,4 @@ libsm-dev
 libxml2-dev
 sqlite-dev
 tracker-dev
+tracker-miners

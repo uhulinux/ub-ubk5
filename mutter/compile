@@ -3,4 +3,4 @@
 ub_compile \
 	-Dremote_desktop=true \
 	-Dprofiler=false \
-	-Dtests=false
+	-Dtests=disabled

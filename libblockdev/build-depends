@@ -3,8 +3,10 @@ cryptsetup-dev
 e2fsprogs-dev
 glib-dev
 gobject-introspection-dev
+json-glib-dev
 keyutils-dev
 kmod-dev
+libatasmart-dev
 libbytesize-dev
 libnvme-dev
 libyaml-dev

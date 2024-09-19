@@ -5,6 +5,7 @@ gstreamer-dev
 gtk4-dev
 intltool
 json-glib-dev
+keyutils-dev
 krb5-dev
 libadwaita-dev
 libjpeg-turbo-dev
