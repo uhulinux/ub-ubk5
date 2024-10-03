@@ -6,7 +6,7 @@ diff -Naur a/sane/version.hpp b/sane/version.hpp
  }
  
 -#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR == 0))
-+#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR == 2))
++#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR == 3))
  #error "SANE installation violates versioning portability constraints."
  #endif
  

@@ -1,6 +1,5 @@
 #!/bin/sh -eux
 
-./autogen.sh
 ub_compile \
 	--with-xmlrpc-c \
 	--enable-ipv6

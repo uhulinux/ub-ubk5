@@ -1,7 +1,4 @@
 #!/usr/bin/env dl
 
-version-${UB_VERSION}.tar.gz acpica-version-${UB_VERSION}/
+R${UB_VERSION:4:2}_${UB_VERSION:6:2}_${UB_VERSION:2:2}.tar.gz .
     https://github.com/acpica/acpica/archive/refs/tags/
-
-#R${UB_VERSION:4:2}_${UB_VERSION:6:2}_${UB_VERSION:2:2}.tar.gz .
-#   https://github.com/acpica/acpica/archive/refs/tags/

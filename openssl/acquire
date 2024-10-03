@@ -1,4 +1,4 @@
 #!/usr/bin/env dl
 
-openssl-"$UB_VERSION".tar.gz openssl-"$UB_VERSION"/
-	https://www.openssl.org/source/
+openssl-"$UB_VERSION".tar.gz openssl-openssl-"$UB_VERSION"/
+	https://github.com/openssl/openssl/archive/refs/tags/

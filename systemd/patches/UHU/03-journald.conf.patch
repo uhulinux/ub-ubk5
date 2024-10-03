@@ -1,7 +1,7 @@
 diff -Naur a/src/journal/journald.conf b/src/journal/journald.conf
---- a/src/journal/journald.conf	2024-08-15 22:46:49.000000000 +0200
-+++ b/src/journal/journald.conf	2024-08-30 22:52:02.969774757 +0200
-@@ -24,17 +24,17 @@
+--- a/src/journal/journald.conf	2023-07-28 10:26:32.000000000 +0200
++++ b/src/journal/journald.conf	2024-09-20 23:45:35.939105227 +0200
+@@ -22,17 +22,17 @@
  #SyncIntervalSec=5m
  #RateLimitIntervalSec=30s
  #RateLimitBurst=10000
@@ -17,7 +17,7 @@ diff -Naur a/src/journal/journald.conf b/src/journal/journald.conf
 -#RuntimeMaxFileSize=
 +RuntimeMaxFileSize=50M
  #RuntimeMaxFiles=100
- #MaxRetentionSec=0
+ #MaxRetentionSec=
  #MaxFileSec=1month
 -#ForwardToSyslog=no
 +ForwardToSyslog=yes

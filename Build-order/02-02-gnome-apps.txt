@@ -33,6 +33,7 @@ gnome-calendar
 gnome-color-manager
 gnome-music
 editorconfig
+libspelling
 gnome-text-editor
 libgit2
 libgit2-glib

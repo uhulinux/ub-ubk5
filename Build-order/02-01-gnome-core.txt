@@ -1,7 +1,7 @@
 libei
 libdazzle
 gcr
-js115
+js128
 gjs
 libpeas
 libgweather

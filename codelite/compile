@@ -1,26 +1,22 @@
 #!/bin/sh -eux
 
-git clone https://github.com/eranif/ctags.git ctags
-git clone https://github.com/eranif/wxdap.git wxdap
-git clone https://github.com/jbeder/yaml-cpp.git yaml-cpp
-git clone https://github.com/eranif/cc-wrapper.git cc-wrapper
-git clone https://github.com/eranif/tinyjson.git cc-wrapper/tinyjson
-git clone https://github.com/cubicdaiya/dtl.git dtl
+git clone https://github.com/eranif/ctags.git submodules/ctags
+git clone https://github.com/eranif/wxdap.git submodules/wxdap
+git clone --recursive https://github.com/eranif/cc-wrapper.git submodules/cc-wrapper
+git clone https://github.com/jbeder/yaml-cpp.git submodules/yaml-cpp
+git clone https://github.com/cubicdaiya/dtl.git submodules/dtl
+git clone https://github.com/ggerganov/llama.cpp.git submodules/llama.cpp
 
-cd wxdap
+cd submodules/wxdap
 git checkout 10f57bb
-cd ..
+cd ../..
 
-cd yaml-cpp
+cd submodules/yaml-cpp
 git checkout 1b50109
-cd ..
+cd ../..
 
-cd cc-wrapper
+cd submodules/cc-wrapper
 git checkout 6771344
-cd ..
-
-cd cc-wrapper/tinyjson
-git checkout a6b0d0d
 cd ../..
 
 ub_compile \

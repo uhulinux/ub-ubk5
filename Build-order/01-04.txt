@@ -92,11 +92,11 @@ mpg123
 srt
 wildmidi
 dav1d
+imlib2
+libcaca
 ffmpeg
 ffmpeg4.4
 libheif
-imlib2
-libcaca
 gstreamer
 gstreamermm
 clutter-gst
